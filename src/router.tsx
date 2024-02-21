@@ -1,8 +1,8 @@
 import { RouteObject } from "react-router-dom";
-import RootLayout from "./layouts/RootLayout";
-import ErrorPage from "./pages/ErrorPage";
-import HomePage from "./pages/HomePage";
-import NotFoundPage from "./pages/NotFoundPage";
+import RootLayout from "@layouts/RootLayout";
+import ErrorPage from "@pages/ErrorPage";
+import HomePage from "@pages/HomePage";
+import NotFoundPage from "@pages/NotFoundPage";
 
 const router: RouteObject[] = [
   {

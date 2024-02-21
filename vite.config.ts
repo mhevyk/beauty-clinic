@@ -12,6 +12,8 @@ export default defineConfig({
     alias: {
       "@components": resolveSource("components"),
       "@hooks": resolveSource("hooks"),
+      "@pages": resolveSource("pages"),
+      "@layouts": resolveSource("layouts"),
     },
   },
   plugins: [react()],

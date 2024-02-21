@@ -9,5 +9,5 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <StrictMode>
     <RouterProvider router={createBrowserRouter(router)} />
-  </StrictMode>
+  </StrictMode>,
 );

@@ -27,7 +27,9 @@
       "@components/*": ["src/components/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
-      "@layouts/*": ["src/layouts/*"]
+      "@layouts/*": ["src/layouts/*"],
+      "@icons/*": ["src/assets/icons/*"],
+      "@images/*": ["src/assets/images/*"]
     }
   },
   "include": ["src"],

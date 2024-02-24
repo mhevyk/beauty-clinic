@@ -14,6 +14,8 @@ export default defineConfig({
       "@hooks": resolveSource("hooks"),
       "@pages": resolveSource("pages"),
       "@layouts": resolveSource("layouts"),
+      "@icons": resolveSource("assets", "icons"),
+      "@images": resolveSource("assets", "images"),
     },
   },
   plugins: [react()],

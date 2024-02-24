@@ -4,13 +4,13 @@ import {
   Map,
   InfoWindow,
   AdvancedMarker,
-  Pin,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
+import customGoogleMapPinIcon from "@icons/map-pin.svg";
 
 const MARKER_COORDINATES: google.maps.LatLngLiteral = {
-  lat: 48.923835142085494,
-  lng: 24.701468908172984,
+  lat: 37.77489791779846,
+  lng: -122.41942697025132,
 };
 
 export default function GoogleMap() {
@@ -22,18 +22,18 @@ export default function GoogleMap() {
       <Map
         mapId={import.meta.env.VITE_APP_GOOGLE_MAP_ID}
         style={{ height: "397px" }}
-        defaultZoom={15.45}
+        defaultZoom={14.3}
         defaultCenter={MARKER_COORDINATES}
         gestureHandling="none"
         fullscreenControl={false}
       >
         <AdvancedMarker
+          title="Our beauty clinic location" // For screen readers
           ref={markerRef}
           position={MARKER_COORDINATES}
           onClick={() => setMapTooltipOpen(true)}
         >
-          {/* TODO: replace pin icon with custom marker image */}
-          <Pin borderColor="white" glyphColor="#811411" />
+          <img src={customGoogleMapPinIcon} alt="Map pin icon" />
         </AdvancedMarker>
         {isMapTooltipOpen && (
           <InfoWindow

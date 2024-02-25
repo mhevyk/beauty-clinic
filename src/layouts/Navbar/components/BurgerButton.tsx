@@ -27,7 +27,7 @@ const BurgerIconButton = styled(IconButton)((props) => {
 });
 
 const BurgerIcon = styled("svg")(({ theme }) => ({
-  fill: theme.palette.primary.light,
+  fill: theme.palette.secondary.dark,
 }));
 
 const BurgerLine = styled("rect")({

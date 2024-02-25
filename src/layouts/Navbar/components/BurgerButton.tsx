@@ -1,5 +1,7 @@
 import { IconButton, IconButtonProps, styled } from "@mui/material";
 
+const MIDDLE_BURGER_BAR_Y = 46.5;
+
 const BurgerIconButton = styled(IconButton)((props) => {
   const isButtonActive = props["aria-expanded"] === "true";
 
@@ -9,7 +11,7 @@ const BurgerIconButton = styled(IconButton)((props) => {
 
   return {
     ".top": {
-      y: 45,
+      y: MIDDLE_BURGER_BAR_Y,
       rotate: "-45deg",
     },
     ".middle": {
@@ -18,14 +20,13 @@ const BurgerIconButton = styled(IconButton)((props) => {
       opacity: 0,
     },
     ".bottom": {
-      y: 45,
+      y: MIDDLE_BURGER_BAR_Y,
       rotate: "45deg",
     },
   };
 });
 
 const BurgerIcon = styled("svg")(({ theme }) => ({
-  width: 40,
   fill: theme.palette.primary.light,
 }));
 
@@ -46,10 +47,15 @@ export default function BurgerButton({
 }: BurgerButtonProps) {
   return (
     <BurgerIconButton aria-expanded={isActive ? "true" : "false"} {...rest}>
-      <BurgerIcon viewBox="0 0 100 100">
-        <BurgerLine className="line top" x="10" y="20" rx="5" />
-        <BurgerLine className="line middle" x="10" y="45" rx="5" />
-        <BurgerLine className="line bottom" x="10" y="70" rx="5" />
+      <BurgerIcon viewBox="0 0 100 100" width="30">
+        <BurgerLine className="line top" x="10" y="15" rx="5" />
+        <BurgerLine
+          className="line middle"
+          x="10"
+          y={MIDDLE_BURGER_BAR_Y}
+          rx="5"
+        />
+        <BurgerLine className="line bottom" x="10" y="78" rx="5" />
       </BurgerIcon>
     </BurgerIconButton>
   );

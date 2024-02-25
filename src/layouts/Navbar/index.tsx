@@ -12,8 +12,12 @@ import MobileMenu from "./components/MobileMenu";
 import { useLockPageScroll } from "./hooks/useLockPageScroll";
 import CartIconButton from "./components/CartIcon";
 import { Link } from "react-router-dom";
-import theme from "@theme/theme";
 import userIcon from "@icons/user-icon.svg";
+import theme from "@theme/theme";
+
+const AppBarStyled = styled(AppBar)({
+  padding: "16px 0 8px",
+});
 
 const BurgerButtonStyled = styled(BurgerButton)({
   position: "relative",
@@ -22,7 +26,7 @@ const BurgerButtonStyled = styled(BurgerButton)({
 
 const LinkStyled = styled(Link)(({ theme }) => ({
   textDecoration: "none",
-  color: theme.palette.primary.main,
+  color: theme.palette.secondary.dark,
   transition: "color 400ms",
   "&:active": {
     color: "rgb(199, 179, 163)",
@@ -63,7 +67,7 @@ const BurgerMenu = () => {
   return (
     <>
       {/* TODO: change styles, change color when theme is ready */}
-      <AppBar position="relative" color="secondary" elevation={0}>
+      <AppBarStyled position="static" elevation={0} color="transparent">
         <Toolbar>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
           <Box sx={{ flexGrow: 1 }}>
@@ -83,7 +87,7 @@ const BurgerMenu = () => {
             />
           )}
         </Toolbar>
-      </AppBar>
+      </AppBarStyled>
       <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
         <MobileMenu />
       </Fade>

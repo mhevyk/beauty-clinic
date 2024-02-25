@@ -4,10 +4,7 @@ import { ElementRef, forwardRef } from "react";
 // TODO: change UI
 const MobileMenuOverlay = styled(Box)(({ theme }) => ({
   position: "fixed",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
+  inset: 0,
   background: theme.palette.secondary.main,
   display: "flex",
   justifyContent: "center",

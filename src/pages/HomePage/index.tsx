@@ -1,6 +1,6 @@
 // TODO: change UI
 import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
-import theme from "../../theme/theme.ts";
+import theme from "@theme/theme.ts";
 
 export default function HomePage() {
   return (

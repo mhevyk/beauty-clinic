@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import router from "./router.tsx";
 import { ThemeProvider } from "@mui/material";
-import theme from "@theme/theme.tsx";
+import theme from "@theme/theme.ts";
 import { CSSInit } from "./theme/global.tsx";
 
 const rootElement = document.getElementById("root")!;
@@ -15,5 +15,5 @@ root.render(
       <CSSInit />
       <RouterProvider router={createBrowserRouter(router)} />
     </ThemeProvider>
-  </StrictMode>
+  </StrictMode>,
 );

@@ -24,14 +24,9 @@ const BurgerButtonStyled = styled(BurgerButton)({
   zIndex: 100,
 });
 
-const LinkStyled = styled(Link)(({ theme }) => ({
-  textDecoration: "none",
-  color: theme.palette.secondary.dark,
+const LinkStyled = styled(Link)({
   transition: "color 400ms",
-  "&:active": {
-    color: "rgb(199, 179, 163)",
-  },
-}));
+});
 
 const LogoLink = styled(LinkStyled)({
   fontSize: "22px",

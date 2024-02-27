@@ -1,5 +1,6 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function RootLayout() {
   return (
@@ -7,6 +8,7 @@ export default function RootLayout() {
       <ScrollRestoration />
       <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 }

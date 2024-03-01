@@ -1,11 +1,14 @@
 import { Box, BoxProps, styled } from "@mui/material";
 import { ElementRef, forwardRef } from "react";
+import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
+import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
 
 // TODO: change UI
+// @ts-ignore
 const MobileMenuOverlay = styled(Box)(({ theme }) => ({
   position: "fixed",
   inset: 0,
-  background: theme.palette.primary.main,
+  background: theme.palette.PinkMarbleSky.main,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -18,10 +21,11 @@ const MobileMenu = forwardRef<ElementRef<typeof Box>, BoxProps>(
   (props, ref) => {
     return (
       <MobileMenuOverlay ref={ref} {...props}>
-        My mobile menu
+        <MenuLinks />
+        <SocialLinks />
       </MobileMenuOverlay>
     );
-  }
+  },
 );
 
 export default MobileMenu;

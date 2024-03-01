@@ -11,7 +11,8 @@ type CustomColors =
   | "PinkMarbleSky"
   | "CreamyDawn"
   | "SteelMist"
-  | "PinkChiffon";
+  | "PinkChiffon"
+  | "Transparent";
 
 type CustomPalette = Record<CustomColors, PaletteColorOptions>;
 

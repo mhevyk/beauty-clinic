@@ -17,6 +17,7 @@ import theme from "@theme/theme";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
+  position: "absolute",
 });
 
 const BurgerButtonStyled = styled(BurgerButton)({
@@ -62,7 +63,7 @@ const BurgerMenu = () => {
   return (
     <>
       {/* TODO: change styles, change color when theme is ready */}
-      <AppBarStyled position="static" elevation={0} color="primary">
+      <AppBarStyled position="static" elevation={0} color="Transparent">
         <Toolbar>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
           <Box sx={{ flexGrow: 1 }}>

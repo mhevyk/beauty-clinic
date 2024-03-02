@@ -12,8 +12,8 @@ type CustomColors =
   | "CreamyDawn"
   | "SteelMist"
   | "PinkChiffon"
-  | "Transparent";
-
+  | "Transparent"
+  | "GrayPhoneNav";
 type CustomPalette = Record<CustomColors, PaletteColorOptions>;
 
 declare module "@mui/material/styles/createPalette" {

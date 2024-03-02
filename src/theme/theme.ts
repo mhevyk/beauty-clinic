@@ -2,6 +2,9 @@ import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
+    GrayPhoneNav: {
+      main: "#605f5d",
+    },
     Transparent: {
       main: "rgba(0,0,0,0)",
     },

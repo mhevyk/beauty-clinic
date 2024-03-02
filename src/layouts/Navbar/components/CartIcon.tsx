@@ -11,8 +11,7 @@ function CartIcon() {
         x="58.5"
         y="77"
         dy=".35em"
-        text-anchor="middle"
-        data-hook="items-count"
+        textAnchor="middle"
         fill="white"
         fontSize={50}
       >

@@ -4,28 +4,27 @@ import facebook from "@images/facebook.png";
 import instagram from "@images/instagram.png";
 import theme from "@theme/theme.ts";
 
+const BoxStyled = styled(Box)({
+  width: 24,
+  height: 60,
+  position: "absolute",
+  bottom: 0,
+  marginLeft: 24,
+  marginBottom: 44,
+  justifySelf: "start",
+});
+
+const BoxStyledPhone = styled(Box)({
+  width: 53,
+  height: 23,
+  position: "relative",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  top: "calc(25% + 70px)",
+});
+
 const SocialLinks = () => {
-  const BoxStyled = styled(Box)({
-    width: 24,
-    height: 60,
-    position: "absolute",
-    bottom: 0,
-    marginLeft: 24,
-    marginBottom: 44,
-    justifySelf: "start",
-  });
-  const BoxStyledPhone = styled(Box)({
-    width: 53,
-    height: 23,
-    position: "relative",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-
-    top: "calc(25% + 70px)",
-
-    // alignSelf: "center",
-  });
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (

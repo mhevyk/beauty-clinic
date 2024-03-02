@@ -1,86 +1,51 @@
-import * as React from "react";
-import { Box, styled, Typography, useMediaQuery } from "@mui/material";
-import { Link } from "react-router-dom";
-import theme from "@theme/theme.ts";
+import { styled } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import { menuItems } from "../data/menuItems";
 
-type MenuItem = {
-  path: string;
-  label: string;
+// TODO: Vasyl: fix styles
+const MenuWrapper = styled("ul")(({ theme }) => {
+  const smallScreenMediaQuery = theme.breakpoints.down("md");
+
+  return {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: "40px",
+    [smallScreenMediaQuery]: {
+      gap: "30px",
+    },
+  };
+});
+
+const MenuItem = styled("li")(({ theme }) => {
+  return theme.typography.h6;
+});
+
+type MenuLinkProps = {
+  to: string;
 };
-const menuItems: MenuItem[] = [
-  {
-    path: "/",
-    label: "Home",
-  },
-  {
-    path: "/",
-    label: "Meet Lily",
-  },
-  {
-    path: "/Treatments",
-    label: "Treatments",
-  },
-  {
-    path: "/Blog",
-    label: "Blog",
-  },
-  {
-    path: "/",
-    label: "Contact",
-  },
-  {
-    path: "/Members",
-    label: "Members",
-  },
-];
-const BoxStyled = styled(Box)({
-  left: 80,
-  width: 190,
-  position: "absolute",
-  bottom: 100,
-  // height: "50vh",
-});
-const BoxStyledPhone = styled(Box)({
-  width: 190,
-  position: "absolute",
+
+const MenuLink = styled(NavLink)<MenuLinkProps>(({ theme, to }) => {
+  const shouldHighlight = !to.includes("#");
+
+  return {
+    "&:active": {
+      color: "unset",
+    },
+    "&.active": {
+      color: shouldHighlight ? theme.palette.ButtonBlack.dark : undefined,
+    },
+  };
 });
 
-const MenuLinks: React.FC = () => {
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+export default function MenuLinks() {
   return (
-    <>
-      {isSmallScreen ? (
-        <BoxStyledPhone>
-          {menuItems.map((menuItems, index) => (
-            <Link
-              key={index}
-              to={menuItems.path}
-              color="secondary"
-              style={{ color: "inherit" }}
-            >
-              <Typography variant="h6" style={{ margin: "40px 0" }}>
-                <h3>{menuItems.label}</h3>
-              </Typography>
-            </Link>
-          ))}
-        </BoxStyledPhone>
-      ) : (
-        <BoxStyled>
-          {menuItems.map((menuItems, index) => (
-            <Link
-              key={index}
-              to={menuItems.path}
-              color="secondary"
-              style={{ color: "inherit" }}
-            >
-              <Typography variant="h6" style={{ margin: "-10px 0" }}>
-                <h1>{menuItems.label}</h1>
-              </Typography>
-            </Link>
-          ))}
-        </BoxStyled>
-      )}
-    </>
+    <MenuWrapper>
+      {menuItems.map((menuItem, index) => (
+        <MenuItem key={index}>
+          <MenuLink to={menuItem.path}>{menuItem.label}</MenuLink>
+        </MenuItem>
+      ))}
+    </MenuWrapper>
   );
-};
-export default MenuLinks;
+}

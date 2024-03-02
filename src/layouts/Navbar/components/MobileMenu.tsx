@@ -10,6 +10,8 @@ const MobileMenuOverlay = styled(Box)(({ theme }) => ({
   inset: 0,
   background: theme.palette.PinkMarbleSky.main,
   display: "flex",
+  flexDirection: "column",
+  gap: "30px",
   justifyContent: "center",
   alignItems: "center",
   zIndex: 10,
@@ -25,7 +27,7 @@ const MobileMenu = forwardRef<ElementRef<typeof Box>, BoxProps>(
         <SocialLinks />
       </MobileMenuOverlay>
     );
-  },
+  }
 );
 
 export default MobileMenu;

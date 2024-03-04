@@ -67,7 +67,7 @@ export default function BurgerMenu() {
     <>
       {/* TODO: change styles, change color when theme is ready */}
       <AppBarStyled position="absolute" elevation={0} color="Transparent">
-        <Toolbar sx={{ marginRight: "35px" }}>
+        <Toolbar>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
           <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}

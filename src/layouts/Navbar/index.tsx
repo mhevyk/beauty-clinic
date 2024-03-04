@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -17,7 +17,6 @@ import theme from "@theme/theme";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
-  position: "absolute",
 });
 
 const BurgerButtonStyled = styled(BurgerButton)({
@@ -49,7 +48,7 @@ const UserIcon = styled("img")({
   height: 25,
 });
 
-const BurgerMenu = () => {
+export default function BurgerMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { setLocked } = useLockPageScroll();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -59,6 +58,12 @@ const BurgerMenu = () => {
     setIsMobileMenuOpen(nextIsOpen);
     setLocked(nextIsOpen);
   }
+
+  useEffect(() => {
+    if (!isSmallScreen) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [isSmallScreen]);
 
   return (
     <>
@@ -85,10 +90,8 @@ const BurgerMenu = () => {
         </Toolbar>
       </AppBarStyled>
       <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
-        <MobileMenu />
+        <MobileMenu onClose={toggleMobileMenu} />
       </Fade>
     </>
   );
-};
-
-export default BurgerMenu;
+}

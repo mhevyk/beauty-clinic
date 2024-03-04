@@ -1,14 +1,17 @@
 import closebutton from "@icons/close-icon.svg";
-import { Box, Drawer, styled } from "@mui/material";
+import { Box, Drawer, IconButton, styled } from "@mui/material";
 import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
 
 const CloseIcon = styled("img")({
   position: "relative",
-  left: 360,
-  margin: "52px 0 10px 0",
   cursor: "pointer",
   width: 25,
   height: 28,
+});
+
+const IconButtonStyled = styled(IconButton)({
+  left: 360,
+  top: 50,
 });
 
 const MenuWrapper = styled(Box)({
@@ -25,10 +28,12 @@ export default function DrawerMenu({
   onClose,
 }: DrawerMenuProps) {
   return (
-    <Drawer open={isSidebarOpen} onClose={onClose}>
+    <Drawer transitionDuration={400} open={isSidebarOpen} onClose={onClose}>
       <MenuWrapper>
-        <CloseIcon src={closebutton} alt="Close icon" onClick={onClose} />
-        <MenuLinks />
+        <IconButtonStyled>
+          <CloseIcon src={closebutton} alt="Close icon" onClick={onClose} />
+        </IconButtonStyled>
+        <MenuLinks onClose={onClose} />
       </MenuWrapper>
     </Drawer>
   );

@@ -1,12 +1,20 @@
 import burgerbutton from "@icons/burger-icon.svg";
-import { styled } from "@mui/material";
+import { IconButton, styled } from "@mui/material";
 
 const BurgerButtonIcon = styled("img")({
   cursor: "pointer",
   width: 27,
   height: 23,
-  marginLeft: 24,
-  marginTop: 39,
+});
+
+const IconButtonStyled = styled(IconButton)({
+  width: 50,
+  height: 50,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  marginLeft: 13,
+  marginTop: 26,
 });
 
 type BurgerButtonProps = {
@@ -15,10 +23,12 @@ type BurgerButtonProps = {
 
 export default function BurgerButton({ openSidebar }: BurgerButtonProps) {
   return (
-    <BurgerButtonIcon
-      onClick={openSidebar}
-      src={burgerbutton}
-      alt="Burger icon"
-    />
+    <IconButtonStyled>
+      <BurgerButtonIcon
+        onClick={openSidebar}
+        src={burgerbutton}
+        alt="Burger icon"
+      />
+    </IconButtonStyled>
   );
 }

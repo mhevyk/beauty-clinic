@@ -4,7 +4,6 @@ import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
 import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
 
 // TODO: change UI
-// @ts-ignore
 const MobileMenuOverlay = styled(Box)(({ theme }) => ({
   position: "fixed",
   inset: 0,
@@ -17,17 +16,21 @@ const MobileMenuOverlay = styled(Box)(({ theme }) => ({
   zIndex: 10,
   fontSize: "1.2rem",
   textAlign: "center",
+  height: "100vh",
 }));
-
-const MobileMenu = forwardRef<ElementRef<typeof Box>, BoxProps>(
-  (props, ref) => {
-    return (
-      <MobileMenuOverlay ref={ref} {...props}>
-        <MenuLinks />
-        <SocialLinks />
-      </MobileMenuOverlay>
-    );
-  }
-);
+type MobileMenuProps = {
+  onClose: () => void;
+};
+const MobileMenu = forwardRef<
+  ElementRef<typeof Box>,
+  BoxProps & MobileMenuProps
+>(({ onClose, ...props }, ref) => {
+  return (
+    <MobileMenuOverlay ref={ref} {...props}>
+      <MenuLinks onClose={onClose} />
+      <SocialLinks />
+    </MobileMenuOverlay>
+  );
+});
 
 export default MobileMenu;

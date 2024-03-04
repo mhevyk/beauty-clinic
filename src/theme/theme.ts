@@ -58,7 +58,13 @@ const theme = createTheme({
     },
     FontArialBlack2: {
       fontFamily: "Arial Black",
-      fontSize: "22",
+      fontSize: "22px",
+    },
+    FontArialBlack3: {
+      fontFamily: "Arial Black",
+      fontSize: "30px",
+      letterSpacing: "0",
+      lineHeight: "normal",
     },
     FontAvenirLight1: {
       fontFamily: "Nunito",

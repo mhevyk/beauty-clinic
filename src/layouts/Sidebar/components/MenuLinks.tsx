@@ -1,24 +1,24 @@
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { menuItems } from "../data/menuItems";
 
-// TODO: Vasyl: fix styles
 const MenuWrapper = styled("ul")(({ theme }) => {
   const smallScreenMediaQuery = theme.breakpoints.down("md");
 
   return {
+    marginTop: 300,
+    marginLeft: 80,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    gap: "40px",
+    gap: "10px",
     [smallScreenMediaQuery]: {
       gap: "30px",
+      marginLeft: 0,
+      marginTop: 0,
+      //TODO: change font in md screen
     },
   };
-});
-
-const MenuItem = styled("li")(({ theme }) => {
-  return theme.typography.h6;
 });
 
 type MenuLinkProps = {
@@ -33,18 +33,24 @@ const MenuLink = styled(NavLink)<MenuLinkProps>(({ theme, to }) => {
       color: "unset",
     },
     "&.active": {
-      color: shouldHighlight ? theme.palette.ButtonBlack.dark : undefined,
+      color: shouldHighlight ? theme.palette.GrayPhoneNav.main : undefined,
     },
   };
 });
 
-export default function MenuLinks() {
+type MenuLinksProps = {
+  onClose: () => void;
+};
+
+export default function MenuLinks({ onClose }: MenuLinksProps) {
   return (
     <MenuWrapper>
       {menuItems.map((menuItem, index) => (
-        <MenuItem key={index}>
-          <MenuLink to={menuItem.path}>{menuItem.label}</MenuLink>
-        </MenuItem>
+        <Typography variant="FontArialBlack3" component="li" key={index}>
+          <MenuLink onClick={onClose} to={menuItem.path}>
+            {menuItem.label}
+          </MenuLink>
+        </Typography>
       ))}
     </MenuWrapper>
   );

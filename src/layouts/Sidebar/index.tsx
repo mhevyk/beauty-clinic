@@ -11,9 +11,10 @@ const SidebarStyled = styled(AppBar)({
   height: "100vh",
   left: 0,
   display: "flex",
+  zIndex: 2,
 });
 
-const Sidebar = () => {
+export default function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -32,5 +33,4 @@ const Sidebar = () => {
       />
     </SidebarStyled>
   );
-};
-export default Sidebar;
+}

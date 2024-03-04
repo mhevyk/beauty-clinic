@@ -1,13 +1,9 @@
 import { styled, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const TypographyLogo = styled(Typography)({
-  bottom: 0,
-  left: 0,
-  right: 0,
-  top: 0,
   position: "absolute",
-  justifySelf: "start",
-  alignSelf: "center",
+  top: "50%",
   width: 75,
   transform: "rotate(270deg)",
   cursor: "pointer",
@@ -18,8 +14,8 @@ const TypographyLogo = styled(Typography)({
 
 export default function Logo() {
   return (
-    <TypographyLogo variant="FontArialBlack2">
-      <h2>Lily.</h2>
-    </TypographyLogo>
+    <Link to="/">
+      <TypographyLogo variant="FontArialBlack2">Lily.</TypographyLogo>
+    </Link>
   );
 }

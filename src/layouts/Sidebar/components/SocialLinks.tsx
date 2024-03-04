@@ -1,54 +1,45 @@
-import { Box, styled, useMediaQuery } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 import facebook from "@images/facebook.png";
 import instagram from "@images/instagram.png";
-import theme from "@theme/theme.ts";
 
-const BoxStyled = styled(Box)({
+const BoxStyled = styled(Box)(({ theme }) => {
+  const smallScreenMediaQuery = theme.breakpoints.down("md");
+
+  return {
+    width: 24,
+    height: 60,
+    position: "absolute",
+    bottom: 0,
+    marginLeft: 24,
+    marginBottom: 44,
+    [smallScreenMediaQuery]: {
+      width: 53,
+      height: 23,
+      position: "relative",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginLeft: 0,
+      marginBottom: 0,
+    },
+  };
+});
+
+const Image = styled("img")({
   width: 24,
-  height: 60,
-  position: "absolute",
-  bottom: 0,
-  marginLeft: 24,
-  marginBottom: 44,
-  justifySelf: "start",
+  height: 24,
 });
 
-const BoxStyledPhone = styled(Box)({
-  width: 53,
-  height: 23,
-  position: "relative",
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  top: "calc(25% + 70px)",
-});
-
-const SocialLinks = () => {
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
+export default function SocialLinks() {
   return (
-    <>
-      {isSmallScreen ? (
-        <BoxStyledPhone>
-          <Link to="#">
-            <img style={{ width: 24, height: 24 }} src={facebook} />
-          </Link>
-          <Link to="#">
-            <img style={{ width: 24, height: 24 }} src={instagram} />
-          </Link>
-        </BoxStyledPhone>
-      ) : (
-        <BoxStyled>
-          <Link to="#">
-            <img style={{ width: 24, height: 24 }} src={facebook} />
-          </Link>
-          <Link to="#">
-            <img style={{ width: 24, height: 24 }} src={instagram} />
-          </Link>
-        </BoxStyled>
-      )}
-    </>
+    <BoxStyled>
+      <Link to="#">
+        <Image alt="facebook" src={facebook} />
+      </Link>
+      <Link to="#">
+        <Image alt="instagram" src={instagram} />
+      </Link>
+    </BoxStyled>
   );
-};
-export default SocialLinks;
+}

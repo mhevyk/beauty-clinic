@@ -1,5 +1,6 @@
 import { IconButton } from "@mui/material";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
+import CartDrawer from "./CartDrawer";
 
 function CartIcon() {
   const itemsInCartCount = 0;
@@ -26,10 +27,18 @@ type CartIconButtonProps = {
   visibility: CSSProperties["visibility"];
 };
 
-export default function CartIconButton({ visibility }: CartIconButtonProps) {
+export default function CartDrawerButton({ visibility }: CartIconButtonProps) {
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+
   return (
-    <IconButton sx={{ visibility }}>
-      <CartIcon />
-    </IconButton>
+    <>
+      <IconButton sx={{ visibility }} onClick={() => setIsCartDrawerOpen(true)}>
+        <CartIcon />
+      </IconButton>
+      <CartDrawer
+        isCartDrawerOpen={isCartDrawerOpen}
+        closeCartDrawer={() => setIsCartDrawerOpen(false)}
+      />
+    </>
   );
 }

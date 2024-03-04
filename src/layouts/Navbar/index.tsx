@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -9,11 +9,11 @@ import {
 } from "@mui/material";
 import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
-import { useLockPageScroll } from "./hooks/useLockPageScroll";
-import CartIconButton from "./components/CartIcon";
+import CartDrawerButton from "./components/CartDrawerButton";
 import { Link } from "react-router-dom";
 import userIcon from "@icons/user-icon.svg";
 import theme from "@theme/theme";
+import { useMobileMenu } from "./hooks/useIsMobileMenuOpen";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
@@ -45,19 +45,13 @@ const UserIcon = styled("img")({
 });
 
 export default function BurgerMenu() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { setLocked } = useLockPageScroll();
+  const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
+    useMobileMenu();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  function toggleMobileMenu() {
-    const nextIsOpen = !isMobileMenuOpen;
-    setIsMobileMenuOpen(nextIsOpen);
-    setLocked(nextIsOpen);
-  }
 
   useEffect(() => {
     if (!isSmallScreen) {
-      setIsMobileMenuOpen(false);
+      closeMobileMenu();
     }
   }, [isSmallScreen]);
 
@@ -78,7 +72,7 @@ export default function BurgerMenu() {
               <UserIcon src={userIcon} alt="User icon" />
             </LoginLink>
           )}
-          <CartIconButton visibility={visibility} />
+          <CartDrawerButton visibility={visibility} />
           {isSmallScreen && (
             <BurgerButton
               isActive={isMobileMenuOpen}
@@ -88,7 +82,7 @@ export default function BurgerMenu() {
         </Toolbar>
       </AppBarStyled>
       <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
-        <MobileMenu onClose={toggleMobileMenu} />
+        <MobileMenu onClose={closeMobileMenu} />
       </Fade>
     </>
   );

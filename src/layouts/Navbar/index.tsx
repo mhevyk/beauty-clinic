@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -17,11 +17,7 @@ import theme from "@theme/theme";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
-});
-
-const BurgerButtonStyled = styled(BurgerButton)({
-  position: "relative",
-  zIndex: 100,
+  zIndex: 20,
 });
 
 const LinkStyled = styled(Link)({
@@ -48,7 +44,7 @@ const UserIcon = styled("img")({
   height: 25,
 });
 
-const BurgerMenu = () => {
+export default function BurgerMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { setLocked } = useLockPageScroll();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -59,13 +55,21 @@ const BurgerMenu = () => {
     setLocked(nextIsOpen);
   }
 
+  useEffect(() => {
+    if (!isSmallScreen) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [isSmallScreen]);
+
+  const visibility = isMobileMenuOpen ? "hidden" : "visible";
+
   return (
     <>
       {/* TODO: change styles, change color when theme is ready */}
-      <AppBarStyled position="static" elevation={0} color="primary">
+      <AppBarStyled position="absolute" elevation={0} color="Transparent">
         <Toolbar>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
           </Box>
           {!isSmallScreen && (
@@ -74,9 +78,9 @@ const BurgerMenu = () => {
               <UserIcon src={userIcon} alt="User icon" />
             </LoginLink>
           )}
-          <CartIconButton />
+          <CartIconButton visibility={visibility} />
           {isSmallScreen && (
-            <BurgerButtonStyled
+            <BurgerButton
               isActive={isMobileMenuOpen}
               onClick={toggleMobileMenu}
             />
@@ -84,10 +88,8 @@ const BurgerMenu = () => {
         </Toolbar>
       </AppBarStyled>
       <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
-        <MobileMenu />
+        <MobileMenu onClose={toggleMobileMenu} />
       </Fade>
     </>
   );
-};
-
-export default BurgerMenu;
+}

@@ -1,4 +1,5 @@
 import { IconButton } from "@mui/material";
+import { CSSProperties } from "react";
 
 function CartIcon() {
   const itemsInCartCount = 0;
@@ -11,8 +12,7 @@ function CartIcon() {
         x="58.5"
         y="77"
         dy=".35em"
-        text-anchor="middle"
-        data-hook="items-count"
+        textAnchor="middle"
         fill="white"
         fontSize={50}
       >
@@ -22,9 +22,13 @@ function CartIcon() {
   );
 }
 
-export default function CartIconButton() {
+type CartIconButtonProps = {
+  visibility: CSSProperties["visibility"];
+};
+
+export default function CartIconButton({ visibility }: CartIconButtonProps) {
   return (
-    <IconButton>
+    <IconButton sx={{ visibility }}>
       <CartIcon />
     </IconButton>
   );

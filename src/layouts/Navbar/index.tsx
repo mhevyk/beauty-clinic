@@ -17,11 +17,7 @@ import theme from "@theme/theme";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
-});
-
-const BurgerButtonStyled = styled(BurgerButton)({
-  position: "relative",
-  zIndex: 100,
+  zIndex: 20,
 });
 
 const LinkStyled = styled(Link)({
@@ -65,13 +61,15 @@ export default function BurgerMenu() {
     }
   }, [isSmallScreen]);
 
+  const visibility = isMobileMenuOpen ? "hidden" : "visible";
+
   return (
     <>
       {/* TODO: change styles, change color when theme is ready */}
-      <AppBarStyled position="static" elevation={0} color="Transparent">
+      <AppBarStyled position="absolute" elevation={0} color="Transparent">
         <Toolbar>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
           </Box>
           {!isSmallScreen && (
@@ -80,9 +78,9 @@ export default function BurgerMenu() {
               <UserIcon src={userIcon} alt="User icon" />
             </LoginLink>
           )}
-          <CartIconButton />
+          <CartIconButton visibility={visibility} />
           {isSmallScreen && (
-            <BurgerButtonStyled
+            <BurgerButton
               isActive={isMobileMenuOpen}
               onClick={toggleMobileMenu}
             />

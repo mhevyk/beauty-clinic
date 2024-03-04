@@ -30,8 +30,8 @@ export default function DrawerMenu({
   return (
     <Drawer transitionDuration={400} open={isSidebarOpen} onClose={onClose}>
       <MenuWrapper>
-        <IconButtonStyled>
-          <CloseIcon src={closebutton} alt="Close icon" onClick={onClose} />
+        <IconButtonStyled onClick={onClose}>
+          <CloseIcon src={closebutton} alt="Close icon" />
         </IconButtonStyled>
         <MenuLinks onClose={onClose} />
       </MenuWrapper>

@@ -9,16 +9,12 @@ const BoxStyled = styled(Box)(({ theme }) => {
   return {
     width: 24,
     height: 60,
-    position: "absolute",
-    bottom: 0,
     marginLeft: 24,
     marginBottom: 44,
     [smallScreenMediaQuery]: {
       width: 53,
       height: 23,
-      position: "relative",
       display: "flex",
-      flexDirection: "row",
       justifyContent: "space-between",
       marginLeft: 0,
       marginBottom: 0,

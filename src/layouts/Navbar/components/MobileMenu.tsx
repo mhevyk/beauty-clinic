@@ -18,9 +18,11 @@ const MobileMenuOverlay = styled(Box)(({ theme }) => ({
   textAlign: "center",
   height: "100vh",
 }));
+
 type MobileMenuProps = {
   onClose: () => void;
 };
+
 const MobileMenu = forwardRef<
   ElementRef<typeof Box>,
   BoxProps & MobileMenuProps

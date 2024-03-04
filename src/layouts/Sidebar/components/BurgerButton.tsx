@@ -23,12 +23,8 @@ type BurgerButtonProps = {
 
 export default function BurgerButton({ openSidebar }: BurgerButtonProps) {
   return (
-    <IconButtonStyled>
-      <BurgerButtonIcon
-        onClick={openSidebar}
-        src={burgerbutton}
-        alt="Burger icon"
-      />
+    <IconButtonStyled onClick={openSidebar}>
+      <BurgerButtonIcon src={burgerbutton} alt="Burger icon" />
     </IconButtonStyled>
   );
 }

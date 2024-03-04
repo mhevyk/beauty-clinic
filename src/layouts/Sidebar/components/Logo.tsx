@@ -2,20 +2,24 @@ import { styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const TypographyLogo = styled(Typography)({
-  position: "absolute",
-  top: "50%",
-  width: 75,
-  transform: "rotate(270deg)",
-  cursor: "pointer",
+  margin: "auto",
+  writingMode: "vertical-rl",
+  transform: "scale(-1)",
   "&:hover": {
     color: "rgb(199, 179, 163)",
   },
 });
 
+const LinkStyled = styled(Link)({
+  color: "inherit",
+});
+
 export default function Logo() {
   return (
-    <Link to="/">
-      <TypographyLogo variant="FontArialBlack2">Lily.</TypographyLogo>
-    </Link>
+    <>
+      <TypographyLogo variant="FontArialBlack2">
+        <LinkStyled to="/">Lily.</LinkStyled>
+      </TypographyLogo>
+    </>
   );
 }

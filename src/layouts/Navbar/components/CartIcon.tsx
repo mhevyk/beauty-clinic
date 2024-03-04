@@ -1,4 +1,5 @@
 import { IconButton } from "@mui/material";
+import { CSSProperties } from "react";
 
 function CartIcon() {
   const itemsInCartCount = 0;
@@ -21,9 +22,13 @@ function CartIcon() {
   );
 }
 
-export default function CartIconButton() {
+type CartIconButtonProps = {
+  visibility: CSSProperties["visibility"];
+};
+
+export default function CartIconButton({ visibility }: CartIconButtonProps) {
   return (
-    <IconButton>
+    <IconButton sx={{ visibility }}>
       <CartIcon />
     </IconButton>
   );

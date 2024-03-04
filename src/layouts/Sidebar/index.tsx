@@ -11,8 +11,12 @@ const SidebarStyled = styled(AppBar)({
   height: "100vh",
   left: 0,
   display: "flex",
-  zIndex: 2,
+  flexDirection: "column",
+  position: "fixed",
+  zIndex: 30,
 });
+
+//TODO: convert to aside
 
 export default function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

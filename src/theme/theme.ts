@@ -2,6 +2,12 @@ import { createTheme } from "@mui/material";
 
 const theme = createTheme({
   palette: {
+    GrayPhoneNav: {
+      main: "#605f5d",
+    },
+    Transparent: {
+      main: "rgba(0,0,0,0)",
+    },
     LogoActive: {
       main: "#C7B3A3",
     },
@@ -52,7 +58,13 @@ const theme = createTheme({
     },
     FontArialBlack2: {
       fontFamily: "Arial Black",
-      fontSize: "22",
+      fontSize: "22px",
+    },
+    FontArialBlack3: {
+      fontFamily: "Arial Black",
+      fontSize: "30px",
+      letterSpacing: "0",
+      lineHeight: "normal",
     },
     FontAvenirLight1: {
       fontFamily: "Nunito",

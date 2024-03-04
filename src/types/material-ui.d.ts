@@ -11,8 +11,9 @@ type CustomColors =
   | "PinkMarbleSky"
   | "CreamyDawn"
   | "SteelMist"
-  | "PinkChiffon";
-
+  | "PinkChiffon"
+  | "Transparent"
+  | "GrayPhoneNav";
 type CustomPalette = Record<CustomColors, PaletteColorOptions>;
 
 declare module "@mui/material/styles/createPalette" {
@@ -32,7 +33,9 @@ declare module "@mui/material" {
   interface AppBarPropsColorOverrides extends Record<AppBarColors, any> {}
 }
 
-type CustomFonts = `FontArialBlack${1 | 2}` | `FontAvenirLight${1 | 2 | 3 | 4}`;
+type CustomFonts =
+  | `FontArialBlack${1 | 2 | 3}`
+  | `FontAvenirLight${1 | 2 | 3 | 4}`;
 type CustomTypography = Record<CustomFonts, CSSProperties>;
 
 declare module "@mui/material/styles" {
@@ -41,8 +44,5 @@ declare module "@mui/material/styles" {
 }
 
 declare module "@mui/material/Typography" {
-  interface TypographyPropsVariantOverrides extends Record<CustomFonts, true> {
-    h1: false;
-    h3: false;
-  }
+  interface TypographyPropsVariantOverrides extends Record<CustomFonts, true> {}
 }

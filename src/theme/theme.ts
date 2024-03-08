@@ -1,6 +1,71 @@
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
+  components: {
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: "outlined" },
+          style: {
+            border: "1px solid #000",
+            color: "#000",
+            padding: "10px 25px",
+            margin: "20px 0",
+            borderRadius: "0px",
+            fontSize: "17px",
+            fontFamily: "Nunito",
+            fontWeight: "300",
+            textTransform: "none",
+            "&:hover": {
+              backgroundColor: "#000",
+              color: "#fff",
+            },
+          },
+        },
+        {
+          props: { variant: "outline2" },
+          style: {
+            border: "200px",
+          },
+        },
+        {
+          props: { variant: "blackFat" },
+          style: {
+            border: 2,
+          },
+        },
+        {
+          props: { variant: "black" },
+          style: {
+            border: 2,
+          },
+        },
+        {
+          props: { variant: "submit" },
+          style: {
+            border: 2,
+          },
+        },
+        {
+          props: { variant: "time" },
+          style: {
+            border: 2,
+          },
+        },
+        {
+          props: { variant: "login" },
+          style: {
+            border: 2,
+          },
+        },
+      ],
+    },
+  },
   palette: {
     GrayPhoneNav: {
       main: "#605f5d",

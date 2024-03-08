@@ -57,11 +57,20 @@ export default function BurgerMenu() {
 
   const visibility = isMobileMenuOpen ? "hidden" : "visible";
 
+  const ToolbarStyled = styled(Toolbar)(({ theme }) => {
+    const smallScreenMediaQuery = theme.breakpoints.up("md");
+    return {
+      [smallScreenMediaQuery]: {
+        marginRight: "35px",
+      },
+    };
+  });
+
   return (
     <>
       {/* TODO: change styles, change color when theme is ready */}
       <AppBarStyled position="absolute" elevation={0} color="Transparent">
-        <Toolbar>
+        <ToolbarStyled>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
           <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
@@ -79,7 +88,7 @@ export default function BurgerMenu() {
               onClick={toggleMobileMenu}
             />
           )}
-        </Toolbar>
+        </ToolbarStyled>
       </AppBarStyled>
       <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
         <MobileMenu onClose={closeMobileMenu} />

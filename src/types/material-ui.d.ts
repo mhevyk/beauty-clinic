@@ -46,3 +46,14 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides extends Record<CustomFonts, true> {}
 }
+type CustomButton =
+  | "blackFat"
+  | "black"
+  | "submit"
+  | "outline2"
+  | "time"
+  | "login";
+
+declare module "@mui/material/Button" {
+  interface ButtonPropsVariantOverrides extends Record<CustomButton, true> {}
+}

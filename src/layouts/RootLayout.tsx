@@ -2,6 +2,7 @@ import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "@layouts/Sidebar";
 import { Box, styled } from "@mui/material";
+import Footer from "./Footer";
 
 const PageWrapper = styled(Box)(({ theme }) => {
   const smallScreenMediaQuery = theme.breakpoints.up("md");
@@ -12,6 +13,7 @@ const PageWrapper = styled(Box)(({ theme }) => {
     },
   };
 });
+
 export default function RootLayout() {
   return (
     <>
@@ -20,6 +22,7 @@ export default function RootLayout() {
       <Navbar />
       <PageWrapper>
         <Outlet />
+        <Footer />
       </PageWrapper>
     </>
   );

@@ -34,7 +34,9 @@ type SectionProps = {
   disableBlockCentering?: boolean;
 };
 
-const Section = styled(Grid)<SectionProps>(({ disableBlockCentering }) => ({
+const Section = styled(Grid, {
+  shouldForwardProp: (prop) => prop !== "disableBlockCentering",
+})<SectionProps>(({ disableBlockCentering }) => ({
   [mediumScreenMediaQuery]: {
     display: "flex",
     flexDirection: "column",

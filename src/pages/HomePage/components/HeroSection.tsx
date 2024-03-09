@@ -10,7 +10,7 @@ const smallScreenMediaQuery = theme.breakpoints.down("md");
 
 const HelloImg = styled("img")(() => {
   return {
-    zIndex: 20,
+    zIndex: 1,
     width: 580,
     height: 380,
     transform: "rotate(350deg)",
@@ -143,7 +143,7 @@ const Description = styled("h1")(() => {
 const Header = styled("p")(() => {
   return {
     ...theme.typography.h2,
-    zIndex: 50,
+    zIndex: 2,
     margin: 0,
     position: "relative",
     [smallScreenMediaQuery]: {

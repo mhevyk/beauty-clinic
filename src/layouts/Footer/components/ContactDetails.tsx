@@ -1,6 +1,7 @@
 import { Button, Grid, Typography, styled } from "@mui/material";
 import theme from "@theme/theme";
 import { DefinitionItem, DefinitionList } from "./DefinitionList";
+import ContactForm from "./ContactForm";
 
 const mediumScreenMediaQuery = theme.breakpoints.down("md");
 
@@ -71,10 +72,7 @@ export default function ContactDetails() {
       </Section>
       <Section item xs={12} sm={12} md={12} lg={3} disableBlockCentering>
         <SectionTitle>Contact</SectionTitle>
-        {/* TODO: add form */}
-        <Typography variant="FontAvenirLight3">
-          Here should be contact form
-        </Typography>
+        <ContactForm />
       </Section>
     </Grid>
   );

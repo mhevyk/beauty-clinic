@@ -38,9 +38,12 @@ type CustomFonts =
   | `FontAvenirLight${1 | 2 | 3 | 4}`;
 type CustomTypography = Record<CustomFonts, CSSProperties>;
 
+type CustomBreakpoints = "xxl";
+
 declare module "@mui/material/styles" {
   interface TypographyVariants extends CustomTypography {}
   interface TypographyVariantsOptions extends Partial<CustomTypography> {}
+  interface BreakpointOverrides extends Record<CustomBreakpoints, true> {}
 }
 
 declare module "@mui/material/Typography" {

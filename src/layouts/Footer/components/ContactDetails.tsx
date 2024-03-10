@@ -1,6 +1,7 @@
-import { Button, Grid, Typography, styled } from "@mui/material";
+import { Grid, Typography, styled } from "@mui/material";
 import { DefinitionItem, DefinitionList } from "./DefinitionList";
 import ContactForm from "./ContactForm";
+import { Link } from "react-router-dom";
 
 const GridStyled = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
@@ -16,7 +17,7 @@ const SectionTitle = styled("h5")(({ theme }) => ({
 }));
 
 // TODO: complete button styles when variants are supplied
-const BookNowButton = styled(Button)(({ theme }) => ({
+const BookNowLinkButton = styled(Link)(({ theme }) => ({
   ...theme.typography.FontAvenirLight3,
   display: "block",
   marginTop: "22px",
@@ -27,6 +28,9 @@ const BookNowButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   padding: "12px 35px",
   borderRadius: 0,
+  // TODO: fix color
+  // @ts-expect-error
+  color: theme.palette.ButtonBlack.contrastText,
   "&:hover": {
     backgroundColor: theme.palette.secondary.main,
     opacity: 0.8,
@@ -61,7 +65,7 @@ export default function ContactDetails() {
         <Typography variant="FontAvenirLight3" style={{ fontSize: 16 }}>
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>
-        <BookNowButton>Book Now</BookNowButton>
+        <BookNowLinkButton to="/treatments">Book Now</BookNowLinkButton>
       </Section>
       <Section item xs={12} sm={6} md={4} lg={2.6} xl="auto" as="section">
         <SectionTitle>Info</SectionTitle>

@@ -1,6 +1,16 @@
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      xxl: 1900,
+    },
+  },
   palette: {
     GrayPhoneNav: {
       main: "#605f5d",

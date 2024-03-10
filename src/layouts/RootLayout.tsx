@@ -4,10 +4,9 @@ import Sidebar from "@layouts/Sidebar";
 import { Container, styled } from "@mui/material";
 import Footer from "./Footer";
 
-const PageWrapper = styled(Container)(({ theme }) => ({
-  width: "auto",
+const SidebarOmitWrapper = styled(Container)(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
-    marginLeft: "78px",
+    paddingLeft: "78px",
   },
 }));
 
@@ -17,10 +16,10 @@ export default function RootLayout() {
       <ScrollRestoration />
       <Sidebar />
       <Navbar />
-      <PageWrapper maxWidth={false}>
+      <SidebarOmitWrapper maxWidth="xxl">
         <Outlet />
         <Footer />
-      </PageWrapper>
+      </SidebarOmitWrapper>
     </>
   );
 }

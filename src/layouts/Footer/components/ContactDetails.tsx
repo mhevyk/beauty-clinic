@@ -25,6 +25,7 @@ const BookNowLinkButton = styled(Link)(({ theme }) => ({
   width: "max-content",
   fontWeight: 400,
   lineHeight: "21px",
+  transition: "opacity 300ms",
   backgroundColor: theme.palette.secondary.main,
   padding: "12px 35px",
   borderRadius: 0,

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const GridStyled = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
-    paddingLeft: "16px",
+    paddingLeft: "32px",
   },
   [theme.breakpoints.up("xl")]: {
     paddingLeft: 0,
@@ -65,14 +65,14 @@ const InfoList = styled("ul")({
 export default function ContactDetails() {
   return (
     <GridStyled container spacing={"65px"} columns={12}>
-      <Section item xs={12} sm={12} md={4} lg={2.5} xl as="section">
+      <Section item xs={12} sm={12} md={4} lg={2.5} xl={3} as="section">
         <SectionTitle>Lily Organic Beautician</SectionTitle>
         <Typography variant="FontAvenirLight3" style={{ fontSize: 16 }}>
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>
         <BookNowLinkButton to="/treatments">Book Now</BookNowLinkButton>
       </Section>
-      <Section item xs={12} sm={6} md={4} lg={2.6} xl as="section">
+      <Section item xs={12} sm={6} md={4} lg={2.6} xl={2} as="section">
         <SectionTitle>Info</SectionTitle>
         <InfoList>
           <li>500 Terry Francine Street</li>
@@ -81,7 +81,7 @@ export default function ContactDetails() {
           <li>Tel: 123-456-7890</li>
         </InfoList>
       </Section>
-      <Section item xs={12} sm={6} md={4} lg={2.5} xl as="section">
+      <Section item xs={12} sm={6} md={4} lg={2.5} xl={2} as="section">
         <SectionTitle>Opening Hours</SectionTitle>
         <DefinitionList>
           <DefinitionItem label="Mon - Fri">10am - 8pm</DefinitionItem>
@@ -95,7 +95,7 @@ export default function ContactDetails() {
         sm={12}
         md={12}
         lg={3.6}
-        xl
+        xl={5}
         as="section"
         disableBlockCentering
       >

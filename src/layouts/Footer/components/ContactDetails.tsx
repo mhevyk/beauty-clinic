@@ -1,9 +1,12 @@
 import { Button, Grid, Typography, styled } from "@mui/material";
-import theme from "@theme/theme";
 import { DefinitionItem, DefinitionList } from "./DefinitionList";
 import ContactForm from "./ContactForm";
 
-const mediumScreenMediaQuery = theme.breakpoints.down("md");
+const GridStyled = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.up("lg")]: {
+    paddingLeft: "16px",
+  },
+}));
 
 // TODO: complete heading when variants are available
 const SectionTitle = styled("h5")(({ theme }) => ({
@@ -21,11 +24,11 @@ const BookNowButton = styled(Button)(({ theme }) => ({
   width: "max-content",
   fontWeight: 400,
   lineHeight: "21px",
-  backgroundColor: "black",
+  backgroundColor: theme.palette.secondary.main,
   padding: "12px 35px",
   borderRadius: 0,
   "&:hover": {
-    backgroundColor: "black",
+    backgroundColor: theme.palette.secondary.main,
     opacity: 0.8,
   },
 }));
@@ -36,8 +39,8 @@ type SectionProps = {
 
 const Section = styled(Grid, {
   shouldForwardProp: (prop) => prop !== "disableBlockCentering",
-})<SectionProps>(({ disableBlockCentering }) => ({
-  [mediumScreenMediaQuery]: {
+})<SectionProps>(({ theme, disableBlockCentering }) => ({
+  [theme.breakpoints.down("md")]: {
     display: "flex",
     flexDirection: "column",
     alignItems: disableBlockCentering ? undefined : "center",
@@ -45,26 +48,31 @@ const Section = styled(Grid, {
   },
 }));
 
+const InfoList = styled("ul")({
+  fontSize: 16,
+  whiteSpace: "nowrap",
+});
+
 export default function ContactDetails() {
   return (
-    <Grid container spacing={"28px"} columns={12}>
-      <Section item xs={12} sm={12} md={4} lg={3}>
+    <GridStyled container spacing={"65px"} columns={12}>
+      <Section item xs={12} sm={12} md={4} lg={2.5} xl={3} as="section">
         <SectionTitle>Lily Organic Beautician</SectionTitle>
         <Typography variant="FontAvenirLight3" style={{ fontSize: 16 }}>
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>
         <BookNowButton>Book Now</BookNowButton>
       </Section>
-      <Section item xs={12} sm={6} md={4} lg={3}>
+      <Section item xs={12} sm={6} md={4} lg={2.6} xl="auto" as="section">
         <SectionTitle>Info</SectionTitle>
-        <ul style={{ fontSize: 16 }}>
+        <InfoList>
           <li>500 Terry Francine Street</li>
           <li>San Francisco, CA 94158</li>
           <li>info@mysite.com</li>
           <li>Tel: 123-456-7890</li>
-        </ul>
+        </InfoList>
       </Section>
-      <Section item xs={12} sm={6} md={4} lg={3}>
+      <Section item xs={12} sm={6} md={4} lg={2.5} xl="auto" as="section">
         <SectionTitle>Opening Hours</SectionTitle>
         <DefinitionList>
           <DefinitionItem label="Mon - Fri">10am - 8pm</DefinitionItem>
@@ -72,10 +80,19 @@ export default function ContactDetails() {
           <DefinitionItem label="Sun">10am - 6pm</DefinitionItem>
         </DefinitionList>
       </Section>
-      <Section item xs={12} sm={12} md={12} lg={3} disableBlockCentering>
+      <Section
+        item
+        xs={12}
+        sm={12}
+        md={12}
+        lg={3.6}
+        xl="auto"
+        as="section"
+        disableBlockCentering
+      >
         <SectionTitle>Contact</SectionTitle>
         <ContactForm />
       </Section>
-    </Grid>
+    </GridStyled>
   );
 }

@@ -7,15 +7,17 @@ const ContactDetailsTitle = styled("h3")(({ theme }) => ({
   textAlign: "center",
   display: "block",
   fontWeight: 400,
+  padding: "0 15vw",
   marginBottom: "22px",
   [theme.breakpoints.up("md")]: {
     margin: "140px 0",
+    padding: "0",
   },
 }));
 
 export default function Footer() {
   return (
-    <Box component="footer" sx={{ margin: "0 28px" }}>
+    <Box component="footer">
       <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
       <ContactDetails />
     </Box>

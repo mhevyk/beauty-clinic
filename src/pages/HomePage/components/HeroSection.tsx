@@ -5,8 +5,11 @@ import homeCotton from "@images/homeСotton.png";
 import homeCoco from "@images/homeCoco.png";
 import homePetal from "@images/homePetal.png";
 import theme from "@theme/theme.ts";
+import { Link } from "react-router-dom";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
+
+const middleScreenMediaQuery = theme.breakpoints.down(1100);
 
 const HelloImg = styled("img")(() => {
   return {
@@ -17,6 +20,12 @@ const HelloImg = styled("img")(() => {
     position: "relative",
     top: 80,
     right: 80,
+    [middleScreenMediaQuery]: {
+      width: 406,
+      height: 266,
+      top: 56,
+      right: 56,
+    },
     [smallScreenMediaQuery]: {
       width: 201,
       height: 114,
@@ -30,6 +39,10 @@ const FlowerImage = styled("img")(() => {
   return {
     width: 325,
     height: 738,
+    [middleScreenMediaQuery]: {
+      width: 227.5,
+      height: 516.6,
+    },
     [smallScreenMediaQuery]: {
       width: 155,
       height: 352,
@@ -45,6 +58,12 @@ const CottonImage = styled("img")(() => {
     top: 540,
     right: 690,
     transform: "rotate(353deg)",
+    [middleScreenMediaQuery]: {
+      width: 231.7,
+      height: 115.5,
+      top: 378,
+      right: 483,
+    },
     [smallScreenMediaQuery]: {
       width: 163,
       height: 87,
@@ -61,6 +80,12 @@ const CocoImage = styled("img")(() => {
     height: 240,
     top: 230,
     right: 395,
+    [middleScreenMediaQuery]: {
+      width: 164.5,
+      height: 168,
+      top: 161,
+      right: 276.5,
+    },
     [smallScreenMediaQuery]: {
       width: 90,
       height: 90,
@@ -78,6 +103,12 @@ const PetalImage = styled("img")(() => {
     top: 40,
     right: 215,
     transform: "rotate(334deg)",
+    [middleScreenMediaQuery]: {
+      width: 107.8,
+      height: 93.8,
+      top: 28,
+      right: 150.5,
+    },
     [smallScreenMediaQuery]: {
       width: 90,
       height: 87,
@@ -102,6 +133,10 @@ const BoxImageStyled = styled(Box)(() => {
     width: 330,
     display: "flex",
     marginTop: 100,
+    [middleScreenMediaQuery]: {
+      width: 231,
+      marginTop: 70,
+    },
     [smallScreenMediaQuery]: {
       marginTop: 320,
       width: 155,
@@ -115,6 +150,7 @@ const BoxTitleStyled = styled(Box)({
 
 const SectionStyled = styled("section")(() => {
   return {
+    overflow: "hidden",
     height: "1060px",
     backgroundColor: "#F8EBE1",
     display: "flex",
@@ -129,6 +165,9 @@ const SectionStyled = styled("section")(() => {
 const Description = styled("h1")(() => {
   return {
     ...theme.typography.h5,
+    [middleScreenMediaQuery]: {
+      fontSize: "23px",
+    },
     [smallScreenMediaQuery]: {
       position: "relative",
       fontSize: "22px",
@@ -140,12 +179,15 @@ const Description = styled("h1")(() => {
   };
 });
 
-const Header = styled("p")(() => {
+const Header = styled("h1")(() => {
   return {
     ...theme.typography.h2,
     zIndex: 2,
     margin: 0,
     position: "relative",
+    [middleScreenMediaQuery]: {
+      fontSize: "55px",
+    },
     [smallScreenMediaQuery]: {
       fontSize: "35px",
       bottom: 35,
@@ -165,7 +207,9 @@ export default function HeroSection() {
             <br /> Beautician
           </Header>
           <Description>Hand Crafted Natural Treatments</Description>
-          <Button variant="outlined">Bool an Appointment</Button>
+          <Button component={Link} to="/treatments" variant="outlined">
+            Book an Appointment
+          </Button>
         </BoxTitleStyled>
         <BoxImageStyled>
           <FlowerImage alt="Flower" src={homeFlower} />

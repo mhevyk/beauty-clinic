@@ -122,6 +122,9 @@ const BoxStyled = styled(Box)(() => {
   return {
     paddingRight: 140,
     display: "flex",
+    [middleScreenMediaQuery]: {
+      paddingRight: 98,
+    },
     [smallScreenMediaQuery]: {
       paddingRight: 0,
       flexDirection: "column-reverse",

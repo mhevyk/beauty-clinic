@@ -13,6 +13,7 @@ import CartDrawerButton from "./components/CartDrawerButton";
 import { Link } from "react-router-dom";
 import userIcon from "@icons/user-icon.svg";
 import theme from "@theme/theme";
+import useToggle from "@hooks/useToggle";
 import { useMobileMenu } from "./hooks/useIsMobileMenuOpen";
 
 const AppBarStyled = styled(AppBar)({
@@ -45,6 +46,16 @@ const UserIcon = styled("img")({
 });
 
 export default function BurgerMenu() {
+  const { isOpen, setIsOpen, close } = useToggle();
+  const { setLocked } = useLockPageScroll();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  function toggleMobileMenu() {
+    const nextIsOpen = !isOpen;
+    setIsOpen(nextIsOpen);
+    setLocked(nextIsOpen);
+  }      
+
   const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
     useMobileMenu();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -55,7 +66,7 @@ export default function BurgerMenu() {
     }
   }, [isSmallScreen]);
 
-  const visibility = isMobileMenuOpen ? "hidden" : "visible";
+  const visibility = isOpen ? "hidden" : "visible";
 
   return (
     <>
@@ -74,13 +85,12 @@ export default function BurgerMenu() {
           )}
           <CartDrawerButton visibility={visibility} />
           {isSmallScreen && (
-            <BurgerButton
-              isActive={isMobileMenuOpen}
-              onClick={toggleMobileMenu}
-            />
+            <BurgerButton isActive={isOpen} onClick={toggleMobileMenu} />
           )}
         </Toolbar>
       </AppBarStyled>
+      <Fade in={isOpen} timeout={400} mountOnEnter>
+        <MobileMenu onClose={toggleMobileMenu} />
       <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
         <MobileMenu onClose={closeMobileMenu} />
       </Fade>

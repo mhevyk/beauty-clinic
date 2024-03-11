@@ -1,10 +1,10 @@
 import { AppBar, styled, useMediaQuery } from "@mui/material";
-import { useState } from "react";
 import BurgerButton from "@layouts/Sidebar/components/BurgerButton.tsx";
 import Logo from "@layouts/Sidebar/components/Logo.tsx";
 import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
 import DrawerMenu from "@layouts/Sidebar/components/DrawerMenu.tsx";
 import theme from "@theme/theme.ts";
+import useToggle from "@hooks/useToggle";
 
 const SidebarStyled = styled(AppBar)({
   width: "78px",
@@ -19,7 +19,7 @@ const SidebarStyled = styled(AppBar)({
 //TODO: convert to aside
 
 export default function Sidebar() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { isOpen, open, close } = useToggle();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   if (isSmallScreen) {
@@ -28,13 +28,10 @@ export default function Sidebar() {
 
   return (
     <SidebarStyled elevation={0} color="primary">
-      <BurgerButton openSidebar={() => setIsSidebarOpen(true)} />
+      <BurgerButton openSidebar={open} />
       <Logo />
       <SocialLinks />
-      <DrawerMenu
-        isSidebarOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-      />
+      <DrawerMenu isSidebarOpen={isOpen} onClose={close} />
     </SidebarStyled>
   );
 }

@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import userIcon from "@icons/user-icon.svg";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
-import { useMobileMenu } from "./hooks/useIsMobileMenuOpen";
+import { useLockPageScroll } from "./hooks/useLockPageScroll";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
@@ -48,21 +48,18 @@ const UserIcon = styled("img")({
 export default function BurgerMenu() {
   const { isOpen, setIsOpen, close } = useToggle();
   const { setLocked } = useLockPageScroll();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   function toggleMobileMenu() {
     const nextIsOpen = !isOpen;
     setIsOpen(nextIsOpen);
     setLocked(nextIsOpen);
-  }      
+  }
 
-  const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
-    useMobileMenu();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     if (!isSmallScreen) {
-      closeMobileMenu();
+      close();
     }
   }, [isSmallScreen]);
 
@@ -90,9 +87,7 @@ export default function BurgerMenu() {
         </Toolbar>
       </AppBarStyled>
       <Fade in={isOpen} timeout={400} mountOnEnter>
-        <MobileMenu onClose={toggleMobileMenu} />
-      <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
-        <MobileMenu onClose={closeMobileMenu} />
+        <MobileMenu onClose={close} />
       </Fade>
     </>
   );

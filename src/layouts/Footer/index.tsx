@@ -18,7 +18,7 @@ const ContactDetailsTitle = styled("h3")(({ theme }) => ({
 // TODO: Add scroll margin top when testimonials is completed
 export default function Footer() {
   return (
-    <Container component="footer" id="contact">
+    <Container component="footer" id="contact" maxWidth={false}>
       <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
       <ContactDetails />
     </Container>

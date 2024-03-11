@@ -15,9 +15,15 @@ import userIcon from "@icons/user-icon.svg";
 import theme from "@theme/theme";
 import { useMobileMenu } from "./hooks/useIsMobileMenuOpen";
 
-const AppBarStyled = styled(AppBar)({
-  padding: "16px 0 8px",
-  zIndex: 20,
+const AppBarStyled = styled(AppBar)(({ theme }) => {
+  const smallScreenMediaQuery = theme.breakpoints.down("md");
+  return {
+    padding: "16px 0 8px",
+    zIndex: "auto",
+    [smallScreenMediaQuery]: {
+      backgroundColor: "white",
+    },
+  };
 });
 
 const LinkStyled = styled(Link)({
@@ -25,8 +31,7 @@ const LinkStyled = styled(Link)({
 });
 
 const LogoLink = styled(LinkStyled)({
-  fontSize: "22px",
-  fontWeight: 700,
+  ...theme.typography.FontArialBlack2,
 });
 
 const LoginLink = styled(LinkStyled)({

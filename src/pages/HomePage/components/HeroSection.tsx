@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 
-const middleScreenMediaQuery = theme.breakpoints.down(1100);
+const middleScreenMediaQuery = theme.breakpoints.down(1200);
 
 const HelloImg = styled("img")(() => {
   return {
@@ -120,8 +120,10 @@ const PetalImage = styled("img")(() => {
 
 const BoxStyled = styled(Box)(() => {
   return {
+    paddingRight: 140,
     display: "flex",
     [smallScreenMediaQuery]: {
+      paddingRight: 0,
       flexDirection: "column-reverse",
       alignItems: "center",
     },
@@ -175,6 +177,7 @@ const Description = styled("h1")(() => {
       textAlign: "center",
       margin: 0,
       left: 10,
+      bottom: 10,
     },
   };
 });

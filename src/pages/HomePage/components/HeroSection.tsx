@@ -123,7 +123,7 @@ const BoxStyled = styled(Box)(() => {
     paddingRight: 140,
     display: "flex",
     [middleScreenMediaQuery]: {
-      paddingRight: 98,
+      paddingRight: 80,
     },
     [smallScreenMediaQuery]: {
       paddingRight: 0,

@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Container, styled } from "@mui/material";
 import ContactDetails from "./components/ContactDetails";
 
 const ContactDetailsTitle = styled("h3")(({ theme }) => ({
@@ -18,9 +18,9 @@ const ContactDetailsTitle = styled("h3")(({ theme }) => ({
 // TODO: Add scroll margin top when testimonials is completed
 export default function Footer() {
   return (
-    <Box component="footer" id="contact">
+    <Container component="footer" id="contact">
       <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
       <ContactDetails />
-    </Box>
+    </Container>
   );
 }

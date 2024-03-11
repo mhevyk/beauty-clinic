@@ -44,6 +44,15 @@ const UserIcon = styled("img")({
   height: 25,
 });
 
+const ToolbarStyled = styled(Toolbar)(({ theme }) => {
+  const smallScreenMediaQuery = theme.breakpoints.up("md");
+  return {
+    [smallScreenMediaQuery]: {
+      marginRight: "35px",
+    },
+  };
+});
+
 export default function BurgerMenu() {
   const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
     useMobileMenu();
@@ -56,15 +65,6 @@ export default function BurgerMenu() {
   }, [isSmallScreen]);
 
   const visibility = isMobileMenuOpen ? "hidden" : "visible";
-
-  const ToolbarStyled = styled(Toolbar)(({ theme }) => {
-    const smallScreenMediaQuery = theme.breakpoints.up("md");
-    return {
-      [smallScreenMediaQuery]: {
-        marginRight: "35px",
-      },
-    };
-  });
 
   return (
     <>

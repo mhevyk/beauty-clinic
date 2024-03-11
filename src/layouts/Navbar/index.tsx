@@ -9,12 +9,12 @@ import {
 } from "@mui/material";
 import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
-import { useLockPageScroll } from "./hooks/useLockPageScroll";
-import CartIconButton from "./components/CartIcon";
+import CartDrawerButton from "./components/CartDrawerButton";
 import { Link } from "react-router-dom";
 import userIcon from "@icons/user-icon.svg";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
+import { useMobileMenu } from "./hooks/useIsMobileMenuOpen";
 
 const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
@@ -54,11 +54,15 @@ export default function BurgerMenu() {
     const nextIsOpen = !isOpen;
     setIsOpen(nextIsOpen);
     setLocked(nextIsOpen);
-  }
+  }      
+
+  const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } =
+    useMobileMenu();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
     if (!isSmallScreen) {
-      close();
+      closeMobileMenu();
     }
   }, [isSmallScreen]);
 
@@ -79,7 +83,7 @@ export default function BurgerMenu() {
               <UserIcon src={userIcon} alt="User icon" />
             </LoginLink>
           )}
-          <CartIconButton visibility={visibility} />
+          <CartDrawerButton visibility={visibility} />
           {isSmallScreen && (
             <BurgerButton isActive={isOpen} onClick={toggleMobileMenu} />
           )}
@@ -87,6 +91,8 @@ export default function BurgerMenu() {
       </AppBarStyled>
       <Fade in={isOpen} timeout={400} mountOnEnter>
         <MobileMenu onClose={toggleMobileMenu} />
+      <Fade in={isMobileMenuOpen} timeout={400} mountOnEnter>
+        <MobileMenu onClose={closeMobileMenu} />
       </Fade>
     </>
   );

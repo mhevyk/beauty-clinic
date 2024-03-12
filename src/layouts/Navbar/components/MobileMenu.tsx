@@ -1,38 +1,36 @@
-import { Box, BoxProps, styled } from "@mui/material";
-import { ElementRef, forwardRef } from "react";
+import { Dialog, DialogContent, styled } from "@mui/material";
 import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
 import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
+import useLockPageScroll from "@hooks/useLockPageScroll";
 
 // TODO: change UI
-const MobileMenuOverlay = styled(Box)(({ theme }) => ({
-  position: "fixed",
-  inset: 0,
+const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
+  // TODO: fix type
+  // @ts-expect-error
   background: theme.palette.PinkMarbleSky.main,
   display: "flex",
   flexDirection: "column",
   gap: "30px",
   justifyContent: "center",
   alignItems: "center",
-  zIndex: 10,
-  fontSize: "1.2rem",
   textAlign: "center",
-  height: "100vh",
+  padding: 0,
 }));
 
 type MobileMenuProps = {
+  isOpen: boolean;
   onClose: () => void;
 };
 
-const MobileMenu = forwardRef<
-  ElementRef<typeof Box>,
-  BoxProps & MobileMenuProps
->(({ onClose, ...props }, ref) => {
-  return (
-    <MobileMenuOverlay ref={ref} {...props}>
-      <MenuLinks onClose={onClose} />
-      <SocialLinks />
-    </MobileMenuOverlay>
-  );
-});
+export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  useLockPageScroll(isOpen);
 
-export default MobileMenu;
+  return (
+    <Dialog open={isOpen} fullScreen transitionDuration={400} disableScrollLock>
+      <DialogContentStyled>
+        <MenuLinks onClose={onClose} />
+        <SocialLinks />
+      </DialogContentStyled>
+    </Dialog>
+  );
+}

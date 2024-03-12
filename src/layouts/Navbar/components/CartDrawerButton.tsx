@@ -1,6 +1,7 @@
 import { IconButton } from "@mui/material";
-import { CSSProperties, useState } from "react";
+import { CSSProperties } from "react";
 import CartDrawer from "./CartDrawer";
+import useToggle from "@hooks/useToggle";
 
 function CartIcon() {
   const itemsInCartCount = 0;
@@ -28,17 +29,14 @@ type CartIconButtonProps = {
 };
 
 export default function CartDrawerButton({ visibility }: CartIconButtonProps) {
-  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const { isOpen, open, close } = useToggle();
 
   return (
     <>
-      <IconButton sx={{ visibility }} onClick={() => setIsCartDrawerOpen(true)}>
+      <IconButton sx={{ visibility }} onClick={open}>
         <CartIcon />
       </IconButton>
-      <CartDrawer
-        isCartDrawerOpen={isCartDrawerOpen}
-        closeCartDrawer={() => setIsCartDrawerOpen(false)}
-      />
+      <CartDrawer isCartDrawerOpen={isOpen} closeCartDrawer={close} />
     </>
   );
 }

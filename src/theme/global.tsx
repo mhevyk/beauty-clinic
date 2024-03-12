@@ -20,6 +20,9 @@ const styles = {
     margin: 0,
     padding: 0,
   },
+  ".MuiDialog-root:has(.MuiDialog-paperFullScreen)": {
+    width: "100vw",
+  },
 };
 
 export function CSSInit() {

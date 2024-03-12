@@ -1,12 +1,5 @@
 import { useEffect } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Fade,
-  styled,
-  Box,
-  useMediaQuery,
-} from "@mui/material";
+import { AppBar, Toolbar, styled, Box, useMediaQuery } from "@mui/material";
 import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
 import CartDrawerButton from "./components/CartDrawerButton";
@@ -14,18 +7,14 @@ import { Link } from "react-router-dom";
 import userIcon from "@icons/user-icon.svg";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
-import { useLockPageScroll } from "./hooks/useLockPageScroll";
 
-const AppBarStyled = styled(AppBar)(({ theme }) => {
-  const smallScreenMediaQuery = theme.breakpoints.down("md");
-  return {
-    padding: "16px 0 8px",
-    zIndex: "auto",
-    [smallScreenMediaQuery]: {
-      backgroundColor: "white",
-    },
-  };
-});
+const AppBarStyled = styled(AppBar)(({ theme }) => ({
+  padding: "16px 0 8px",
+  zIndex: "auto",
+  [theme.breakpoints.down("md")]: {
+    backgroundColor: "white",
+  },
+}));
 
 const LinkStyled = styled(Link)({
   transition: "color 400ms",
@@ -50,25 +39,14 @@ const UserIcon = styled("img")({
   height: 25,
 });
 
-const ToolbarStyled = styled(Toolbar)(({ theme }) => {
-  const smallScreenMediaQuery = theme.breakpoints.up("md");
-  return {
-    [smallScreenMediaQuery]: {
-      marginRight: "35px",
-    },
-  };
-});
+const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    marginRight: "35px",
+  },
+}));
 
 export default function BurgerMenu() {
-  const { isOpen, setIsOpen, close } = useToggle();
-  const { setLocked } = useLockPageScroll();
-
-  function toggleMobileMenu() {
-    const nextIsOpen = !isOpen;
-    setIsOpen(nextIsOpen);
-    setLocked(nextIsOpen);
-  }
-
+  const { isOpen, toggle, close } = useToggle();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   useEffect(() => {
@@ -81,8 +59,11 @@ export default function BurgerMenu() {
 
   return (
     <>
-      {/* TODO: change styles, change color when theme is ready */}
-      <AppBarStyled position="absolute" elevation={0} color="Transparent">
+      <AppBarStyled
+        position={isSmallScreen ? "static" : "absolute"}
+        elevation={0}
+        color="transparent"
+      >
         <ToolbarStyled>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
           <Box sx={{ flexGrow: 1, visibility }}>
@@ -95,14 +76,10 @@ export default function BurgerMenu() {
             </LoginLink>
           )}
           <CartDrawerButton visibility={visibility} />
-          {isSmallScreen && (
-            <BurgerButton isActive={isOpen} onClick={toggleMobileMenu} />
-          )}
+          {isSmallScreen && <BurgerButton isActive={isOpen} onClick={toggle} />}
         </ToolbarStyled>
       </AppBarStyled>
-      <Fade in={isOpen} timeout={400} mountOnEnter>
-        <MobileMenu onClose={close} />
-      </Fade>
+      <MobileMenu isOpen={isOpen} onClose={close} />
     </>
   );
 }

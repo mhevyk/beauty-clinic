@@ -16,9 +16,15 @@ import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
 import { useLockPageScroll } from "./hooks/useLockPageScroll";
 
-const AppBarStyled = styled(AppBar)({
-  padding: "16px 0 8px",
-  zIndex: 20,
+const AppBarStyled = styled(AppBar)(({ theme }) => {
+  const smallScreenMediaQuery = theme.breakpoints.down("md");
+  return {
+    padding: "16px 0 8px",
+    zIndex: "auto",
+    [smallScreenMediaQuery]: {
+      backgroundColor: "white",
+    },
+  };
 });
 
 const LinkStyled = styled(Link)({
@@ -26,8 +32,7 @@ const LinkStyled = styled(Link)({
 });
 
 const LogoLink = styled(LinkStyled)({
-  fontSize: "22px",
-  fontWeight: 700,
+  ...theme.typography.FontArialBlack2,
 });
 
 const LoginLink = styled(LinkStyled)({
@@ -43,6 +48,15 @@ const LoginLink = styled(LinkStyled)({
 const UserIcon = styled("img")({
   width: 25,
   height: 25,
+});
+
+const ToolbarStyled = styled(Toolbar)(({ theme }) => {
+  const smallScreenMediaQuery = theme.breakpoints.up("md");
+  return {
+    [smallScreenMediaQuery]: {
+      marginRight: "35px",
+    },
+  };
 });
 
 export default function BurgerMenu() {
@@ -69,7 +83,7 @@ export default function BurgerMenu() {
     <>
       {/* TODO: change styles, change color when theme is ready */}
       <AppBarStyled position="absolute" elevation={0} color="Transparent">
-        <Toolbar sx={{ marginRight: "35px" }}>
+        <ToolbarStyled>
           {/* Added box for proper logo focus state and pushing rest icons to right */}
           <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
@@ -84,7 +98,7 @@ export default function BurgerMenu() {
           {isSmallScreen && (
             <BurgerButton isActive={isOpen} onClick={toggleMobileMenu} />
           )}
-        </Toolbar>
+        </ToolbarStyled>
       </AppBarStyled>
       <Fade in={isOpen} timeout={400} mountOnEnter>
         <MobileMenu onClose={close} />

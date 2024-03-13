@@ -10,6 +10,7 @@ const BurgerIconButton = styled(IconButton)((props) => {
   }
 
   return {
+    zIndex: 50,
     ".top": {
       y: MIDDLE_BURGER_BAR_Y,
       rotate: "-45deg",

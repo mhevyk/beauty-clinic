@@ -1,5 +1,6 @@
 import {
   Button,
+  Fade,
   FormGroup,
   FormHelperText,
   InputBase,
@@ -9,7 +10,9 @@ import {
 import { useContactFormValues } from "./hooks/useContactFormValues";
 import HumanVerificationModal from "../HumanVerificationModal";
 import useToggle from "@hooks/useToggle";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
+
+const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
 const TextInput = styled(InputBase)(() => {
   const placeholderStyles = {
@@ -42,14 +45,34 @@ const Feedback = styled(FormHelperText)(({ theme }) => ({
   fontSize: "12px",
 }));
 
-// TODO: complete UI
+const SuccessFeedback = styled("p")({
+  textAlign: "center",
+  color: "#6BD089", // TODO: pick more suitable color
+  fontSize: 16,
+});
+
 export default function ContactForm() {
   const { isOpen, open, close } = useToggle();
   const formik = useContactFormValues(open);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  function handleConfirm() {
+  function handleSuccessSubmit() {
+    setIsFormSubmitted(true);
+
+    setTimeout(() => {
+      setIsFormSubmitted(false);
+    }, SUCCESS_FEEDBACK_DISPLAY_DURATION);
+  }
+
+  function handleConfirm(captchaKey: string) {
+    handleSuccessSubmit();
+    const values = {
+      ...formik.values,
+      captchaKey,
+    };
+
     // TODO: complete server side logic with form values
-    console.log(formik.values);
+    console.log(values);
     formik.resetForm();
     close();
   }
@@ -91,6 +114,9 @@ export default function ContactForm() {
           Submit
         </SubmitButton>
       </form>
+      <Fade in={isFormSubmitted} timeout={400}>
+        <SuccessFeedback>Thanks for submitting!</SuccessFeedback>
+      </Fade>
       <HumanVerificationModal
         isOpen={isOpen}
         handleClose={close}

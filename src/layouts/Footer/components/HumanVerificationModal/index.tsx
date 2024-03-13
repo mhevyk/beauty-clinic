@@ -1,17 +1,13 @@
 import { IconButton, useMediaQuery, styled } from "@mui/material";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import closeIcon from "@icons/close-icon-thin.svg";
 import theme from "@theme/theme";
 import { useLockPageScroll } from "@layouts/Navbar/hooks/useLockPageScroll";
-
-type HumanVerificationModalProps = {
-  isOpen: boolean;
-  handleClose: () => void;
-  handleConfirm: () => void;
-};
+import ReCAPTCHA from "react-google-recaptcha";
+import { useEffect } from "react";
+import useRecaptcha from "./hooks/useRecaptcha";
 
 // TODO: fix styles
 const DialogContentTitle = styled("h2")(({ theme }) => ({
@@ -25,14 +21,14 @@ const DialogContentStyled = styled(DialogContent)({
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  margin: "60px 60px",
+  margin: "51.2px 60px",
 });
 
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
   ...theme.typography.FontAvenirLight3,
   fontSize: "17px",
   color: theme.palette.text.primary,
-  margin: "20px 0 30px 0",
+  margin: "18px 0 28px 0",
 }));
 
 const CloseIconButton = styled(IconButton)({
@@ -46,26 +42,50 @@ const CloseIcon = styled("img")({
   height: 20,
 });
 
+type HumanVerificationModalProps = {
+  isOpen: boolean;
+  handleClose: () => void;
+  handleConfirm: (captchaKey: string) => void;
+};
+
 export default function HumanVerificationModal({
   isOpen,
   handleClose,
   handleConfirm,
 }: HumanVerificationModalProps) {
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const [recaptchaRef, getRecaptchaKey] = useRecaptcha();
 
   useLockPageScroll(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      recaptchaRef.current?.reset();
+    }
+  }, [isOpen]);
+
+  function confirmContactForm() {
+    const captchaKey = getRecaptchaKey();
+    if (!captchaKey) {
+      return;
+    }
+    setTimeout(() => handleConfirm(captchaKey), 600);
+  }
 
   return (
     <Dialog
       open={isOpen}
       onClose={handleClose}
       fullWidth={!matches}
-      maxWidth="sm"
       fullScreen={matches}
       disableScrollLock
+      keepMounted // using it to disable leaving a lot of emply divs on component remount
+      transitionDuration={400}
       PaperProps={{
         sx: {
           borderRadius: 0,
+          maxWidth: 580,
+          margin: 0,
         },
       }}
     >
@@ -77,9 +97,11 @@ export default function HumanVerificationModal({
         <DialogContentTextStyled>
           Please confirm you're human.
         </DialogContentTextStyled>
-        <Button type="submit" variant="contained" onClick={handleConfirm}>
-          Verify
-        </Button>
+        <ReCAPTCHA
+          sitekey={import.meta.env.VITE_APP_RECAPTCHA_KEY}
+          ref={recaptchaRef}
+          onChange={confirmContactForm}
+        />
       </DialogContentStyled>
     </Dialog>
   );

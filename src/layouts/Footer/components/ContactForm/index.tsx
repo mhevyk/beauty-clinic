@@ -7,6 +7,9 @@ import {
   styled,
 } from "@mui/material";
 import { useContactFormValues } from "./hooks/useContactFormValues";
+import HumanVerificationModal from "../HumanVerificationModal";
+import useToggle from "@hooks/useToggle";
+import { PropsWithChildren } from "react";
 
 const TextInput = styled(InputBase)(() => {
   const placeholderStyles = {
@@ -41,48 +44,74 @@ const Feedback = styled(FormHelperText)(({ theme }) => ({
 
 // TODO: complete UI
 export default function ContactForm() {
-  const { values, errors, handleChange, handleSubmit } = useContactFormValues();
+  const { isOpen, open, close } = useToggle();
+  const formik = useContactFormValues(open);
+
+  function handleConfirm() {
+    // TODO: complete server side logic with form values
+    console.log(formik.values);
+    formik.resetForm();
+    close();
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack direction="row" gap="22px">
-        <FormGroup sx={{ flexGrow: 1, height: "min-content" }}>
+    <>
+      <form onSubmit={formik.handleSubmit}>
+        <Stack direction="row" gap="22px">
+          <FormGroupWithError errorMessage={formik.errors.name}>
+            <TextInput
+              placeholder="Name"
+              name="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+            />
+          </FormGroupWithError>
+          <FormGroupWithError errorMessage={formik.errors.email}>
+            <TextInput
+              placeholder="Email"
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+            />
+          </FormGroupWithError>
+        </Stack>
+        <FormGroupWithError errorMessage={formik.errors.message}>
           <TextInput
-            error={!!errors.name}
-            placeholder="Name"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
+            multiline
+            rows={5}
+            placeholder="Message"
+            fullWidth
+            sx={{ marginTop: "22px" }}
+            name="message"
+            value={formik.values.message}
+            onChange={formik.handleChange}
           />
-          {errors.name && <Feedback error>{errors.name}</Feedback>}
-        </FormGroup>
-        <FormGroup sx={{ flexGrow: 1, height: "min-content" }}>
-          <TextInput
-            error={!!errors.email}
-            placeholder="Email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-          />
-          {errors.email && <Feedback error>{errors.email}</Feedback>}
-        </FormGroup>
-      </Stack>
-      <FormGroup>
-        <TextInput
-          multiline
-          rows={5}
-          placeholder="Message"
-          fullWidth
-          sx={{ marginTop: "22px" }}
-          name="message"
-          value={values.message}
-          onChange={handleChange}
-        />
-        {errors.message && <Feedback error>{errors.message}</Feedback>}
-      </FormGroup>
-      <SubmitButton type="submit" fullWidth>
-        Submit
-      </SubmitButton>
-    </form>
+        </FormGroupWithError>
+        <SubmitButton type="submit" fullWidth>
+          Submit
+        </SubmitButton>
+      </form>
+      <HumanVerificationModal
+        isOpen={isOpen}
+        handleClose={close}
+        handleConfirm={handleConfirm}
+      />
+    </>
+  );
+}
+
+type FormGroupWithErrorProps = PropsWithChildren & {
+  errorMessage?: string;
+};
+
+function FormGroupWithError({
+  children,
+  errorMessage,
+}: FormGroupWithErrorProps) {
+  return (
+    <FormGroup sx={{ flexGrow: 1, height: "min-content" }}>
+      {children}
+      {!!errorMessage && <Feedback error>{errorMessage}</Feedback>}
+    </FormGroup>
   );
 }

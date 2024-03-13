@@ -7,7 +7,9 @@ type ContactFormFields = {
   message: string;
 };
 
-export function useContactFormValues() {
+type OnSubmit = (values: ContactFormFields) => void;
+
+export function useContactFormValues(onSubmit: OnSubmit) {
   return useFormik<ContactFormFields>({
     initialValues: {
       name: "",
@@ -15,9 +17,6 @@ export function useContactFormValues() {
       message: "",
     },
     validationSchema: contactFormSchema,
-    // TODO: connect to backend
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit,
   });
 }

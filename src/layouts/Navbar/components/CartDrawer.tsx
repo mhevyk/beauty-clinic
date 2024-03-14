@@ -7,19 +7,16 @@ import {
   styled,
 } from "@mui/material";
 import caretLeftIcon from "@icons/caret-left.svg";
+import useLockPageScroll from "@hooks/useLockPageScroll";
 
 const ANIMATION_DURATION_MS = 550;
 
-const DrawerContentWrapper = styled(Box)(({ theme }) => {
-  const smallScreenBreakpoint = theme.breakpoints.down(400);
-
-  return {
-    width: "350px",
-    [smallScreenBreakpoint]: {
-      width: "100vw",
-    },
-  };
-});
+const DrawerContentWrapper = styled(Box)(({ theme }) => ({
+  width: "350px",
+  [theme.breakpoints.down(400)]: {
+    width: "100vw",
+  },
+}));
 
 const CartHeader = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -56,17 +53,20 @@ export default function CartDrawer({
   // TODO: add logic to display cart items
   const itemsInCartCount = 0;
 
+  useLockPageScroll(isCartDrawerOpen);
+
   return (
     <Drawer
       anchor="right"
       transitionDuration={ANIMATION_DURATION_MS}
       open={isCartDrawerOpen}
       onClose={closeCartDrawer}
+      disableScrollLock
       elevation={0}
     >
       <DrawerContentWrapper>
         <CartHeader>
-          <CaretIconButton onClick={closeCartDrawer} sx={{}}>
+          <CaretIconButton onClick={closeCartDrawer}>
             <CaretIcon
               pointsToRight={isCartDrawerOpen}
               src={caretLeftIcon}

@@ -1,6 +1,7 @@
 import closebutton from "@icons/close-icon.svg";
 import { Box, Drawer, IconButton, styled } from "@mui/material";
 import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
+import useLockPageScroll from "@hooks/useLockPageScroll";
 
 const CloseIcon = styled("img")({
   position: "relative",
@@ -27,8 +28,15 @@ export default function DrawerMenu({
   isSidebarOpen,
   onClose,
 }: DrawerMenuProps) {
+  useLockPageScroll(isSidebarOpen);
+
   return (
-    <Drawer transitionDuration={400} open={isSidebarOpen} onClose={onClose}>
+    <Drawer
+      transitionDuration={400}
+      open={isSidebarOpen}
+      onClose={onClose}
+      disableScrollLock
+    >
       <MenuWrapper>
         <IconButtonStyled onClick={onClose}>
           <CloseIcon src={closebutton} alt="Close icon" />

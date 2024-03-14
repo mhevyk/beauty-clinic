@@ -22,6 +22,9 @@ const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
   margin: "51.2px 0",
+  [theme.breakpoints.down("sm")]: {
+    padding: 0,
+  },
   [theme.breakpoints.up("md")]: {
     margin: "51.2px 60px",
   },
@@ -42,20 +45,17 @@ const CloseIconButton = styled(IconButton)({
   top: 8,
 });
 
-const CloseIcon = styled("img")({
-  width: 20,
-  height: 20,
-});
+const CloseIcon = styled("img")(({ theme }) => ({
+  width: 30,
+  aspectRatio: "1 / 1",
+  [theme.breakpoints.up("md")]: {
+    width: 20,
+  },
+}));
 
 const ReCAPTCHABox = styled(Box)(({ theme }) => ({
-  transform: "scale(0.75)",
-  padding: 0,
-  [theme.breakpoints.up(350)]: {
-    transform: "scale(0.85)",
-    padding: "unset",
-  },
-  [theme.breakpoints.up("md")]: {
-    transform: "scale(1)",
+  [theme.breakpoints.down(350)]: {
+    transform: "scale(0.7)",
   },
 }));
 
@@ -70,7 +70,8 @@ export default function HumanVerificationModal({
   handleClose,
   handleConfirm,
 }: HumanVerificationModalProps) {
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(304));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const [recaptchaRef, getRecaptchaKey] = useRecaptcha();
 
   useLockPageScroll(isOpen);
@@ -94,8 +95,8 @@ export default function HumanVerificationModal({
     <Dialog
       open={isOpen}
       onClose={handleClose}
-      fullWidth={!matches}
-      fullScreen={matches}
+      fullWidth={!isSmallScreen}
+      fullScreen={isSmallScreen}
       disableScrollLock
       keepMounted // using it to disable leaving a lot of emply divs on component remount
       transitionDuration={400}
@@ -120,7 +121,7 @@ export default function HumanVerificationModal({
             sitekey={import.meta.env.VITE_APP_RECAPTCHA_KEY}
             ref={recaptchaRef}
             onChange={confirmContactForm}
-            size={matches ? "compact" : "normal"}
+            size={isVerySmallScreen ? "compact" : "normal"}
           />
         </ReCAPTCHABox>
       </DialogContentStyled>

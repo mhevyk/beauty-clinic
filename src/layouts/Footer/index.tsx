@@ -1,5 +1,6 @@
 import { Container, styled } from "@mui/material";
 import ContactDetails from "./components/ContactDetails";
+import GoogleMap from "./components/GoogleMap";
 
 const ContactDetailsTitle = styled("h3")(({ theme }) => ({
   ...theme.typography.FontAvenirLight2,
@@ -21,6 +22,7 @@ export default function Footer() {
     <Container component="footer" id="contact" maxWidth={false}>
       <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
       <ContactDetails />
+      <GoogleMap />
     </Container>
   );
 }

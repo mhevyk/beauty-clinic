@@ -4,10 +4,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import closeIcon from "@icons/close-icon-thin.svg";
 import theme from "@theme/theme";
-import { useLockPageScroll } from "@layouts/Navbar/hooks/useLockPageScroll";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useEffect } from "react";
 import useRecaptcha from "./hooks/useRecaptcha";
+import useLockPageScroll from "@hooks/useLockPageScroll";
 
 // TODO: fix styles
 const DialogContentTitle = styled("h2")(({ theme }) => ({

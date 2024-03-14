@@ -1,4 +1,4 @@
-import { IconButton, useMediaQuery, styled } from "@mui/material";
+import { IconButton, useMediaQuery, styled, Box } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -16,19 +16,24 @@ const DialogContentTitle = styled("h2")(({ theme }) => ({
   margin: 0,
 }));
 
-const DialogContentStyled = styled(DialogContent)({
+const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  margin: "51.2px 60px",
-});
+  margin: "51.2px 0",
+  [theme.breakpoints.up("md")]: {
+    margin: "51.2px 60px",
+  },
+}));
 
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
   ...theme.typography.FontAvenirLight3,
   fontSize: "17px",
   color: theme.palette.text.primary,
   margin: "18px 0 28px 0",
+  lineHeight: 1.4,
+  textAlign: "center",
 }));
 
 const CloseIconButton = styled(IconButton)({
@@ -41,6 +46,18 @@ const CloseIcon = styled("img")({
   width: 20,
   height: 20,
 });
+
+const ReCAPTCHABox = styled(Box)(({ theme }) => ({
+  transform: "scale(0.75)",
+  padding: 0,
+  [theme.breakpoints.up(350)]: {
+    transform: "scale(0.85)",
+    padding: "unset",
+  },
+  [theme.breakpoints.up("md")]: {
+    transform: "scale(1)",
+  },
+}));
 
 type HumanVerificationModalProps = {
   isOpen: boolean;
@@ -69,6 +86,7 @@ export default function HumanVerificationModal({
     if (!captchaKey) {
       return;
     }
+
     setTimeout(() => handleConfirm(captchaKey), 600);
   }
 
@@ -97,11 +115,14 @@ export default function HumanVerificationModal({
         <DialogContentTextStyled>
           Please confirm you're human.
         </DialogContentTextStyled>
-        <ReCAPTCHA
-          sitekey={import.meta.env.VITE_APP_RECAPTCHA_KEY}
-          ref={recaptchaRef}
-          onChange={confirmContactForm}
-        />
+        <ReCAPTCHABox>
+          <ReCAPTCHA
+            sitekey={import.meta.env.VITE_APP_RECAPTCHA_KEY}
+            ref={recaptchaRef}
+            onChange={confirmContactForm}
+            size={matches ? "compact" : "normal"}
+          />
+        </ReCAPTCHABox>
       </DialogContentStyled>
     </Dialog>
   );

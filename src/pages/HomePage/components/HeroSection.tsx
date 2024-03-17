@@ -61,6 +61,8 @@ const SectionStyled = styled("section")({
 
 const Description = styled("h1")({
   ...theme.typography.h5,
+  margin: "19px 0 19px 5px",
+
   [middleScreenMediaQuery]: {
     fontSize: "23px",
   },
@@ -101,7 +103,7 @@ export default function HeroSection() {
             <br /> Beautician
           </Header>
           <Description>Hand Crafted Natural Treatments</Description>
-          <Button component={Link} to="/treatments" variant="outlined">
+          <Button component={Link} to="/treatments" variant="primary-outlined">
             Book an Appointment
           </Button>
         </BoxTitleStyled>

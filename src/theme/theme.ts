@@ -1,4 +1,14 @@
 import { createTheme } from "@mui/material";
+import { CSSProperties } from "react";
+
+const baseButtonStyles: CSSProperties = {
+  textTransform: "none",
+  borderRadius: 0,
+  transition: "all 400ms",
+  fontFamily: "Nunito",
+  fontWeight: "300",
+  fontSize: "16px",
+};
 
 const theme = createTheme({
   breakpoints: {
@@ -17,59 +27,80 @@ const theme = createTheme({
       },
     },
     MuiButton: {
+      defaultProps: {
+        variant: "default",
+      },
       variants: [
         {
-          props: { variant: "outlined" },
+          props: { variant: "default" },
           style: {
-            border: "1px solid #000",
-            color: "#000",
-            padding: "10px 25px",
-            margin: "20px 0",
-            borderRadius: "0px",
-            fontSize: "17px",
-            fontFamily: "Nunito",
-            fontWeight: "300",
-            textTransform: "none",
+            ...baseButtonStyles,
+            fontWeight: "400",
+            backgroundColor: "rgba(0,0,0,0)",
+            color: "rgb(3, 3, 3)",
             "&:hover": {
-              backgroundColor: "#000",
-              color: "#fff",
+              backgroundColor: "rgba(0,0,0,0)",
+              opacity: 0.8,
+            },
+            "&:focus": {
+              backgroundColor: "rgba(0,0,0,0)",
+              opacity: 0.8,
             },
           },
         },
         {
-          props: { variant: "outline2" },
+          props: { variant: "primary" },
           style: {
-            border: "200px",
+            ...baseButtonStyles,
+            fontSize: "15px",
+            padding: "11px 45px",
+            border: "2px solid #030303",
+            backgroundColor: "#030303",
+            color: "#ffffff",
+            "&:hover": {
+              backgroundColor: "#353535",
+              borderColor: "#353535",
+            },
+            "&:focus": {
+              backgroundColor: "#353535",
+              borderColor: "#353535",
+            },
           },
         },
         {
-          props: { variant: "blackFat" },
+          props: { variant: "primary-outlined" },
           style: {
-            border: 2,
+            ...baseButtonStyles,
+            backgroundColor: "rgba(0,0,0,0)",
+            border: "1px solid #030303",
+            color: "#030303",
+            padding: "10px 35px",
+            fontSize: "17px",
+            "&:hover": {
+              backgroundColor: "#030303",
+              color: "#ffffff",
+            },
+            "&:focus": {
+              backgroundColor: "#030303",
+              color: "#ffffff",
+            },
           },
         },
         {
-          props: { variant: "black" },
+          props: { variant: "accent" },
           style: {
-            border: 2,
-          },
-        },
-        {
-          props: { variant: "submit" },
-          style: {
-            border: 2,
-          },
-        },
-        {
-          props: { variant: "time" },
-          style: {
-            border: 2,
-          },
-        },
-        {
-          props: { variant: "login" },
-          style: {
-            border: 2,
+            ...baseButtonStyles,
+            fontSize: "16px",
+            fontWeight: "200",
+            padding: "9px 62px",
+            backgroundColor: "#f8852d",
+            color: "#ffffff",
+            "&:hover": {
+              backgroundColor: "#f99d57",
+            },
+            "&:focus": {
+              backgroundColor: "#f99d57",
+            },
           },
         },
       ],
@@ -100,15 +131,8 @@ const theme = createTheme({
     ChatBraun: {
       main: "#69513d",
     },
-    ButtonBlack: {
-      main: "#030303",
-      dark: "#353535",
-      contrastText: "#ffffff",
-    },
     FieryOrange: {
       main: "#F8852D",
-      dark: "#F99D57",
-      contrastText: "#ffffff",
     },
     text: {
       primary: "#000000",
@@ -122,6 +146,7 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: "Arial Black",
+    fontSize: 14,
 
     FontArialBlack1: {
       fontFamily: "Arial Black",

@@ -60,7 +60,11 @@ const SectionStyled = styled("section")({
 });
 
 const Description = styled("h1")({
-  ...theme.typography.h5,
+  fontFamily: "Avenir, sans-serif",
+  fontSize: "25px",
+  letterSpacing: "0.04",
+  lineHeight: "1.2",
+  fontWeight: "bold",
   margin: "19px 0 19px 5px",
 
   [middleScreenMediaQuery]: {
@@ -78,7 +82,10 @@ const Description = styled("h1")({
 });
 
 const Header = styled("h1")({
-  ...theme.typography.h2,
+  ...theme.typography.heading,
+  fontSize: "80px",
+  letterSpacing: "-0.04rem",
+  lineHeight: "1.1",
   zIndex: 2,
   margin: 0,
   position: "relative",

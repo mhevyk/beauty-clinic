@@ -33,8 +33,9 @@ const TextInput = styled(InputBase)(() => {
 });
 
 const Feedback = styled(FormHelperText)(({ theme }) => ({
-  ...theme.typography.FontAvenirLight3,
+  ...theme.typography.paragraph,
   fontSize: "12px",
+  lineHeight: "2rem",
 }));
 
 const SuccessFeedback = styled("p")({

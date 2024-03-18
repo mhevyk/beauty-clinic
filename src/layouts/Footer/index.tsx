@@ -3,11 +3,14 @@ import ContactDetails from "./components/ContactDetails";
 import GoogleMap from "./components/GoogleMap";
 
 const ContactDetailsTitle = styled("h3")(({ theme }) => ({
-  ...theme.typography.FontAvenirLight2,
+  ...theme.typography.paragraph,
+  fontSize: "17px",
+  letterSpacing: "0.7rem",
+  lineHeight: "1.8rem",
+  fontWeight: 400,
   textTransform: "uppercase",
   textAlign: "center",
   display: "block",
-  fontWeight: 400,
   padding: "0 15vw",
   marginBottom: "22px",
   [theme.breakpoints.up("md")]: {
@@ -16,10 +19,11 @@ const ContactDetailsTitle = styled("h3")(({ theme }) => ({
   },
 }));
 
-// TODO: fix font
 const CopyrightText = styled("p")(({ theme }) => ({
-  ...theme.typography.FontAvenirLight2,
+  ...theme.typography.paragraph,
   fontSize: "14px",
+  letterSpacing: "0.7rem",
+  lineHeight: "1.8rem",
   textAlign: "center",
   textTransform: "uppercase",
 }));

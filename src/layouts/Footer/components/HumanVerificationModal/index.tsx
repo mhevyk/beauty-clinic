@@ -9,9 +9,9 @@ import { useEffect } from "react";
 import useRecaptcha from "./hooks/useRecaptcha";
 import useLockPageScroll from "@hooks/useLockPageScroll";
 
-// TODO: fix styles
 const DialogContentTitle = styled("h2")(({ theme }) => ({
-  ...theme.typography.FontArialBlack1,
+  ...theme.typography.heading,
+  fontWeight: "bold",
   fontSize: "35px",
   margin: 0,
 }));
@@ -31,7 +31,7 @@ const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
 }));
 
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
-  ...theme.typography.FontAvenirLight3,
+  ...theme.typography.paragraph,
   fontSize: "17px",
   color: theme.palette.text.primary,
   margin: "18px 0 28px 0",

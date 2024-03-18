@@ -13,10 +13,10 @@ const GridStyled = styled(Grid)(({ theme }) => ({
   },
 }));
 
-// TODO: complete heading when variants are available
 const SectionTitle = styled("h5")(({ theme }) => ({
-  ...theme.typography.FontArialBlack2,
+  ...theme.typography.heading,
   fontSize: "18px",
+  lineHeight: "auto",
   margin: "0 0 10px 0",
 }));
 
@@ -52,10 +52,10 @@ export default function ContactDetails() {
     <GridStyled container spacing={"65px"} columns={12}>
       <Section item xs={12} sm={12} md={4} lg={2.5} xl={3} as="section">
         <SectionTitle>Lily Organic Beautician</SectionTitle>
-        <Typography variant="FontAvenirLight3" style={{ fontSize: 16 }}>
+        <Typography variant="paragraph" lineHeight="2rem">
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>
-        {/*TODO: fix component in BookNowLinkButton*/}
+        {/*TODO: fix component*/}
         <BookNowLinkButton component={Link} to="/treatments" variant="primary">
           Book Now
         </BookNowLinkButton>
@@ -73,7 +73,7 @@ export default function ContactDetails() {
         <SectionTitle>Opening Hours</SectionTitle>
         <DefinitionList>
           <DefinitionItem label="Mon - Fri">10am - 8pm</DefinitionItem>
-          <DefinitionItem label="Sat">10am - 4pm​</DefinitionItem>
+          <DefinitionItem label="Sat">10am - 4pm</DefinitionItem>
           <DefinitionItem label="Sun">10am - 6pm</DefinitionItem>
         </DefinitionList>
       </Section>

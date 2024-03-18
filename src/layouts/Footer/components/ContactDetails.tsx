@@ -15,8 +15,7 @@ const GridStyled = styled(Grid)(({ theme }) => ({
 
 const SectionTitle = styled("h5")(({ theme }) => ({
   ...theme.typography.heading,
-  fontSize: "18px",
-  lineHeight: "auto",
+  fontSize: "16px",
   margin: "0 0 10px 0",
 }));
 

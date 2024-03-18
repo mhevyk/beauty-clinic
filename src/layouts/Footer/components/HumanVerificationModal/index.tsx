@@ -41,8 +41,8 @@ const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
 
 const CloseIconButton = styled(IconButton)({
   position: "absolute",
-  right: 8,
-  top: 8,
+  right: 16,
+  top: 16,
 });
 
 const CloseIcon = styled("img")(({ theme }) => ({

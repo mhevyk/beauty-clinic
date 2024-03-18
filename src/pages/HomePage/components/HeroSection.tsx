@@ -26,7 +26,7 @@ const HelloImg = styled("img")({
     width: 201,
     height: 114,
     top: 10,
-    left: 20,
+    left: 22,
   },
 });
 
@@ -77,7 +77,7 @@ const Description = styled("h1")({
     textAlign: "center",
     margin: 0,
     left: 10,
-    bottom: 10,
+    bottom: 20,
   },
 });
 

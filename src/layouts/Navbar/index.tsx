@@ -22,7 +22,7 @@ const LinkStyled = styled(Link)({
 
 const LogoLink = styled(LinkStyled)({
   ...theme.typography.heading,
-  fontSize: "42px",
+  fontSize: "22px",
 });
 
 const LoginLink = styled(LinkStyled)({

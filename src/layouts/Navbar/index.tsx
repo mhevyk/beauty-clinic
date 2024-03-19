@@ -4,7 +4,7 @@ import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
 import CartDrawerButton from "./components/CartDrawerButton";
 import { Link } from "react-router-dom";
-import userIcon from "@icons/user-icon.svg";
+import UserIconSvg from "@icons/user-icon.svg?react";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
 
@@ -35,7 +35,7 @@ const LoginLink = styled(LinkStyled)({
   marginRight: 20,
 });
 
-const UserIcon = styled("img")({
+const UserIcon = styled(UserIconSvg)({
   width: 25,
   height: 25,
 });
@@ -73,7 +73,7 @@ export default function BurgerMenu() {
           {!isSmallScreen && (
             <LoginLink to="/auth/login">
               Log In
-              <UserIcon src={userIcon} alt="User icon" />
+              <UserIcon />
             </LoginLink>
           )}
           <CartDrawerButton visibility={visibility} />

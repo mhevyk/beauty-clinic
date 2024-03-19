@@ -6,7 +6,7 @@ import {
   AdvancedMarker,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
-import customGoogleMapPinIcon from "@icons/map-pin.svg";
+import GoogleMapPinIcon from "@icons/map-pin.svg?react";
 
 const MARKER_COORDINATES: google.maps.LatLngLiteral = {
   lat: 37.77489791779846,
@@ -33,7 +33,7 @@ export default function GoogleMap() {
           position={MARKER_COORDINATES}
           onClick={() => setMapTooltipOpen(true)}
         >
-          <img src={customGoogleMapPinIcon} alt="Map pin icon" />
+          <GoogleMapPinIcon />
         </AdvancedMarker>
         {isMapTooltipOpen && (
           <InfoWindow

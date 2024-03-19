@@ -1,9 +1,9 @@
-import closebutton from "@icons/close-icon.svg";
+import CloseIconSvg from "@icons/close-icon.svg?react";
 import { Box, Drawer, IconButton, styled } from "@mui/material";
 import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
 import useLockPageScroll from "@hooks/useLockPageScroll";
 
-const CloseIcon = styled("img")({
+const CloseIcon = styled(CloseIconSvg)({
   position: "relative",
   cursor: "pointer",
   width: 25,
@@ -39,7 +39,7 @@ export default function DrawerMenu({
     >
       <MenuWrapper>
         <IconButtonStyled onClick={onClose}>
-          <CloseIcon src={closebutton} alt="Close icon" />
+          <CloseIcon />
         </IconButtonStyled>
         <MenuLinks onClose={onClose} />
       </MenuWrapper>

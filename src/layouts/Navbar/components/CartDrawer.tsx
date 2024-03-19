@@ -6,7 +6,7 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
-import caretLeftIcon from "@icons/caret-left.svg";
+import CaretIconSvg from "@icons/caret-left.svg?react";
 import useLockPageScroll from "@hooks/useLockPageScroll";
 
 const ANIMATION_DURATION_MS = 550;
@@ -41,6 +41,16 @@ const CartContent = styled(Box)({
   padding: "34px",
 });
 
+type CaretIconProps = {
+  pointsToRight: boolean;
+};
+
+const CaretIcon = styled(CaretIconSvg, {
+  shouldForwardProp: (prop) => prop !== "pointsToRight",
+})<CaretIconProps>(({ pointsToRight }) => ({
+  animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
+}));
+
 type CartDrawerProps = {
   isCartDrawerOpen: boolean;
   closeCartDrawer: () => void;
@@ -67,11 +77,7 @@ export default function CartDrawer({
       <DrawerContentWrapper>
         <CartHeader>
           <CaretIconButton onClick={closeCartDrawer}>
-            <CaretIcon
-              pointsToRight={isCartDrawerOpen}
-              src={caretLeftIcon}
-              alt="Caret icon"
-            />
+            <CaretIcon pointsToRight={isCartDrawerOpen} stroke="red" />
           </CaretIconButton>
           <Typography variant="heading" color="white" fontSize="22px">
             Cart
@@ -108,11 +114,3 @@ const rotateBackward = keyframes`
     transform: rotate(0deg);
   }
 `;
-
-type CaretIconProps = {
-  pointsToRight: boolean;
-};
-
-const CaretIcon = styled("img")<CaretIconProps>(({ pointsToRight }) => ({
-  animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
-}));

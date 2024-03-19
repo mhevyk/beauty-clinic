@@ -113,7 +113,7 @@ export default function HumanVerificationModal({
       </CloseIconButton>
       <DialogContentStyled>
         <DialogContentTitle>Verification</DialogContentTitle>
-        <DialogContentTextStyled>
+        <DialogContentTextStyled as="p">
           Please confirm you're human.
         </DialogContentTextStyled>
         <ReCAPTCHABox>

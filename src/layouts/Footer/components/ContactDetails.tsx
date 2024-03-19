@@ -44,13 +44,14 @@ const Section = styled(Grid, {
 const InfoList = styled("ul")({
   fontSize: 16,
   whiteSpace: "nowrap",
+  lineHeight: "2rem",
 });
 
 export default function ContactDetails() {
   return (
     <GridStyled container spacing={"65px"} columns={12}>
       <Section item xs={12} sm={12} md={4} lg={2.5} xl={3} as="section">
-        <SectionTitle>Lily Organic Beautician</SectionTitle>
+        <SectionTitle as="h1">Lily Organic Beautician</SectionTitle>
         <Typography variant="paragraph" lineHeight="2rem">
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>

@@ -21,7 +21,8 @@ const LinkStyled = styled(Link)({
 });
 
 const LogoLink = styled(LinkStyled)({
-  ...theme.typography.FontArialBlack2,
+  ...theme.typography.heading,
+  fontSize: "22px",
 });
 
 const LoginLink = styled(LinkStyled)({

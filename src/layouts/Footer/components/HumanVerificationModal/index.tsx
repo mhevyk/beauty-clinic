@@ -9,9 +9,9 @@ import { useEffect } from "react";
 import useRecaptcha from "./hooks/useRecaptcha";
 import useLockPageScroll from "@hooks/useLockPageScroll";
 
-// TODO: fix styles
 const DialogContentTitle = styled("h2")(({ theme }) => ({
-  ...theme.typography.FontArialBlack1,
+  ...theme.typography.heading,
+  fontWeight: "bold",
   fontSize: "35px",
   margin: 0,
 }));
@@ -31,7 +31,7 @@ const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
 }));
 
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
-  ...theme.typography.FontAvenirLight3,
+  ...theme.typography.paragraph,
   fontSize: "17px",
   color: theme.palette.text.primary,
   margin: "18px 0 28px 0",
@@ -41,8 +41,8 @@ const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
 
 const CloseIconButton = styled(IconButton)({
   position: "absolute",
-  right: 8,
-  top: 8,
+  right: 16,
+  top: 16,
 });
 
 const CloseIcon = styled("img")(({ theme }) => ({
@@ -113,7 +113,7 @@ export default function HumanVerificationModal({
       </CloseIconButton>
       <DialogContentStyled>
         <DialogContentTitle>Verification</DialogContentTitle>
-        <DialogContentTextStyled>
+        <DialogContentTextStyled as="p">
           Please confirm you're human.
         </DialogContentTextStyled>
         <ReCAPTCHABox>

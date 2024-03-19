@@ -26,7 +26,7 @@ const HelloImg = styled("img")({
     width: 201,
     height: 114,
     top: 10,
-    left: 20,
+    left: 22,
   },
 });
 
@@ -60,7 +60,13 @@ const SectionStyled = styled("section")({
 });
 
 const Description = styled("h1")({
-  ...theme.typography.h5,
+  fontFamily: "Avenir, sans-serif",
+  fontSize: "25px",
+  letterSpacing: "0.04",
+  lineHeight: "1.2",
+  fontWeight: "bold",
+  margin: "19px 0 19px 5px",
+
   [middleScreenMediaQuery]: {
     fontSize: "23px",
   },
@@ -71,12 +77,15 @@ const Description = styled("h1")({
     textAlign: "center",
     margin: 0,
     left: 10,
-    bottom: 10,
+    bottom: 20,
   },
 });
 
 const Header = styled("h1")({
-  ...theme.typography.h2,
+  ...theme.typography.heading,
+  fontSize: "80px",
+  letterSpacing: "-0.04rem",
+  lineHeight: "1.1",
   zIndex: 2,
   margin: 0,
   position: "relative",
@@ -101,7 +110,7 @@ export default function HeroSection() {
             <br /> Beautician
           </Header>
           <Description>Hand Crafted Natural Treatments</Description>
-          <Button component={Link} to="/treatments" variant="outlined">
+          <Button component={Link} to="/treatments" variant="primary-outlined">
             Book an Appointment
           </Button>
         </BoxTitleStyled>

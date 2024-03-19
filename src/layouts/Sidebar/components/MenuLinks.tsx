@@ -46,7 +46,12 @@ export default function MenuLinks({ onClose }: MenuLinksProps) {
   return (
     <MenuWrapper>
       {menuItems.map((menuItem, index) => (
-        <Typography variant="FontArialBlack3" component="li" key={index}>
+        <Typography
+          fontSize="30px"
+          variant="heading"
+          component="li"
+          key={index}
+        >
           <MenuLink onClick={onClose} to={menuItem.path}>
             {menuItem.label}
           </MenuLink>

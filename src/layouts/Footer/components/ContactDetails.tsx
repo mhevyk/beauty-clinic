@@ -1,4 +1,4 @@
-import { Grid, Typography, styled } from "@mui/material";
+import { Grid, Typography, styled, Button } from "@mui/material";
 import { DefinitionItem, DefinitionList } from "./DefinitionList";
 import ContactForm from "./ContactForm";
 import { Link } from "react-router-dom";
@@ -13,34 +13,18 @@ const GridStyled = styled(Grid)(({ theme }) => ({
   },
 }));
 
-// TODO: complete heading when variants are available
 const SectionTitle = styled("h5")(({ theme }) => ({
-  ...theme.typography.FontArialBlack2,
-  fontSize: "18px",
+  ...theme.typography.heading,
+  fontSize: "16px",
   margin: "0 0 10px 0",
 }));
 
-// TODO: complete button styles when variants are supplied
-const BookNowLinkButton = styled(Link)(({ theme }) => ({
-  ...theme.typography.FontAvenirLight3,
+const BookNowLinkButton = styled(Button)({
+  padding: "8px 30px",
   display: "block",
   marginTop: "22px",
-  textTransform: "none",
   width: "max-content",
-  fontWeight: 400,
-  lineHeight: "21px",
-  transition: "opacity 300ms",
-  backgroundColor: theme.palette.secondary.main,
-  padding: "12px 35px",
-  borderRadius: 0,
-  // TODO: fix color
-  // @ts-expect-error
-  color: theme.palette.ButtonBlack.contrastText,
-  "&:hover": {
-    backgroundColor: theme.palette.secondary.main,
-    opacity: 0.8,
-  },
-}));
+});
 
 type SectionProps = {
   disableBlockCentering?: boolean;
@@ -60,17 +44,21 @@ const Section = styled(Grid, {
 const InfoList = styled("ul")({
   fontSize: 16,
   whiteSpace: "nowrap",
+  lineHeight: "2rem",
 });
 
 export default function ContactDetails() {
   return (
     <GridStyled container spacing={"65px"} columns={12}>
       <Section item xs={12} sm={12} md={4} lg={2.5} xl={3} as="section">
-        <SectionTitle>Lily Organic Beautician</SectionTitle>
-        <Typography variant="FontAvenirLight3" style={{ fontSize: 16 }}>
+        <SectionTitle as="h1">Lily Organic Beautician</SectionTitle>
+        <Typography variant="paragraph" lineHeight="2rem">
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>
-        <BookNowLinkButton to="/treatments">Book Now</BookNowLinkButton>
+        {/*TODO: fix component*/}
+        <BookNowLinkButton component={Link} to="/treatments" variant="primary">
+          Book Now
+        </BookNowLinkButton>
       </Section>
       <Section item xs={12} sm={6} md={4} lg={2.6} xl={2} as="section">
         <SectionTitle>Info</SectionTitle>
@@ -85,7 +73,7 @@ export default function ContactDetails() {
         <SectionTitle>Opening Hours</SectionTitle>
         <DefinitionList>
           <DefinitionItem label="Mon - Fri">10am - 8pm</DefinitionItem>
-          <DefinitionItem label="Sat">10am - 4pm​</DefinitionItem>
+          <DefinitionItem label="Sat">10am - 4pm</DefinitionItem>
           <DefinitionItem label="Sun">10am - 6pm</DefinitionItem>
         </DefinitionList>
       </Section>

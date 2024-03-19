@@ -17,7 +17,7 @@ const LinkStyled = styled(Link)({
 export default function Logo() {
   return (
     <>
-      <TypographyLogo variant="FontArialBlack2">
+      <TypographyLogo fontSize="22px" variant="heading">
         <LinkStyled to="/">Lily.</LinkStyled>
       </TypographyLogo>
     </>

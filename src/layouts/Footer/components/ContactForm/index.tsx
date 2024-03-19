@@ -32,17 +32,10 @@ const TextInput = styled(InputBase)(() => {
   };
 });
 
-const SubmitButton = styled(Button)(({ theme }) => ({
-  ...theme.typography.FontAvenirLight3,
-  textTransform: "initial",
-  fontWeight: 400,
-  fontSize: "16px",
-  color: "rgb(3, 3, 3)",
-}));
-
 const Feedback = styled(FormHelperText)(({ theme }) => ({
-  ...theme.typography.FontAvenirLight3,
+  ...theme.typography.paragraph,
   fontSize: "12px",
+  lineHeight: "2rem",
 }));
 
 const SuccessFeedback = styled("p")({
@@ -110,9 +103,9 @@ export default function ContactForm() {
             onChange={formik.handleChange}
           />
         </FormGroupWithError>
-        <SubmitButton type="submit" fullWidth>
+        <Button type="submit" fullWidth>
           Submit
-        </SubmitButton>
+        </Button>
       </form>
       <Fade in={isFormSubmitted} timeout={400}>
         <SuccessFeedback>Thanks for submitting!</SuccessFeedback>

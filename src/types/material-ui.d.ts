@@ -2,8 +2,6 @@ import { PaletteColorOptions } from "@mui/material";
 import { CSSProperties } from "react";
 
 type CustomColors =
-  | "ButtonBlack"
-  | "ButtonOutlined"
   | "LogoActive"
   | "ChatBraun"
   | "TreatmentsTextH"
@@ -14,6 +12,7 @@ type CustomColors =
   | "PinkChiffon"
   | "Transparent"
   | "GrayPhoneNav";
+
 type CustomPalette = Record<CustomColors, PaletteColorOptions>;
 
 declare module "@mui/material/styles/createPalette" {
@@ -21,21 +20,14 @@ declare module "@mui/material/styles/createPalette" {
   interface Palette extends CustomPalette {}
 }
 
-type ButtonColors = Extract<
-  CustomColors,
-  "ButtonBlack" | "ButtonOutlined" | "FieryOrange"
->;
-
-type AppBarColors = Exclude<CustomColors, ButtonColors>;
+type AppBarColors = CustomColors;
 
 declare module "@mui/material" {
-  interface ButtonPropsColorOverrides extends Record<ButtonColors, any> {}
   interface AppBarPropsColorOverrides extends Record<AppBarColors, any> {}
 }
 
-type CustomFonts =
-  | `FontArialBlack${1 | 2 | 3}`
-  | `FontAvenirLight${1 | 2 | 3 | 4}`;
+type CustomFonts = "heading" | "paragraph";
+
 type CustomTypography = Record<CustomFonts, CSSProperties>;
 
 declare module "@mui/material/styles" {
@@ -46,13 +38,7 @@ declare module "@mui/material/styles" {
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides extends Record<CustomFonts, true> {}
 }
-type CustomButton =
-  | "blackFat"
-  | "black"
-  | "submit"
-  | "outline2"
-  | "time"
-  | "login";
+type CustomButton = "primary" | "primary-outlined" | "accent" | "default";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides extends Record<CustomButton, true> {}

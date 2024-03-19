@@ -73,12 +73,7 @@ export default function CartDrawer({
               alt="Caret icon"
             />
           </CaretIconButton>
-          {/* TODO: add font */}
-          <Typography
-            variant="FontArialBlack2"
-            color="white"
-            sx={{ fontSize: "22px" }}
-          >
+          <Typography variant="heading" color="white" fontSize="22px">
             Cart
           </Typography>
         </CartHeader>
@@ -86,8 +81,7 @@ export default function CartDrawer({
           {itemsInCartCount > 0 ? (
             "Render cart items"
           ) : (
-            <Typography variant="FontAvenirLight3" sx={{ fontSize: "18px" }}>
-              {/* TODO: add font */}
+            <Typography variant="paragraph" fontSize="18px">
               Cart is empty
             </Typography>
           )}

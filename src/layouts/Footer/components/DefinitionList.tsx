@@ -22,6 +22,7 @@ const DefinitionItemValue = styled("dd")({
   fontSize: 16,
   display: "inline-block",
   margin: 0,
+  lineHeight: "2rem",
 });
 
 type DefinitionItemProps = PropsWithChildren & {

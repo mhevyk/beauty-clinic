@@ -21,14 +21,10 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiButtonBase: {
-      defaultProps: {
-        disableRipple: true,
-      },
-    },
     MuiButton: {
       defaultProps: {
         variant: "default",
+        disableRipple: true,
       },
       variants: [
         {

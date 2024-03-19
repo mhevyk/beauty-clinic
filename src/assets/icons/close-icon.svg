@@ -1,5 +1,5 @@
-<svg preserveAspectRatio="xMidYMid meet" data-bbox="29.6 26 148 148" xmlns="http://www.w3.org/2000/svg" viewBox="29.6 26 148 148" role="presentation" aria-hidden="true">
-    <g>
-        <path d="M177.6 147.3L130.3 100l47.3-47.3L150.9 26l-47.3 47.3L56.3 26 29.6 52.7 76.9 100l-47.3 47.3L56.3 174l47.3-47.3 47.3 47.3 26.7-26.7z"></path>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="29.6 26 148 148" aria-hidden="true">
+  <g>
+    <path d="M177.6 147.3L130.3 100l47.3-47.3L150.9 26l-47.3 47.3L56.3 26 29.6 52.7 76.9 100l-47.3 47.3L56.3 174l47.3-47.3 47.3 47.3 26.7-26.7z"></path>
+  </g>
 </svg>

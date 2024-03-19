@@ -2,7 +2,7 @@ import { IconButton, useMediaQuery, styled, Box } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import closeIcon from "@icons/close-icon-thin.svg";
+import CloseIconSvg from "@icons/close-icon-thin.svg?react";
 import theme from "@theme/theme";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useEffect } from "react";
@@ -45,7 +45,7 @@ const CloseIconButton = styled(IconButton)({
   top: 16,
 });
 
-const CloseIcon = styled("img")(({ theme }) => ({
+const CloseIcon = styled(CloseIconSvg)(({ theme }) => ({
   width: 30,
   aspectRatio: "1 / 1",
   [theme.breakpoints.up("md")]: {
@@ -109,7 +109,7 @@ export default function HumanVerificationModal({
       }}
     >
       <CloseIconButton aria-label="close" onClick={handleClose}>
-        <CloseIcon src={closeIcon} alt="Close icon" />
+        <CloseIcon />
       </CloseIconButton>
       <DialogContentStyled>
         <DialogContentTitle>Verification</DialogContentTitle>

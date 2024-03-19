@@ -1,7 +1,7 @@
-import burgerbutton from "@icons/burger-icon.svg";
+import BurgerIcon from "@icons/burger-icon.svg?react";
 import { IconButton, styled } from "@mui/material";
 
-const BurgerButtonIcon = styled("img")({
+const BurgerButtonIcon = styled(BurgerIcon)({
   cursor: "pointer",
   width: 27,
   height: 23,
@@ -24,7 +24,7 @@ type BurgerButtonProps = {
 export default function BurgerButton({ openSidebar }: BurgerButtonProps) {
   return (
     <IconButtonStyled onClick={openSidebar}>
-      <BurgerButtonIcon src={burgerbutton} alt="Burger icon" />
+      <BurgerButtonIcon />
     </IconButtonStyled>
   );
 }

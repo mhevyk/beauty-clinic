@@ -1,4 +1,4 @@
-import { PaletteColorOptions } from "@mui/material";
+import { SimplePaletteColorOptions } from "@mui/material";
 import { CSSProperties } from "react";
 
 type CustomColors =
@@ -13,7 +13,7 @@ type CustomColors =
   | "Transparent"
   | "GrayPhoneNav";
 
-type CustomPalette = Record<CustomColors, PaletteColorOptions>;
+type CustomPalette = Record<CustomColors, SimplePaletteColorOptions>;
 
 declare module "@mui/material/styles/createPalette" {
   interface PaletteOptions extends Partial<CustomPalette> {}

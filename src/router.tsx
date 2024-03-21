@@ -6,6 +6,7 @@ import NotFoundPage from "@pages/NotFoundPage";
 import SignUpPage from "@pages/Auth/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/Auth/SignInPage";
+import OrderPage from "@pages/OrderPage";
 
 const router: RouteObject[] = [
   {
@@ -24,6 +25,10 @@ const router: RouteObject[] = [
           { path: "signin", element: <SignInPage /> },
         ],
       },
+      { path: "order", element: <OrderPage /> },
+      /* Add new routes here
+         Example: { path: "/test", element: <MyComponent /> }
+      */
     ],
   },
   { path: "*", element: <NotFoundPage /> },

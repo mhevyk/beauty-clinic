@@ -20,6 +20,7 @@
     "@mui/material": "^5.15.10",
     "@vis.gl/react-google-maps": "^0.7.0",
     "apollo-link-token-refresh": "^0.6.1",
+    "date-fns": "^3.6.0",
     "formik": "^2.4.5",
     "graphql": "^15.8.0",
     "jwt-decode": "^4.0.0",

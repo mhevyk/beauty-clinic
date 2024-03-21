@@ -8,6 +8,7 @@ import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/SignInPage";
 import TreatmentsPage from "@pages/TreatmentsPage";
 import ProtectedRoute from "@routes/helpers/ProtectedRoute";
+import OrderPage from "@pages/OrderPage";
 
 const router: RouteObject[] = [
   {
@@ -19,6 +20,7 @@ const router: RouteObject[] = [
         children: [
           { index: true, element: <HomePage /> },
           { path: "treatments", element: <TreatmentsPage /> },
+          { path: "order", element: <OrderPage /> },
         ],
       },
       {
@@ -39,6 +41,9 @@ const router: RouteObject[] = [
         element: <ProtectedRoute />,
         children: [{ path: "protected", element: <h1>I am protected</h1> }],
       },
+      /* Add new routes here
+         Example: { path: "/test", element: <MyComponent /> }
+      */
     ],
   },
   { path: "*", element: <NotFoundPage /> },

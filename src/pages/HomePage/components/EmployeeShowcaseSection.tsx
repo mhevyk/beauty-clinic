@@ -75,7 +75,7 @@ const EmployeeSummary = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export default function MeetEmployee() {
+export default function EmployeeShowcaseSection() {
   return (
     <Box component="section">
       <EmployeeDetailsExpandDecoration />

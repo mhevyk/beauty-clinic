@@ -18,6 +18,7 @@ export default defineConfig({
       "@images": resolveSource("assets", "images"),
       "@icons": resolveSource("assets", "icons"),
       "@theme": resolveSource("theme"),
+      "@api/hooks": resolveSource("api", "generated", "index.tsx"),
     },
   },
   plugins: [react(), svgr()],

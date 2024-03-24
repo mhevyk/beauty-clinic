@@ -28,3 +28,6 @@ dist-ssr
 *.env
 *.env.*
 
+# Graphql codegen
+src/api/generated/*
+

@@ -8,16 +8,16 @@ type ReCAPTCHAWithCaptcha = ReCAPTCHA & {
 export function useRecaptcha() {
   const recaptchaRef = useRef<ReCAPTCHAWithCaptcha | null>(null);
 
-  // remove iframes created by google-recaptcha by removing recapcha container
+  // remove iframes created by google-recaptcha by removing recaptcha container
   useEffect(() => {
     return () => {
-      const recapcha = recaptchaRef.current;
-      if (!recapcha) {
+      const recaptcha = recaptchaRef.current;
+      if (!recaptcha) {
         return;
       }
 
-      recapcha.reset();
-      recapcha.captcha.remove();
+      recaptcha.reset();
+      recaptcha.captcha.remove();
     };
   });
 

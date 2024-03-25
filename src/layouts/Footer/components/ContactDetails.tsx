@@ -24,7 +24,7 @@ const BookNowLinkButton = styled(Button)({
   display: "block",
   marginTop: "22px",
   width: "max-content",
-});
+}) as typeof Button;
 
 type SectionProps = {
   disableBlockCentering?: boolean;
@@ -55,7 +55,6 @@ export default function ContactDetails() {
         <Typography variant="paragraph" lineHeight="2rem">
           I'm a paragraph. Click here to add your own text and edit me.
         </Typography>
-        {/*TODO: fix component*/}
         <BookNowLinkButton component={Link} to="/treatments" variant="primary">
           Book Now
         </BookNowLinkButton>

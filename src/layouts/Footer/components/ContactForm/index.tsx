@@ -10,7 +10,8 @@ import {
 import { useContactFormValues } from "./hooks/useContactFormValues";
 import HumanVerificationModal from "../HumanVerificationModal";
 import useToggle from "@hooks/useToggle";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren } from "react";
+import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -47,25 +48,13 @@ const SuccessFeedback = styled("p")({
 export default function ContactForm() {
   const { isOpen, open, close } = useToggle();
   const formik = useContactFormValues(open);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [shouldRenderSuccessFeedback, renderSuccessFeedback] =
+    useDelayedUnmount(SUCCESS_FEEDBACK_DISPLAY_DURATION);
 
-  function handleSuccessSubmit() {
-    setIsFormSubmitted(true);
-
-    setTimeout(() => {
-      setIsFormSubmitted(false);
-    }, SUCCESS_FEEDBACK_DISPLAY_DURATION);
-  }
-
-  function handleConfirm(captchaKey: string) {
-    handleSuccessSubmit();
-    const values = {
-      ...formik.values,
-      captchaKey,
-    };
-
+  async function handleConfirm(recaptchaToken: string) {
     // TODO: complete server side logic with form values
-    console.log(values);
+    renderSuccessFeedback();
+    console.log(formik.values);
     formik.resetForm();
     close();
   }
@@ -107,7 +96,7 @@ export default function ContactForm() {
           Submit
         </Button>
       </form>
-      <Fade in={isFormSubmitted} timeout={400}>
+      <Fade in={shouldRenderSuccessFeedback} timeout={400}>
         <SuccessFeedback>Thanks for submitting!</SuccessFeedback>
       </Fade>
       <HumanVerificationModal

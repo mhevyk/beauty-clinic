@@ -5,9 +5,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import CloseIconSvg from "@icons/close-icon-thin.svg?react";
 import theme from "@theme/theme";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useEffect } from "react";
-import useRecaptcha from "./hooks/useRecaptcha";
 import useLockPageScroll from "@hooks/useLockPageScroll";
+import { useRecaptcha } from "./hooks/useRecaptcha";
 
 const DialogContentTitle = styled("h2")(({ theme }) => ({
   ...theme.typography.heading,
@@ -62,7 +61,7 @@ const ReCAPTCHABox = styled(Box)(({ theme }) => ({
 type HumanVerificationModalProps = {
   isOpen: boolean;
   handleClose: () => void;
-  handleConfirm: (captchaKey: string) => void;
+  handleConfirm: (recaptchaToken: string) => void;
 };
 
 export default function HumanVerificationModal({
@@ -72,23 +71,17 @@ export default function HumanVerificationModal({
 }: HumanVerificationModalProps) {
   const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(304));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const [recaptchaRef, getRecaptchaKey] = useRecaptcha();
+  const [recaptchaRef, getRecaptchaToken] = useRecaptcha();
 
   useLockPageScroll(isOpen);
 
-  useEffect(() => {
-    if (isOpen) {
-      recaptchaRef.current?.reset();
-    }
-  }, [isOpen]);
-
-  function confirmContactForm() {
-    const captchaKey = getRecaptchaKey();
-    if (!captchaKey) {
+  async function confirmContactForm() {
+    const recaptchaToken = getRecaptchaToken();
+    if (!recaptchaToken) {
       return;
     }
 
-    setTimeout(() => handleConfirm(captchaKey), 600);
+    setTimeout(() => handleConfirm(recaptchaToken), 600);
   }
 
   return (
@@ -98,7 +91,6 @@ export default function HumanVerificationModal({
       fullWidth={!isSmallScreen}
       fullScreen={isSmallScreen}
       disableScrollLock
-      keepMounted // using it to disable leaving a lot of emply divs on component remount
       transitionDuration={400}
       PaperProps={{
         sx: {

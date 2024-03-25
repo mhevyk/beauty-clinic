@@ -1,22 +1,29 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-export default function useRecaptcha() {
-  const captchaRef = useRef<ReCAPTCHA | null>(null);
+type ReCAPTCHAWithCaptcha = ReCAPTCHA & {
+  captcha: HTMLDivElement;
+};
 
-  function getRecaptchaKey() {
-    const recaptchaElement = captchaRef.current;
-    if (!recaptchaElement) {
-      return;
-    }
+export function useRecaptcha() {
+  const recaptchaRef = useRef<ReCAPTCHAWithCaptcha | null>(null);
 
-    const captchaKey = recaptchaElement.getValue();
-    if (captchaKey === null) {
-      return;
-    }
+  // remove iframes created by google-recaptcha by removing recapcha container
+  useEffect(() => {
+    return () => {
+      const recapcha = recaptchaRef.current;
+      if (!recapcha) {
+        return;
+      }
 
-    return captchaKey;
+      recapcha.reset();
+      recapcha.captcha.remove();
+    };
+  });
+
+  function getToken() {
+    return recaptchaRef.current?.getValue() ?? null;
   }
 
-  return [captchaRef, getRecaptchaKey] as const;
+  return [recaptchaRef, getToken] as const;
 }

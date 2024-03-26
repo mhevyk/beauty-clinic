@@ -70,7 +70,6 @@ export default function ContactForm() {
 
       await createContactFormEntry({ variables: { input: formik.values } });
       renderSuccessFeedback();
-      console.log(formik.values);
       formik.resetForm();
       close();
     } catch (error) {

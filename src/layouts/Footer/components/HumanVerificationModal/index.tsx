@@ -79,7 +79,7 @@ export default function HumanVerificationModal({
 
       <DialogContentStyled>
         {isFormSubmitting ? (
-          <CircularProgress sx={{ color: "black" }} />
+          <CircularProgress color="secondary" />
         ) : (
           <RecaptchaVerification handleConfirm={handleConfirm} />
         )}

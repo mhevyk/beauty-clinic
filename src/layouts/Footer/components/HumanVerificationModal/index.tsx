@@ -39,6 +39,13 @@ const CloseIcon = styled(CloseIconSvg)(({ theme }) => ({
   },
 }));
 
+const DialogContentTitle = styled("h2")(({ theme }) => ({
+  ...theme.typography.heading,
+  fontWeight: "bold",
+  fontSize: "35px",
+  margin: "0 0 18px 0",
+}));
+
 export type HumanVerificationModalProps = {
   isOpen: boolean;
   handleClose: () => void;
@@ -78,6 +85,7 @@ export default function HumanVerificationModal({
       </CloseIconButton>
 
       <DialogContentStyled>
+        <DialogContentTitle>Verification</DialogContentTitle>
         {isFormSubmitting ? (
           <CircularProgress color="secondary" />
         ) : (

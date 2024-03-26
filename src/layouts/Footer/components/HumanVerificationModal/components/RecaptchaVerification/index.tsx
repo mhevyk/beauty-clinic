@@ -4,18 +4,11 @@ import { useRecaptcha } from "./hooks/useRecaptcha";
 import theme from "@theme/theme";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const DialogContentTitle = styled("h2")(({ theme }) => ({
-  ...theme.typography.heading,
-  fontWeight: "bold",
-  fontSize: "35px",
-  margin: 0,
-}));
-
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
   ...theme.typography.paragraph,
   fontSize: "17px",
   color: theme.palette.text.primary,
-  margin: "18px 0 28px 0",
+  margin: "0 0 28px 0",
   lineHeight: 1.4,
   textAlign: "center",
 }));
@@ -42,7 +35,6 @@ export function RecaptchaVerification({ handleConfirm }: DialogInnerProps) {
 
   return (
     <>
-      <DialogContentTitle>Verification</DialogContentTitle>
       <DialogContentTextStyled as="p">
         Please confirm you're human.
       </DialogContentTextStyled>

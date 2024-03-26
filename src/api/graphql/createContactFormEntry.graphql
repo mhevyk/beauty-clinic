@@ -1,0 +1,5 @@
+mutation CreateContactFormEntry($input: CreateContactFormEntryInput!) {
+  createContactFormEntry(input: $input) {
+    id
+  }
+}

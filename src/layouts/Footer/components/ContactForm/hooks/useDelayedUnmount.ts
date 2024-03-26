@@ -6,9 +6,8 @@ export function useDelayedUnmount(delay: number) {
   function mountAndStartCountdown() {
     setShouldRender(true);
 
-    const timeoutId = setTimeout(() => {
+    setTimeout(() => {
       setShouldRender(false);
-      clearTimeout(timeoutId);
     }, delay);
   }
 

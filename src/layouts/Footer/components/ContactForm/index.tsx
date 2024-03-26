@@ -12,6 +12,10 @@ import HumanVerificationModal from "../HumanVerificationModal";
 import useToggle from "@hooks/useToggle";
 import { PropsWithChildren } from "react";
 import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
+import {
+  useCreateContactFormEntryMutation,
+  useVerifyRecaptchaMutation,
+} from "@api/hooks";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -51,13 +55,31 @@ export default function ContactForm() {
   const [shouldRenderSuccessFeedback, renderSuccessFeedback] =
     useDelayedUnmount(SUCCESS_FEEDBACK_DISPLAY_DURATION);
 
+  const [verifyRecaptcha, { loading: isVerifyingRecaptcha }] =
+    useVerifyRecaptchaMutation();
+  const [createContactFormEntry, { loading: isContactFormEntryCreating }] =
+    useCreateContactFormEntryMutation();
+
   async function handleConfirm(recaptchaToken: string) {
-    // TODO: complete server side logic with form values
-    renderSuccessFeedback();
-    console.log(formik.values);
-    formik.resetForm();
-    close();
+    try {
+      const { data } = await verifyRecaptcha({ variables: { recaptchaToken } });
+
+      if (!data?.verifyRecaptcha) {
+        throw new Error("Recaptcha is invalid");
+      }
+
+      await createContactFormEntry({ variables: { input: formik.values } });
+      renderSuccessFeedback();
+      console.log(formik.values);
+      formik.resetForm();
+      close();
+    } catch (error) {
+      // TODO: handle error output to user, maybe via toast library
+      console.log(error);
+    }
   }
+
+  const isFormSubmitting = isVerifyingRecaptcha || isContactFormEntryCreating;
 
   return (
     <>
@@ -69,6 +91,7 @@ export default function ContactForm() {
               name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
+              autoComplete="on"
             />
           </FormGroupWithError>
           <FormGroupWithError errorMessage={formik.errors.email}>
@@ -77,6 +100,7 @@ export default function ContactForm() {
               name="email"
               value={formik.values.email}
               onChange={formik.handleChange}
+              autoComplete="on"
             />
           </FormGroupWithError>
         </Stack>
@@ -92,7 +116,7 @@ export default function ContactForm() {
             onChange={formik.handleChange}
           />
         </FormGroupWithError>
-        <Button type="submit" fullWidth>
+        <Button type="submit" fullWidth disabled={shouldRenderSuccessFeedback}>
           Submit
         </Button>
       </form>
@@ -101,6 +125,7 @@ export default function ContactForm() {
       </Fade>
       <HumanVerificationModal
         isOpen={isOpen}
+        isFormSubmitting={isFormSubmitting}
         handleClose={close}
         handleConfirm={handleConfirm}
       />

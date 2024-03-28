@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import TreatmentCardList from "@pages/HomePage/components/MyTreatments/TreatmentCardList.tsx";
+import TreatmentCardList from "./components/TreatmentCardList.tsx";
 import { Button, Grid, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";
@@ -29,6 +29,7 @@ export default function MyTreatments() {
     <SectionStyled>
       <TitleStyled>MY TREATMENTS</TitleStyled>
       <Grid justifyContent="center" container spacing={2} columns={12}>
+        {/*  TODO:finish loading*/}
         <Suspense fallback={<div>Loading</div>}>
           <TreatmentCardList />
         </Suspense>

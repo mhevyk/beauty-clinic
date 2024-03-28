@@ -4,12 +4,12 @@ import theme from "@theme/theme.ts";
 import homeOxygenFacial from "@images/homeOxygenFacial.svg";
 import homePurifyingHerbalFacial from "@images/homePurifyingHerbalFacial.svg";
 
-type SvgImg = {
+type myTreatmentDecorationImageType = {
   svgImage: string;
   styled: SxProps;
 };
 
-const treatmentSvgImage: SvgImg[] = [
+const myTreatmentDecorationImageData: myTreatmentDecorationImageType[] = [
   {
     svgImage: homeSignatureFacial,
     styled: {
@@ -56,4 +56,4 @@ const treatmentSvgImage: SvgImg[] = [
   },
 ];
 
-export default treatmentSvgImage;
+export default myTreatmentDecorationImageData;

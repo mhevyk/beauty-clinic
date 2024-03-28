@@ -47,25 +47,26 @@ const TitleStyled = styled("h4")({
 
 type TreatmentCardProps = {
   treatment: Treatment;
-  svgImage: string;
-  style: SxProps;
+  decorationSvgImage: string;
+  styleSvgImageDecoration: SxProps;
+  treatmentImageSrc: string;
 };
+
 export default function TreatmentCard({
   treatment,
-  svgImage,
-  style,
+  decorationSvgImage,
+  styleSvgImageDecoration,
+  treatmentImageSrc,
 }: TreatmentCardProps) {
   return (
     <Grid item xs={12} sm={9} md={4.5} lg={3} xl={2.5}>
       <BoxStyled>
-        <SvgImageStyled sx={style} src={svgImage} alt="image" />
-        <ImgStyled
-          src={
-            new URL(treatment.imageUrl, import.meta.env.VITE_API_BASE_IMAGE_URL)
-              .href
-          }
-          alt={treatment.name}
+        <SvgImageStyled
+          sx={styleSvgImageDecoration}
+          src={decorationSvgImage}
+          alt="image"
         />
+        <ImgStyled src={treatmentImageSrc} alt={treatment.name} />
         <TitleStyled>{treatment.name}</TitleStyled>
         <Typography
           variant="paragraph"

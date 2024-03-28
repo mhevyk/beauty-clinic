@@ -1,18 +1,18 @@
 import { Suspense } from "react";
 import TreatmentCardList from "@pages/HomePage/components/MyTreatments/TreatmentCardList.tsx";
-import { Box, Button, Grid, styled, Typography } from "@mui/material";
+import { Button, Grid, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
+import { Link } from "react-router-dom";
 
-const BoxStyled = styled(Box)({
+const SectionStyled = styled("section")({
   display: "flex",
   flexDirection: "column",
   textAlign: "center",
+  padding: "120px 0",
 });
 
-const GridStyled = styled(Grid)({});
-
-const TitleStyled = styled(Typography)({
-  paddingTop: 120,
+const TitleStyled = styled("h2")({
+  margin: 0,
   paddingBottom: 20,
   ...theme.typography.paragraph,
   fontSize: "17px",
@@ -22,19 +22,20 @@ const TitleStyled = styled(Typography)({
 
 const ButtonStyled = styled(Button)({
   margin: "auto",
-});
+}) as typeof Button;
+
 export default function MyTreatments() {
   return (
-    <BoxStyled>
+    <SectionStyled>
       <TitleStyled>MY TREATMENTS</TitleStyled>
-      <Box>
-        <GridStyled justifyContent="center" container spacing={2} columns={12}>
-          <Suspense fallback={<div>Loading</div>}>
-            <TreatmentCardList />
-          </Suspense>
-        </GridStyled>
-      </Box>
-      <ButtonStyled variant="primary">Book Now</ButtonStyled>
-    </BoxStyled>
+      <Grid justifyContent="center" container spacing={2} columns={12}>
+        <Suspense fallback={<div>Loading</div>}>
+          <TreatmentCardList />
+        </Suspense>
+      </Grid>
+      <ButtonStyled component={Link} to="/treatments" variant="primary">
+        Book Now
+      </ButtonStyled>
+    </SectionStyled>
   );
 }

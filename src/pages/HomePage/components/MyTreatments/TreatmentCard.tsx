@@ -1,7 +1,6 @@
 import { Treatment } from "@api/hooks";
-import { Box, Grid, styled, Typography } from "@mui/material";
+import { Box, Grid, styled, SxProps, Typography } from "@mui/material";
 import theme from "@theme/theme.ts";
-import { CSSProperties } from "react";
 
 const BoxStyled = styled(Box)({
   [theme.breakpoints.up("xs")]: {
@@ -35,7 +34,8 @@ const SvgImageStyled = styled("img")({
   zIndex: 0,
 });
 
-const TitleStyled = styled("h2")({
+const TitleStyled = styled("h4")({
+  marginBottom: "30px",
   ...theme.typography.heading,
   marginTop: "100px",
   fontSize: "28px",
@@ -48,17 +48,17 @@ const TitleStyled = styled("h2")({
 type TreatmentCardProps = {
   treatment: Treatment;
   svgImage: string;
-  styled: CSSProperties;
+  style: SxProps;
 };
 export default function TreatmentCard({
   treatment,
   svgImage,
-  styled,
+  style,
 }: TreatmentCardProps) {
   return (
     <Grid item xs={12} sm={9} md={4.5} lg={3} xl={2.5}>
       <BoxStyled>
-        <SvgImageStyled style={styled} src={svgImage} alt="image" />
+        <SvgImageStyled sx={style} src={svgImage} alt="image" />
         <ImgStyled
           src={
             new URL(treatment.imageUrl, import.meta.env.VITE_API_BASE_IMAGE_URL)

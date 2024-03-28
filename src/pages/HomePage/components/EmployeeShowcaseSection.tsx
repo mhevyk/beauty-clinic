@@ -8,7 +8,7 @@ const EmployeeImageWrapper = styled(Grid)(({ theme }) => ({
   alignItems: "center",
   [theme.breakpoints.between("sm", "md")]: {
     padding: "0 8vw",
-    backgroundColor: theme.palette.PinkMarbleSky.main,
+    backgroundColor: theme.palette.CreamyDawn.main,
   },
 }));
 
@@ -26,7 +26,7 @@ const EmployeeDetails = styled(Grid)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   textAlign: "center",
-  backgroundColor: theme.palette.PinkMarbleSky.main,
+  backgroundColor: theme.palette.CreamyDawn.main,
   padding: "0 4%",
   [theme.breakpoints.up("md")]: {
     textAlign: "left",
@@ -57,7 +57,7 @@ const EmployeeDetailsExpandDecoration = styled(Box)(({ theme }) => ({
   marginLeft: "auto",
   width: "65%",
   height: "90px",
-  backgroundColor: theme.palette.PinkMarbleSky.main,
+  backgroundColor: theme.palette.CreamyDawn.main,
   [theme.breakpoints.down("md")]: {
     display: "none",
   },

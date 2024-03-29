@@ -1,6 +1,7 @@
 import { Box, Grid, Typography, styled } from "@mui/material";
 import employeeLilyImage from "@images/lily.webp";
 import LeafDecorationSvg from "@images/leaf-decoration.svg?react";
+import { EMPLOYEE_SHOWCASE_SECTION_ID } from "@constants/index";
 
 const EmployeeImageWrapper = styled(Grid)(({ theme }) => ({
   display: "flex",
@@ -77,7 +78,7 @@ const EmployeeSummary = styled(Typography)(({ theme }) => ({
 
 export default function EmployeeShowcaseSection() {
   return (
-    <Box component="section">
+    <Box component="section" id={EMPLOYEE_SHOWCASE_SECTION_ID}>
       <EmployeeDetailsExpandDecoration />
       <Grid container columns={12}>
         <EmployeeImageWrapper item xs={12} md={6}>

@@ -1,3 +1,8 @@
+import {
+  CONTACTS_SECTION_ID,
+  EMPLOYEE_SHOWCASE_SECTION_ID,
+} from "@constants/index";
+
 type MenuItem = {
   path: string;
   label: string;
@@ -9,7 +14,7 @@ export const menuItems: MenuItem[] = [
     label: "Home",
   },
   {
-    path: "/#meet-lily",
+    path: `/#${EMPLOYEE_SHOWCASE_SECTION_ID}`,
     label: "Meet Lily",
   },
   {
@@ -21,7 +26,7 @@ export const menuItems: MenuItem[] = [
     label: "Blog",
   },
   {
-    path: "/#contact",
+    path: `/#${CONTACTS_SECTION_ID}`,
     label: "Contact",
   },
   {

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import TreatmentCardList from "./components/TreatmentCardList.tsx";
+import TreatmentCardList from "./components/TreatmentCardList";
 import { Button, Grid, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";

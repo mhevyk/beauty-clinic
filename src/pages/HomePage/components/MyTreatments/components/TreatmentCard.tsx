@@ -35,34 +35,37 @@ const SvgImageStyled = styled("img")({
 });
 
 const TitleStyled = styled("h4")({
-  marginBottom: "30px",
-  ...theme.typography.heading,
-  marginTop: "100px",
-  fontSize: "28px",
-  textAlign: "center",
+  [theme.breakpoints.up("sm")]: {
+    fontSize: "28px",
+  },
   [theme.breakpoints.up("md")]: {
     width: 210,
   },
+  marginBottom: "30px",
+  ...theme.typography.heading,
+  marginTop: "100px",
+  fontSize: "20px",
+  textAlign: "center",
 });
 
 type TreatmentCardProps = {
   treatment: Treatment;
   decorationSvgImage: string;
-  styleSvgImageDecoration: SxProps;
+  svgImageDecorationStyles: SxProps;
   treatmentImageSrc: string;
 };
 
 export default function TreatmentCard({
   treatment,
   decorationSvgImage,
-  styleSvgImageDecoration,
+  svgImageDecorationStyles,
   treatmentImageSrc,
 }: TreatmentCardProps) {
   return (
     <Grid item xs={12} sm={9} md={4.5} lg={3} xl={2.5}>
       <BoxStyled>
         <SvgImageStyled
-          sx={styleSvgImageDecoration}
+          sx={svgImageDecorationStyles}
           src={decorationSvgImage}
           alt="image"
         />

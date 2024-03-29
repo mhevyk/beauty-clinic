@@ -4,6 +4,7 @@ import ErrorPage from "@pages/ErrorPage";
 import HomePage from "@pages/HomePage";
 import NotFoundPage from "@pages/NotFoundPage";
 import SignUpPage from "@pages/SignUpPage";
+import AuthLayout from "@layouts/AuthLayout";
 
 const router: RouteObject[] = [
   {
@@ -16,6 +17,7 @@ const router: RouteObject[] = [
       },
       {
         path: "auth",
+        element: <AuthLayout />,
         children: [{ path: "signup", element: <SignUpPage /> }],
       },
     ],

@@ -1,4 +1,4 @@
-// TODO: Add UI
+// TODO: Add signin content
 export default function SignUpPage() {
-  return <div>SignUpPage</div>;
+  return <div>Sign In content</div>;
 }

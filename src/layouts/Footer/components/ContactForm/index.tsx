@@ -10,7 +10,12 @@ import {
 import { useContactFormValues } from "./hooks/useContactFormValues";
 import HumanVerificationModal from "../HumanVerificationModal";
 import useToggle from "@hooks/useToggle";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren } from "react";
+import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
+import {
+  useCreateContactFormEntryMutation,
+  useVerifyRecaptchaMutation,
+} from "@api/hooks";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -47,28 +52,33 @@ const SuccessFeedback = styled("p")({
 export default function ContactForm() {
   const { isOpen, open, close } = useToggle();
   const formik = useContactFormValues(open);
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [shouldRenderSuccessFeedback, renderSuccessFeedback] =
+    useDelayedUnmount(SUCCESS_FEEDBACK_DISPLAY_DURATION);
 
-  function handleSuccessSubmit() {
-    setIsFormSubmitted(true);
+  const [verifyRecaptcha, { loading: isVerifyingRecaptcha }] =
+    useVerifyRecaptchaMutation();
+  const [createContactFormEntry, { loading: isContactFormEntryCreating }] =
+    useCreateContactFormEntryMutation();
 
-    setTimeout(() => {
-      setIsFormSubmitted(false);
-    }, SUCCESS_FEEDBACK_DISPLAY_DURATION);
+  async function handleConfirm(recaptchaToken: string) {
+    try {
+      const { data } = await verifyRecaptcha({ variables: { recaptchaToken } });
+
+      if (!data?.verifyRecaptcha) {
+        throw new Error("Recaptcha is invalid");
+      }
+
+      await createContactFormEntry({ variables: { input: formik.values } });
+      renderSuccessFeedback();
+      formik.resetForm();
+      close();
+    } catch (error) {
+      // TODO: handle error output to user, maybe via toast library
+      console.log(error);
+    }
   }
 
-  function handleConfirm(captchaKey: string) {
-    handleSuccessSubmit();
-    const values = {
-      ...formik.values,
-      captchaKey,
-    };
-
-    // TODO: complete server side logic with form values
-    console.log(values);
-    formik.resetForm();
-    close();
-  }
+  const isFormSubmitting = isVerifyingRecaptcha || isContactFormEntryCreating;
 
   return (
     <>
@@ -80,6 +90,7 @@ export default function ContactForm() {
               name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
+              autoComplete="on"
             />
           </FormGroupWithError>
           <FormGroupWithError errorMessage={formik.errors.email}>
@@ -88,6 +99,7 @@ export default function ContactForm() {
               name="email"
               value={formik.values.email}
               onChange={formik.handleChange}
+              autoComplete="on"
             />
           </FormGroupWithError>
         </Stack>
@@ -103,15 +115,16 @@ export default function ContactForm() {
             onChange={formik.handleChange}
           />
         </FormGroupWithError>
-        <Button type="submit" fullWidth>
+        <Button type="submit" fullWidth disabled={shouldRenderSuccessFeedback}>
           Submit
         </Button>
       </form>
-      <Fade in={isFormSubmitted} timeout={400}>
+      <Fade in={shouldRenderSuccessFeedback} timeout={400}>
         <SuccessFeedback>Thanks for submitting!</SuccessFeedback>
       </Fade>
       <HumanVerificationModal
         isOpen={isOpen}
+        isFormSubmitting={isFormSubmitting}
         handleClose={close}
         handleConfirm={handleConfirm}
       />

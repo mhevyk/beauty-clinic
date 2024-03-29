@@ -1,0 +1,3 @@
+mutation VerifyRecaptcha($recaptchaToken: String!) {
+  verifyRecaptcha(recaptchaToken: $recaptchaToken)
+}

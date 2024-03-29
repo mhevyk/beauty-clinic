@@ -1,20 +1,15 @@
-import { IconButton, useMediaQuery, styled, Box } from "@mui/material";
+import {
+  IconButton,
+  useMediaQuery,
+  styled,
+  CircularProgress,
+} from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import CloseIconSvg from "@icons/close-icon-thin.svg?react";
 import theme from "@theme/theme";
-import ReCAPTCHA from "react-google-recaptcha";
-import { useEffect } from "react";
-import useRecaptcha from "./hooks/useRecaptcha";
 import useLockPageScroll from "@hooks/useLockPageScroll";
-
-const DialogContentTitle = styled("h2")(({ theme }) => ({
-  ...theme.typography.heading,
-  fontWeight: "bold",
-  fontSize: "35px",
-  margin: 0,
-}));
+import { RecaptchaVerification } from "./components/RecaptchaVerification";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   display: "flex",
@@ -28,15 +23,6 @@ const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     margin: "51.2px 60px",
   },
-}));
-
-const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
-  ...theme.typography.paragraph,
-  fontSize: "17px",
-  color: theme.palette.text.primary,
-  margin: "18px 0 28px 0",
-  lineHeight: 1.4,
-  textAlign: "center",
 }));
 
 const CloseIconButton = styled(IconButton)({
@@ -53,43 +39,29 @@ const CloseIcon = styled(CloseIconSvg)(({ theme }) => ({
   },
 }));
 
-const ReCAPTCHABox = styled(Box)(({ theme }) => ({
-  [theme.breakpoints.down(350)]: {
-    transform: "scale(0.7)",
-  },
+const DialogContentTitle = styled("h2")(({ theme }) => ({
+  ...theme.typography.heading,
+  fontWeight: "bold",
+  fontSize: "35px",
+  margin: "0 0 18px 0",
 }));
 
-type HumanVerificationModalProps = {
+export type HumanVerificationModalProps = {
   isOpen: boolean;
   handleClose: () => void;
-  handleConfirm: (captchaKey: string) => void;
+  handleConfirm: (recaptchaToken: string) => void;
+  isFormSubmitting: boolean;
 };
 
 export default function HumanVerificationModal({
   isOpen,
   handleClose,
   handleConfirm,
+  isFormSubmitting,
 }: HumanVerificationModalProps) {
-  const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(304));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const [recaptchaRef, getRecaptchaKey] = useRecaptcha();
 
   useLockPageScroll(isOpen);
-
-  useEffect(() => {
-    if (isOpen) {
-      recaptchaRef.current?.reset();
-    }
-  }, [isOpen]);
-
-  function confirmContactForm() {
-    const captchaKey = getRecaptchaKey();
-    if (!captchaKey) {
-      return;
-    }
-
-    setTimeout(() => handleConfirm(captchaKey), 600);
-  }
 
   return (
     <Dialog
@@ -98,12 +70,12 @@ export default function HumanVerificationModal({
       fullWidth={!isSmallScreen}
       fullScreen={isSmallScreen}
       disableScrollLock
-      keepMounted // using it to disable leaving a lot of emply divs on component remount
       transitionDuration={400}
       PaperProps={{
         sx: {
           borderRadius: 0,
           maxWidth: 580,
+          minHeight: 400,
           margin: 0,
         },
       }}
@@ -111,19 +83,14 @@ export default function HumanVerificationModal({
       <CloseIconButton aria-label="close" onClick={handleClose}>
         <CloseIcon />
       </CloseIconButton>
+
       <DialogContentStyled>
         <DialogContentTitle>Verification</DialogContentTitle>
-        <DialogContentTextStyled as="p">
-          Please confirm you're human.
-        </DialogContentTextStyled>
-        <ReCAPTCHABox>
-          <ReCAPTCHA
-            sitekey={import.meta.env.VITE_APP_RECAPTCHA_KEY}
-            ref={recaptchaRef}
-            onChange={confirmContactForm}
-            size={isVerySmallScreen ? "compact" : "normal"}
-          />
-        </ReCAPTCHABox>
+        {isFormSubmitting ? (
+          <CircularProgress color="secondary" />
+        ) : (
+          <RecaptchaVerification handleConfirm={handleConfirm} />
+        )}
       </DialogContentStyled>
     </Dialog>
   );

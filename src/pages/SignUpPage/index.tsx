@@ -1,4 +1,15 @@
+import AuthAlternativeLink from "./components/AuthAlternativeLink";
+
 // TODO: Add signin content
 export default function SignUpPage() {
-  return <div>Sign In content</div>;
+  return (
+    <>
+      <AuthAlternativeLink
+        linkProps={{
+          to: "/auth/signin",
+          label: "Have an account",
+        }}
+      />
+    </>
+  );
 }

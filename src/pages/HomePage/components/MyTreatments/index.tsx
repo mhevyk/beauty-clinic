@@ -3,6 +3,7 @@ import TreatmentCardList from "./components/TreatmentCardList";
 import { Button, Grid, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";
+import TreatmentLoadingSkeleton from "./components/TreatmentLoadingSkeleton";
 
 const SectionStyled = styled("section")({
   display: "flex",
@@ -30,7 +31,7 @@ export default function MyTreatments() {
       <TitleStyled>MY TREATMENTS</TitleStyled>
       <Grid justifyContent="center" container spacing={2} columns={12}>
         {/*  TODO:finish loading*/}
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={<TreatmentLoadingSkeleton />}>
           <TreatmentCardList />
         </Suspense>
       </Grid>

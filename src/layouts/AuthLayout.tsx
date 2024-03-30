@@ -37,7 +37,7 @@ const Main = styled("main")(({ theme }) => ({
   },
   [`${theme.breakpoints.down(428)} and (min-height: 750px)`]: {
     paddingBottom: "50px",
-    height: "650px",
+    height: "700px",
     borderRadius: "25px",
   },
   [theme.breakpoints.between(428, 1024)]: {
@@ -47,7 +47,7 @@ const Main = styled("main")(({ theme }) => ({
   },
   [`${theme.breakpoints.between(428, "sm")} and (min-height: 800px)`]: {
     margin: "0 30px",
-    height: "650px",
+    height: "700px",
     borderRadius: "25px",
     paddingBottom: "50px",
     paddingTop: "50px",

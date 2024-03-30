@@ -1,5 +1,8 @@
-import { FormGroup, InputLabel, TextField, styled } from "@mui/material";
+import { InputLabel, TextField, styled } from "@mui/material";
+import { useFormikContext } from "formik";
 import { useId } from "react";
+import { SignUpFormValues } from "../types";
+import FormGroupWithError from "@components/FormGroupWithError";
 
 const Form = styled("form")({
   display: "flex",
@@ -16,26 +19,46 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
 
 export default function SignUpForm() {
   const id = useId();
+  const { values, handleChange, errors } = useFormikContext<SignUpFormValues>();
 
   return (
     <Form>
-      <FormGroup>
-        <LabelStyled htmlFor={`${id}-username`}>Username</LabelStyled>
-        <TextField size="small" type="text" id={`${id}-username`} fullWidth />
-      </FormGroup>
-      <FormGroup>
-        <LabelStyled htmlFor={`${id}-email`}>Email</LabelStyled>
-        <TextField size="small" type="email" id={`${id}-email`} fullWidth />
-      </FormGroup>
-      <FormGroup>
+      <FormGroupWithError errorMessage={errors.username}>
+        <LabelStyled htmlFor={`${id}-username`}>Username*</LabelStyled>
+        <TextField
+          size="small"
+          type="text"
+          id={`${id}-username`}
+          name="username"
+          value={values.username}
+          onChange={handleChange}
+          fullWidth
+        />
+      </FormGroupWithError>
+      <FormGroupWithError errorMessage={errors.email}>
+        <LabelStyled htmlFor={`${id}-email`}>Email*</LabelStyled>
+        <TextField
+          size="small"
+          type="email"
+          id={`${id}-email`}
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          fullWidth
+        />
+      </FormGroupWithError>
+      <FormGroupWithError errorMessage={errors.phoneNumber}>
         <LabelStyled htmlFor={`${id}-phone-number`}>Phone number</LabelStyled>
         <TextField
           size="small"
           type="tel"
           id={`${id}-phone-number`}
+          name="phoneNumber"
+          value={values.phoneNumber}
+          onChange={handleChange}
           fullWidth
         />
-      </FormGroup>
+      </FormGroupWithError>
     </Form>
   );
 }

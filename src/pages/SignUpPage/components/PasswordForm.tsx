@@ -1,5 +1,8 @@
-import { FormGroup, InputLabel, TextField, styled } from "@mui/material";
+import { InputLabel, TextField, styled } from "@mui/material";
+import { useFormikContext } from "formik";
 import { useId } from "react";
+import { PasswordFormValues } from "../types";
+import FormGroupWithError from "@components/FormGroupWithError";
 
 const Form = styled("form")({
   display: "flex",
@@ -16,29 +19,37 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
 
 export default function PasswordForm() {
   const id = useId();
+  const { values, handleChange, errors } =
+    useFormikContext<PasswordFormValues>();
 
   return (
     <Form>
-      <FormGroup>
-        <LabelStyled htmlFor={`${id}-password`}>Password</LabelStyled>
+      <FormGroupWithError errorMessage={errors.password}>
+        <LabelStyled htmlFor={`${id}-password`}>Password*</LabelStyled>
         <TextField
           type="password"
           id={`${id}-password`}
           size="small"
+          name="password"
+          value={values.password}
+          onChange={handleChange}
           fullWidth
         />
-      </FormGroup>
-      <FormGroup>
+      </FormGroupWithError>
+      <FormGroupWithError errorMessage={errors.repeatedPassword}>
         <LabelStyled htmlFor={`${id}-repeat-password`}>
-          Repeat password
+          Repeat password*
         </LabelStyled>
         <TextField
           type="password"
           id={`${id}-repeat-password`}
           size="small"
+          name="repeatedPassword"
+          value={values.repeatedPassword}
+          onChange={handleChange}
           fullWidth
         />
-      </FormGroup>
+      </FormGroupWithError>
     </Form>
   );
 }

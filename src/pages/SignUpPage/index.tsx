@@ -50,10 +50,6 @@ export default function SignUpPage() {
             },
           }}
         >
-          <NextPageButton
-            hasNextPage={hasNextPage}
-            openNextPage={controls.nextPage}
-          />
           {hasPreviousPage && (
             <ButtonStyled
               variant="primary-outlined"
@@ -63,6 +59,10 @@ export default function SignUpPage() {
               Back
             </ButtonStyled>
           )}
+          <NextPageButton
+            hasNextPage={hasNextPage}
+            openNextPage={controls.nextPage}
+          />
         </Stack>
         <AuthAlternativeLink
           linkProps={{

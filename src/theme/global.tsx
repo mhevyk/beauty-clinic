@@ -3,7 +3,9 @@ import theme from "./theme.ts";
 
 const styles = {
   html: {
-    scrollbarGutter: "stable",
+    scrollbarGutter: location.pathname.startsWith("/auth")
+      ? undefined
+      : "stable",
     scrollBehavior: "smooth",
     fontFamily: "Arial Black",
   },

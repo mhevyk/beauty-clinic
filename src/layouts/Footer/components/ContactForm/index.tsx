@@ -1,21 +1,13 @@
-import {
-  Button,
-  Fade,
-  FormGroup,
-  FormHelperText,
-  InputBase,
-  Stack,
-  styled,
-} from "@mui/material";
+import { Button, Fade, InputBase, Stack, styled } from "@mui/material";
 import { useContactFormValues } from "./hooks/useContactFormValues";
 import HumanVerificationModal from "../HumanVerificationModal";
 import useToggle from "@hooks/useToggle";
-import { PropsWithChildren } from "react";
 import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
 import {
   useCreateContactFormEntryMutation,
   useVerifyRecaptchaMutation,
 } from "@api/hooks";
+import FormGroupWithError from "@components/FormGroupWithError";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -36,12 +28,6 @@ const TextInput = styled(InputBase)(() => {
     textarea: placeholderStyles,
   };
 });
-
-const Feedback = styled(FormHelperText)(({ theme }) => ({
-  ...theme.typography.paragraph,
-  fontSize: "12px",
-  lineHeight: "2rem",
-}));
 
 const SuccessFeedback = styled("p")({
   textAlign: "center",
@@ -84,7 +70,10 @@ export default function ContactForm() {
     <>
       <form onSubmit={formik.handleSubmit}>
         <Stack direction="row" gap="22px">
-          <FormGroupWithError errorMessage={formik.errors.name}>
+          <FormGroupWithError
+            errorMessage={formik.errors.name}
+            feedbackStyles={{ lineHeight: "2rem" }}
+          >
             <TextInput
               placeholder="Name"
               name="name"
@@ -93,7 +82,10 @@ export default function ContactForm() {
               autoComplete="on"
             />
           </FormGroupWithError>
-          <FormGroupWithError errorMessage={formik.errors.email}>
+          <FormGroupWithError
+            errorMessage={formik.errors.email}
+            feedbackStyles={{ lineHeight: "2rem" }}
+          >
             <TextInput
               placeholder="Email"
               name="email"
@@ -103,7 +95,10 @@ export default function ContactForm() {
             />
           </FormGroupWithError>
         </Stack>
-        <FormGroupWithError errorMessage={formik.errors.message}>
+        <FormGroupWithError
+          errorMessage={formik.errors.message}
+          feedbackStyles={{ lineHeight: "2rem" }}
+        >
           <TextInput
             multiline
             rows={5}
@@ -129,21 +124,5 @@ export default function ContactForm() {
         handleConfirm={handleConfirm}
       />
     </>
-  );
-}
-
-type FormGroupWithErrorProps = PropsWithChildren & {
-  errorMessage?: string;
-};
-
-function FormGroupWithError({
-  children,
-  errorMessage,
-}: FormGroupWithErrorProps) {
-  return (
-    <FormGroup sx={{ flexGrow: 1, height: "min-content" }}>
-      {children}
-      {!!errorMessage && <Feedback error>{errorMessage}</Feedback>}
-    </FormGroup>
   );
 }

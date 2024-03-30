@@ -34,7 +34,7 @@ const BoxStyled = styled(Box)({
   paddingTop: "20%",
 });
 
-export default function TreatmentLoadingSkeletonBox() {
+export default function SkeletonTreatmentBox() {
   return Array.from({ length: 3 }, (_, index) => (
     <Grid item xs={12} sm={9} md={4.5} lg={3} xl={2.5} key={index}>
       <BoxStyled>

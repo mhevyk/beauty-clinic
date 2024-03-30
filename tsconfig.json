@@ -31,7 +31,8 @@
       "@images/*": ["src/assets/images/*"],
       "@icons/*": ["src/assets/icons/*"],
       "@theme/*": ["src/theme/*"],
-      "@api/hooks": ["src/api/generated/index.tsx"]
+      "@api/hooks": ["src/api/generated/index.tsx"],
+      "@constants/*": ["src/constants/*"]
     }
   },
   "include": ["src"],

@@ -1,6 +1,12 @@
 import { Container, styled } from "@mui/material";
 import ContactDetails from "./components/ContactDetails";
 import GoogleMap from "./components/GoogleMap";
+import { CONTACTS_SECTION_ID } from "@constants/index";
+
+// TODO: Change scroll margin top when testimonials is completed
+const FooterWrapper = styled(Container)({
+  scrollMarginTop: "140px",
+}) as typeof Container;
 
 const ContactDetailsTitle = styled("h3")(({ theme }) => ({
   ...theme.typography.paragraph,
@@ -28,14 +34,13 @@ const CopyrightText = styled("p")(({ theme }) => ({
   textTransform: "uppercase",
 }));
 
-// TODO: Add scroll margin top when testimonials is completed
 export default function Footer() {
   return (
-    <Container component="footer" id="contact" maxWidth={false}>
+    <FooterWrapper component="footer" id={CONTACTS_SECTION_ID} maxWidth={false}>
       <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
       <ContactDetails />
       <GoogleMap />
       <CopyrightText>© 2023 by Maksym Hevyk and Vasyl Feniak</CopyrightText>
-    </Container>
+    </FooterWrapper>
   );
 }

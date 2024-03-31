@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import contactFormSchema from "@validation/contactFormSchema";
+import { contactFormSchema } from "@validation/contactFormSchema";
 
 type ContactFormFields = {
   name: string;

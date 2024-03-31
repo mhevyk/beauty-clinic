@@ -2,7 +2,7 @@ import { Formik } from "formik";
 import SignInForm from "./components/SignInForm";
 import AuthAlternativeLink from "../components/AuthAlternativeLink";
 import { Box, Button } from "@mui/material";
-import { signInFormSchema } from "@validation/authSchema";
+import { signInFormSchema } from "@validation/signInFormSchema";
 import { SignInFormValues } from "../types";
 
 const initialFormValues: SignInFormValues = {

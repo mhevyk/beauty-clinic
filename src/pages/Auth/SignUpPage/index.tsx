@@ -9,7 +9,7 @@ import { SignUpFormValues } from "../types";
 import {
   repeatPasswordFormSchema,
   signUpFormSchema,
-} from "@validation/authSchema";
+} from "@validation/signUpFormSchema";
 
 const initialFormValues: SignUpFormValues = {
   username: "",

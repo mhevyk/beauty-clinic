@@ -13,6 +13,7 @@ import {
 import { useSignUpMutation } from "@api/hooks";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import { useNavigate } from "react-router-dom";
+import { AUTH_TOKEN_KEY } from "@constants/index";
 
 const initialFormValues: SignUpFormValues = {
   username: "",
@@ -39,7 +40,7 @@ export default function SignUpPage() {
         throw new Error("SignUp failed");
       }
 
-      localStorage.setItem("token", token);
+      localStorage.setItem(AUTH_TOKEN_KEY, token);
       navigate("/");
     } catch (error) {
       // TODO: use toast to display error

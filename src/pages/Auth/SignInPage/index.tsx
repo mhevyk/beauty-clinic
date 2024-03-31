@@ -7,6 +7,7 @@ import { SignInFormValues } from "../types";
 import { useSignInMutation } from "@api/hooks";
 import { useNavigate } from "react-router-dom";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import { AUTH_TOKEN_KEY } from "@constants/index";
 
 const initialFormValues: SignInFormValues = {
   usernameOrEmail: "",
@@ -26,7 +27,7 @@ export default function SignInPage() {
         throw new Error("Auth failed");
       }
 
-      localStorage.setItem("token", token);
+      localStorage.setItem(AUTH_TOKEN_KEY, token);
       navigate("/");
     } catch (error) {
       // TODO: use toast to display error

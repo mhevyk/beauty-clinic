@@ -5,6 +5,7 @@ import HomePage from "@pages/HomePage";
 import NotFoundPage from "@pages/NotFoundPage";
 import SignUpPage from "@pages/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
+import SignInPage from "@pages/SignInPage";
 
 const router: RouteObject[] = [
   {
@@ -18,7 +19,10 @@ const router: RouteObject[] = [
       {
         path: "auth",
         element: <AuthLayout />,
-        children: [{ path: "signup", element: <SignUpPage /> }],
+        children: [
+          { path: "signup", element: <SignUpPage /> },
+          { path: "signin", element: <SignInPage /> },
+        ],
       },
     ],
   },

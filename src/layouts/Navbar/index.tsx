@@ -71,7 +71,7 @@ export default function BurgerMenu() {
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
           </Box>
           {!isSmallScreen && (
-            <LoginLink to="/auth/login">
+            <LoginLink to="/auth/signin">
               Log In
               <UserIcon />
             </LoginLink>

@@ -6,6 +6,7 @@ import NotFoundPage from "@pages/NotFoundPage";
 import SignUpPage from "@pages/Auth/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/Auth/SignInPage";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 const router: RouteObject[] = [
   {
@@ -28,6 +29,11 @@ const router: RouteObject[] = [
             ],
           },
         ],
+      },
+      // TODO: replace with actual protected routes
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: "protected", element: <h1>I am protected</h1> }],
       },
     ],
   },

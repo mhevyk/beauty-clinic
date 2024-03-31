@@ -33,7 +33,14 @@ export default function SignUpPage() {
 
   async function handleSubmit(values: SignUpFormValues) {
     try {
-      const response = await signUp({ variables: { input: values } });
+      const signUpInput = {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+        phoneNumber: values.phoneNumber || null,
+      };
+
+      const response = await signUp({ variables: { input: signUpInput } });
       const token = response.data?.signUp.token;
 
       if (!token) {

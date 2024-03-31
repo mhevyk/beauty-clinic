@@ -3,8 +3,9 @@ import RootLayout from "@layouts/RootLayout";
 import ErrorPage from "@pages/ErrorPage";
 import HomePage from "@pages/HomePage";
 import NotFoundPage from "@pages/NotFoundPage";
-import SignUpPage from "@pages/SignUpPage";
+import SignUpPage from "@pages/Auth/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
+import SignInPage from "@pages/Auth/SignInPage";
 
 const router: RouteObject[] = [
   {
@@ -18,7 +19,10 @@ const router: RouteObject[] = [
       {
         path: "auth",
         element: <AuthLayout />,
-        children: [{ path: "signup", element: <SignUpPage /> }],
+        children: [
+          { path: "signup", element: <SignUpPage /> },
+          { path: "signin", element: <SignInPage /> },
+        ],
       },
     ],
   },

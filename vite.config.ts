@@ -20,6 +20,7 @@ export default defineConfig({
       "@theme": resolveSource("theme"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
       "@constants": resolveSource("constants"),
+      "@validation": resolveSource("validation"),
     },
   },
   plugins: [react(), svgr()],

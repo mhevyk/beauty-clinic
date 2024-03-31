@@ -1,8 +1,8 @@
 import { InputLabel, TextField, styled } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useId } from "react";
-import { PasswordFormValues } from "../types";
 import FormGroupWithError from "@components/FormGroupWithError";
+import { SignInFormValues } from "@pages/Auth/types";
 
 const Form = styled("form")({
   display: "flex",
@@ -17,35 +17,34 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
   fontWeight: 400,
 }));
 
-export default function PasswordForm() {
+export default function SignInForm() {
   const id = useId();
-  const { values, handleChange, errors } =
-    useFormikContext<PasswordFormValues>();
+  const { values, handleChange, errors } = useFormikContext<SignInFormValues>();
 
   return (
     <Form>
-      <FormGroupWithError errorMessage={errors.password}>
-        <LabelStyled htmlFor={`${id}-password`}>Password*</LabelStyled>
+      <FormGroupWithError errorMessage={errors.usernameOrEmail}>
+        <LabelStyled htmlFor={`${id}-usernameOrEmail`}>
+          Username or email*
+        </LabelStyled>
         <TextField
-          type="password"
-          id={`${id}-password`}
           size="small"
-          name="password"
-          value={values.password}
+          type="text"
+          id={`${id}-usernameOrEmail`}
+          name="usernameOrEmail"
+          value={values.usernameOrEmail}
           onChange={handleChange}
           fullWidth
         />
       </FormGroupWithError>
-      <FormGroupWithError errorMessage={errors.repeatedPassword}>
-        <LabelStyled htmlFor={`${id}-repeat-password`}>
-          Repeat password*
-        </LabelStyled>
+      <FormGroupWithError errorMessage={errors.password}>
+        <LabelStyled htmlFor={`${id}-password`}>Password*</LabelStyled>
         <TextField
-          type="password"
-          id={`${id}-repeat-password`}
           size="small"
-          name="repeatedPassword"
-          value={values.repeatedPassword}
+          type="password"
+          id={`${id}-password`}
+          name="password"
+          value={values.password}
           onChange={handleChange}
           fullWidth
         />

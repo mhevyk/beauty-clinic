@@ -10,6 +10,9 @@ import {
   repeatPasswordFormSchema,
   signUpFormSchema,
 } from "@validation/signUpFormSchema";
+import { useSignUpMutation } from "@api/hooks";
+import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import { useNavigate } from "react-router-dom";
 
 const initialFormValues: SignUpFormValues = {
   username: "",
@@ -24,10 +27,24 @@ export default function SignUpPage() {
     useMultistepForm({
       pages: [<SignUpForm />, <PasswordForm />],
     });
+  const [signUp, { loading: isSigningUp }] = useSignUpMutation();
+  const navigate = useNavigate();
 
-  function handleSubmit(values: SignUpFormValues) {
-    console.log(values);
-    // TODO: handle submit
+  async function handleSubmit(values: SignUpFormValues) {
+    try {
+      const response = await signUp({ variables: { input: values } });
+      const token = response.data?.signUp.token;
+
+      if (!token) {
+        throw new Error("SignUp failed");
+      }
+
+      localStorage.setItem("token", token);
+      navigate("/");
+    } catch (error) {
+      // TODO: use toast to display error
+      console.log(error);
+    }
   }
 
   return (
@@ -63,6 +80,7 @@ export default function SignUpPage() {
           <NextPageButton
             hasNextPage={hasNextPage}
             openNextPage={controls.nextPage}
+            loading={isSigningUp}
           />
         </Stack>
         <AuthAlternativeLink
@@ -79,9 +97,14 @@ export default function SignUpPage() {
 type NextPageButtonProps = {
   hasNextPage: boolean;
   openNextPage: () => void;
+  loading: boolean;
 };
 
-function NextPageButton({ hasNextPage, openNextPage }: NextPageButtonProps) {
+function NextPageButton({
+  hasNextPage,
+  openNextPage,
+  loading,
+}: NextPageButtonProps) {
   const { handleSubmit, validateForm } = useFormikContext();
   async function handleNextPage() {
     if (!hasNextPage) {
@@ -95,8 +118,14 @@ function NextPageButton({ hasNextPage, openNextPage }: NextPageButtonProps) {
   }
 
   return (
-    <Button variant="primary" size="small" fullWidth onClick={handleNextPage}>
+    <ButtonWithSpinner
+      variant="primary"
+      size="small"
+      fullWidth
+      onClick={handleNextPage}
+      loading={loading}
+    >
       {hasNextPage ? "Next" : "Sign up"}
-    </Button>
+    </ButtonWithSpinner>
   );
 }

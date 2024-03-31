@@ -2,7 +2,7 @@ import { InputLabel, TextField, styled } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useId } from "react";
 import FormGroupWithError from "@components/FormGroupWithError";
-import { SignInFormValues } from "..";
+import { SignInFormValues } from "@pages/Auth/types";
 
 const Form = styled("form")({
   display: "flex",

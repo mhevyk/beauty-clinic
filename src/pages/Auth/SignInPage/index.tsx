@@ -1,17 +1,9 @@
 import { Formik } from "formik";
 import SignInForm from "./components/SignInForm";
-import AuthAlternativeLink from "@pages/SignUpPage/components/AuthAlternativeLink";
-import { Box, Button, styled } from "@mui/material";
-import { SignInSchema } from "./schema/signInSchema";
-
-const ButtonStyled = styled(Button)({
-  padding: "5.28px 50px",
-});
-
-export type SignInFormValues = {
-  usernameOrEmail: string;
-  password: string;
-};
+import AuthAlternativeLink from "../components/AuthAlternativeLink";
+import { Box, Button } from "@mui/material";
+import { signInFormSchema } from "@validation/authSchema";
+import { SignInFormValues } from "../types";
 
 const initialFormValues: SignInFormValues = {
   usernameOrEmail: "",
@@ -28,20 +20,21 @@ export default function SignInPage() {
     <Formik
       initialValues={initialFormValues}
       onSubmit={handleSubmit}
-      validationSchema={SignInSchema}
+      validationSchema={signInFormSchema}
     >
       {({ handleSubmit }) => (
         <>
           <Box sx={{ mb: "48px" }}>
             <SignInForm />
           </Box>
-          <ButtonStyled
+          <Button
+            size="small"
             variant="primary"
             fullWidth
             onClick={handleSubmit as () => void}
           >
             Sign In
-          </ButtonStyled>
+          </Button>
           <AuthAlternativeLink
             linkProps={{
               label: "Create account",

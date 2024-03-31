@@ -8,3 +8,7 @@ export type SignUpFormValues = PasswordFormValues & {
   email: string;
   phoneNumber: string;
 };
+
+export type SignInFormValues = Pick<PasswordFormValues, "password"> & {
+  usernameOrEmail: string;
+};

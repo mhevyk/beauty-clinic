@@ -1,14 +1,6 @@
 import { createTheme } from "@mui/material";
-import { CSSProperties } from "react";
-
-const baseButtonStyles: CSSProperties = {
-  textTransform: "none",
-  borderRadius: 0,
-  transition: "all 400ms",
-  fontFamily: "Nunito",
-  fontWeight: "300",
-  fontSize: "16px",
-};
+import { MuiButtonStyles } from "./components/button.styles";
+import { MuiTextFieldStyles } from "./components/TextField.styles";
 
 const theme = createTheme({
   breakpoints: {
@@ -21,112 +13,8 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiTextField: {
-      defaultProps: {
-        InputProps: {
-          sx: {
-            borderRadius: 0,
-          },
-        },
-      },
-      styleOverrides: {
-        root: {
-          backgroundColor: "rgba(255, 255, 255, 0.3)",
-          "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "black",
-            },
-            "&:hover fieldset": {
-              borderColor: "rgb(3, 3, 3)",
-              borderWidth: "0.15rem",
-            },
-            "&.Mui-focused fieldset": {
-              borderColor: "rgb(3, 3, 3)",
-            },
-          },
-        },
-      },
-    },
-    MuiButton: {
-      defaultProps: {
-        variant: "default",
-        disableRipple: true,
-      },
-      variants: [
-        {
-          props: { variant: "default" },
-          style: {
-            ...baseButtonStyles,
-            fontWeight: "400",
-            backgroundColor: "rgba(0,0,0,0)",
-            color: "rgb(3, 3, 3)",
-            "&:hover": {
-              backgroundColor: "rgba(0,0,0,0)",
-              opacity: 0.8,
-            },
-            "&:focus": {
-              backgroundColor: "rgba(0,0,0,0)",
-              opacity: 0.8,
-            },
-          },
-        },
-        {
-          props: { variant: "primary" },
-          style: {
-            ...baseButtonStyles,
-            fontSize: "15px",
-            padding: "11px 45px",
-            border: "2px solid #030303",
-            backgroundColor: "#030303",
-            color: "#ffffff",
-            "&:hover": {
-              backgroundColor: "#353535",
-              borderColor: "#353535",
-            },
-            "&:focus": {
-              backgroundColor: "#353535",
-              borderColor: "#353535",
-            },
-          },
-        },
-        {
-          props: { variant: "primary-outlined" },
-          style: {
-            ...baseButtonStyles,
-            backgroundColor: "rgba(0,0,0,0)",
-            border: "1px solid #030303",
-            color: "#030303",
-            padding: "10px 35px",
-            fontSize: "17px",
-            "&:hover": {
-              backgroundColor: "#030303",
-              color: "#ffffff",
-            },
-            "&:focus": {
-              backgroundColor: "#030303",
-              color: "#ffffff",
-            },
-          },
-        },
-        {
-          props: { variant: "accent" },
-          style: {
-            ...baseButtonStyles,
-            fontSize: "16px",
-            fontWeight: "200",
-            padding: "9px 62px",
-            backgroundColor: "#f8852d",
-            color: "#ffffff",
-            "&:hover": {
-              backgroundColor: "#f99d57",
-            },
-            "&:focus": {
-              backgroundColor: "#f99d57",
-            },
-          },
-        },
-      ],
-    },
+    MuiTextField: MuiTextFieldStyles,
+    MuiButton: MuiButtonStyles,
   },
   palette: {
     GrayPhoneNav: {

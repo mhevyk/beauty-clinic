@@ -32,7 +32,8 @@
       "@icons/*": ["src/assets/icons/*"],
       "@theme/*": ["src/theme/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
-      "@constants/*": ["src/constants/*"]
+      "@constants/*": ["src/constants/*"],
+      "@validation/*": ["src/validation/*"]
     }
   },
   "include": ["src"],

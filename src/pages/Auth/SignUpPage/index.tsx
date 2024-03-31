@@ -1,19 +1,17 @@
-import { Button, Stack, styled } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import PasswordForm from "./components/PasswordForm";
 import SignUpForm from "./components/SignUpForm";
 import { useMultistepForm } from "./hooks/useMultistepForm";
-import AuthAlternativeLink from "./components/AuthAlternativeLink";
+import AuthAlternativeLink from "../components/AuthAlternativeLink";
 import theme from "@theme/theme";
 import { Formik, useFormikContext } from "formik";
-import { SignUpFormValues } from "./types";
-import { signUpSchema } from "./schema/signUpFormSchema";
-import { passwordSchema } from "./schema/passwordSchema";
+import { SignUpFormValues } from "../types";
+import {
+  repeatPasswordFormSchema,
+  signUpFormSchema,
+} from "@validation/authSchema";
 
-const ButtonStyled = styled(Button)({
-  padding: "5.28px 50px",
-});
-
-const initialFormValues = {
+const initialFormValues: SignUpFormValues = {
   username: "",
   email: "",
   phoneNumber: "",
@@ -36,7 +34,9 @@ export default function SignUpPage() {
     <Formik
       initialValues={initialFormValues}
       onSubmit={handleSubmit}
-      validationSchema={isFirstPage ? signUpSchema : passwordSchema}
+      validationSchema={
+        isFirstPage ? signUpFormSchema : repeatPasswordFormSchema
+      }
     >
       <>
         {page}
@@ -51,13 +51,14 @@ export default function SignUpPage() {
           }}
         >
           {hasPreviousPage && (
-            <ButtonStyled
+            <Button
+              size="small"
               variant="primary-outlined"
               fullWidth
               onClick={controls.previousPage}
             >
               Back
-            </ButtonStyled>
+            </Button>
           )}
           <NextPageButton
             hasNextPage={hasNextPage}
@@ -94,8 +95,8 @@ function NextPageButton({ hasNextPage, openNextPage }: NextPageButtonProps) {
   }
 
   return (
-    <ButtonStyled variant="primary" fullWidth onClick={handleNextPage}>
+    <Button variant="primary" size="small" fullWidth onClick={handleNextPage}>
       {hasNextPage ? "Next" : "Sign up"}
-    </ButtonStyled>
+    </Button>
   );
 }

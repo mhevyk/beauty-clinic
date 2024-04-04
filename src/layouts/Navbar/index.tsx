@@ -1,5 +1,11 @@
 import { useEffect } from "react";
-import { AppBar, Toolbar, styled, Box, useMediaQuery } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  styled,
+  Box,
+  useMediaQuery,
+} from "@mui/material";
 import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
 import CartDrawerButton from "./components/Cart/CartDrawerButton";

@@ -1,8 +1,0 @@
-# TODO: it is example query. Change if needed
-query GetUsers {
-  users {
-    email
-    username
-    role
-  }
-}

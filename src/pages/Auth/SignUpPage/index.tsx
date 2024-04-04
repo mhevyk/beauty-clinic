@@ -10,10 +10,8 @@ import {
   repeatPasswordFormSchema,
   signUpFormSchema,
 } from "@validation/signUpFormSchema";
-import { useSignUpMutation } from "@api/hooks";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
-import { useNavigate } from "react-router-dom";
-import { AUTH_TOKEN_KEY } from "@constants/index";
+import useSignUp from "@pages/Auth/hooks/useSignUp";
 
 const initialFormValues: SignUpFormValues = {
   username: "",
@@ -28,31 +26,10 @@ export default function SignUpPage() {
     useMultistepForm({
       pages: [<SignUpForm />, <PasswordForm />],
     });
-  const [signUp, { loading: isSigningUp }] = useSignUpMutation();
-  const navigate = useNavigate();
+  const [signUp, { isSigningUp }] = useSignUp();
 
   async function handleSubmit(values: SignUpFormValues) {
-    try {
-      const signUpInput = {
-        username: values.username,
-        email: values.email,
-        password: values.password,
-        phoneNumber: values.phoneNumber || null,
-      };
-
-      const response = await signUp({ variables: { input: signUpInput } });
-      const token = response.data?.signUp.token;
-
-      if (!token) {
-        throw new Error("SignUp failed");
-      }
-
-      localStorage.setItem(AUTH_TOKEN_KEY, token);
-      navigate("/");
-    } catch (error) {
-      // TODO: use toast to display error
-      console.log(error);
-    }
+    await signUp(values);
   }
 
   return (

@@ -4,10 +4,8 @@ import AuthAlternativeLink from "../components/AuthAlternativeLink";
 import { Box } from "@mui/material";
 import { signInFormSchema } from "@validation/signInFormSchema";
 import { SignInFormValues } from "../types";
-import { useSignInMutation } from "@api/hooks";
-import { useNavigate } from "react-router-dom";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
-import { AUTH_TOKEN_KEY } from "@constants/index";
+import useSignIn from "@pages/Auth/hooks/useSignIn";
 
 const initialFormValues: SignInFormValues = {
   usernameOrEmail: "",
@@ -15,24 +13,10 @@ const initialFormValues: SignInFormValues = {
 };
 
 export default function SignInPage() {
-  const [signIn, { loading: isSigningIn }] = useSignInMutation();
-  const navigate = useNavigate();
+  const [signIn, { isSigningIn }] = useSignIn();
 
   async function handleSubmit(values: SignInFormValues) {
-    try {
-      const response = await signIn({ variables: { input: values } });
-      const token = response.data?.signIn.token;
-
-      if (!token) {
-        throw new Error("Auth failed");
-      }
-
-      localStorage.setItem(AUTH_TOKEN_KEY, token);
-      navigate("/");
-    } catch (error) {
-      // TODO: use toast to display error
-      console.log(error);
-    }
+    await signIn(values);
   }
 
   return (

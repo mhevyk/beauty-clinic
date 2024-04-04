@@ -4,6 +4,8 @@ import AuthAlternativeLink from "../components/AuthAlternativeLink";
 import { Box, Button } from "@mui/material";
 import { signInFormSchema } from "@validation/signInFormSchema";
 import { SignInFormValues } from "../types";
+import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import useSignIn from "@pages/Auth/hooks/useSignIn";
 
 const initialFormValues: SignInFormValues = {
   usernameOrEmail: "",
@@ -11,9 +13,10 @@ const initialFormValues: SignInFormValues = {
 };
 
 export default function SignInPage() {
-  function handleSubmit(values: SignInFormValues) {
-    // TODO: handle values
-    console.log(values);
+  const [signIn, { isSigningIn }] = useSignIn();
+
+  async function handleSubmit(values: SignInFormValues) {
+    await signIn(values);
   }
 
   return (

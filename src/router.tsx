@@ -18,10 +18,15 @@ const router: RouteObject[] = [
       },
       {
         path: "auth",
-        element: <AuthLayout />,
+        element: <ProtectedRoute protectionMode="no-auth" redirectPath="/" />,
         children: [
-          { path: "signup", element: <SignUpPage /> },
-          { path: "signin", element: <SignInPage /> },
+          {
+            element: <AuthLayout />,
+            children: [
+              { path: "signup", element: <SignUpPage /> },
+              { path: "signin", element: <SignInPage /> },
+            ],
+          },
         ],
       },
     ],

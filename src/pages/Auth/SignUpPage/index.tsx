@@ -10,6 +10,8 @@ import {
   repeatPasswordFormSchema,
   signUpFormSchema,
 } from "@validation/signUpFormSchema";
+import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import useSignUp from "@pages/Auth/hooks/useSignUp";
 
 const initialFormValues: SignUpFormValues = {
   username: "",
@@ -24,10 +26,10 @@ export default function SignUpPage() {
     useMultistepForm({
       pages: [<SignUpForm />, <PasswordForm />],
     });
+  const [signUp, { isSigningUp }] = useSignUp();
 
-  function handleSubmit(values: SignUpFormValues) {
-    console.log(values);
-    // TODO: handle submit
+  async function handleSubmit(values: SignUpFormValues) {
+    await signUp(values);
   }
 
   return (

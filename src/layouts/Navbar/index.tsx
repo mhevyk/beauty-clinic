@@ -1,5 +1,13 @@
 import { useEffect } from "react";
-import { AppBar, Toolbar, styled, Box, useMediaQuery } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  styled,
+  Box,
+  useMediaQuery,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
 import CartDrawerButton from "./components/CartDrawerButton";
@@ -7,6 +15,7 @@ import { Link } from "react-router-dom";
 import UserIconSvg from "@icons/user-icon.svg?react";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
+import { useUser } from "@context/AuthContext";
 
 const AppBarStyled = styled(AppBar)(({ theme }) => ({
   padding: "16px 0 8px",
@@ -49,6 +58,7 @@ const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
 export default function BurgerMenu() {
   const { isOpen, toggle, close } = useToggle();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const { isAuthenticated, isAuthenticating, logout } = useUser();
 
   useEffect(() => {
     if (!isSmallScreen) {
@@ -70,11 +80,22 @@ export default function BurgerMenu() {
           <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
           </Box>
+          {/* TODO: change UI */}
           {!isSmallScreen && (
-            <LoginLink to="/auth/signin">
-              Log In
-              <UserIcon />
-            </LoginLink>
+            <>
+              {isAuthenticating ? (
+                <CircularProgress color="secondary" size={25} />
+              ) : isAuthenticated ? (
+                <Button sx={{ border: "1px solid black" }} onClick={logout}>
+                  Log out
+                </Button>
+              ) : (
+                <LoginLink to="/auth/signin">
+                  Log In
+                  <UserIcon />
+                </LoginLink>
+              )}
+            </>
           )}
           <CartDrawerButton visibility={visibility} />
           {isSmallScreen && <BurgerButton isActive={isOpen} onClick={toggle} />}

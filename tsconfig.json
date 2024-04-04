@@ -33,7 +33,9 @@
       "@theme/*": ["src/theme/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
       "@constants/*": ["src/constants/*"],
-      "@validation/*": ["src/validation/*"]
+      "@validation/*": ["src/validation/*"],
+      "@config/*": ["src/config/*"],
+      "@context/*": ["src/context/*"]
     }
   },
   "include": ["src"],

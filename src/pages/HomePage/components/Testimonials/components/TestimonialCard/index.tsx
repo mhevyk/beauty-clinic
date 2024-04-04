@@ -64,8 +64,9 @@ export default function TestimonialCard({
         />
       ))}
       <StackStyled direction="row">
-        {quotes.map((_, index) => (
+        {quotes.map((quote, index) => (
           <PointButton
+            key={quote.author}
             isSelected={index === selectedIndex}
             handleQuoteChange={() => handleQuoteChange(index)}
           />

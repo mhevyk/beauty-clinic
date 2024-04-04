@@ -2,6 +2,7 @@ export type Quote = {
   author: string;
   description: string;
 };
+
 export const quotes: Quote[] = [
   {
     author: "Tamara Todd",

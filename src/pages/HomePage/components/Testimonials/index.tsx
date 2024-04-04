@@ -5,7 +5,6 @@ import TestimonialCard from "./components/TestimonialCard/index.tsx";
 import { quotes } from "./data/quotes.ts";
 
 const PinkChiffon = theme.palette.PinkChiffon.main;
-
 const SteelMist = theme.palette.SteelMist.main;
 
 const GridBoxStyled = styled(Box)({

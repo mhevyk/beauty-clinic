@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import QuoteItem from "./QuoteItem.tsx";
 import { Box, Stack, styled } from "@mui/material";
 import { Quote } from "@pages/HomePage/components/Testimonials/data/quotes.ts";
 import PointButton from "./PointButton.tsx";
 import theme from "@theme/theme.ts";
+import useInterval from "@pages/HomePage/components/Testimonials/hooks/useInterval.ts";
+import { TESTIMONIALS_ANIMATION_DURATION } from "../../data/constants.ts";
 
 type BoxStyledProps = {
   backgroundColor: string;
@@ -11,7 +13,7 @@ type BoxStyledProps = {
 
 const BoxStyled = styled(Box)(({ backgroundColor }: BoxStyledProps) => {
   return {
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       height: 662,
     },
     height: 422,
@@ -40,13 +42,17 @@ export default function TestimonialCard({
 }: TestimonialCardProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedIndex((prevIndex) => (prevIndex + 1) % quotes.length);
-    }, 6000);
+  const { startInterval, stopInterval } = useInterval({
+    onTick: () =>
+      setSelectedIndex((prevIndex) => (prevIndex + 1) % quotes.length),
+    duration: TESTIMONIALS_ANIMATION_DURATION,
+  });
 
-    return () => clearInterval(interval);
-  }, [quotes.length]);
+  const handleQuoteChange = (index: number) => {
+    stopInterval();
+    setSelectedIndex(index);
+    startInterval();
+  };
 
   return (
     <BoxStyled backgroundColor={backgroundColor}>
@@ -61,7 +67,7 @@ export default function TestimonialCard({
         {quotes.map((_, index) => (
           <PointButton
             isSelected={index === selectedIndex}
-            handleQuoteChange={() => setSelectedIndex(index)}
+            handleQuoteChange={() => handleQuoteChange(index)}
           />
         ))}
       </StackStyled>

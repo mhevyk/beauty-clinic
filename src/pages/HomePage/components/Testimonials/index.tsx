@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import TestimonialsImage from "./components/TestimonialsImage.tsx";
 import theme from "@theme/theme.ts";
 import TestimonialCard from "./components/TestimonialCard/index.tsx";
@@ -8,27 +8,44 @@ const PinkChiffon = theme.palette.PinkChiffon.main;
 
 const SteelMist = theme.palette.SteelMist.main;
 
+const GridBoxStyled = styled(Box)({
+  justifyContent: "center",
+  display: "grid",
+  gridTemplateRows: "auto",
+  gridTemplateColumns: "repeat(1, 1fr)",
+  gridTemplateAreas: `"firstCard""imageCard""secondCard"`,
+  [theme.breakpoints.up("md")]: {
+    gridTemplateColumns: "repeat(2, 1fr)",
+    gridTemplateAreas: `"firstCard secondCard"
+  "imageCard imageCard"`,
+  },
+  [theme.breakpoints.up("lg")]: {
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateAreas: `"firstCard imageCard secondCard"`,
+  },
+});
+
 export default function Testimonials() {
   return (
     <section>
       <Box height="123px" />
-      <Grid justifyContent="center" container spacing={0} columns={12}>
-        <Grid item xs={12} sm={12} md={4.2} lg={4.2} xl={4.2}>
+      <GridBoxStyled>
+        <Box sx={{ gridArea: "firstCard" }}>
           <TestimonialCard
             quotes={quotes.slice(0, 2)}
             backgroundColor={PinkChiffon}
           />
-        </Grid>
-        <Grid item xs={12} sm={12} md={3.6} lg={3.6} xl={3.6}>
+        </Box>
+        <Box sx={{ gridArea: "imageCard" }}>
           <TestimonialsImage />
-        </Grid>
-        <Grid item xs={12} sm={12} md={4.2} lg={4.2} xl={4.2}>
+        </Box>
+        <Box sx={{ gridArea: "secondCard" }}>
           <TestimonialCard
             quotes={quotes.slice(2)}
             backgroundColor={SteelMist}
           />
-        </Grid>
-      </Grid>
+        </Box>
+      </GridBoxStyled>
     </section>
   );
 }

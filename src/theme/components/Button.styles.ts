@@ -26,7 +26,7 @@ export const MuiButtonStyles: Components["MuiButton"] = {
           props: { variant: "primary-outlined" },
           style: { padding: "10px 35px" },
         },
-        { props: { variant: "accent", style: { padding: "9px 62px" } } },
+        { props: { variant: "accent" }, style: { padding: "9px 62px" } },
       ],
     },
   },

@@ -14,9 +14,7 @@ const SidebarStyled = styled(AppBar)({
   flexDirection: "column",
   position: "fixed",
   zIndex: 30,
-});
-
-//TODO: convert to aside
+}) as typeof AppBar;
 
 export default function Sidebar() {
   const { isOpen, open, close } = useToggle();
@@ -27,7 +25,7 @@ export default function Sidebar() {
   }
 
   return (
-    <SidebarStyled elevation={0} color="primary">
+    <SidebarStyled component="aside" elevation={0} color="primary">
       <BurgerButton openSidebar={open} />
       <Logo />
       <SocialLinks />

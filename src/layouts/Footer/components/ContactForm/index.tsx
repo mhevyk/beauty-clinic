@@ -8,6 +8,8 @@ import {
   useVerifyRecaptchaMutation,
 } from "@api/hooks";
 import FormGroupWithError from "@components/FormGroupWithError";
+import AppSnackbar from "@components/AppSnackbar.tsx";
+import { useState } from "react";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -31,13 +33,19 @@ const TextInput = styled(InputBase)(() => {
 
 const SuccessFeedback = styled("p")({
   textAlign: "center",
-  color: "#6BD089", // TODO: pick more suitable color
+  color: "#9bcb84",
   fontSize: 16,
+  fontWeight: 200,
 });
 
 export default function ContactForm() {
-  const { isOpen, open, close } = useToggle();
-  const formik = useContactFormValues(open);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const {
+    isOpen: isModalOpen,
+    open: openModal,
+    close: closeModal,
+  } = useToggle();
+  const formik = useContactFormValues(openModal);
   const [shouldRenderSuccessFeedback, renderSuccessFeedback] =
     useDelayedUnmount(SUCCESS_FEEDBACK_DISPLAY_DURATION);
 
@@ -59,15 +67,34 @@ export default function ContactForm() {
       formik.resetForm();
       close();
     } catch (error) {
-      // TODO: handle error output to user, maybe via toast library
-      console.log(error);
+      if (error instanceof Error && error.message.length > 0) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage("Failed to send contact message");
+      }
     }
+  }
+
+  function handleCloseSnackbar() {
+    setErrorMessage(null);
+  }
+
+  function handleCloseModal() {
+    handleCloseSnackbar();
+    closeModal();
   }
 
   const isFormSubmitting = isVerifyingRecaptcha || isContactFormEntryCreating;
 
   return (
     <>
+      <AppSnackbar
+        isOpen={Boolean(errorMessage)}
+        onClose={handleCloseSnackbar}
+        message={errorMessage}
+        variant="error"
+        autoHideDuration={6000}
+      />
       <form onSubmit={formik.handleSubmit}>
         <Stack direction="row" gap="22px">
           <FormGroupWithError
@@ -118,9 +145,9 @@ export default function ContactForm() {
         <SuccessFeedback>Thanks for submitting!</SuccessFeedback>
       </Fade>
       <HumanVerificationModal
-        isOpen={isOpen}
+        isOpen={isModalOpen}
         isFormSubmitting={isFormSubmitting}
-        handleClose={close}
+        handleClose={handleCloseModal}
         handleConfirm={handleConfirm}
       />
     </>

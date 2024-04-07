@@ -16,6 +16,7 @@ const BoxStyled = styled(Box)(({ theme }) => {
       height: 23,
       display: "flex",
       justifyContent: "space-between",
+      marginTop: 18,
       marginLeft: 0,
       marginBottom: 0,
     },

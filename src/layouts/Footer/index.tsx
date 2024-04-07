@@ -3,9 +3,8 @@ import ContactDetails from "./components/ContactDetails";
 import GoogleMap from "./components/GoogleMap";
 import { CONTACTS_SECTION_ID } from "@constants/index";
 
-// TODO: Change scroll margin top when testimonials is completed
 const FooterWrapper = styled(Container)({
-  scrollMarginTop: "140px",
+  scrollMarginTop: "230px",
 }) as typeof Container;
 
 const ContactDetailsTitle = styled("h3")(({ theme }) => ({
@@ -27,11 +26,12 @@ const ContactDetailsTitle = styled("h3")(({ theme }) => ({
 
 const CopyrightText = styled("p")(({ theme }) => ({
   ...theme.typography.paragraph,
-  fontSize: "14px",
-  letterSpacing: "0.7rem",
+  fontSize: "11px",
+  letterSpacing: "0.6rem",
   lineHeight: "1.8rem",
   textAlign: "center",
   textTransform: "uppercase",
+  fontWeight: 400,
 }));
 
 export default function Footer() {

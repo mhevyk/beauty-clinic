@@ -25,7 +25,6 @@ const PageWrapper = styled(Box)(({ theme }) => {
   };
 });
 
-// TODO: fix types
 const Main = styled("main")(({ theme }) => ({
   boxShadow: `0 0 70px 15px ${alpha(theme.palette.secondary.main, 0.25)}`,
   backgroundColor: theme.palette.PinkMarbleSky.main,

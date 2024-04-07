@@ -1,4 +1,4 @@
-query GetLimitedTreatments($limit: Int) {
+query GetTreatments($limit: Int) {
     treatments(limit: $limit) {
         id,
         name,

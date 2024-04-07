@@ -13,10 +13,12 @@ const MenuWrapper = styled("ul")(({ theme }) => {
     justifyContent: "center",
     gap: "10px",
     [smallScreenMediaQuery]: {
-      gap: "30px",
+      gap: "25px",
       marginLeft: 0,
       marginTop: 0,
-      //TODO: change font in md screen
+      "& li": {
+        fontSize: "16px",
+      },
     },
   };
 });

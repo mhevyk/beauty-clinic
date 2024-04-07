@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   APIProvider,
   Map,
@@ -7,6 +6,7 @@ import {
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 import GoogleMapPinIcon from "@icons/map-pin.svg?react";
+import useToggle from "@hooks/useToggle.ts";
 
 const MARKER_COORDINATES: google.maps.LatLngLiteral = {
   lat: 37.77489791779846,
@@ -15,7 +15,7 @@ const MARKER_COORDINATES: google.maps.LatLngLiteral = {
 
 export default function GoogleMap() {
   const [markerRef, marker] = useAdvancedMarkerRef();
-  const [isMapTooltipOpen, setMapTooltipOpen] = useState(true);
+  const { isOpen: isMapTooltipOpen, open, close } = useToggle(true);
 
   return (
     <APIProvider apiKey={import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY}>
@@ -31,7 +31,7 @@ export default function GoogleMap() {
           title="Our beauty clinic location" // For screen readers
           ref={markerRef}
           position={MARKER_COORDINATES}
-          onClick={() => setMapTooltipOpen(true)}
+          onClick={open}
         >
           <GoogleMapPinIcon />
         </AdvancedMarker>
@@ -39,7 +39,7 @@ export default function GoogleMap() {
           <InfoWindow
             ariaLabel="Lily Organic Beautician"
             anchor={marker}
-            onCloseClick={() => setMapTooltipOpen(false)}
+            onCloseClick={close}
           >
             <strong>Lily Organic Beautician</strong>
           </InfoWindow>

@@ -6,6 +6,7 @@ import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
 import {
   useCreateContactFormEntryMutation,
   useVerifyRecaptchaMutation,
+  VerifyRecaptchaMutation,
 } from "@api/hooks";
 import FormGroupWithError from "@components/FormGroupWithError";
 import AppSnackbar from "@components/AppSnackbar.tsx";
@@ -38,6 +39,14 @@ const SuccessFeedback = styled("p")({
   fontWeight: 200,
 });
 
+function validateRecaptcha(data?: VerifyRecaptchaMutation | null) {
+  const isRecaptchaValid = Boolean(data?.verifyRecaptcha);
+
+  if (!isRecaptchaValid) {
+    throw new Error("Recaptcha is invalid");
+  }
+}
+
 export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const {
@@ -58,9 +67,7 @@ export default function ContactForm() {
     try {
       const { data } = await verifyRecaptcha({ variables: { recaptchaToken } });
 
-      if (!data?.verifyRecaptcha) {
-        throw new Error("Recaptcha is invalid");
-      }
+      validateRecaptcha(data);
 
       await createContactFormEntry({ variables: { input: formik.values } });
       renderSuccessFeedback();

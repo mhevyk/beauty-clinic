@@ -39,7 +39,7 @@ export default function BurgerMenu() {
     if (!isSmallScreen) {
       close();
     }
-  }, [isSmallScreen]);
+  }, [isSmallScreen, close]);
 
   const visibility = isOpen ? "hidden" : "visible";
 

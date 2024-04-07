@@ -6,6 +6,7 @@ import NotFoundPage from "@pages/NotFoundPage";
 import SignUpPage from "@pages/Auth/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/Auth/SignInPage";
+import TreatmentsPage from "@pages/TreatmentsPage";
 
 const router: RouteObject[] = [
   {
@@ -14,7 +15,10 @@ const router: RouteObject[] = [
     children: [
       {
         element: <RootLayout />,
-        children: [{ index: true, element: <HomePage /> }],
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: "treatments", element: <TreatmentsPage /> },
+        ],
       },
       {
         path: "auth",

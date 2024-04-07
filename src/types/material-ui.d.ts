@@ -1,5 +1,5 @@
-import { PaletteColorOptions } from "@mui/material";
 import { CSSProperties } from "react";
+import { SimplePaletteColorOptions } from "@mui/material/styles/createPalette";
 
 type CustomColors =
   | "LogoActive"
@@ -13,7 +13,7 @@ type CustomColors =
   | "Transparent"
   | "GrayPhoneNav";
 
-type CustomPalette = Record<CustomColors, PaletteColorOptions>;
+type CustomPalette = Record<CustomColors, SimplePaletteColorOptions>;
 
 declare module "@mui/material/styles/createPalette" {
   interface PaletteOptions extends Partial<CustomPalette> {}
@@ -23,7 +23,7 @@ declare module "@mui/material/styles/createPalette" {
 type AppBarColors = CustomColors;
 
 declare module "@mui/material" {
-  interface AppBarPropsColorOverrides extends Record<AppBarColors, any> {}
+  interface AppBarPropsColorOverrides extends Record<AppBarColors, never> {}
 }
 
 type CustomFonts = "heading" | "paragraph";

@@ -4,9 +4,9 @@ import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
 import CartDrawerButton from "./components/CartDrawerButton";
 import { Link } from "react-router-dom";
-import UserIconSvg from "@icons/user-icon.svg?react";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
+import LoginButton from "@components/LoginButton.tsx";
 
 const AppBarStyled = styled(AppBar)(({ theme }) => ({
   padding: "16px 0 8px",
@@ -23,21 +23,6 @@ const LinkStyled = styled(Link)({
 const LogoLink = styled(LinkStyled)({
   ...theme.typography.heading,
   fontSize: "22px",
-});
-
-const LoginLink = styled(LinkStyled)({
-  display: "flex",
-  alignItems: "center",
-  gap: 14,
-  "&:hover": {
-    color: "rgb(199, 179, 163)",
-  },
-  marginRight: 20,
-});
-
-const UserIcon = styled(UserIconSvg)({
-  width: 25,
-  height: 25,
 });
 
 const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
@@ -70,12 +55,7 @@ export default function BurgerMenu() {
           <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
           </Box>
-          {!isSmallScreen && (
-            <LoginLink to="/auth/signin">
-              Log In
-              <UserIcon />
-            </LoginLink>
-          )}
+          {!isSmallScreen && <LoginButton sx={{ marginRight: "20px" }} />}
           <CartDrawerButton visibility={visibility} />
           {isSmallScreen && <BurgerButton isActive={isOpen} onClick={toggle} />}
         </ToolbarStyled>

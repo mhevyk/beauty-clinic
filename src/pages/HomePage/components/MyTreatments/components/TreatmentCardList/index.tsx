@@ -1,12 +1,13 @@
 import TreatmentCard from "../TreatmentCard.tsx";
 import myTreatmentDecorationImageData from "./data/treatmentItems.ts";
-import { useGetLimitedTreatmentsSuspenseQuery } from "@api/hooks";
+import { useGetTreatmentsSuspenseQuery } from "@api/hooks";
 
 export default function TreatmentCardList() {
-  const { data } = useGetLimitedTreatmentsSuspenseQuery({
+  const { data } = useGetTreatmentsSuspenseQuery({
     variables: { limit: 3 },
   });
 
+  console.log(data);
   return data.treatments.map((treatment, index) => {
     const svgImage = myTreatmentDecorationImageData[index];
 

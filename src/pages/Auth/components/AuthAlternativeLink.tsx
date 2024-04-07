@@ -14,7 +14,6 @@ const DividerStyled = styled(Divider)(({ theme }) => ({
   },
 }));
 
-// TODO: fix types
 const LinkStyled = styled(Link)(({ theme }) => ({
   color: theme.palette.FieryOrange.main,
   textDecoration: "underline",

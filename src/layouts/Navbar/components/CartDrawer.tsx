@@ -47,7 +47,8 @@ type CaretIconProps = {
 
 const CaretIcon = styled(CaretIconSvg, {
   shouldForwardProp: (prop) => prop !== "pointsToRight",
-})<CaretIconProps>(({ pointsToRight }) => ({
+})<CaretIconProps>(({ pointsToRight, theme }) => ({
+  stroke: theme.palette.primary.main,
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
 }));
 
@@ -77,7 +78,7 @@ export default function CartDrawer({
       <DrawerContentWrapper>
         <CartHeader>
           <CaretIconButton onClick={closeCartDrawer}>
-            <CaretIcon pointsToRight={isCartDrawerOpen} stroke="red" />
+            <CaretIcon pointsToRight={isCartDrawerOpen} />
           </CaretIconButton>
           <Typography variant="heading" color="white" fontSize="22px">
             Cart

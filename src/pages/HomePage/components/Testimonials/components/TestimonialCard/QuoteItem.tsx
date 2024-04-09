@@ -19,6 +19,7 @@ const TypographyDescriptionStyled = styled("h4")({
   fontSize: "20px",
   textAlign: "center",
   width: 256,
+  textWrap: "balance",
   [theme.breakpoints.up("lg")]: {
     fontSize: "28px",
     width: 310,

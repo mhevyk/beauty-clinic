@@ -7,13 +7,21 @@ import { quotes } from "./data/quotes.ts";
 const PinkChiffon = theme.palette.PinkChiffon.main;
 const SteelMist = theme.palette.SteelMist.main;
 
+const BoxStyled = styled(Box)({
+  height: "0",
+  [theme.breakpoints.up("md")]: {
+    height: "123px",
+  },
+});
 const GridBoxStyled = styled(Box)({
   justifyContent: "center",
   display: "grid",
   gridTemplateRows: "auto",
+  paddingBottom: "80px",
   gridTemplateColumns: "repeat(1, 1fr)",
   gridTemplateAreas: `"firstCard""imageCard""secondCard"`,
   [theme.breakpoints.up("md")]: {
+    paddingBottom: "0",
     gridTemplateColumns: "repeat(2, 1fr)",
     gridTemplateAreas: `"firstCard secondCard"
   "imageCard imageCard"`,
@@ -27,7 +35,7 @@ const GridBoxStyled = styled(Box)({
 export default function Testimonials() {
   return (
     <section>
-      <Box height="123px" />
+      <BoxStyled height="123px" />
       <GridBoxStyled>
         <Box sx={{ gridArea: "firstCard" }}>
           <TestimonialCard

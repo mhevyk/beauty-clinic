@@ -21,13 +21,13 @@ const SkeletonTitleStyled = styled(Skeleton)({
 
 const SkeletonDurationStyled = styled(Skeleton)({
   width: "40%",
-  fontSize: "16 px",
+  fontSize: "16px",
 });
 
 const SkeletonPriceStyled = styled(Skeleton)({
   width: "25%",
   marginBottom: "auto",
-  fontSize: "16 px",
+  fontSize: "16px",
 });
 
 const SkeletonButtonStyled = styled(Skeleton)({

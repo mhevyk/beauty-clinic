@@ -30,11 +30,12 @@ const TitleStyled = styled("h2")(({ theme }) => ({
   margin: 0,
   fontSize: "24px",
   lineHeight: "1.2em",
-  width: "250px",
+  maxWidth: "250px",
+  width: "100%",
   display: "flex",
   [theme.breakpoints.up("sm")]: {
     fontSize: "42px",
-    width: "500px",
+    maxWidth: "500px",
   },
 }));
 
@@ -44,7 +45,7 @@ export default function TreatmentsPage() {
       <Hidden only={["xs", "sm"]}>
         <TreatmentImageStyled src={ImageTreatmentsPage} alt="spikelet" />
       </Hidden>
-      <Container maxWidth="tm">
+      <Container sx={{ maxWidth: "1000px" }}>
         <Grid justifyContent="center" container spacing={3.5} columns={12}>
           <Grid item xs={12} sm={12} md={10} lg={12} xl={12}>
             <TitleStyled>My Hand Crafted Treatments Menu</TitleStyled>

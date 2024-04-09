@@ -10,7 +10,6 @@ const theme = createTheme({
       md: 900,
       lg: 1200,
       xl: 1600,
-      tm: 1000,
     },
   },
   components: {

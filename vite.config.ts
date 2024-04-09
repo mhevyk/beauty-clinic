@@ -21,6 +21,7 @@ export default defineConfig({
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
       "@constants": resolveSource("constants"),
       "@validation": resolveSource("validation"),
+      "@store": resolveSource('store')
     },
   },
   plugins: [react(), svgr()],

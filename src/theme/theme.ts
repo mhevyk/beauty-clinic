@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { MuiButtonStyles } from "./components/button.styles";
+import { MuiButtonStyles } from "./components/Button.styles.ts";
 import { MuiTextFieldStyles } from "./components/TextField.styles";
 
 const theme = createTheme({
@@ -10,6 +10,7 @@ const theme = createTheme({
       md: 900,
       lg: 1200,
       xl: 1600,
+      tm: 1000,
     },
   },
   components: {

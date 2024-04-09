@@ -43,3 +43,9 @@ type CustomButton = "primary" | "primary-outlined" | "accent" | "default";
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides extends Record<CustomButton, true> {}
 }
+
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    tm: true;
+  }
+}

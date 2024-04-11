@@ -2,9 +2,10 @@ import { IconButton } from "@mui/material";
 import { CSSProperties } from "react";
 import CartDrawer from "./CartDrawer";
 import useToggle from "@hooks/useToggle";
+import { useCartStore } from "@store/cart/cartStore";
 
 function CartIcon() {
-  const itemsInCartCount = 0;
+  const getCartItemsCount = useCartStore(store => store.getItemsCount);
 
   return (
     <svg width="30" height="30" viewBox="0 0 110 143">
@@ -18,7 +19,7 @@ function CartIcon() {
         fill="white"
         fontSize={50}
       >
-        {itemsInCartCount}
+        {getCartItemsCount()}
       </text>
     </svg>
   );

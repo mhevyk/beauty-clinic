@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AppBar, Toolbar, styled, Box, useMediaQuery } from "@mui/material";
 import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
-import CartDrawerButton from "./components/CartDrawerButton";
+import CartDrawerButton from "./components/Cart/CartDrawerButton";
 import { Link } from "react-router-dom";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";

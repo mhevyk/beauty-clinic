@@ -7,11 +7,12 @@ export default function TreatmentCardList() {
     variables: { limit: 3 },
   });
 
-  console.log(data);
   return data.treatments.map((treatment, index) => {
     const svgImage = myTreatmentDecorationImageData[index];
 
-    if (!svgImage) return null;
+    if (!svgImage || !treatment.imageUrl) {
+      return null;
+    }
 
     const treatmentImageSrc = new URL(
       treatment.imageUrl,

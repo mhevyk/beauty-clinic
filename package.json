@@ -4,16 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "dotenvx run --env-file=.env.development -- vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format:check": "prettier --check ./src",
     "format:fix": "prettier --write ./src",
-    "codegen": "graphql-codegen --config codegen.yml --require dotenv/config"
+    "codegen": "dotenvx run --env-file=.env.development -- graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.9.9",
+    "@dotenvx/dotenvx": "^0.32.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
@@ -39,7 +40,6 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "dotenv": "^16.4.5",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.0",

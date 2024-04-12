@@ -13,12 +13,14 @@ export type TreatmentDetailsStore = TreatmentDetails & {
   setTreatmentSessionDateTime: (datetime: Date) => void;
 };
 
-export const useOrderStore = create<TreatmentDetailsStore>((set) => ({
-  employeeId: null,
-  treatmentId: null,
-  treatmentSessionDatetime: null,
-  setEmployeeId: (id) => set({ employeeId: id }),
-  setTreatmentId: (id) => set({ treatmentId: id }),
-  setTreatmentSessionDateTime: (datetime) =>
-    set({ treatmentSessionDatetime: datetime }),
-}));
+export const useTreatmentDetailsStore = create<TreatmentDetailsStore>(
+  (set) => ({
+    employeeId: null,
+    treatmentId: null,
+    treatmentSessionDatetime: null,
+    setEmployeeId: (id) => set({ employeeId: id }),
+    setTreatmentId: (id) => set({ treatmentId: id }),
+    setTreatmentSessionDateTime: (datetime) =>
+      set({ treatmentSessionDatetime: datetime }),
+  }),
+);

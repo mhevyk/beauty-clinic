@@ -1,5 +1,7 @@
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import theme from "@theme/theme.ts";
+import { Link } from "react-router-dom";
+import { Treatment } from "@api/hooks";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -23,7 +25,7 @@ const ButtonStyled = styled(Button)({
     width: "100%",
     fontSize: "14px",
   },
-});
+}) as typeof Button;
 
 const TitleStyled = styled("h4")(({ theme }) => ({
   ...theme.typography.heading,
@@ -36,27 +38,35 @@ const TitleStyled = styled("h4")(({ theme }) => ({
 }));
 
 type TreatmentsCardProps = {
-  treatmentName: string;
-  treatmentPrice: number;
-  treatmentDuration: string;
+  treatment: Treatment;
 };
+export default function TreatmentsCard({ treatment }: TreatmentsCardProps) {
+  const hour = Math.floor(treatment.duration / 60);
+  const minutes = treatment.duration % 60;
 
-export default function TreatmentsCard({
-  treatmentName,
-  treatmentPrice,
-  treatmentDuration,
-}: TreatmentsCardProps) {
+  let time = hour + " hr ";
+
+  if (minutes !== 0) {
+    time += minutes + " min";
+  }
+
   return (
     <Grid item xs={12} sm={6} md={5} lg={4} xl={4}>
       <BoxStyled>
-        <TitleStyled>{treatmentName}</TitleStyled>
+        <TitleStyled>{treatment.name}</TitleStyled>
         <Typography variant="paragraph" fontSize="15px">
-          {treatmentDuration}
+          {time}
         </Typography>
         <Typography marginBottom="auto" variant="paragraph" fontSize="15px">
-          ${treatmentPrice}
+          ${treatment.pricePerUnit}
         </Typography>
-        <ButtonStyled variant="primary">Book Now</ButtonStyled>
+        <ButtonStyled
+          to={`/book-session/${treatment.id}`}
+          component={Link}
+          variant="primary"
+        >
+          Book Now
+        </ButtonStyled>
       </BoxStyled>
     </Grid>
   );

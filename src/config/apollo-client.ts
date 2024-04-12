@@ -5,6 +5,7 @@ import concatUrls from "@utils/concatUrls";
 
 const httpLink = createHttpLink({
   uri: concatUrls(import.meta.env.VITE_API_URL, "/graphql"),
+  credentials: 'include'
 });
 
 const authLink = setContext((_, { headers }) => {

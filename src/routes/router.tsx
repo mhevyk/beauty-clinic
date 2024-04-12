@@ -41,6 +41,10 @@ const router: RouteObject[] = [
         element: <ProtectedRoute />,
         children: [{ path: "protected", element: <h1>I am protected</h1> }],
       },
+      {
+        path: "book-session",
+        children: [{ path: ":treatmentId", element: <OrderPage /> }],
+      },
       /* Add new routes here
          Example: { path: "/test", element: <MyComponent /> }
       */

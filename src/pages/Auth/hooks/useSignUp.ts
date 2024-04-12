@@ -1,12 +1,12 @@
 import { useSignUpMutation } from "@api/hooks";
-import { useUser } from "@context/AuthContext";
 import { SignUpFormValues } from "@pages/Auth/types";
+import { useUserStore } from "@store/user/userStore";
 import { useNavigate } from "react-router-dom";
 
 export default function useSignUp() {
   const [signUp, { loading: isSigningUp }] = useSignUpMutation();
   const navigate = useNavigate();
-  const { authenticate } = useUser();
+  const setAccessToken = useUserStore(store => store.setAccessToken);
 
   const handleSignUp = async (values: SignUpFormValues) => {
     try {
@@ -24,7 +24,7 @@ export default function useSignUp() {
         throw new Error("SignUp failed");
       }
 
-      authenticate(token);
+      setAccessToken(token);
       navigate("/", { replace: true });
     } catch (error) {
       // TODO: use toast to display error

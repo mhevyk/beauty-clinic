@@ -1,15 +1,5 @@
-import { Box, CircularProgress, styled } from "@mui/material";
+import { useUserStore } from "@store/user/userStore";
 import { Navigate, Outlet } from "react-router-dom";
-import { useUser } from "@context/AuthContext";
-
-// TODO: change ui
-const SpinnerWrapper = styled(Box)({
-  width: "100vw",
-  height: "100vh",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-});
 
 type ProtectionMode = "auth" | "no-auth";
 
@@ -22,15 +12,7 @@ export default function ProtectedRoute({
   redirectPath = "/auth/signin",
   protectionMode = "auth",
 }: ProtectedRouteProps) {
-  const { isAuthenticated, isAuthenticating } = useUser();
-
-  if (isAuthenticating) {
-    return (
-      <SpinnerWrapper>
-        <CircularProgress color="secondary" size={50} />
-      </SpinnerWrapper>
-    );
-  }
+  const { isAuthenticated } = useUserStore();
 
   if (protectionMode === "auth" && !isAuthenticated) {
     return <Navigate to={redirectPath} />;

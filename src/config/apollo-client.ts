@@ -1,18 +1,19 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH_TOKEN_KEY } from "@constants/index";
+import { useUserStore } from "@store/user/userStore";
+import concatUrls from "@utils/concatUrls";
 
 const httpLink = createHttpLink({
-  uri: import.meta.env.VITE_API_URL,
+  uri: concatUrls(import.meta.env.VITE_API_URL, "/graphql"),
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
+  const accessToken = useUserStore.getState().accessToken;
 
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: accessToken ? `Bearer ${accessToken}` : "",
     },
   };
 });

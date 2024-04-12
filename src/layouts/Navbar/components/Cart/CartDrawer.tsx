@@ -1,13 +1,17 @@
 import {
   Box,
+  Button,
   Drawer,
   IconButton,
+  Stack,
   Typography,
   keyframes,
   styled,
 } from "@mui/material";
 import CaretIconSvg from "@icons/caret-left.svg?react";
 import useLockPageScroll from "@hooks/useLockPageScroll";
+import { useCartStore } from "@store/cart/cartStore";
+import renderDrawerCartList from "./utils/renderDrawerCartList";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -37,6 +41,7 @@ const CaretIconButton = styled(IconButton)({
 
 const CartContent = styled(Box)({
   display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
   padding: "34px",
 });
@@ -52,6 +57,42 @@ const CaretIcon = styled(CaretIconSvg, {
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
 }));
 
+// TODO: remove mocks after implementing end logic
+const mockTreatment1Session1 = {
+  treatment: {
+    id: 1,
+    name: "Oxygen facial",
+    pricePerUnit: 200,
+  },
+  session: {
+    id: 2,
+    employee: {
+      name: "Max",
+    },
+    time: {
+      start: new Date(),
+      end: new Date(),
+    },
+  },
+};
+
+const mockTreatment1Session2 = {
+  treatment: mockTreatment1Session1.treatment,
+  session: {
+    ...mockTreatment1Session1.session,
+    id: 3,
+  },
+};
+
+const mockTreatment2Session1 = {
+  ...mockTreatment1Session1,
+  treatment: {
+    ...mockTreatment1Session1.treatment,
+    name: "Nitrogen facial",
+    id: 3,
+  },
+};
+
 type CartDrawerProps = {
   isCartDrawerOpen: boolean;
   closeCartDrawer: () => void;
@@ -61,8 +102,7 @@ export default function CartDrawer({
   isCartDrawerOpen,
   closeCartDrawer,
 }: CartDrawerProps) {
-  // TODO: add logic to display cart items
-  const itemsInCartCount = 0;
+  const addItemToCart = useCartStore((store) => store.addToCart);
 
   useLockPageScroll(isCartDrawerOpen);
 
@@ -85,13 +125,31 @@ export default function CartDrawer({
           </Typography>
         </CartHeader>
         <CartContent>
-          {itemsInCartCount > 0 ? (
-            "Render cart items"
-          ) : (
-            <Typography variant="paragraph" fontSize="18px">
-              Cart is empty
-            </Typography>
-          )}
+          {/* TODO: remove button later */}
+          <Stack gap="20px">
+            <Button
+              variant="primary"
+              size="small"
+              onClick={() => addItemToCart(mockTreatment1Session1)}
+            >
+              Add Oxygen facial treatment
+            </Button>
+            <Button
+              variant="primary"
+              size="small"
+              onClick={() => addItemToCart(mockTreatment1Session2)}
+            >
+              Add another Oxygen facial treatment
+            </Button>
+            <Button
+              variant="primary"
+              size="small"
+              onClick={() => addItemToCart(mockTreatment2Session1)}
+            >
+              Add Nitrogen facial treatment
+            </Button>
+          </Stack>
+          {renderDrawerCartList()}
         </CartContent>
       </DrawerContentWrapper>
     </Drawer>

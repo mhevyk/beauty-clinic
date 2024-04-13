@@ -7,6 +7,7 @@ import SignUpPage from "@pages/Auth/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/Auth/SignInPage";
 import TreatmentsPage from "@pages/TreatmentsPage";
+import ProtectedRoute from "@components/ProtectedRoute";
 
 const router: RouteObject[] = [
   {
@@ -22,11 +23,21 @@ const router: RouteObject[] = [
       },
       {
         path: "auth",
-        element: <AuthLayout />,
+        element: <ProtectedRoute protectionMode="no-auth" redirectPath="/" />,
         children: [
-          { path: "signup", element: <SignUpPage /> },
-          { path: "signin", element: <SignInPage /> },
+          {
+            element: <AuthLayout />,
+            children: [
+              { path: "signup", element: <SignUpPage /> },
+              { path: "signin", element: <SignInPage /> },
+            ],
+          },
         ],
+      },
+      // TODO: replace with actual protected routes
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: "protected", element: <h1>I am protected</h1> }],
       },
     ],
   },

@@ -26,7 +26,7 @@ type TreatmentSession = {
 
 type CartItemBase = {
   treatment: TreatmentDetails;
-}
+};
 
 export type CartItemWithOneSession = CartItemBase & {
   session: TreatmentSession;
@@ -44,7 +44,6 @@ type CartStore = {
 };
 
 export const useCartStore = createPersistedStore<CartStore>(
-  PERSISTED_STORAGE_KEYS.cart,
   (set, get) => ({
     items: [],
     getItemsCount() {
@@ -102,27 +101,33 @@ export const useCartStore = createPersistedStore<CartStore>(
     },
     removeFromCart: (treatmentId, treatmentSessionId) => {
       set((state) => ({
-        items: state.items.reduce<CartItemWithMultipleSessions[]>((result, item) => {
-          if (item.treatment.id !== treatmentId) {
-            return [...result, item];
-          }
+        items: state.items.reduce<CartItemWithMultipleSessions[]>(
+          (result, item) => {
+            if (item.treatment.id !== treatmentId) {
+              return [...result, item];
+            }
 
-          const filteredSessions = item.sessions.filter(
-            (session) => session.id !== treatmentSessionId
-          );
+            const filteredSessions = item.sessions.filter(
+              (session) => session.id !== treatmentSessionId
+            );
 
-          if (filteredSessions.length === 0) {
-            return result;
-          }
+            if (filteredSessions.length === 0) {
+              return result;
+            }
 
-          const itemWithFilteredSessions = {
-            treatment: item.treatment,
-            sessions: filteredSessions,
-          };
+            const itemWithFilteredSessions = {
+              treatment: item.treatment,
+              sessions: filteredSessions,
+            };
 
-          return [...result, itemWithFilteredSessions];
-        }, []),
+            return [...result, itemWithFilteredSessions];
+          },
+          []
+        ),
       }));
     },
-  })
+  }),
+  {
+    name: PERSISTED_STORAGE_KEYS.cart,
+  }
 );

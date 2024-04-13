@@ -10,6 +10,8 @@ import {
   repeatPasswordFormSchema,
   signUpFormSchema,
 } from "@validation/signUpFormSchema";
+import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import useSignUp from "@pages/Auth/hooks/useSignUp";
 
 const initialFormValues: SignUpFormValues = {
   username: "",
@@ -24,10 +26,10 @@ export default function SignUpPage() {
     useMultistepForm({
       pages: [<SignUpForm />, <PasswordForm />],
     });
+  const [signUp, { isSigningUp }] = useSignUp();
 
-  function handleSubmit(values: SignUpFormValues) {
-    console.log(values);
-    // TODO: handle submit
+  async function handleSubmit(values: SignUpFormValues) {
+    await signUp(values);
   }
 
   return (
@@ -63,6 +65,7 @@ export default function SignUpPage() {
           <NextPageButton
             hasNextPage={hasNextPage}
             openNextPage={controls.nextPage}
+            loading={isSigningUp}
           />
         </Stack>
         <AuthAlternativeLink
@@ -79,9 +82,14 @@ export default function SignUpPage() {
 type NextPageButtonProps = {
   hasNextPage: boolean;
   openNextPage: () => void;
+  loading: boolean;
 };
 
-function NextPageButton({ hasNextPage, openNextPage }: NextPageButtonProps) {
+function NextPageButton({
+  hasNextPage,
+  openNextPage,
+  loading,
+}: NextPageButtonProps) {
   const { handleSubmit, validateForm } = useFormikContext();
   async function handleNextPage() {
     if (!hasNextPage) {
@@ -95,8 +103,14 @@ function NextPageButton({ hasNextPage, openNextPage }: NextPageButtonProps) {
   }
 
   return (
-    <Button variant="primary" size="small" fullWidth onClick={handleNextPage}>
+    <ButtonWithSpinner
+      variant="primary"
+      size="small"
+      fullWidth
+      onClick={handleNextPage}
+      loading={loading}
+    >
       {hasNextPage ? "Next" : "Sign up"}
-    </Button>
+    </ButtonWithSpinner>
   );
 }

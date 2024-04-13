@@ -34,7 +34,10 @@
       "@api/hooks": ["src/api/generated/index.tsx"],
       "@constants/*": ["src/constants/*"],
       "@validation/*": ["src/validation/*"],
-      "@store/*": ["src/store/*"]
+      "@config/*": ["src/config/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@type-helpers": ["src/types/helpers.ts"]
     }
   },
   "include": ["src"],

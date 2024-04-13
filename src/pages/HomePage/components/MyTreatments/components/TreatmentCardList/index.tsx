@@ -1,3 +1,4 @@
+import concatUrls from "@utils/concatUrls.ts";
 import TreatmentCard from "../TreatmentCard.tsx";
 import myTreatmentDecorationImageData from "./data/treatmentItems.ts";
 import { useGetTreatmentsSuspenseQuery } from "@api/hooks";
@@ -14,10 +15,10 @@ export default function TreatmentCardList() {
       return null;
     }
 
-    const treatmentImageSrc = new URL(
-      treatment.imageUrl,
+    const treatmentImageSrc = concatUrls(
       import.meta.env.VITE_API_BASE_IMAGE_URL,
-    ).href;
+      treatment.imageUrl
+    );
 
     return (
       <TreatmentCard

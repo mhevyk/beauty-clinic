@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${VITE_API_URL}
+schema: ${VITE_API_URL}graphql
 documents: "src/api/graphql/*.graphql"
 generates:
   src/api/generated/index.tsx:

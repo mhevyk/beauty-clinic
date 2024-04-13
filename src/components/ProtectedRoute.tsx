@@ -12,7 +12,7 @@ export default function ProtectedRoute({
   redirectPath = "/auth/signin",
   protectionMode = "auth",
 }: ProtectedRouteProps) {
-  const { isAuthenticated } = useUserStore();
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
   if (protectionMode === "auth" && !isAuthenticated) {
     return <Navigate to={redirectPath} />;

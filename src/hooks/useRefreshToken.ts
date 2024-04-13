@@ -1,46 +1,43 @@
 import { useUserStore } from "@store/user/userStore";
-import concatUrls from "@utils/concatUrls";
-import { useEffect, useRef, useState } from "react";
-
-const refreshTokenUrl = concatUrls(
-  import.meta.env.VITE_API_URL,
-  "/refresh_token"
-);
+import fetchAccessToken from "@utils/fetchAccessToken";
+import { useEffect } from "react";
 
 type RefreshTokenResponse = {
   ok: boolean;
   accessToken: string;
 };
 
-export default function useCheckAuth() {
+export default function useRefreshToken() {
   const setAccessToken = useUserStore((store) => store.setAccessToken);
-  const [isLoading, setIsLoading] = useState(false);
-  const abortControllerRef = useRef(new AbortController());
+  const setIsAuthenticating = useUserStore(
+    (store) => store.setIsAuthenticating
+  );
 
   useEffect(() => {
-    abortControllerRef.current = new AbortController();
-    setIsLoading(true);
+    setIsAuthenticating(true);
 
-    fetch(refreshTokenUrl, {
-      method: "POST",
-      credentials: "include",
-      signal: abortControllerRef.current.signal,
-    })
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetchAccessToken({ signal })
       .then(async (response) => {
-        const data = await response.json() as RefreshTokenResponse;
+        const data = (await response.json()) as RefreshTokenResponse;
         setAccessToken(data.accessToken);
       })
       .catch((error) => {
         if (error.name === "AbortError") {
           return; //request is canceled here
         }
+
         // TODO: handle and show error in snackbar
         setAccessToken(null);
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        if (!signal.aborted) {
+          setIsAuthenticating(false);
+        }
+      });
 
-    return () => abortControllerRef.current.abort();
+    return () => controller.abort();
   }, []);
-
-  return { isRefreshingToken: isLoading };
 }

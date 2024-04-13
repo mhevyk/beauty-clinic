@@ -25,7 +25,7 @@ const LoginLink = styled(LinkStyled)({
 export default function LoginButton(
   props: Omit<ComponentPropsWithoutRef<typeof LoginLink>, "to">
 ) {
-  const isAuthenticated = useUserStore((store) => store.isAuthenticated);
+  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
   const isAuthenticating = useUserStore((store) => store.isAuthenticating);
   const logout = useUserStore((store) => store.logout);
 

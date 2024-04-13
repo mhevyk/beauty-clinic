@@ -6,7 +6,7 @@ import createPersistedStore from "@store/utils/createPersistedStore";
 export type AccessToken = string | null;
 
 type UserStore = {
-  isAuthenticated: boolean;
+  checkAuthenticated: () => boolean;
   isAuthenticating: boolean;
   setIsAuthenticating: (isAuthenticating: boolean) => void;
   accessToken: AccessToken;
@@ -15,17 +15,19 @@ type UserStore = {
 };
 
 export const useUserStore = createPersistedStore<UserStore>(
-  (set) => ({
-    isAuthenticated: false,
+  (set, get) => ({
+    checkAuthenticated: () => {
+      return get().accessToken !== null;
+    },
     isAuthenticating: false,
     accessToken: null,
     setAccessToken: (accessToken) => {
-      set({ accessToken, isAuthenticated: accessToken !== null });
+      set({ accessToken });
     },
     setIsAuthenticating: (isAuthenticating) => set({ isAuthenticating }),
     logout: async () => {
       await client.mutate({ mutation: LogoutDocument });
-      set({ accessToken: null, isAuthenticated: false });
+      set({ accessToken: null });
     },
   }),
   {

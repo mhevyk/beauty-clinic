@@ -11,7 +11,6 @@ export default function fetchAccessToken(
   return fetch(refreshTokenUrl, {
     method: "POST",
     credentials: 'include',
-    cache: 'no-store',
     ...options,
   });
 }

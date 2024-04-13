@@ -1,10 +1,10 @@
-import { useUserStore } from "@store/user/userStore";
+import { AccessToken, useUserStore } from "@store/user/userStore";
 import fetchAccessToken from "@utils/fetchAccessToken";
 import { useEffect } from "react";
 
 type RefreshTokenResponse = {
   ok: boolean;
-  accessToken: string;
+  accessToken: AccessToken;
 };
 
 export default function useRefreshToken() {

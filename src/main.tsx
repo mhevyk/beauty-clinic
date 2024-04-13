@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { CSSInit } from "./theme/global.tsx";
 import { ApolloProvider } from "@apollo/client";
-import { client } from "@config/apollo-client.ts";
+import { client } from "@config/apollo";
 import App from "./App.tsx";
 
 const rootElement = document.getElementById("root")!;

@@ -23,7 +23,8 @@ export default defineConfig({
       "@validation": resolveSource("validation"),
       "@store": resolveSource("store"),
       "@config": resolveSource("config"),
-      "@utils": resolveSource('utils')
+      "@utils": resolveSource('utils'),
+      "@type-helpers": resolveSource('types', 'helpers.ts')
     },
   },
   plugins: [react(), svgr()],

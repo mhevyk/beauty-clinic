@@ -1,17 +1,17 @@
 import { SxProps } from "@mui/material";
-import homeSignatureFacial from "@images/homeSignatureFacial.svg";
 import theme from "@theme/theme.ts";
-import homeOxygenFacial from "@images/homeOxygenFacial.svg";
-import homePurifyingHerbalFacial from "@images/homePurifyingHerbalFacial.svg";
+import seaweedDecorationDecoration from "@decorations/seaweed.svg";
+import grassBladeDecoration from "@decorations/grass-blade.svg";
+import tulipDecoration from "@decorations/tulip.svg";
 
-type myTreatmentDecorationImageType = {
+type MyTreatmentDecorationImageType = {
   svgImage: string;
   styled: SxProps;
 };
 
-const myTreatmentDecorationImageData: myTreatmentDecorationImageType[] = [
+const myTreatmentDecorationImageData: MyTreatmentDecorationImageType[] = [
   {
-    svgImage: homeSignatureFacial,
+    svgImage: seaweedDecorationDecoration,
     styled: {
       top: "35%",
       right: "32%",
@@ -30,7 +30,7 @@ const myTreatmentDecorationImageData: myTreatmentDecorationImageType[] = [
     },
   },
   {
-    svgImage: homeOxygenFacial,
+    svgImage: grassBladeDecoration,
     styled: {
       top: "28%",
       left: "50%",
@@ -39,7 +39,7 @@ const myTreatmentDecorationImageData: myTreatmentDecorationImageType[] = [
     },
   },
   {
-    svgImage: homePurifyingHerbalFacial,
+    svgImage: tulipDecoration,
     styled: {
       top: "25%",
       left: "40%",

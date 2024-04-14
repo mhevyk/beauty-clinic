@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, styled } from "@mui/material";
-import employeeLilyImage from "@images/lily.webp";
-import LeafDecorationSvg from "@images/leaf-decoration.svg?react";
+import LeafDecorationSvg from '@decorations/sharp-leaf.svg?react'
+import employeeLilyImage from '@images/lily.webp'
 import { EMPLOYEE_SHOWCASE_SECTION_ID } from "@constants/index";
 
 const EmployeeImageWrapper = styled(Grid)(({ theme }) => ({

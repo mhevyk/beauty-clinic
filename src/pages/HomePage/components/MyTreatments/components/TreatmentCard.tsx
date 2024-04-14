@@ -52,14 +52,14 @@ type TreatmentCardProps = {
   treatment: Treatment;
   decorationSvgImage: string;
   svgImageDecorationStyles: SxProps;
-  treatmentImageSrc: string;
+  treatmentImageUrl: string;
 };
 
 export default function TreatmentCard({
   treatment,
   decorationSvgImage,
   svgImageDecorationStyles,
-  treatmentImageSrc,
+  treatmentImageUrl,
 }: TreatmentCardProps) {
   return (
     <Grid item xs={12} sm={9} md={4.5} lg={3} xl={2.5}>
@@ -69,7 +69,7 @@ export default function TreatmentCard({
           src={decorationSvgImage}
           alt="image"
         />
-        <ImgStyled src={treatmentImageSrc} alt={treatment.name} />
+        <ImgStyled src={treatmentImageUrl} alt={treatment.name} />
         <TitleStyled>{treatment.name}</TitleStyled>
         <Typography
           variant="paragraph"

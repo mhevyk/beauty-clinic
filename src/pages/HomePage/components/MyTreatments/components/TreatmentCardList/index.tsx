@@ -1,6 +1,6 @@
 import concatUrls from "@utils/concatUrls.ts";
 import TreatmentCard from "../TreatmentCard.tsx";
-import myTreatmentDecorationImageData from "./data/treatmentItems.ts";
+import myTreatmentDecorationImageData from "./data/treatmentItems";
 import { useGetTreatmentsSuspenseQuery } from "@api/hooks";
 
 export default function TreatmentCardList() {
@@ -15,7 +15,7 @@ export default function TreatmentCardList() {
       return null;
     }
 
-    const treatmentImageSrc = concatUrls(
+    const treatmentImageUrl = concatUrls(
       import.meta.env.VITE_API_BASE_IMAGE_URL,
       treatment.imageUrl
     );
@@ -26,7 +26,7 @@ export default function TreatmentCardList() {
         treatment={treatment}
         decorationSvgImage={svgImage.svgImage}
         svgImageDecorationStyles={svgImage.styled}
-        treatmentImageSrc={treatmentImageSrc}
+        treatmentImageUrl={treatmentImageUrl}
       />
     );
   });

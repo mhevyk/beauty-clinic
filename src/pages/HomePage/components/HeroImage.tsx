@@ -1,7 +1,7 @@
-import homeFlower from "@images/homeFlower.svg";
-import homeCotton from "@images/homeСotton.png";
-import homeCoco from "@images/homeCoco.png";
-import homePetal from "@images/homePetal.png";
+import flowerCombinationDecoration from "@decorations/flower-combination.svg";
+import cottonImage from "@images/cotton.png";
+import coconutImage from "@images/coconut.png";
+import whitePetalImage from "@images/white-petal.png";
 import { Box, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 
@@ -101,10 +101,13 @@ const BoxImageStyled = styled(Box)({
 export default function HeroImage() {
   return (
     <BoxImageStyled>
-      <FlowerImage alt="Flower" src={homeFlower} />
-      <PetalImage alt="Petal" src={homePetal} />
-      <CocoImage alt="Coco" src={homeCoco} />
-      <CottonImage alt="Cotton" src={homeCotton} />
+      <FlowerImage
+        alt="Flowers combination decoration"
+        src={flowerCombinationDecoration}
+      />
+      <PetalImage alt="Petal" src={whitePetalImage} />
+      <CocoImage alt="Coconut" src={coconutImage} />
+      <CottonImage alt="Cotton" src={cottonImage} />
     </BoxImageStyled>
   );
 }

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Container, Grid, Hidden, styled } from "@mui/material";
 import TreatmentsCardList from "./components/TreatmentsCardList.tsx";
-import ImageTreatmentsPage from "@images/ImageTreatmentsPage.svg";
+import FernDecorationSvg from '@decorations/fern.svg?react'
 import theme from "@theme/theme.ts";
 import SkeletonTreatmentsCard from "./components/SkeletonTreatmentsCard.tsx";
 
@@ -10,7 +10,7 @@ const SectionStyled = styled("section")(({ theme }) => ({
   padding: "100px 15px",
 }));
 
-const TreatmentImageStyled = styled("img")({
+const TreatmentImageStyled = styled(FernDecorationSvg)({
   position: "relative",
   width: "446px",
   height: "225px",
@@ -43,7 +43,7 @@ export default function TreatmentsPage() {
   return (
     <SectionStyled>
       <Hidden only={["xs", "sm"]}>
-        <TreatmentImageStyled src={ImageTreatmentsPage} alt="spikelet" />
+        <TreatmentImageStyled />
       </Hidden>
       <Container sx={{ maxWidth: "1000px" }}>
         <Grid justifyContent="center" container spacing={3.5} columns={12}>

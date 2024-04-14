@@ -30,6 +30,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@images/*": ["src/assets/images/*"],
       "@icons/*": ["src/assets/icons/*"],
+      "@backgrounds/*": ["src/assets/backgrounds/*"],
+      "@decorations/*": ["src/assets/decorations/*"],
       "@theme/*": ["src/theme/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
       "@constants/*": ["src/constants/*"],

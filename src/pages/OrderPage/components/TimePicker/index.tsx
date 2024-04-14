@@ -1,6 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import { addMinutes, format, set } from "date-fns";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 function getHalfHourRange(date: Date) {
   const startDate = set(date, {
@@ -29,6 +29,7 @@ export default function TimePicker({
   setSelectedDate,
 }: TimePickerProps) {
   const [shouldShowAllSessions, setShouldShowAllSessions] = useState(false);
+  const firstAvailableTimelRef = useRef<HTMLButtonElement | null>(null);
 
   const dateRange = getHalfHourRange(userDate);
 
@@ -36,12 +37,23 @@ export default function TimePicker({
     ? dateRange
     : dateRange.slice(0, 12);
 
+  useEffect(() => {
+    // firstAvailableTimelRef.current?.focus();
+    // firstAvailableTimelRef.current?.click();
+
+    // console.log(firstAvailableTimelRef.current);
+    if (limitedSessionTimes.length > 0) {
+      setSelectedDate(limitedSessionTimes[0]);
+    }
+  }, []);
+
   return (
     <>
       <Grid container spacing="10px" columns={12} alignItems="center">
-        {limitedSessionTimes.map((date) => (
+        {limitedSessionTimes.map((date, index) => (
           <Grid item key={date.getTime()} md="auto">
             <Button
+              ref={index === 0 ? firstAvailableTimelRef : undefined}
               onClick={() => setSelectedDate(date)}
               variant="primary-outlined"
               sx={{

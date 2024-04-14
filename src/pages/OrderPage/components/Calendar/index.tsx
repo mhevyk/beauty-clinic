@@ -1,5 +1,5 @@
 import { Box, ButtonBase, SxProps, styled, useMediaQuery } from "@mui/material";
-import { format } from "date-fns";
+import { format, isBefore, startOfToday } from "date-fns";
 import { CalendarSize, useCalendar } from "./hooks/useCalendar";
 import theme from "@theme/theme";
 import CalendarHeader from "./components/CalendarHeader";
@@ -145,8 +145,9 @@ export default function Calendar({
           <CalendarDay
             key={day.date.getTime()}
             calendarSize={calendarSize}
-            disabled={day.isAnotherMonth}
-            hasAvailableSessions={false} // TODO: replace with event data
+            // disabled={day.isAnotherMonth}
+            disabled={isBefore(day.date, startOfToday()) || day.isAnotherMonth}
+            hasAvailableSessions={true} // TODO: replace with event data
             isAnotherMonth={day.isAnotherMonth}
             isToday={day.isToday}
             isSelected={day.isSelected}

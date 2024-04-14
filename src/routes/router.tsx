@@ -42,6 +42,7 @@ const router: RouteObject[] = [
         children: [{ path: "protected", element: <h1>I am protected</h1> }],
       },
       {
+        element: <RootLayout />,
         path: "book-session",
         children: [{ path: ":treatmentId", element: <OrderPage /> }],
       },

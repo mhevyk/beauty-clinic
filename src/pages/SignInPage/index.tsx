@@ -1,11 +1,15 @@
 import { Formik } from "formik";
 import SignInForm from "./components/SignInForm";
-import AuthAlternativeLink from "../components/AuthAlternativeLink";
+import AuthAlternativeLink from "@components/AuthAlternativeLink";
 import { Box } from "@mui/material";
 import { signInFormSchema } from "@validation/signInFormSchema";
-import { SignInFormValues } from "../types";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
-import useSignIn from "@pages/Auth/hooks/useSignIn";
+import useSignIn from "@hooks/auth/useSignIn";
+import { PasswordFormValues } from "@components/PasswordForm";
+
+export type SignInFormValues = Pick<PasswordFormValues, "password"> & {
+  usernameOrEmail: string;
+};
 
 const initialFormValues: SignInFormValues = {
   usernameOrEmail: "",

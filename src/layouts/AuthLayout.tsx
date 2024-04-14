@@ -1,7 +1,7 @@
 import { Box, Typography, alpha, styled } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import backgroundImage from "@images/flower-background.png";
-import HelloDecorationSvg from "@images/homeHello.svg?react";
+import backgroundImage from "@backgrounds/flower-background.png";
+import HelloDecorationSvg from "@decorations/hello.svg?react";
 
 const PageWrapper = styled(Box)(({ theme }) => {
   const overlayColor = alpha(theme.palette.secondary.main, 0.25);

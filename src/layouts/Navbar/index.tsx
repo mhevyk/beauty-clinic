@@ -6,7 +6,7 @@ import CartDrawerButton from "./components/Cart/CartDrawerButton";
 import { Link } from "react-router-dom";
 import theme from "@theme/theme";
 import useToggle from "@hooks/useToggle";
-import LoginButton from "@components/LoginButton.tsx";
+import LoginButton from "@components/LoginButton";
 
 const AppBarStyled = styled(AppBar)(({ theme }) => ({
   padding: "16px 0 8px",

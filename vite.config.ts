@@ -17,6 +17,8 @@ export default defineConfig({
       "@layouts": resolveSource("layouts"),
       "@images": resolveSource("assets", "images"),
       "@icons": resolveSource("assets", "icons"),
+      "@backgrounds": resolveSource('assets', "backgrounds"),
+      "@decorations": resolveSource('assets', "decorations"),
       "@theme": resolveSource("theme"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
       "@constants": resolveSource("constants"),
@@ -24,7 +26,8 @@ export default defineConfig({
       "@store": resolveSource("store"),
       "@config": resolveSource("config"),
       "@utils": resolveSource('utils'),
-      "@type-helpers": resolveSource('types', 'helpers.ts')
+      "@type-helpers": resolveSource('types', 'helpers.ts'),
+      "@routes": resolveSource('routes')
     },
   },
   plugins: [react(), svgr()],

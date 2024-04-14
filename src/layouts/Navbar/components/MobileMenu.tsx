@@ -2,7 +2,7 @@ import { Dialog, DialogContent, styled } from "@mui/material";
 import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
 import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
 import useLockPageScroll from "@hooks/useLockPageScroll";
-import LoginButton from "@components/LoginButton.tsx";
+import LoginButton from "@components/LoginButton";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   background: theme.palette.PinkMarbleSky.main,

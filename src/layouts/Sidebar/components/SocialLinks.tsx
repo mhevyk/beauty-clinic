@@ -1,7 +1,8 @@
 import { Box, styled } from "@mui/material";
 import { Link } from "react-router-dom";
-import facebook from "@images/facebook.png";
-import instagram from "@images/instagram.png";
+import FacebookIconSvg from "@icons/facebook.svg?react";
+import InstagramIconSvg from "@icons/instagram.svg?react";
+import { cloneElement } from "react";
 
 const BoxStyled = styled(Box)(({ theme }) => {
   const smallScreenMediaQuery = theme.breakpoints.down("md");
@@ -23,20 +24,30 @@ const BoxStyled = styled(Box)(({ theme }) => {
   };
 });
 
-const Image = styled("img")({
+const socialLinksData = [
+  {
+    path: "#",
+    icon: <FacebookIconSvg />,
+  },
+  {
+    path: "#",
+    icon: <InstagramIconSvg />,
+  },
+];
+
+const iconStyles = {
   width: 24,
   height: 24,
-});
+};
 
 export default function SocialLinks() {
   return (
     <BoxStyled>
-      <Link to="#">
-        <Image alt="facebook" src={facebook} />
-      </Link>
-      <Link to="#">
-        <Image alt="instagram" src={instagram} />
-      </Link>
+      {socialLinksData.map(({ icon, path }, index) => (
+        <Link key={index} to={path}>
+          {cloneElement(icon, iconStyles)}
+        </Link>
+      ))}
     </BoxStyled>
   );
 }

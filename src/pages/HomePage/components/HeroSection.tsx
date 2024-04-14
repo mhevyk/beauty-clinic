@@ -1,5 +1,5 @@
 import { Box, Button, styled } from "@mui/material";
-import homeHello from "@images/homeHello.svg";
+import HelloDecorationSvg from '@decorations/hello.svg?react';
 import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";
 import HeroImage from "@pages/HomePage/components/HeroImage.tsx";
@@ -7,7 +7,7 @@ import HeroImage from "@pages/HomePage/components/HeroImage.tsx";
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 const middleScreenMediaQuery = theme.breakpoints.down(1200);
 
-const HelloImg = styled("img")({
+const HelloImg = styled(HelloDecorationSvg)({
   userSelect: "none",
   zIndex: 1,
   width: 580,
@@ -104,7 +104,7 @@ export default function HeroSection() {
     <SectionStyled>
       <BoxStyled>
         <BoxTitleStyled>
-          <HelloImg alt="Hello image" src={homeHello} />
+          <HelloImg />
           <Header>
             Lily Organic
             <br /> Beautician

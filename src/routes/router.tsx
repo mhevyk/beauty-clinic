@@ -3,11 +3,11 @@ import RootLayout from "@layouts/RootLayout";
 import ErrorPage from "@pages/ErrorPage";
 import HomePage from "@pages/HomePage";
 import NotFoundPage from "@pages/NotFoundPage";
-import SignUpPage from "@pages/Auth/SignUpPage";
+import SignUpPage from "@pages/SignUpPage";
 import AuthLayout from "@layouts/AuthLayout";
-import SignInPage from "@pages/Auth/SignInPage";
+import SignInPage from "@pages/SignInPage";
 import TreatmentsPage from "@pages/TreatmentsPage";
-import ProtectedRoute from "@components/ProtectedRoute";
+import ProtectedRoute from "@routes/helpers/ProtectedRoute";
 
 const router: RouteObject[] = [
   {

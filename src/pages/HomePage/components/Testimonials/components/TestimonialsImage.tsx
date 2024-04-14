@@ -1,17 +1,18 @@
 import { Box, styled } from "@mui/material";
-import TestimonialFlower1 from "@images/TestimonialFlower1.svg";
-import TestimonialFlower2 from "@images/TestimonialFlower2.svg";
-import TestimonialFlower3 from "@images/TestimonialFlower3.svg";
-import TestimonialFlower4 from "@images/TestimonialFlower4.svg";
-import TestimonialFlower5 from "@images/TestimonialFlower5.svg";
+import PionFlowerDecorationSvg from '@decorations/flower-pion.svg?react';
+import SpiralSharpLeafDecorationSvg from '@decorations/spiral-sharp-leaf.svg?react'
+import OpenBananaDecorationSvg from '@decorations/opened-banana.svg?react'
+import ThickSharpLeafDecorationSvg from '@decorations/thick-sharp-leaf.svg?react'
+import SeaweedDecorationSvg from '@decorations/seaweed.svg?react'
 import theme from "@theme/theme.ts";
+import { CSSProperties } from "react";
 
 const breakpointScreen = theme.breakpoints.up("lg");
 
-const ImageStyled = styled("img")({
+const baseImageStyles: CSSProperties = {
   position: "absolute",
   objectFit: "cover",
-});
+};
 
 const BoxStyled = styled(Box)({
   [breakpointScreen]: {
@@ -24,7 +25,8 @@ const BoxStyled = styled(Box)({
   overflow: "hidden",
 });
 
-const Flower1ImageStyled = styled(ImageStyled)({
+const PionFlowerDecoration = styled(PionFlowerDecorationSvg)({
+  ...baseImageStyles,
   width: 132,
   height: 141,
   transform: "translate(-40%, 45%) ",
@@ -35,7 +37,8 @@ const Flower1ImageStyled = styled(ImageStyled)({
   },
 });
 
-const Flower2ImageStyled = styled(ImageStyled)({
+const SpiralSharpLeafDecoration = styled(SpiralSharpLeafDecorationSvg)({
+  ...baseImageStyles,
   width: 129,
   height: 78,
   transform: "translate(-40%, 260%) rotate(350deg)",
@@ -46,7 +49,8 @@ const Flower2ImageStyled = styled(ImageStyled)({
   },
 });
 
-const Flower3ImageStyled = styled(ImageStyled)({
+const OpenBananaDecoration = styled(OpenBananaDecorationSvg)({
+  ...baseImageStyles,
   transform: "translate(60%, 85%) rotate(354deg)",
   width: 113,
   height: 144,
@@ -57,7 +61,8 @@ const Flower3ImageStyled = styled(ImageStyled)({
   },
 });
 
-const Flower4ImageStyled = styled(ImageStyled)({
+const ThickSharpLeafDecoration = styled(ThickSharpLeafDecorationSvg)({
+  ...baseImageStyles,
   transform: "translate(145%, 340%) rotate(20deg)",
   width: 52,
   height: 79,
@@ -68,7 +73,8 @@ const Flower4ImageStyled = styled(ImageStyled)({
   },
 });
 
-const Flower5ImageStyled = styled(ImageStyled)({
+const SeaweedDecoration = styled(SeaweedDecorationSvg)({
+  ...baseImageStyles,
   transform: "translate(-25%, 290%) rotate(338deg)",
   width: 105,
   height: 96,
@@ -82,11 +88,11 @@ const Flower5ImageStyled = styled(ImageStyled)({
 export default function TestimonialsImage() {
   return (
     <BoxStyled>
-      <Flower1ImageStyled src={TestimonialFlower1} />
-      <Flower2ImageStyled src={TestimonialFlower2} />
-      <Flower3ImageStyled src={TestimonialFlower3} />
-      <Flower4ImageStyled src={TestimonialFlower4} />
-      <Flower5ImageStyled src={TestimonialFlower5} />
+      <PionFlowerDecoration />
+      <SpiralSharpLeafDecoration />
+      <OpenBananaDecoration />
+      <ThickSharpLeafDecoration />
+      <SeaweedDecoration />
     </BoxStyled>
   );
 }

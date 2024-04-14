@@ -1,17 +1,22 @@
 import { Button, Stack } from "@mui/material";
-import PasswordForm from "./components/PasswordForm";
-import SignUpForm from "./components/SignUpForm";
-import { useMultistepForm } from "./hooks/useMultistepForm";
-import AuthAlternativeLink from "../components/AuthAlternativeLink";
+import PasswordForm, { PasswordFormValues } from "@components/PasswordForm";
+import { useMultistepForm } from "@hooks/useMultistepForm";
+import AuthAlternativeLink from "@components/AuthAlternativeLink";
 import theme from "@theme/theme";
 import { Formik, useFormikContext } from "formik";
-import { SignUpFormValues } from "../types";
 import {
   repeatPasswordFormSchema,
   signUpFormSchema,
 } from "@validation/signUpFormSchema";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
-import useSignUp from "@pages/Auth/hooks/useSignUp";
+import useSignUp from "@hooks/auth/useSignUp";
+import SignUpForm from "./components/SignUpForm";
+
+export type SignUpFormValues = PasswordFormValues & {
+  username: string;
+  email: string;
+  phoneNumber: string;
+};
 
 const initialFormValues: SignUpFormValues = {
   username: "",

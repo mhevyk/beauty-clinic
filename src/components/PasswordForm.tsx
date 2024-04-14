@@ -1,7 +1,6 @@
 import { InputLabel, TextField, styled } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useId } from "react";
-import { PasswordFormValues } from "../../types";
 import FormGroupWithError from "@components/FormGroupWithError";
 
 const Form = styled("form")({
@@ -16,6 +15,11 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
   marginBottom: "2px",
   fontWeight: 400,
 }));
+
+export type PasswordFormValues = {
+  password: string;
+  repeatedPassword: string;
+};
 
 export default function PasswordForm() {
   const id = useId();

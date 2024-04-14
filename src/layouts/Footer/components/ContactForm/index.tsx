@@ -9,7 +9,7 @@ import {
   VerifyRecaptchaMutation,
 } from "@api/hooks";
 import FormGroupWithError from "@components/FormGroupWithError";
-import AppSnackbar from "@components/AppSnackbar.tsx";
+import AppSnackbar from "@components/AppSnackbar";
 import { useState } from "react";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;

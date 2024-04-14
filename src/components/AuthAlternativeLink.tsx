@@ -1,5 +1,5 @@
 import { Divider, Box, styled } from "@mui/material";
-import { Link } from "react-router-dom";
+import AppLink from "./AppLink";
 
 const DividerStyled = styled(Divider)(({ theme }) => ({
   padding: "0 8px",
@@ -14,16 +14,6 @@ const DividerStyled = styled(Divider)(({ theme }) => ({
   },
 }));
 
-const LinkStyled = styled(Link)(({ theme }) => ({
-  color: theme.palette.FieryOrange.main,
-  textDecoration: "underline",
-  transition: "all 300ms",
-  "&:active, &:hover": {
-    color: theme.palette.FieryOrange.main,
-    opacity: 0.6,
-  },
-}));
-
 type AuthFooterProps = {
   linkProps: {
     to: string;
@@ -35,7 +25,7 @@ export default function AuthAlternativeLink({ linkProps }: AuthFooterProps) {
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
       <DividerStyled aria-hidden="true">or</DividerStyled>
-      <LinkStyled to={linkProps.to}>{linkProps.label}</LinkStyled>
+      <AppLink variant="accent" to={linkProps.to}>{linkProps.label}</AppLink>
     </Box>
   );
 }

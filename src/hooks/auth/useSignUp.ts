@@ -1,5 +1,5 @@
 import { useSignUpMutation } from "@api/hooks";
-import { SignUpFormValues } from "@pages/Auth/types";
+import { SignUpFormValues } from "@pages/SignUpPage";
 import { useUserStore } from "@store/user/userStore";
 import { useNavigate } from "react-router-dom";
 

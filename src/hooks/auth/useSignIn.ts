@@ -1,5 +1,5 @@
 import { useSignInMutation } from "@api/hooks";
-import { SignInFormValues } from "@pages/Auth/types";
+import { SignInFormValues } from "@pages/SignInPage";
 import { useUserStore } from "@store/user/userStore";
 import { useNavigate } from "react-router-dom";
 

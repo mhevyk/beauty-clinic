@@ -1,6 +1,6 @@
 import { Components } from "@mui/material";
 
-export const MuiTextFieldStyles: Components["MuiTextField"] = {
+const MuiTextFieldStyles: Components["MuiTextField"] = {
   defaultProps: {
     InputProps: {
       sx: {
@@ -26,3 +26,5 @@ export const MuiTextFieldStyles: Components["MuiTextField"] = {
     },
   },
 };
+
+export default MuiTextFieldStyles;

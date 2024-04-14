@@ -10,7 +10,7 @@ const baseButtonStyles: CSSProperties = {
   fontSize: "16px",
 };
 
-export const MuiButtonStyles: Components["MuiButton"] = {
+const MuiButtonStyles: Components["MuiButton"] = {
   defaultProps: {
     variant: "default",
     disableRipple: true,
@@ -102,3 +102,5 @@ export const MuiButtonStyles: Components["MuiButton"] = {
     },
   ],
 };
+
+export default MuiButtonStyles;

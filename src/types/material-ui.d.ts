@@ -26,7 +26,7 @@ declare module "@mui/material" {
   interface AppBarPropsColorOverrides extends Record<AppBarColors, never> {}
 }
 
-type CustomFonts = "heading" | "paragraph";
+type CustomFonts = "heading" | "paragraph" | 'accent';
 
 type CustomTypography = Record<CustomFonts, CSSProperties>;
 
@@ -42,10 +42,4 @@ type CustomButton = "primary" | "primary-outlined" | "accent" | "default";
 
 declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides extends Record<CustomButton, true> {}
-}
-
-declare module "@mui/material/styles" {
-  interface BreakpointOverrides {
-    tm: true;
-  }
 }

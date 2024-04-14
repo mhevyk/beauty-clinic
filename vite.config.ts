@@ -24,7 +24,8 @@ export default defineConfig({
       "@store": resolveSource("store"),
       "@config": resolveSource("config"),
       "@utils": resolveSource('utils'),
-      "@type-helpers": resolveSource('types', 'helpers.ts')
+      "@type-helpers": resolveSource('types', 'helpers.ts'),
+      "@routes": resolveSource('routes')
     },
   },
   plugins: [react(), svgr()],

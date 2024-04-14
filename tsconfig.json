@@ -37,7 +37,8 @@
       "@config/*": ["src/config/*"],
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"],
-      "@type-helpers": ["src/types/helpers.ts"]
+      "@type-helpers": ["src/types/helpers.ts"],
+      "@routes/*": ["src/routes/*"]
     }
   },
   "include": ["src"],

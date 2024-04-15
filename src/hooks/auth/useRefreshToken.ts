@@ -1,5 +1,6 @@
 import { AccessToken, useUserStore } from "@store/user/userStore";
 import fetchAccessToken from "@utils/fetchAccessToken";
+import showSnackbar from "@utils/showSnackbar";
 import { useEffect } from "react";
 
 type RefreshTokenResponse = {
@@ -29,7 +30,7 @@ export default function useRefreshToken() {
           return; //request is canceled here
         }
 
-        // TODO: handle and show error in snackbar
+        showSnackbar({ autohide: true, message: "User is not logged in" });
         setAccessToken(null);
       })
       .finally(() => {

@@ -1,12 +1,13 @@
 import { useSignInMutation } from "@api/hooks";
 import { SignInFormValues } from "@pages/SignInPage";
 import { useUserStore } from "@store/user/userStore";
+import showSnackbar from "@utils/showSnackbar";
 import { useNavigate } from "react-router-dom";
 
 export default function useSignIn() {
   const [signIn, { loading: isSigningIn }] = useSignInMutation();
   const navigate = useNavigate();
-  const setAccessToken = useUserStore(store => store.setAccessToken);
+  const setAccessToken = useUserStore((store) => store.setAccessToken);
 
   const handleSignIn = async (values: SignInFormValues) => {
     try {
@@ -20,8 +21,9 @@ export default function useSignIn() {
       setAccessToken(token);
       navigate("/", { replace: true });
     } catch (error) {
-      // TODO: use toast to display error
-      console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occured";
+      showSnackbar({ autohide: true, message: errorMessage });
     }
   };
 

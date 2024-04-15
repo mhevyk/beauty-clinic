@@ -9,8 +9,8 @@ import {
   VerifyRecaptchaMutation,
 } from "@api/hooks";
 import FormGroupWithError from "@components/FormGroupWithError";
-import AppSnackbar from "@components/AppSnackbar";
-import { useState } from "react";
+import closeSnackbar from "@utils/closeSnackbar";
+import showSnackbar from "@utils/showSnackbar";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -48,7 +48,6 @@ function validateRecaptcha(data?: VerifyRecaptchaMutation | null) {
 }
 
 export default function ContactForm() {
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const {
     isOpen: isModalOpen,
     open: openModal,
@@ -74,20 +73,24 @@ export default function ContactForm() {
       formik.resetForm();
       closeModal();
     } catch (error) {
+      let errorMessage: string;
+
       if (error instanceof Error && error.message.length > 0) {
-        setErrorMessage(error.message);
+        errorMessage = error.message;
       } else {
-        setErrorMessage("Failed to send contact message");
+        errorMessage = "Failed to send contact message";
       }
+
+      showSnackbar({
+        autohide: true,
+        autohideDuration: 6000,
+        message: errorMessage,
+      });
     }
   }
 
-  function handleCloseSnackbar() {
-    setErrorMessage(null);
-  }
-
   function handleCloseModal() {
-    handleCloseSnackbar();
+    closeSnackbar();
     closeModal();
   }
 
@@ -95,13 +98,6 @@ export default function ContactForm() {
 
   return (
     <>
-      <AppSnackbar
-        isOpen={Boolean(errorMessage)}
-        onClose={handleCloseSnackbar}
-        message={errorMessage}
-        variant="error"
-        autoHideDuration={6000}
-      />
       <form onSubmit={formik.handleSubmit}>
         <Stack direction="row" gap="22px">
           <FormGroupWithError

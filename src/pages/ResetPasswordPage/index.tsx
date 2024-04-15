@@ -1,3 +1,4 @@
+import { useResetPasswordMutation } from "@api/hooks";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import PasswordForm, { PasswordFormValues } from "@components/PasswordForm";
 import { Box } from "@mui/material";
@@ -12,12 +13,24 @@ const initialFormValues: PasswordFormValues = {
 
 export default function ResetPasswordpage() {
   const [searchParams] = useSearchParams();
-
-  const token = searchParams.get("token");
+  const [resetPassword, { loading: isResettingPassword }] =
+    useResetPasswordMutation();
 
   async function handleSubmit(values: PasswordFormValues) {
-    // TODO: connect to backend
-    console.log(values, token);
+    try {
+      const token = searchParams.get("token");
+
+      if (token === null) {
+        throw new Error("Invalid reset link, try again")
+      }
+
+      const data = { token, password: values.password };
+      await resetPassword({ variables: { input: data } });
+      // TODO: handle success state
+    } catch (error) {
+      // TODO: handle error state with snackbar
+      console.log(error)
+    }
   }
 
   return (
@@ -36,6 +49,7 @@ export default function ResetPasswordpage() {
             size="small"
             fullWidth
             onClick={handleSubmit as () => void}
+            loading={isResettingPassword}
           >
             Reset password
           </ButtonWithSpinner>

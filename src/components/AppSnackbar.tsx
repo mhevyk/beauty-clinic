@@ -25,7 +25,12 @@ export default function AppSnackbar() {
       open={isOpen}
       onClose={handleClose}
     >
-      <Alert onClose={handleClose} severity={variant} variant="filled">
+      <Alert
+        onClose={handleClose}
+        severity={variant}
+        variant="filled"
+        sx={{ whiteSpace: "break-spaces" }}
+      >
         {message}
       </Alert>
     </Snackbar>

@@ -3,6 +3,7 @@ import AuthAlternativeLink from "@components/AuthAlternativeLink";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import PasswordForm, { PasswordFormValues } from "@components/PasswordForm";
 import { Box } from "@mui/material";
+import showSnackbar from "@utils/showSnackbar";
 import { repeatPasswordFormSchema } from "@validation/signUpFormSchema";
 import { Formik } from "formik";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -28,11 +29,22 @@ export default function ResetPasswordpage() {
 
       const data = { token, password: values.password };
       await resetPassword({ variables: { input: data } });
-      navigate("/auth/signin");
-      // TODO: handle success state
+      navigate("/auth/signin", { replace: true });
+
+      showSnackbar({
+        variant: "success",
+        autohide: true,
+        autohideDuration: 3000,
+        message: "Password was successfully reset\nPlease sign in now",
+      });
     } catch (error) {
-      // TODO: handle error state with snackbar
-      console.log(error);
+      const errorMessage =
+        "Password reset token is not valid\nPlease go to sign in page and try resetting password again";
+      showSnackbar({
+        autohide: true,
+        autohideDuration: 4000,
+        message: errorMessage,
+      });
     }
   }
 

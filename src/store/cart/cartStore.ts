@@ -1,5 +1,6 @@
 import { PERSISTED_STORAGE_KEYS } from "@constants/index";
 import createPersistedStore from "@store/utils/createPersistedStore";
+import showSnackbar from "@utils/showSnackbar";
 
 // TODO: move types from here to reuse them
 type TreatmentSessionDuration = {
@@ -81,8 +82,10 @@ export const useCartStore = createPersistedStore<CartStore>(
       );
 
       if (session) {
-        // TODO: show error snackbar
-        console.error("DUPLICATED TREATMENT");
+        showSnackbar({
+          autohide: true,
+          message: "Treatment cannot be duplicated!",
+        });
         return;
       }
 

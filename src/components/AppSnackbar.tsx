@@ -1,42 +1,31 @@
-import Snackbar, {
-  SnackbarCloseReason,
-  SnackbarProps,
-} from "@mui/material/Snackbar";
-import Alert, { AlertProps } from "@mui/material/Alert";
+import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { SyntheticEvent } from "react";
+import { useSnackbarStore } from "@store/snackbar/snackbarStore";
 
-type AppSnackbarProps = {
-  isOpen: boolean;
-  onClose: () => void;
-  message: string | null;
-  variant: AlertProps["severity"];
-} & SnackbarProps;
-export default function AppSnackbar({
-  isOpen,
-  onClose,
-  message,
-  variant: severity,
-  ...props
-}: AppSnackbarProps) {
+export default function AppSnackbar() {
+  const isOpen = useSnackbarStore((store) => store.isOpen);
+  const { message, variant } = useSnackbarStore((store) => store.config);
+  const closeSnackbar = useSnackbarStore((store) => store.closeSnackbar);
+
   const handleClose = (
     _: SyntheticEvent | Event,
-    reason?: SnackbarCloseReason,
+    reason?: SnackbarCloseReason
   ) => {
     if (reason === "clickaway") {
       return;
     }
 
-    onClose();
+    closeSnackbar();
   };
 
   return (
     <Snackbar
       anchorOrigin={{ horizontal: "center", vertical: "top" }}
-      {...props}
       open={isOpen}
       onClose={handleClose}
     >
-      <Alert onClose={handleClose} severity={severity} variant="filled">
+      <Alert onClose={handleClose} severity={variant} variant="filled">
         {message}
       </Alert>
     </Snackbar>

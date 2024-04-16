@@ -1,6 +1,7 @@
 import { useSignUpMutation } from "@api/hooks";
 import { SignUpFormValues } from "@pages/SignUpPage";
 import { useUserStore } from "@store/user/userStore";
+import showSnackbar from "@utils/showSnackbar";
 import { useNavigate } from "react-router-dom";
 
 export default function useSignUp() {
@@ -27,8 +28,9 @@ export default function useSignUp() {
       setAccessToken(token);
       navigate("/", { replace: true });
     } catch (error) {
-      // TODO: use toast to display error
-      console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error occured";
+      showSnackbar({ autohide: true, message: errorMessage });
     }
   };
 

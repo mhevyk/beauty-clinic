@@ -26,7 +26,7 @@ declare module "@mui/material" {
   interface AppBarPropsColorOverrides extends Record<AppBarColors, never> {}
 }
 
-type CustomFonts = "heading" | "paragraph" | 'accent';
+type CustomFonts = "heading" | "paragraph" | "accent" | "secondary";
 
 type CustomTypography = Record<CustomFonts, CSSProperties>;
 

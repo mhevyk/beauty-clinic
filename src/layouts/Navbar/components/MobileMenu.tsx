@@ -2,7 +2,7 @@ import { Dialog, DialogContent, styled } from "@mui/material";
 import MenuLinks from "@layouts/Sidebar/components/MenuLinks.tsx";
 import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
 import useLockPageScroll from "@hooks/useLockPageScroll";
-import LoginButton from "@components/LoginButton";
+import UserToolbar from "@components/UserToolbar";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   background: theme.palette.PinkMarbleSky.main,
@@ -26,7 +26,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <Dialog open={isOpen} fullScreen transitionDuration={400} disableScrollLock>
       <DialogContentStyled>
-        <LoginButton />
+        <UserToolbar />
         <MenuLinks onClose={onClose} />
         <SocialLinks />
       </DialogContentStyled>

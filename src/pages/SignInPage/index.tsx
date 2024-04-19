@@ -6,6 +6,7 @@ import { signInFormSchema } from "@validation/signInFormSchema";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import useSignIn from "@hooks/auth/useSignIn";
 import { PasswordFormValues } from "@components/PasswordForm";
+import ResetPasswordLink from "./components/ForgotPasswordLink";
 
 export type SignInFormValues = Pick<PasswordFormValues, "password"> & {
   usernameOrEmail: string;
@@ -31,8 +32,9 @@ export default function SignInPage() {
     >
       {({ handleSubmit }) => (
         <>
-          <Box sx={{ mb: "48px" }}>
+          <Box sx={{ mb: "25px" }}>
             <SignInForm />
+            <ResetPasswordLink />
           </Box>
           <ButtonWithSpinner
             loading={isSigningIn}

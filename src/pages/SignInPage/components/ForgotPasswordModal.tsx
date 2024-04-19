@@ -3,23 +3,25 @@ import {
   Box,
   Dialog,
   DialogContent,
+  Divider,
   IconButton,
   Typography,
   styled,
+  useMediaQuery,
 } from "@mui/material";
 import OpenLockIconSvg from "@icons/open-lock.svg?react";
 import useCountdown from "../hooks/useCountdown";
 import { Formik } from "formik";
 import ResetPasswordForm from "./ForgotPasswordForm";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { emailFormSchema } from "@validation/emailFormSchema";
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import { useForgotPasswordMutation } from "@api/hooks";
 import showSnackbar from "@utils/showSnackbar";
 import extractErrorMessage from "@utils/extractErrorMessage";
 import CloseIconSvg from "@icons/close-icon-thin.svg?react";
-
-const EMAIL_RESEND_AFTER_SECONDS = 60;
+import AppLink from "@components/AppLink";
+import theme from "@theme/theme";
 
 const CircleWrapper = styled(Box)(({ theme }) => ({
   width: "115px",
@@ -29,6 +31,7 @@ const CircleWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  marginBottom: "30px",
 }));
 
 const Digit = styled(Typography)({
@@ -43,12 +46,27 @@ const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   justifyContent: "center",
   margin: "51.2px 0",
   [theme.breakpoints.down("sm")]: {
-    padding: 0,
+    padding: "0 25px",
   },
   [theme.breakpoints.up("md")]: {
-    margin: "51.2px 60px",
+    margin: "51.2px 25px",
   },
 }));
+
+const Title = styled(Typography)({
+  fontSize: "22px",
+  fontWeight: "bold",
+  marginBottom: "16px",
+  textAlign: "center",
+});
+
+const Description = styled(Typography)({
+  fontSize: "14px",
+  letterSpacing: "1.28px",
+  lineHeight: "26px",
+  textAlign: "center",
+  marginBottom: "30px",
+});
 
 const SubmitButton = styled(ButtonWithSpinner)(({ theme }) => ({
   "&.Mui-disabled": {
@@ -71,6 +89,15 @@ const CloseIcon = styled(CloseIconSvg)(({ theme }) => ({
   },
 }));
 
+const DividerStyled = styled(Divider)({
+  "&::before, &::after": {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  margin: "41px auto 32px",
+  width: "100%",
+  maxWidth: "198px",
+});
+
 type ForgotPasswordModalProps = {
   isOpen: boolean;
   handleClose: () => void;
@@ -89,9 +116,14 @@ export default function ForgotPasswordModal({
   isOpen,
   handleClose,
 }: ForgotPasswordModalProps) {
+  const forgotPasswordAttemptsRef = useRef(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+  const seconds = 60;
+  // use different seconds depending on forgotPasswordAttempts count
+
   const { secondsLeft, start: startCountdown } = useCountdown({
-    seconds: EMAIL_RESEND_AFTER_SECONDS,
+    seconds,
     onCountdownStarted: () => setIsTimerRunning(true),
     onCountdownFinished: () => setIsTimerRunning(false),
   });
@@ -100,6 +132,8 @@ export default function ForgotPasswordModal({
     sendForgotPasswordVerificationEmail,
     { loading: isSendingVerificationEmail },
   ] = useForgotPasswordMutation();
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useLockPageScroll(isOpen);
 
@@ -117,6 +151,8 @@ export default function ForgotPasswordModal({
         autohideDuration: 5000,
       });
 
+      forgotPasswordAttemptsRef.current++;
+
       startCountdown();
     } catch (error) {
       showSnackbar({
@@ -131,6 +167,7 @@ export default function ForgotPasswordModal({
     <Dialog
       open={isOpen}
       onClose={handleClose}
+      fullScreen={isSmallScreen}
       disableScrollLock
       transitionDuration={400}
       PaperProps={{
@@ -149,11 +186,12 @@ export default function ForgotPasswordModal({
         <CircleWrapper>
           {isTimerRunning ? <Digit>{secondsLeft}</Digit> : <OpenLockIconSvg />}
         </CircleWrapper>
-        <Typography>Reset your password</Typography>
-        <Typography>
-          Please enter your email address. We’ll send you a link to reset your
-          password
-        </Typography>
+        <Title variant="heading">Reset your password</Title>
+        <Description variant="paragraph">
+          Please enter your email address.
+          <br />
+          We'll send you a link to reset your password
+        </Description>
         <Formik
           initialValues={initialFormValues}
           onSubmit={handleSubmit}
@@ -161,9 +199,12 @@ export default function ForgotPasswordModal({
         >
           {({ handleSubmit }) => (
             <>
-              <ResetPasswordForm />
+              <Box sx={{ width: "100%", marginBottom: "25px" }}>
+                <ResetPasswordForm />
+              </Box>
               <SubmitButton
                 variant="primary"
+                size="small"
                 fullWidth
                 onClick={handleSubmit as () => void}
                 disabled={isTimerRunning}
@@ -176,6 +217,10 @@ export default function ForgotPasswordModal({
             </>
           )}
         </Formik>
+        <DividerStyled aria-hidden="true">or</DividerStyled>
+        <AppLink variant="accent" to="/auth/signup">
+          Don't have an account?
+        </AppLink>
       </DialogContentStyled>
     </Dialog>
   );

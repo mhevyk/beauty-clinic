@@ -1,13 +1,14 @@
 import { useSignUpMutation } from "@api/hooks";
 import { SignUpFormValues } from "@pages/SignUpPage";
 import { useUserStore } from "@store/user/userStore";
+import extractErrorMessage from "@utils/extractErrorMessage";
 import showSnackbar from "@utils/showSnackbar";
 import { useNavigate } from "react-router-dom";
 
 export default function useSignUp() {
   const [signUp, { loading: isSigningUp }] = useSignUpMutation();
   const navigate = useNavigate();
-  const setAccessToken = useUserStore(store => store.setAccessToken);
+  const setAccessToken = useUserStore((store) => store.setAccessToken);
 
   const handleSignUp = async (values: SignUpFormValues) => {
     try {
@@ -28,9 +29,7 @@ export default function useSignUp() {
       setAccessToken(token);
       navigate("/", { replace: true });
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occured";
-      showSnackbar({ autohide: true, message: errorMessage });
+      showSnackbar({ autohide: true, message: extractErrorMessage(error) });
     }
   };
 

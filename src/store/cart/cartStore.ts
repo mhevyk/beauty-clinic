@@ -40,6 +40,7 @@ export type CartItemWithMultipleSessions = CartItemBase & {
 type CartStore = {
   items: CartItemWithMultipleSessions[];
   getItemsCount: () => number;
+  getTotalPrice: () => number;
   addToCart: (cartItem: CartItemWithOneSession) => void;
   removeFromCart: (treatmentId: number, treatmentSessionId: number) => void;
 };
@@ -47,10 +48,18 @@ type CartStore = {
 export const useCartStore = createPersistedStore<CartStore>(
   (set, get) => ({
     items: [],
-    getItemsCount() {
-      return get().items.reduce<number>((count, treatment) => {
+    getItemsCount: () => {
+      return get().items.reduce((count, treatment) => {
         return count + treatment.sessions.length;
       }, 0);
+    },
+    getTotalPrice: () => {
+      return get().items.reduce(
+        (totalPrice, { treatment, sessions }) => {
+          return totalPrice + treatment.pricePerUnit * sessions.length;
+        },
+        0
+      );
     },
     addToCart: (cartItem) => {
       const items = get().items;

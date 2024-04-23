@@ -11,6 +11,7 @@ import ProtectedRoute from "@routes/helpers/ProtectedRoute";
 import ResetPasswordpage from "@pages/ResetPasswordPage";
 import BookSessionPage from "@pages/BookSessionPage";
 import PostPage from "@pages/PostPage";
+import CartPage from "@pages/CartPage";
 
 const router: RouteObject[] = [
   {
@@ -32,7 +33,8 @@ const router: RouteObject[] = [
               { index: true, element: <p>Posts page</p> },
               { path: ":postId", element: <PostPage /> },
             ],
-          }
+          },
+          { path: "cart", element: <CartPage /> },
         ],
       },
       {

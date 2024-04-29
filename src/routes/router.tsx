@@ -9,6 +9,7 @@ import SignInPage from "@pages/SignInPage";
 import TreatmentsPage from "@pages/TreatmentsPage";
 import ProtectedRoute from "@routes/helpers/ProtectedRoute";
 import BookSessionPage from "@pages/BookSessionPage";
+import PostPage from "@pages/PostPage";
 
 const router: RouteObject[] = [
   {
@@ -24,6 +25,13 @@ const router: RouteObject[] = [
             path: "book-session",
             children: [{ path: ":treatmentId", element: <BookSessionPage /> }],
           },
+          {
+            path: "posts",
+            children: [
+              { index: true, element: <p>Posts page</p> },
+              { path: ":postId", element: <PostPage /> },
+            ],
+          }
         ],
       },
       {

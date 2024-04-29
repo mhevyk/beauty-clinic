@@ -131,7 +131,6 @@ type CalendarProps = {
   setSelectedDayDate: (date: Date) => void;
 };
 
-// TODO: Fix styles on very small screens (less than 400px)
 export default function Calendar({
   selectedDayDate,
   setSelectedDayDate,
@@ -160,7 +159,6 @@ export default function Calendar({
           <CalendarDay
             key={day.date.getTime()}
             calendarSize={calendarSize}
-            // disabled={day.isAnotherMonth}
             disabled={isBefore(day.date, startOfToday()) || day.isAnotherMonth}
             hasAvailableSessions={true} // TODO: replace with event data
             isAnotherMonth={day.isAnotherMonth}

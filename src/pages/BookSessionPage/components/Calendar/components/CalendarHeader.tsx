@@ -6,7 +6,6 @@ const CaretLeftIcon = styled(CaretLeftIconSvg)(({ theme }) => ({
   color: theme.palette.secondary.main,
 }));
 
-// TODO: change outline after conversation with designer
 const PrevMonthButton = styled(IconButton)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     marginRight: "auto",

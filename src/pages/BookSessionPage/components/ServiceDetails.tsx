@@ -24,6 +24,7 @@ const ButtonStyled = styled(Button)({
 type CaretIconProps = {
   pointsToRight: boolean;
 };
+
 //TODO: make this animation global
 const IconStyled = styled(caretIcon, {
   shouldForwardProp: (prop) => prop !== "pointsToRight",
@@ -33,33 +34,31 @@ const IconStyled = styled(caretIcon, {
 }));
 
 type ServiceDetailsProps = {
-  details: Treatment;
-  aviableSession: boolean;
+  treatment: Treatment;
+  hasAvailableSession: boolean;
   date: Date;
 };
 
 export default function ServiceDetails({
-  details,
-  aviableSession,
+  treatment,
+  hasAvailableSession,
   date,
 }: ServiceDetailsProps) {
   const { isOpen, toggle } = useToggle();
 
   return (
-    <Box>
-      <Box alignItems="center" display="flex">
-        <ButtonStyled fullWidth onClick={() => toggle()}>
-          Service Details
-        </ButtonStyled>
-        <IconButton onClick={() => toggle()}>
+    <>
+      <Box alignItems="center" display="flex" onClick={toggle}>
+        <ButtonStyled fullWidth>Service Details</ButtonStyled>
+        <IconButton>
           <IconStyled pointsToRight={isOpen} />
         </IconButton>
       </Box>
       <Collapse in={isOpen}>
         <Box paddingBottom="12px">
-          <Typography fontSize="16px">{details.name}</Typography>
-          {!aviableSession ? (
-            <Box>
+          <Typography fontSize="16px">{treatment.name}</Typography>
+          {hasAvailableSession && (
+            <>
               <Typography fontSize="16px">
                 {format(date, `MMMM d, yyyy h:mm aaa `)}
               </Typography>
@@ -69,16 +68,16 @@ export default function ServiceDetails({
                 Roma Linuxist
               </Typography>
               <Typography color="#605f5d" fontSize="14px">
-                {minutesToHourAndMinutes(details.duration)}
+                {minutesToHourAndMinutes(treatment.duration)}
               </Typography>
-            </Box>
-          ) : null}
+            </>
+          )}
           <Typography color="#605f5d" fontSize="14px">
-            $ {details.pricePerUnit}
+            $ {treatment.pricePerUnit}
           </Typography>
         </Box>
       </Collapse>
-    </Box>
+    </>
   );
 }
 

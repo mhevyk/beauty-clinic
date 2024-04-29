@@ -1,10 +1,10 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import { format, getDay, getHours } from "date-fns";
 import theme from "@theme/theme.ts";
-import useToggle from "@hooks/useToggle.ts";
 import getHoursSession from "./utils/getHoursSession.ts";
 import getNextAvailabilityDay from "./utils/getNextAvailabilityDay.ts";
 import { useEffect } from "react";
+import useLimitedSessionHours from "./hooks/useLimitedSessionHours.ts";
 
 const BoxGridStyled = styled(Box)({
   maxWidth: "375px",
@@ -59,20 +59,11 @@ export default function TimePicker({
   date: userDate,
   setSelectedDate,
 }: TimePickerProps) {
-  const { isOpen: shouldShowAllSessions, open: showAllSessions } = useToggle();
-
   const hours = getHoursSession(userDate);
   const nextWorkingDay = getNextAvailabilityDay(userDate);
 
-  const isOverflowing = hours && hours.length > 12;
-  let limitedSessionTimes = hours ?? [];
-
-  const shouldRenderShowAllSessionsButton =
-    isOverflowing && !shouldShowAllSessions;
-
-  if (shouldRenderShowAllSessionsButton) {
-    limitedSessionTimes = limitedSessionTimes.slice(0, 12);
-  }
+  const { limitedHours, shouldRenderShowAllSessionsButton, showAllSessions } =
+    useLimitedSessionHours(hours);
 
   const currentHours = getHours(userDate);
   const currentDay = getDay(userDate);
@@ -102,7 +93,7 @@ export default function TimePicker({
   return (
     <>
       <BoxGridStyled>
-        {limitedSessionTimes.map((date) => (
+        {limitedHours.map((date) => (
           <ButtonStyledPicker
             isSelected={userDate.toTimeString() === date.toTimeString()}
             key={date.getTime()}

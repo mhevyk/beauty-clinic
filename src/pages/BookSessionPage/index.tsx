@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Calendar from "./components/Calendar";
 import { format, getHours, startOfToday } from "date-fns";
 import TimePicker from "./components/TimePicker";
@@ -7,17 +7,15 @@ import {
   Button,
   CircularProgress,
   Divider,
-  Grid,
   styled,
   Typography,
 } from "@mui/material";
 import theme from "@theme/theme.ts";
-import BackIcon from "@icons/caret-left.svg";
+import CaretLeft from "@icons/caret-left.svg?react";
 import { Link, useParams } from "react-router-dom";
 import ServiceDetails from "./components/ServiceDetails.tsx";
 import { useOrderStore } from "@store/order/orderStore.ts";
-import { useGetTreatmentByIdQuery } from "@api/hooks";
-import AppSnackbar from "@components/AppSnackbar.tsx";
+import { useGetTreatmentByIdSuspenseQuery } from "@api/hooks";
 
 const ContainerStyled = styled(Box)({
   maxWidth: "800px",
@@ -27,27 +25,9 @@ const ContainerStyled = styled(Box)({
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
-  overflow: "hidden",
   display: "flex",
   justifyContent: "center",
 });
-
-const GridStyled = styled(Grid)({
-  justifyContent: "space-betwen",
-  [theme.breakpoints.down("md")]: {
-    alignContent: "center",
-    flexDirection: "column",
-  },
-});
-
-const BackIconStyled = styled("img")({
-  height: 16,
-  width: "auto",
-});
-
-function BackPageIcon() {
-  return <BackIconStyled alt="Back icon" src={BackIcon} />;
-}
 
 const ButtonStyled = styled(Button)({
   textAlign: "left",
@@ -58,14 +38,6 @@ const ButtonStyled = styled(Button)({
 const DateNow = styled("p")({
   ...theme.typography.paragraph,
   margin: "0",
-});
-
-const GridStyledItem = styled(Grid)({
-  [theme.breakpoints.down("md")]: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
 });
 
 //TODO: add color to palette
@@ -79,85 +51,75 @@ const NextStepButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
+type BookTreatmentSessionParams = {
+  treatmentId: string;
+};
+
 export default function BookSessionPage() {
-  //TODO: fix errors
+  return (
+    <SectionStyled>
+      <ContainerStyled>
+        <Suspense
+          fallback={
+            <Box display="flex" justifyContent="center">
+              <CircularProgress sx={{ my: "300px" }} color="secondary" />
+            </Box>
+          }
+        >
+          <BookSessionPageContent />
+        </Suspense>
+      </ContainerStyled>
+    </SectionStyled>
+  );
+}
+
+function BookSessionPageContent() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
-  const { data, error, loading } = useGetTreatmentByIdQuery({
+
+  const { data } = useGetTreatmentByIdSuspenseQuery({
     variables: { treatmentId },
   });
 
-  const initialDate = startOfToday();
-  const [selectedDayDate, setSelectedDayDate] = useState(initialDate);
-
-  const isNotHaveAvailableSession = getHours(selectedDayDate) === 0;
-
+  const [selectedDayDate, setSelectedDayDate] = useState(startOfToday());
   const setSelectedDate = useOrderStore(
     (store) => store.setTreatmentSessionDateTime,
   );
   const setTreatmentId = useOrderStore((store) => store.setTreatmentId);
 
-  if (loading) {
-    return (
-      <SectionStyled>
-        <ContainerStyled display="flex" justifyContent="center">
-          <CircularProgress color="secondary" />
-        </ContainerStyled>
-      </SectionStyled>
-    );
-  }
-  if (error) {
-    return <AppSnackbar />;
-  }
+  const isTimeSelected = getHours(selectedDayDate) !== 0;
 
   function handleSubmit() {
     setSelectedDate(selectedDayDate);
-    setTreatmentId(parseInt(data?.treatment.id as string));
+    setTreatmentId(treatmentId);
   }
 
   return (
-    <SectionStyled>
-      <ContainerStyled>
-        <ButtonStyled
-          component={Link}
-          to={"/treatments"}
-          startIcon={<BackPageIcon />}
-        >
-          Back
-        </ButtonStyled>
-        <Typography
-          component="h2"
-          fontSize="20px"
-          textAlign="center"
-          variant="heading"
-          margin="12px 0px"
-        >
-          Select a Date and Time
-        </Typography>
-        <Divider color="030303" variant="fullWidth" />
-        <GridStyled
-          padding="20px 0px"
-          justifyContent="center"
-          container
-          spacing={6}
-          columns={12}
-        >
-          <Grid
-            display="flex"
-            justifyContent="center"
-            item
-            xs={12}
-            sm={12}
-            md={6}
-            lg={6}
-            xl={6}
-          >
-            <Calendar
-              selectedDayDate={selectedDayDate}
-              setSelectedDayDate={setSelectedDayDate}
-            />
-          </Grid>
-          <GridStyledItem item xs={12} sm={12} md={6} lg={6} xl={6}>
+    <Box sx={{ width: "100%" }}>
+      <ButtonStyled
+        component={Link}
+        to={"/treatments"}
+        startIcon={<CaretLeft width={16} height={16} />}
+      >
+        Back
+      </ButtonStyled>
+      <Typography
+        component="h2"
+        fontSize="20px"
+        textAlign="center"
+        variant="heading"
+        margin="12px 0px"
+      >
+        Select a Date and Time
+      </Typography>
+      <Divider color="030303" variant="fullWidth" />
+      <Box paddingTop="20px" display="flex" justifyContent="space-between">
+        <Box flexWrap="wrap" justifyContent="center" display="flex" gap={6}>
+          <Calendar
+            selectedDayDate={selectedDayDate}
+            setSelectedDayDate={setSelectedDayDate}
+          />
+          <Box>
             <DateNow>{format(selectedDayDate, "EEEE, MMMM d")}</DateNow>
             {Boolean(selectedDayDate) && (
               <TimePicker
@@ -165,33 +127,33 @@ export default function BookSessionPage() {
                 setSelectedDate={setSelectedDayDate}
               />
             )}
-          </GridStyledItem>
-        </GridStyled>
-        <Typography
-          component="h2"
-          fontSize="20px"
-          textAlign="center"
-          variant="heading"
-          margin="12px 0px"
-        >
-          Booking Details
-        </Typography>
-        <ServiceDetails
-          date={selectedDayDate}
-          aviableSession={isNotHaveAvailableSession}
-          details={data!.treatment}
-        />
-        <Divider color="030303" variant="fullWidth" />
-        <NextStepButtonStyled
-          disabled={isNotHaveAvailableSession}
-          size="small"
-          fullWidth
-          variant="primary-outlined"
-          onClick={() => handleSubmit()}
-        >
-          Next
-        </NextStepButtonStyled>
-      </ContainerStyled>
-    </SectionStyled>
+          </Box>
+        </Box>
+      </Box>
+      <Typography
+        component="h2"
+        fontSize="20px"
+        textAlign="center"
+        variant="heading"
+        margin="12px 0px"
+      >
+        Booking Details
+      </Typography>
+      <ServiceDetails
+        date={selectedDayDate}
+        hasAvailableSession={isTimeSelected}
+        treatment={data.treatment}
+      />
+      <Divider color="030303" variant="fullWidth" />
+      <NextStepButtonStyled
+        disabled={!isTimeSelected}
+        size="small"
+        fullWidth
+        variant="primary-outlined"
+        onClick={handleSubmit}
+      >
+        Next
+      </NextStepButtonStyled>
+    </Box>
   );
 }

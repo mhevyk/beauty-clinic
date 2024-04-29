@@ -1,4 +1,11 @@
-import { Box, ButtonBase, SxProps, styled, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  ButtonBase,
+  SxProps,
+  styled,
+  useMediaQuery,
+  alpha,
+} from "@mui/material";
 import { format, isBefore, startOfToday } from "date-fns";
 import { CalendarSize, useCalendar } from "./hooks/useCalendar";
 import theme from "@theme/theme";
@@ -8,10 +15,6 @@ const CalendarContainer = styled(Box)({
   minWidth: "200px",
   maxWidth: "min-content",
 });
-
-const calendarSmallSize = theme.breakpoints.down(320);
-
-console.log(calendarSmallSize);
 
 const CalendarCellsContainer = styled(Box)(() => {
   const CALENDAR_SMALL_CELL_SIZE = "30px";
@@ -118,8 +121,8 @@ const CalendarDay = styled(CalendarCell, {
     }
     styles["&:hover"] = {
       backgroundColor: isMobileCalendar
-        ? "rgba(3, 3, 3, 0.1)"
-        : "rgba(248, 133, 45, 0.1)",
+        ? alpha(theme.palette.secondary.main, 0.1)
+        : alpha(theme.palette.FieryOrange.main, 0.1),
     };
   }
 

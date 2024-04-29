@@ -1,19 +1,34 @@
 import { useCartStore } from "@store/cart/cartStore";
-import CartDrawerItem from "../CartDrawerItem";
-import { Typography } from "@mui/material";
+import CartDrawerItem from "../components/CartDrawerItem";
+import { Divider, List, Typography, styled } from "@mui/material";
+import { Fragment } from "react/jsx-runtime";
+
+const EmptyCartTypography = styled(Typography)({
+  display: "block",
+  fontSize: "18px",
+  marginTop: "30px",
+  textAlign: "center",
+});
 
 export default function renderDrawerCartList() {
   const cartItems = useCartStore((store) => store.items);
 
   if (cartItems.length === 0) {
     return (
-      <Typography variant="paragraph" fontSize="18px">
+      <EmptyCartTypography variant="paragraph">
         Cart is empty
-      </Typography>
+      </EmptyCartTypography>
     );
   }
 
-  return cartItems.map((item) => (
-    <CartDrawerItem key={item.treatment.id} item={item} />
-  ));
+  return (
+    <List>
+      {cartItems.map((item) => (
+        <Fragment key={item.treatment.id}>
+          <CartDrawerItem item={item} />
+          <Divider />
+        </Fragment>
+      ))}
+    </List>
+  );
 }

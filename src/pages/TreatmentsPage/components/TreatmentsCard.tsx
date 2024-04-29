@@ -1,5 +1,8 @@
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import theme from "@theme/theme.ts";
+import { Link } from "react-router-dom";
+import { Treatment } from "@api/hooks";
+import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -23,7 +26,7 @@ const ButtonStyled = styled(Button)({
     width: "100%",
     fontSize: "14px",
   },
-});
+}) as typeof Button;
 
 const TitleStyled = styled("h4")(({ theme }) => ({
   ...theme.typography.heading,
@@ -36,27 +39,27 @@ const TitleStyled = styled("h4")(({ theme }) => ({
 }));
 
 type TreatmentsCardProps = {
-  treatmentName: string;
-  treatmentPrice: number;
-  treatmentDuration: string;
+  treatment: Treatment;
 };
+export default function TreatmentsCard({ treatment }: TreatmentsCardProps) {
 
-export default function TreatmentsCard({
-  treatmentName,
-  treatmentPrice,
-  treatmentDuration,
-}: TreatmentsCardProps) {
   return (
     <Grid item xs={12} sm={6} md={5} lg={4} xl={4}>
       <BoxStyled>
-        <TitleStyled>{treatmentName}</TitleStyled>
+        <TitleStyled>{treatment.name}</TitleStyled>
         <Typography variant="paragraph" fontSize="15px">
-          {treatmentDuration}
+          {minutesToHourAndMinutes(treatment.duration)}
         </Typography>
         <Typography marginBottom="auto" variant="paragraph" fontSize="15px">
-          ${treatmentPrice}
+          ${treatment.pricePerUnit}
         </Typography>
-        <ButtonStyled variant="primary">Book Now</ButtonStyled>
+        <ButtonStyled
+          to={`/book-session/${treatment.id}`}
+          component={Link}
+          variant="primary"
+        >
+          Book Now
+        </ButtonStyled>
       </BoxStyled>
     </Grid>
   );

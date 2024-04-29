@@ -1,23 +1,17 @@
 import { CreateTreatmentSessionInput } from "@api/hooks";
 import { create } from "zustand";
+import { startOfToday } from "date-fns";
 
-type TreatmentDetails = {
-  employeeId: CreateTreatmentSessionInput["employeeId"] | null;
+export type TreatmentDetailsStore = {
   treatmentId: CreateTreatmentSessionInput["treatmentId"] | null;
-  treatmentSessionDatetime: Date | null;
-};
-
-export type TreatmentDetailsStore = TreatmentDetails & {
-  setEmployeeId: (id: number) => void;
+  treatmentSessionDatetime: Date;
   setTreatmentId: (id: number) => void;
   setTreatmentSessionDateTime: (datetime: Date) => void;
 };
 
 export const useOrderStore = create<TreatmentDetailsStore>((set) => ({
-  employeeId: null,
   treatmentId: null,
-  treatmentSessionDatetime: null,
-  setEmployeeId: (id) => set({ employeeId: id }),
+  treatmentSessionDatetime: startOfToday(),
   setTreatmentId: (id) => set({ treatmentId: id }),
   setTreatmentSessionDateTime: (datetime) =>
     set({ treatmentSessionDatetime: datetime }),

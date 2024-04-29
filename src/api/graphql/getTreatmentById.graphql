@@ -1,0 +1,8 @@
+query GetTreatmentById($treatmentId: Int!) {
+    treatment(id: $treatmentId) {
+        id,
+        name,
+        duration,
+        pricePerUnit,
+    }
+}

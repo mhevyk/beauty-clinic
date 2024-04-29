@@ -9,18 +9,33 @@ const CalendarContainer = styled(Box)({
   maxWidth: "min-content",
 });
 
+const calendarSmallSize = theme.breakpoints.down(320);
+
+console.log(calendarSmallSize);
+
 const CalendarCellsContainer = styled(Box)(() => {
+  const CALENDAR_SMALL_CELL_SIZE = "30px";
   const CALENDAR_CELL_SIZE = "40px";
 
   return {
+    [theme.breakpoints.up(380)]: {
+      gap: "16px",
+    },
+    [theme.breakpoints.down(320)]: {
+      gridTemplateColumns: `repeat(7, ${CALENDAR_SMALL_CELL_SIZE})`,
+      gridAutoRows: CALENDAR_SMALL_CELL_SIZE,
+    },
     display: "grid",
     gridTemplateColumns: `repeat(7, ${CALENDAR_CELL_SIZE})`,
     gridAutoRows: CALENDAR_CELL_SIZE,
-    gap: "16px",
+    gap: "6px",
   };
 });
 
 const CalendarCell = styled(ButtonBase)({
+  [theme.breakpoints.down(320)]: {
+    fontSize: "12px",
+  },
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -112,8 +127,8 @@ const CalendarDay = styled(CalendarCell, {
 });
 
 type CalendarProps = {
-  selectedDayDate: Date | null;
-  setSelectedDayDate: (date: Date | null) => void;
+  selectedDayDate: Date;
+  setSelectedDayDate: (date: Date) => void;
 };
 
 // TODO: Fix styles on very small screens (less than 400px)

@@ -8,7 +8,7 @@ import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/SignInPage";
 import TreatmentsPage from "@pages/TreatmentsPage";
 import ProtectedRoute from "@routes/helpers/ProtectedRoute";
-import OrderPage from "@pages/OrderPage";
+import BookSessionPage from "@pages/BookSessionPage";
 
 const router: RouteObject[] = [
   {
@@ -20,7 +20,10 @@ const router: RouteObject[] = [
         children: [
           { index: true, element: <HomePage /> },
           { path: "treatments", element: <TreatmentsPage /> },
-          { path: "order", element: <OrderPage /> },
+          {
+            path: "book-session",
+            children: [{ path: ":treatmentId", element: <BookSessionPage /> }],
+          },
         ],
       },
       {
@@ -40,11 +43,6 @@ const router: RouteObject[] = [
       {
         element: <ProtectedRoute />,
         children: [{ path: "protected", element: <h1>I am protected</h1> }],
-      },
-      {
-        element: <RootLayout />,
-        path: "book-session",
-        children: [{ path: ":treatmentId", element: <OrderPage /> }],
       },
       /* Add new routes here
          Example: { path: "/test", element: <MyComponent /> }

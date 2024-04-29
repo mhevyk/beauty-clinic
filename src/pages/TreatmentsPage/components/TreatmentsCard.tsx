@@ -2,6 +2,7 @@ import { Box, Button, Grid, styled, Typography } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";
 import { Treatment } from "@api/hooks";
+import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -41,21 +42,13 @@ type TreatmentsCardProps = {
   treatment: Treatment;
 };
 export default function TreatmentsCard({ treatment }: TreatmentsCardProps) {
-  const hour = Math.floor(treatment.duration / 60);
-  const minutes = treatment.duration % 60;
-
-  let time = hour + " hr ";
-
-  if (minutes !== 0) {
-    time += minutes + " min";
-  }
 
   return (
     <Grid item xs={12} sm={6} md={5} lg={4} xl={4}>
       <BoxStyled>
         <TitleStyled>{treatment.name}</TitleStyled>
         <Typography variant="paragraph" fontSize="15px">
-          {time}
+          {minutesToHourAndMinutes(treatment.duration)}
         </Typography>
         <Typography marginBottom="auto" variant="paragraph" fontSize="15px">
           ${treatment.pricePerUnit}

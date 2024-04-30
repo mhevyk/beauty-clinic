@@ -83,7 +83,7 @@ function BookSessionPageContent() {
 
   const [selectedDayDate, setSelectedDayDate] = useState(startOfToday());
   const setSelectedDate = useOrderStore(
-    (store) => store.setTreatmentSessionDateTime,
+    (store) => store.setTreatmentSessionDateTime
   );
   const setTreatmentId = useOrderStore((store) => store.setTreatmentId);
 

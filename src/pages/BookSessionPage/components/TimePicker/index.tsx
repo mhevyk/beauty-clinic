@@ -2,9 +2,10 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { format, getDay, getHours } from "date-fns";
 import theme from "@theme/theme.ts";
 import getHoursSession from "./utils/getHoursSession.ts";
-import getNextAvailabilityDay from "./utils/getNextAvailabilityDay.ts";
+import getNextAvailabilityDay from "./utils/getNextWorkingDay.ts";
 import { useEffect } from "react";
 import useLimitedSessionHours from "./hooks/useLimitedSessionHours.ts";
+import useEventEmitter from "@hooks/useEventEmitter";
 
 const BoxGridStyled = styled(Box)({
   maxWidth: "375px",
@@ -32,23 +33,23 @@ type ButtonStyledPickerProps = {
   isSelected: boolean;
 };
 
-const ButtonStyledPicker = styled(Button)<ButtonStyledPickerProps>(
-  ({ isSelected }) => ({
-    backgroundColor: isSelected ? "#e0d9ce" : undefined,
-    color: isSelected ? "black" : undefined,
-    borderColor: isSelected ? theme.palette.secondary.main : "#66635e",
+const ButtonStyledPicker = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "isSelected",
+})<ButtonStyledPickerProps>(({ isSelected }) => ({
+  backgroundColor: isSelected ? "#e0d9ce" : undefined,
+  color: isSelected ? "black" : undefined,
+  borderColor: isSelected ? theme.palette.secondary.main : "#66635e",
 
-    py: "8px",
-    width: "117.659px",
-    padding: "8px",
-    textAlign: "center",
-    "&:hover, &:focus": {
-      borderColor: theme.palette.secondary.main,
-      color: "black",
-      backgroundColor: "#e0d9ce",
-    },
-  }),
-);
+  py: "8px",
+  width: "117.659px",
+  padding: "8px",
+  textAlign: "center",
+  "&:hover, &:focus": {
+    borderColor: theme.palette.secondary.main,
+    color: "black",
+    backgroundColor: "#e0d9ce",
+  },
+}));
 
 type TimePickerProps = {
   date: Date;
@@ -60,10 +61,11 @@ export default function TimePicker({
   setSelectedDate,
 }: TimePickerProps) {
   const hours = getHoursSession(userDate);
-  const nextWorkingDay = getNextAvailabilityDay(userDate);
+  const nextWorkingDate = getNextAvailabilityDay(userDate);
 
   const { limitedHours, shouldRenderShowAllSessionsButton, showAllSessions } =
     useLimitedSessionHours(hours);
+  const { emit } = useEventEmitter();
 
   const currentHours = getHours(userDate);
   const currentDay = getDay(userDate);
@@ -76,11 +78,19 @@ export default function TimePicker({
   }, [currentDay, currentHours]);
 
   if (hours === null) {
+    function goToNextAvailableDate() {
+      emit("CALENDAR_NEXT_PAGE", {
+        date1: nextWorkingDate,
+        date2: userDate,
+      });
+      setSelectedDate(nextWorkingDate);
+    }
+
     return (
       <>
         <Typography>No availability</Typography>
         <ButtonStyled
-          onClick={() => setSelectedDate(nextWorkingDay)}
+          onClick={goToNextAvailableDate}
           size="small"
           variant="primary"
         >

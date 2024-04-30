@@ -75,5 +75,9 @@ export function useCalendar({ selectedDayDate, size }: UseCalendar) {
       showNextPage,
       showPreviousPage,
     },
+    pageUtils: {
+      showPreviousPage,
+      showNextPage,
+    },
   } as const;
 }

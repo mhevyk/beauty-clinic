@@ -10,6 +10,7 @@ import { format, isBefore, startOfToday } from "date-fns";
 import { CalendarSize, useCalendar } from "./hooks/useCalendar";
 import theme from "@theme/theme";
 import CalendarHeader from "./components/CalendarHeader";
+import useNextPageListener from "./hooks/useNextPageListener";
 
 const CalendarContainer = styled(Box)({
   minWidth: "200px",
@@ -134,17 +135,16 @@ type CalendarProps = {
   setSelectedDayDate: (date: Date) => void;
 };
 
-export default function Calendar({
-  selectedDayDate,
-  setSelectedDayDate,
-}: CalendarProps) {
+const Calendar = ({ selectedDayDate, setSelectedDayDate }: CalendarProps) => {
   const isBiggerThanSmallScreen = useMediaQuery(theme.breakpoints.up("sm"));
 
   const calendarSize = isBiggerThanSmallScreen ? "normal" : "compact";
-  const { data, controls } = useCalendar({
+  const { data, controls, pageUtils } = useCalendar({
     selectedDayDate,
     size: calendarSize,
   });
+
+  useNextPageListener({ calendarSize, showNextPage: pageUtils.showNextPage });
 
   return (
     <CalendarContainer>
@@ -178,4 +178,6 @@ export default function Calendar({
       </CalendarCellsContainer>
     </CalendarContainer>
   );
-}
+};
+
+export default Calendar;

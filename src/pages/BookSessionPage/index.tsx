@@ -101,8 +101,21 @@ export default function BookSessionPage() {
 function BookSessionPageContent() {
   const { selectedTime, selectedDate } = useDatetimePickerContext();
 
-  {
-    /* TODO: fix styles */
+  const { data } = useGetTreatmentByIdSuspenseQuery({
+    variables: { treatmentId },
+  });
+
+  const [selectedDayDate, setSelectedDayDate] = useState(startOfToday());
+  const setSelectedDate = useOrderStore(
+    (store) => store.setTreatmentSessionDateTime
+  );
+  const setTreatmentId = useOrderStore((store) => store.setTreatmentId);
+
+  const isTimeSelected = getHours(selectedDayDate) !== 0;
+
+  function handleSubmit() {
+    setSelectedDate(selectedDayDate);
+    setTreatmentId(treatmentId);
   }
   return (
     <Box sx={{ width: "100%" }}>

@@ -11,6 +11,7 @@ import {
 import FormGroupWithError from "@components/FormGroupWithError";
 import closeSnackbar from "@utils/closeSnackbar";
 import showSnackbar from "@utils/showSnackbar";
+import extractErrorMessage from "@utils/extractErrorMessage";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 
@@ -73,18 +74,10 @@ export default function ContactForm() {
       formik.resetForm();
       closeModal();
     } catch (error) {
-      let errorMessage: string;
-
-      if (error instanceof Error && error.message.length > 0) {
-        errorMessage = error.message;
-      } else {
-        errorMessage = "Failed to send contact message";
-      }
-
       showSnackbar({
         autohide: true,
         autohideDuration: 6000,
-        message: errorMessage,
+        message: extractErrorMessage(error),
       });
     }
   }

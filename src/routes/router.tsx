@@ -8,6 +8,7 @@ import AuthLayout from "@layouts/AuthLayout";
 import SignInPage from "@pages/SignInPage";
 import TreatmentsPage from "@pages/TreatmentsPage";
 import ProtectedRoute from "@routes/helpers/ProtectedRoute";
+import ResetPasswordpage from "@pages/ResetPasswordPage";
 import BookSessionPage from "@pages/BookSessionPage";
 import PostPage from "@pages/PostPage";
 
@@ -43,6 +44,7 @@ const router: RouteObject[] = [
             children: [
               { path: "signup", element: <SignUpPage /> },
               { path: "signin", element: <SignInPage /> },
+              { path: "reset-password", element: <ResetPasswordpage /> },
             ],
           },
         ],

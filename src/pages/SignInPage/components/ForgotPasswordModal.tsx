@@ -31,41 +31,51 @@ const CircleWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  marginBottom: "30px",
 }));
+
+const BoxStyled = styled(Box)(({ theme }) => ({
+  display: "flex",
+  marginBottom: "25px",
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "30px",
+  },
+}));
+
+const Information = styled(Box)({
+  maxWidth: "244px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  marginLeft: "21px",
+});
 
 const Digit = styled(Typography)({
   fontSize: "55px",
   fontWeight: "bold",
 });
 
-const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
+const DialogContentStyled = styled(DialogContent)({
+  padding: "62px 32px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
-  margin: "51.2px 0",
-  [theme.breakpoints.down("sm")]: {
-    padding: "0 25px",
-  },
-  [theme.breakpoints.up("md")]: {
-    margin: "51.2px 25px",
-  },
-}));
+});
 
 const Title = styled(Typography)({
-  fontSize: "22px",
+  letterSpacing: "1px",
+  fontSize: "19px",
   fontWeight: "bold",
-  marginBottom: "16px",
   textAlign: "center",
 });
 
 const Description = styled(Typography)({
-  fontSize: "14px",
+  fontSize: "11px",
   letterSpacing: "1.28px",
   lineHeight: "26px",
   textAlign: "center",
-  marginBottom: "30px",
 });
 
 const SubmitButton = styled(ButtonWithSpinner)(({ theme }) => ({
@@ -93,7 +103,7 @@ const DividerStyled = styled(Divider)({
   "&::before, &::after": {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
-  margin: "41px auto 32px",
+  margin: "25px auto",
   width: "100%",
   maxWidth: "198px",
 });
@@ -111,7 +121,6 @@ const initialFormValues: ForgotPasswordFormValues = {
   email: "",
 };
 
-// TODO: complete UI
 export default function ForgotPasswordModal({
   isOpen,
   handleClose,
@@ -119,8 +128,8 @@ export default function ForgotPasswordModal({
   const forgotPasswordAttemptsRef = useRef(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const seconds = 60;
-  // use different seconds depending on forgotPasswordAttempts count
+  const initialSeconds = 30;
+  const [seconds, setSeconds] = useState(initialSeconds);
 
   const { secondsLeft, start: startCountdown } = useCountdown({
     seconds,
@@ -153,6 +162,11 @@ export default function ForgotPasswordModal({
 
       forgotPasswordAttemptsRef.current++;
 
+      if (forgotPasswordAttemptsRef.current === 2 && seconds < 90) {
+        setSeconds((prevSeconds) => prevSeconds + 20);
+        forgotPasswordAttemptsRef.current = 0;
+      }
+
       startCountdown();
     } catch (error) {
       showSnackbar({
@@ -183,15 +197,25 @@ export default function ForgotPasswordModal({
         <CloseIcon />
       </CloseIconButton>
       <DialogContentStyled>
-        <CircleWrapper>
-          {isTimerRunning ? <Digit>{secondsLeft}</Digit> : <OpenLockIconSvg />}
-        </CircleWrapper>
-        <Title variant="heading">Reset your password</Title>
-        <Description variant="paragraph">
-          Please enter your email address.
-          <br />
-          We'll send you a link to reset your password
-        </Description>
+        <BoxStyled>
+          <Box>
+            <CircleWrapper>
+              {isTimerRunning ? (
+                <Digit>{secondsLeft}</Digit>
+              ) : (
+                <OpenLockIconSvg />
+              )}
+            </CircleWrapper>
+          </Box>
+          <Information>
+            <Title variant="heading">Reset your password</Title>
+            <br />
+            <Description variant="paragraph">
+              Please enter your email address. We'll send you a link to reset
+              your password
+            </Description>
+          </Information>
+        </BoxStyled>
         <Formik
           initialValues={initialFormValues}
           onSubmit={handleSubmit}

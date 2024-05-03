@@ -1,0 +1,1 @@
+export const RESEND_EMAIL_START_DURATION = 30;

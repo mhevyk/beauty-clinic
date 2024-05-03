@@ -1,4 +1,4 @@
-import useLockPageScroll from "@hooks/useLockPageScroll";
+import useLockPageScroll from "@hooks/useLockPageScroll.ts";
 import {
   Box,
   Dialog,
@@ -10,18 +10,19 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import OpenLockIconSvg from "@icons/open-lock.svg?react";
-import useCountdown from "../hooks/useCountdown";
+import useCountdown from "../../hooks/useCountdown.ts";
 import { Formik } from "formik";
-import ResetPasswordForm from "./ForgotPasswordForm";
+import ResetPasswordForm from "../ForgotPasswordForm.tsx";
 import { useRef, useState } from "react";
-import { emailFormSchema } from "@validation/emailFormSchema";
-import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import { emailFormSchema } from "@validation/emailFormSchema.ts";
+import ButtonWithSpinner from "@components/ButtonWithSpinner.tsx";
 import { useForgotPasswordMutation } from "@api/hooks";
-import showSnackbar from "@utils/showSnackbar";
-import extractErrorMessage from "@utils/extractErrorMessage";
+import showSnackbar from "@utils/showSnackbar.ts";
+import extractErrorMessage from "@utils/extractErrorMessage.ts";
 import CloseIconSvg from "@icons/close-icon-thin.svg?react";
-import AppLink from "@components/AppLink";
-import theme from "@theme/theme";
+import AppLink from "@components/AppLink.tsx";
+import theme from "@theme/theme.ts";
+import { RESEND_EMAIL_START_DURATION } from "./constants";
 
 const CircleWrapper = styled(Box)(({ theme }) => ({
   width: "115px",
@@ -109,7 +110,7 @@ const DividerStyled = styled(Divider)({
 });
 
 function counterClicks(currentClick: number, seconds: number) {
-  if (currentClick % 2 === 1 && seconds < 90) {
+  if (currentClick % 2 === 0 && seconds < 90) {
     seconds += 20;
     return seconds;
   }
@@ -130,17 +131,16 @@ const initialFormValues: ForgotPasswordFormValues = {
   email: "",
 };
 
-export default function ForgotPasswordModal({
+export default function Index({
   isOpen,
   handleClose,
 }: ForgotPasswordModalProps) {
-  const forgotPasswordAttemptsRef = useRef({ clickCount: 0, second: 30 });
+  const forgotPasswordAttemptsRef = useRef(0);
+  const resendEmailDurationRef = useRef(RESEND_EMAIL_START_DURATION); // in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const seconds = forgotPasswordAttemptsRef.current.second;
-
   const { secondsLeft, start: startCountdown } = useCountdown({
-    seconds,
+    seconds: resendEmailDurationRef.current,
     onCountdownStarted: () => setIsTimerRunning(true),
     onCountdownFinished: () => setIsTimerRunning(false),
   });
@@ -168,13 +168,11 @@ export default function ForgotPasswordModal({
         autohideDuration: 5000,
       });
 
-      forgotPasswordAttemptsRef.current.clickCount++;
-      forgotPasswordAttemptsRef.current.second = counterClicks(
-        forgotPasswordAttemptsRef.current.clickCount,
-        forgotPasswordAttemptsRef.current.second,
+      forgotPasswordAttemptsRef.current++;
+      resendEmailDurationRef.current = counterClicks(
+        forgotPasswordAttemptsRef.current,
+        resendEmailDurationRef.current,
       );
-
-      console.log(seconds, forgotPasswordAttemptsRef.current.clickCount);
 
       startCountdown();
     } catch (error) {

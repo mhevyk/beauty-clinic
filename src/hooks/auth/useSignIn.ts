@@ -1,6 +1,7 @@
 import { useSignInMutation } from "@api/hooks";
 import { SignInFormValues } from "@pages/SignInPage";
 import { useUserStore } from "@store/user/userStore";
+import extractErrorMessage from "@utils/extractErrorMessage";
 import showSnackbar from "@utils/showSnackbar";
 import { useNavigate } from "react-router-dom";
 
@@ -21,9 +22,7 @@ export default function useSignIn() {
       setAccessToken(token);
       navigate("/", { replace: true });
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occured";
-      showSnackbar({ autohide: true, message: errorMessage });
+      showSnackbar({ autohide: true, message: extractErrorMessage(error) });
     }
   };
 

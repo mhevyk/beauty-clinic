@@ -1,0 +1,5 @@
+export const RESEND_EMAIL_MIN_SECONDS = 30;
+
+export const RESEND_EMAIL_STEP_SECONDS = 20;
+
+export const RESEND_EMAIL_MAX_SECONDS = 90;

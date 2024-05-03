@@ -108,6 +108,15 @@ const DividerStyled = styled(Divider)({
   maxWidth: "198px",
 });
 
+function counterClicks(currentClick: number, seconds: number) {
+  if (currentClick % 2 === 1 && seconds < 90) {
+    seconds += 20;
+    return seconds;
+  }
+
+  return seconds;
+}
+
 type ForgotPasswordModalProps = {
   isOpen: boolean;
   handleClose: () => void;
@@ -125,11 +134,10 @@ export default function ForgotPasswordModal({
   isOpen,
   handleClose,
 }: ForgotPasswordModalProps) {
-  const forgotPasswordAttemptsRef = useRef(0);
+  const forgotPasswordAttemptsRef = useRef({ clickCount: 0, second: 30 });
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const initialSeconds = 30;
-  const [seconds, setSeconds] = useState(initialSeconds);
+  const seconds = forgotPasswordAttemptsRef.current.second;
 
   const { secondsLeft, start: startCountdown } = useCountdown({
     seconds,
@@ -160,12 +168,13 @@ export default function ForgotPasswordModal({
         autohideDuration: 5000,
       });
 
-      forgotPasswordAttemptsRef.current++;
+      forgotPasswordAttemptsRef.current.clickCount++;
+      forgotPasswordAttemptsRef.current.second = counterClicks(
+        forgotPasswordAttemptsRef.current.clickCount,
+        forgotPasswordAttemptsRef.current.second,
+      );
 
-      if (forgotPasswordAttemptsRef.current === 2 && seconds < 90) {
-        setSeconds((prevSeconds) => prevSeconds + 20);
-        forgotPasswordAttemptsRef.current = 0;
-      }
+      console.log(seconds, forgotPasswordAttemptsRef.current.clickCount);
 
       startCountdown();
     } catch (error) {

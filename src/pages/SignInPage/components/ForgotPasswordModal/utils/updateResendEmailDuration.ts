@@ -3,7 +3,7 @@ import {
   RESEND_EMAIL_STEP_SECONDS,
 } from "@pages/SignInPage/components/ForgotPasswordModal/constants";
 
-export default function counterClickOnSeconds(
+export default function updateResendEmailDuration(
   currentClick: number,
   seconds: number,
 ) {

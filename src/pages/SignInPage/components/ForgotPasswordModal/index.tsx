@@ -22,8 +22,8 @@ import extractErrorMessage from "@utils/extractErrorMessage.ts";
 import CloseIconSvg from "@icons/close-icon-thin.svg?react";
 import AppLink from "@components/AppLink.tsx";
 import theme from "@theme/theme.ts";
-import { RESEND_EMAIL_START_DURATION } from "./constants";
-import counterClickOnSeconds from "./utils/counterClickOnSeconds.ts";
+import { RESEND_EMAIL_MIN_SECONDS } from "./constants";
+import updateResendEmailDuration from "./utils/updateResendEmailDuration.ts";
 
 const CircleWrapper = styled(Box)(({ theme }) => ({
   width: "115px",
@@ -128,7 +128,7 @@ export default function Index({
   handleClose,
 }: ForgotPasswordModalProps) {
   const forgotPasswordAttemptsRef = useRef(0);
-  const resendEmailDurationRef = useRef(RESEND_EMAIL_START_DURATION); // in seconds
+  const resendEmailDurationRef = useRef(RESEND_EMAIL_MIN_SECONDS); // in seconds
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   const { secondsLeft, start: startCountdown } = useCountdown({
@@ -161,7 +161,7 @@ export default function Index({
       });
 
       forgotPasswordAttemptsRef.current++;
-      resendEmailDurationRef.current = counterClickOnSeconds(
+      resendEmailDurationRef.current = updateResendEmailDuration(
         forgotPasswordAttemptsRef.current,
         resendEmailDurationRef.current,
       );

@@ -23,6 +23,7 @@ import CloseIconSvg from "@icons/close-icon-thin.svg?react";
 import AppLink from "@components/AppLink.tsx";
 import theme from "@theme/theme.ts";
 import { RESEND_EMAIL_START_DURATION } from "./constants";
+import counterClickOnSeconds from "./utils/counterClickOnSeconds.ts";
 
 const CircleWrapper = styled(Box)(({ theme }) => ({
   width: "115px",
@@ -109,15 +110,6 @@ const DividerStyled = styled(Divider)({
   maxWidth: "198px",
 });
 
-function counterClicks(currentClick: number, seconds: number) {
-  if (currentClick % 2 === 0 && seconds < 90) {
-    seconds += 20;
-    return seconds;
-  }
-
-  return seconds;
-}
-
 type ForgotPasswordModalProps = {
   isOpen: boolean;
   handleClose: () => void;
@@ -169,7 +161,7 @@ export default function Index({
       });
 
       forgotPasswordAttemptsRef.current++;
-      resendEmailDurationRef.current = counterClicks(
+      resendEmailDurationRef.current = counterClickOnSeconds(
         forgotPasswordAttemptsRef.current,
         resendEmailDurationRef.current,
       );

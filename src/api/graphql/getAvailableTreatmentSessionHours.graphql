@@ -1,0 +1,3 @@
+query GetAvailableTreatmentSessionHours($day: DateTime!, $employeeId: Int!) {
+  getAvailableTreatmentSessionHours(day: $day, employeeId: $employeeId)
+}

@@ -64,6 +64,7 @@ export default function BookSessionPage() {
       <ContainerStyled>
         <DatetimePickerProvider treatmentId={Number(params.treatmentId)}>
           <Suspense
+            key={params.treatmentId}
             fallback={
               <Box display="flex" justifyContent="center">
                 <CircularProgress sx={{ my: "300px" }} color="secondary" />

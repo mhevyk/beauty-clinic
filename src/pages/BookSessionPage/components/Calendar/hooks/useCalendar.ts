@@ -45,7 +45,7 @@ export function useCalendar({
     setSelectedPage((page) => add(page, { [unit]: 1 }));
   }, [setSelectedPage, unit]);
 
-  const days = useMemo(() => getRange(selectedPage), [selectedPage]);
+  const days = useMemo(() => getRange(selectedPage), [selectedPage, getRange]);
 
   const checkSelected = useCallback(
     (day: Date) => {

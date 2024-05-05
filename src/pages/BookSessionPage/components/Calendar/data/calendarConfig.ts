@@ -1,5 +1,5 @@
+import { CalendarSize } from "../types";
 import { getMonthRange } from "../utils/getMonthRange";
-import { CalendarSize } from "../hooks/useCalendar";
 import { getWeekRange } from "../utils/getWeekRange";
 import { Duration } from "date-fns";
 

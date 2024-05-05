@@ -1,6 +1,6 @@
 import { IconButton, Stack, Typography, styled } from "@mui/material";
 import CaretLeftIconSvg from "@icons/caret-left.svg?react";
-import { useCalendar } from "../hooks/useCalendar";
+import { CalendarControls } from "../types";
 
 const CaretLeftIcon = styled(CaretLeftIconSvg)(({ theme }) => ({
   color: theme.palette.secondary.main,
@@ -31,7 +31,7 @@ const SelectedMonth = styled(Typography)(({ theme }) => ({
 }));
 
 type CalendarHeaderProps = {
-  controls: ReturnType<typeof useCalendar>["controls"];
+  controls: CalendarControls;
   selectedPageLabel: string;
 };
 

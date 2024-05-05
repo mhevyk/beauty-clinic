@@ -1,6 +1,6 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import Calendar from "./components/Calendar";
-import { format, getHours, startOfToday } from "date-fns";
+import { format, getHours } from "date-fns";
 import TimePicker from "./components/TimePicker";
 import {
   Box,
@@ -14,8 +14,9 @@ import theme from "@theme/theme.ts";
 import CaretLeft from "@icons/caret-left.svg?react";
 import { Link, useParams } from "react-router-dom";
 import ServiceDetails from "./components/ServiceDetails.tsx";
-import { useOrderStore } from "@store/order/orderStore.ts";
-import { useGetTreatmentByIdSuspenseQuery } from "@api/hooks";
+import DatetimePickerProvider, {
+  useDatetimePickerContext,
+} from "./context/DatetimePickerProvider.tsx";
 
 const ContainerStyled = styled(Box)({
   maxWidth: "800px",
@@ -51,48 +52,38 @@ const NextStepButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-type BookTreatmentSessionParams = {
+type BookSessionPageParams = {
   treatmentId: string;
 };
 
 export default function BookSessionPage() {
+  const params = useParams<BookSessionPageParams>();
+
   return (
     <SectionStyled>
       <ContainerStyled>
-        <Suspense
-          fallback={
-            <Box display="flex" justifyContent="center">
-              <CircularProgress sx={{ my: "300px" }} color="secondary" />
-            </Box>
-          }
-        >
-          <BookSessionPageContent />
-        </Suspense>
+        <DatetimePickerProvider treatmentId={Number(params.treatmentId)}>
+          <Suspense
+            fallback={
+              <Box display="flex" justifyContent="center">
+                <CircularProgress sx={{ my: "300px" }} color="secondary" />
+              </Box>
+            }
+          >
+            <BookSessionPageContent />
+          </Suspense>
+        </DatetimePickerProvider>
       </ContainerStyled>
     </SectionStyled>
   );
 }
 
 function BookSessionPageContent() {
-  const params = useParams<BookTreatmentSessionParams>();
-  const treatmentId = Number(params.treatmentId);
+  const { selectedDate } = useDatetimePickerContext();
 
-  const { data } = useGetTreatmentByIdSuspenseQuery({
-    variables: { treatmentId },
-  });
+  const isTimeSelected = getHours(selectedDate) !== 0;
 
-  const [selectedDayDate, setSelectedDayDate] = useState(startOfToday());
-  const setSelectedDate = useOrderStore(
-    (store) => store.setTreatmentSessionDateTime
-  );
-  const setTreatmentId = useOrderStore((store) => store.setTreatmentId);
-
-  const isTimeSelected = getHours(selectedDayDate) !== 0;
-
-  function handleSubmit() {
-    setSelectedDate(selectedDayDate);
-    setTreatmentId(treatmentId);
-  }
+  function handleSubmit() {}
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -115,18 +106,28 @@ function BookSessionPageContent() {
       <Divider color="030303" variant="fullWidth" />
       <Box paddingTop="20px" display="flex" justifyContent="space-between">
         <Box flexWrap="wrap" justifyContent="center" display="flex" gap={6}>
-          <Calendar
-            selectedDayDate={selectedDayDate}
-            setSelectedDayDate={setSelectedDayDate}
-          />
+          <Calendar />
           <Box>
-            <DateNow>{format(selectedDayDate, "EEEE, MMMM d")}</DateNow>
-            {Boolean(selectedDayDate) && (
-              <TimePicker
-                date={selectedDayDate}
-                setSelectedDate={setSelectedDayDate}
-              />
-            )}
+            <DateNow>{format(selectedDate, "EEEE, MMMM d")}</DateNow>
+            <Suspense
+              fallback={
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <CircularProgress
+                    sx={{ color: "#9A968E" }}
+                    thickness={2}
+                    size={20}
+                  />
+                </Box>
+              }
+            >
+              <TimePicker />
+            </Suspense>
           </Box>
         </Box>
       </Box>
@@ -139,11 +140,7 @@ function BookSessionPageContent() {
       >
         Booking Details
       </Typography>
-      <ServiceDetails
-        date={selectedDayDate}
-        hasAvailableSession={isTimeSelected}
-        treatment={data.treatment}
-      />
+      <ServiceDetails hasAvailableSession={isTimeSelected} />
       <Divider color="030303" variant="fullWidth" />
       <NextStepButtonStyled
         disabled={!isTimeSelected}

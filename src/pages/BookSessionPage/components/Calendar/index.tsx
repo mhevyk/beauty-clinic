@@ -1,16 +1,13 @@
-import {
-  Box,
-  ButtonBase,
-  SxProps,
-  styled,
-  useMediaQuery,
-  alpha,
-} from "@mui/material";
-import { format, isBefore, startOfToday } from "date-fns";
-import { CalendarSize, useCalendar } from "./hooks/useCalendar";
+import { Box, styled, useMediaQuery } from "@mui/material";
+import { useCalendar } from "./hooks/useCalendar";
 import theme from "@theme/theme";
 import CalendarHeader from "./components/CalendarHeader";
 import useNextPageListener from "./hooks/useNextPageListener";
+import useTreatmentSessionAvailabilities from "./hooks/useTreatmentSessionAvailabilities";
+import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import useDebouncedValue from "@hooks/useDebouncedValue";
+import CalendarDay from "./components/CalendarDay";
+import { CalendarCell } from "./components/CalendarCell";
 
 const CalendarContainer = styled(Box)({
   minWidth: "200px",
@@ -36,144 +33,57 @@ const CalendarCellsContainer = styled(Box)(() => {
   };
 });
 
-const CalendarCell = styled(ButtonBase)({
-  [theme.breakpoints.down(320)]: {
-    fontSize: "12px",
-  },
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontFamily: "Nunito",
-  fontSize: "16px",
-});
-
 const CalendarWeekDay = styled(CalendarCell)({
   color: "rgb(96, 95, 93)",
 });
 
-type CalendarDayProps = {
-  isToday?: boolean;
-  isSelected?: boolean;
-  hasAvailableSessions?: boolean;
-  isAnotherMonth?: boolean;
-  calendarSize: CalendarSize;
-};
+const Calendar = () => {
+  const { selectedDate, selectedEmployeeId } = useDatetimePickerContext();
 
-const CalendarDay = styled(CalendarCell, {
-  shouldForwardProp: (prop) =>
-    prop !== "isToday" &&
-    prop !== "isSelected" &&
-    prop !== "isAnotherMonth" &&
-    prop !== "hasAvailableSessions" &&
-    prop !== "calendarSize",
-})<CalendarDayProps>(({
-  theme,
-  isToday,
-  isSelected,
-  isAnotherMonth,
-  hasAvailableSessions,
-  calendarSize,
-}) => {
-  const outlineBoxShadow = "0 0 0 1px #ffffff, 0 0 0 3px #116dff";
-
-  const styles: Record<string, SxProps | string> = {
-    "&:focus-visible": {
-      boxShadow: outlineBoxShadow,
-    },
-    "&:disabled": {
-      color: "rgb(181, 180, 177)",
-      "&::after": {
-        content: "none",
-      },
-    },
-  };
-
-  const isMobileCalendar = calendarSize === "compact";
-
-  if (isMobileCalendar) {
-    styles["&:active"] = {
-      boxShadow: outlineBoxShadow,
-    };
-  }
-
-  const shouldDisplayDot = !isAnotherMonth && hasAvailableSessions;
-
-  if (shouldDisplayDot) {
-    styles["&::after"] = {
-      content: "''",
-      position: "absolute",
-      bottom: "4.5px",
-      width: "4px",
-      aspectRatio: "1 / 1",
-      borderRadius: "50%",
-      backgroundColor: theme.palette.secondary.main,
-    };
-  }
-
-  if (isSelected && !isAnotherMonth) {
-    styles.backgroundColor = theme.palette.secondary.main;
-    styles.color = theme.palette.primary.main;
-    styles["&:hover"] = {
-      opacity: 0.75,
-    };
-  } else {
-    if (isToday) {
-      styles.color = theme.palette.FieryOrange.main;
-    }
-    styles["&:hover"] = {
-      backgroundColor: isMobileCalendar
-        ? alpha(theme.palette.secondary.main, 0.1)
-        : alpha(theme.palette.FieryOrange.main, 0.1),
-    };
-  }
-
-  return styles;
-});
-
-type CalendarProps = {
-  selectedDayDate: Date;
-  setSelectedDayDate: (date: Date) => void;
-};
-
-const Calendar = ({ selectedDayDate, setSelectedDayDate }: CalendarProps) => {
   const isBiggerThanSmallScreen = useMediaQuery(theme.breakpoints.up("sm"));
-
   const calendarSize = isBiggerThanSmallScreen ? "normal" : "compact";
-  const { data, controls, pageUtils } = useCalendar({
-    selectedDayDate,
+
+  const {
+    data: { weekDays, days, selectedPageLabel },
+    utils,
+    controls,
+  } = useCalendar({
+    selectedDayDate: selectedDate,
     size: calendarSize,
   });
 
-  useNextPageListener({ calendarSize, showNextPage: pageUtils.showNextPage });
+  // tries to fetch only for last paged where user stopped if user clicks on previous or next page buttons very quickly
+  const debouncedDays = useDebouncedValue(days);
+
+  const treatmentSessionAvailabilities = useTreatmentSessionAvailabilities({
+    days: debouncedDays,
+    employeeId: selectedEmployeeId,
+  });
+
+  useNextPageListener({ calendarSize, showNextPage: controls.showNextPage });
 
   return (
     <CalendarContainer>
       <CalendarHeader
         controls={controls}
-        selectedPageLabel={data.selectedPageLabel}
+        selectedPageLabel={selectedPageLabel}
       />
       <CalendarCellsContainer>
-        {data.weekDays.map((weekDay) => (
+        {weekDays.map((weekDay) => (
           <CalendarWeekDay key={weekDay} as="div">
             {weekDay}
           </CalendarWeekDay>
         ))}
-        {data.days.map((day) => (
+        {days.map((day, index) => (
           <CalendarDay
-            key={day.date.getTime()}
+            key={day.getTime()}
+            day={day}
             calendarSize={calendarSize}
-            disabled={isBefore(day.date, startOfToday()) || day.isAnotherMonth}
-            hasAvailableSessions={true} // TODO: replace with event data
-            isAnotherMonth={day.isAnotherMonth}
-            isToday={day.isToday}
-            isSelected={day.isSelected}
-            disableRipple
-            onClick={() => setSelectedDayDate(day.date)}
-          >
-            <time dateTime={format(day.date, "yyyy-MM-dd")}>
-              {format(day.date, "d")}
-            </time>
-          </CalendarDay>
+            hasAvailableSessions={Boolean(
+              days === debouncedDays && treatmentSessionAvailabilities?.[index]
+            )}
+            utils={utils}
+          />
         ))}
       </CalendarCellsContainer>
     </CalendarContainer>

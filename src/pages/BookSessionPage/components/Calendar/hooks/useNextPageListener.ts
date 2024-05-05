@@ -1,7 +1,7 @@
 import useEventEmitter from "@hooks/useEventEmitter";
 import { isSameMonth, isSameWeek } from "date-fns";
 import { useEffect } from "react";
-import { CalendarSize } from "./useCalendar";
+import { CalendarSize } from "../types";
 
 type UseNextPageListener = {
   calendarSize: CalendarSize;

@@ -102,9 +102,5 @@ export function useCalendar({
       showNextPage,
       showPreviousPage,
     },
-    pageUtils: {
-      showPreviousPage,
-      showNextPage,
-    },
   } as const;
 }

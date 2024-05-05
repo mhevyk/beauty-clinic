@@ -1,25 +1,21 @@
 import useEventEmitter from "@hooks/useEventEmitter";
-import { isSameMonth, isSameWeek } from "date-fns";
 import { useEffect } from "react";
-import { CalendarSize } from "../types";
+import { CalendarControls, CalendarUtils } from "../types";
 
 type UseNextPageListener = {
-  calendarSize: CalendarSize;
-  showNextPage: () => void;
+  showNextPage: CalendarControls["showNextPage"];
+  checkSamePage: CalendarUtils["checkSamePage"];
 };
 
 export default function useNextPageListener({
-  calendarSize,
+  checkSamePage,
   showNextPage,
 }: UseNextPageListener) {
   const { subscribe, unsubscribe } = useEventEmitter();
 
   useEffect(() => {
     subscribe("CALENDAR_NEXT_PAGE", ({ date1, date2 }) => {
-      const isSamePage =
-        calendarSize === "normal"
-          ? isSameMonth(date1, date2)
-          : isSameWeek(date1, date2);
+      const isSamePage = checkSamePage(date1, date2);
 
       if (!isSamePage) {
         showNextPage();
@@ -29,5 +25,5 @@ export default function useNextPageListener({
     return () => {
       unsubscribe("CALENDAR_NEXT_PAGE");
     };
-  }, [calendarSize]);
+  }, [checkSamePage, showNextPage]);
 }

@@ -6,6 +6,7 @@ import {
   sub,
   add,
   format,
+  isSameWeek,
 } from "date-fns";
 import { calendarConfig } from "../data/calendarConfig";
 import { WEEK_DAYS } from "../data/weekDays";
@@ -47,6 +48,15 @@ export function useCalendar({
 
   const days = useMemo(() => getRange(selectedPage), [selectedPage, getRange]);
 
+  const checkSamePage = useCallback(
+    (date1: Date, date2: Date) => {
+      return size === "normal"
+        ? isSameMonth(date1, date2)
+        : isSameWeek(date1, date2);
+    },
+    [size]
+  );
+
   const checkSelected = useCallback(
     (day: Date) => {
       return selectedDayDate ? isSameDay(day, selectedDayDate) : false;
@@ -78,6 +88,7 @@ export function useCalendar({
 
   return {
     data: {
+      selectedPage,
       selectedPageLabel,
       days,
       weekDays: WEEK_DAYS,
@@ -85,6 +96,7 @@ export function useCalendar({
     utils: {
       checkSelected,
       checkAnotherMonth,
+      checkSamePage,
     },
     controls: {
       showNextPage,

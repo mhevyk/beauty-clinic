@@ -8,6 +8,7 @@ import { useDatetimePickerContext } from "@pages/BookSessionPage/context/Datetim
 import useDebouncedValue from "@hooks/useDebouncedValue";
 import CalendarDay from "./components/CalendarDay";
 import { CalendarCell } from "./components/CalendarCell";
+import { isBefore, startOfToday } from "date-fns";
 
 const CalendarContainer = styled(Box)({
   minWidth: "200px",
@@ -44,7 +45,7 @@ const Calendar = () => {
   const calendarSize = isBiggerThanSmallScreen ? "normal" : "compact";
 
   const {
-    data: { weekDays, days, selectedPageLabel },
+    data: { weekDays, days, selectedPageLabel, selectedPage },
     utils,
     controls,
   } = useCalendar({
@@ -57,10 +58,14 @@ const Calendar = () => {
 
   const treatmentSessionAvailabilities = useTreatmentSessionAvailabilities({
     days: debouncedDays,
+    shouldFetch: !isBefore(selectedPage, startOfToday()),
     employeeId: selectedEmployeeId,
   });
 
-  useNextPageListener({ calendarSize, showNextPage: controls.showNextPage });
+  useNextPageListener({
+    checkSamePage: utils.checkSamePage,
+    showNextPage: controls.showNextPage,
+  });
 
   return (
     <CalendarContainer>

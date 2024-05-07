@@ -62,18 +62,18 @@ export default function BookSessionPage() {
   return (
     <SectionStyled>
       <ContainerStyled>
-        <DatetimePickerProvider treatmentId={Number(params.treatmentId)}>
-          <Suspense
-            key={params.treatmentId}
-            fallback={
-              <Box display="flex" justifyContent="center">
-                <CircularProgress sx={{ my: "300px" }} color="secondary" />
-              </Box>
-            }
-          >
+        <Suspense
+          key={params.treatmentId}
+          fallback={
+            <Box display="flex" justifyContent="center">
+              <CircularProgress sx={{ my: "300px" }} color="secondary" />
+            </Box>
+          }
+        >
+          <DatetimePickerProvider treatmentId={Number(params.treatmentId)}>
             <BookSessionPageContent />
-          </Suspense>
-        </DatetimePickerProvider>
+          </DatetimePickerProvider>
+        </Suspense>
       </ContainerStyled>
     </SectionStyled>
   );

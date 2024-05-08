@@ -12,7 +12,7 @@ type TreatmentDetailsProps = {
 export default function TreatmentDetails({
   hasAvailableSession,
 }: TreatmentDetailsProps) {
-  const { selectedDate, treatmentId } = useDatetimePickerContext();
+  const { selectedTime, treatmentId } = useDatetimePickerContext();
 
   const { data } = useGetTreatmentByIdSuspenseQuery({
     variables: { treatmentId: treatmentId },
@@ -27,7 +27,7 @@ export default function TreatmentDetails({
       {hasAvailableSession && (
         <>
           <Typography fontSize="16px">
-            {format(selectedDate, `MMMM d, yyyy h:mm aaa `)}
+            {format(selectedTime!, `MMMM d, yyyy h:mm aaa `)}
           </Typography>
 
           <Typography color="#605f5d" fontSize="14px">

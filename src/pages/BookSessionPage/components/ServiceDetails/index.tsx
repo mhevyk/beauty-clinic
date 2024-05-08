@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import caretIcon from "@icons/caret-left.svg?react";
 import useToggle from "@hooks/useToggle.ts";
-import TreatmentDetails from "./TimePicker/components/TreatmentDetails";
+import TreatmentDetails from "./components/TreatmentDetails";
 import { Suspense } from "react";
 import ErrorBoundary from "@components/ErrorBoundary";
 import showSnackbar from "@utils/showSnackbar";
@@ -61,6 +61,7 @@ export default function ServiceDetails({
             })
           }
         >
+          {/* TODO: change fallback */}
           <Suspense fallback={<div>Loading...</div>}>
             <TreatmentDetails hasAvailableSession={hasAvailableSession} />
           </Suspense>

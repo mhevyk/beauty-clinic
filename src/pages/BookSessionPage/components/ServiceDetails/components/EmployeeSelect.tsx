@@ -14,10 +14,7 @@ export default function EmployeeSelect() {
       <Select
         labelId={`${id}-select-label`}
         value={selectedEmployeeId?.toString()}
-        label="Select employee..."
-        onChange={(event) =>
-          setSelectedEmployeeId(parseInt(event.target.value) ?? undefined)
-        }
+        onChange={(event) => setSelectedEmployeeId(Number(event.target.value))}
       >
         {qualifiedEmployees.map((option) => (
           <MenuItem key={option.id} value={option.id}>

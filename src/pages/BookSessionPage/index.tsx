@@ -13,7 +13,7 @@ import {
 import theme from "@theme/theme.ts";
 import CaretLeft from "@icons/caret-left.svg?react";
 import { Link, useParams } from "react-router-dom";
-import ServiceDetails from "./components/ServiceDetails.tsx";
+import ServiceDetails from "./components/ServiceDetails/index.tsx";
 import DatetimePickerProvider, {
   useDatetimePickerContext,
 } from "./context/DatetimePickerProvider.tsx";

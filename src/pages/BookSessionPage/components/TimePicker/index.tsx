@@ -1,12 +1,11 @@
-import { Box, Button, styled, Typography } from "@mui/material";
-import { format, getHours } from "date-fns";
+import { Box, Button, styled } from "@mui/material";
+import { format, subMinutes } from "date-fns";
 import theme from "@theme/theme.ts";
-import getNextAvailabilityDay from "./utils/getNextWorkingDay.ts";
-import { useLayoutEffect, useMemo } from "react";
+import { useEffect } from "react";
 import useLimitedSessionHours from "./hooks/useLimitedSessionHours.ts";
-import useEventEmitter from "@hooks/useEventEmitter";
 import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@api/hooks";
 import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider.tsx";
+import NoAvailability from "./components/NoAvailability.tsx";
 
 const BoxGridStyled = styled(Box)({
   maxWidth: "375px",
@@ -53,15 +52,13 @@ const ButtonStyledPicker = styled(Button, {
 }));
 
 const TimePicker = () => {
-  const { selectedDate, setSelectedDate, selectedEmployeeId } =
+  const { selectedDate, selectedTime, setSelectedTime, selectedEmployeeId } =
     useDatetimePickerContext();
-
-  const date = useMemo(() => selectedDate, [selectedDate.toDateString()]);
 
   const { data } = useGetAvailableTreatmentSessionHoursSuspenseQuery({
     variables: {
-      day: date,
-      employeeId: selectedEmployeeId ?? -1,
+      day: subMinutes(selectedDate, selectedDate.getTimezoneOffset()),
+      employeeId: selectedEmployeeId,
     },
   });
 
@@ -73,43 +70,22 @@ const TimePicker = () => {
     );
   }
 
-  const nextWorkingDate = getNextAvailabilityDay(selectedDate);
-
   const { limitedHours, shouldRenderShowAllSessionsButton, showAllSessions } =
     useLimitedSessionHours(hours);
 
-  const { emit } = useEventEmitter();
+  const isSelected = selectedTime !== null;
 
-  const isTimeSelected = getHours(selectedDate) !== 0;
-
-  useLayoutEffect(() => {
-    if (hours && hours.length > 0 && !isTimeSelected) {
-      const firstTime = hours[0]!;
-      setSelectedDate(firstTime);
+  useEffect(() => {
+    if (hours.length === 0 || isSelected) {
+      return;
     }
-  }, [hours, isTimeSelected]);
+
+    const newDate = hours[0]!;
+    setSelectedTime(newDate);
+  }, [hours, isSelected]);
 
   if (limitedHours.length === 0) {
-    function goToNextAvailableDate() {
-      emit("CALENDAR_NEXT_PAGE", {
-        date1: nextWorkingDate,
-        date2: selectedDate,
-      });
-      setSelectedDate(nextWorkingDate);
-    }
-
-    return (
-      <>
-        <Typography>No availability</Typography>
-        <ButtonStyled
-          onClick={goToNextAvailableDate}
-          size="small"
-          variant="primary"
-        >
-          Check Next Availability
-        </ButtonStyled>
-      </>
-    );
+    return <NoAvailability />;
   }
 
   return (
@@ -117,9 +93,12 @@ const TimePicker = () => {
       <BoxGridStyled>
         {limitedHours.map((date) => (
           <ButtonStyledPicker
-            isSelected={selectedDate.toTimeString() === date.toTimeString()}
+            isSelected={Boolean(
+              selectedTime &&
+                selectedTime.toTimeString() === date.toTimeString()
+            )}
             key={date.getTime()}
-            onClick={() => setSelectedDate(date)}
+            onClick={() => setSelectedTime(date)}
             variant="primary-outlined"
           >
             {format(date, "h:mm aaa")}

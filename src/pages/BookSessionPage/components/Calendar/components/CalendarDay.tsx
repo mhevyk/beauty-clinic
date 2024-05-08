@@ -96,8 +96,8 @@ export default function CalendarDay({
   hasAvailableSessions,
   utils: { checkSelected, checkAnotherMonth },
 }: CalendarDayProps) {
-  const { setSelectedDate } = useDatetimePickerContext();
-  
+  const { setSelectedDate, setSelectedTime } = useDatetimePickerContext();
+
   const isAnotherMonth = checkAnotherMonth(day);
   const isSelected = checkSelected(day);
 
@@ -112,7 +112,10 @@ export default function CalendarDay({
       isToday={isToday(day)}
       isSelected={isSelected}
       disableRipple
-      onClick={() => setSelectedDate(day)}
+      onClick={() => {
+        setSelectedDate(day);
+        setSelectedTime(null);
+      }}
     >
       <time dateTime={format(day, "yyyy-MM-dd")}>{format(day, "d")}</time>
     </CalendarDayCell>

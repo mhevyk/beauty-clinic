@@ -2,35 +2,33 @@ import { GetTreatmentSessionAvailabilitiesDocument } from "@api/hooks";
 import { useEffect, useState } from "react";
 import { client } from "@config/apollo";
 
+type DateRange = {
+  start: Date;
+  end: Date;
+};
+
 type UseTreatmentSessionAvailabilities = {
-  days: Date[];
+  range: DateRange;
   shouldFetch: boolean;
   employeeId: number;
 };
 
 export default function useTreatmentSessionAvailabilities({
-  days,
+  range,
   employeeId,
   shouldFetch,
 }: UseTreatmentSessionAvailabilities) {
   const [availabilities, setAvailabilities] = useState<boolean[]>([]);
 
   useEffect(() => {
-    if (!employeeId) {
-      return;
-    }
-
-    const firstDateOfRange = days[0]!;
-    const lastDateOfRange = days.at(-1)!;
-
-    if (!shouldFetch) {
+    if (!employeeId || !shouldFetch) {
       return;
     }
 
     const variables = {
       employeeId,
-      startDate: firstDateOfRange,
-      endDate: lastDateOfRange,
+      startDate: range.start,
+      endDate: range.end,
     };
 
     client
@@ -39,12 +37,13 @@ export default function useTreatmentSessionAvailabilities({
         variables,
       })
       .then(({ data }) => {
-        const newAvailabilities = data?.getTreatmentSessionAvailability;
+        const newAvailabilities: boolean[] =
+          data?.getTreatmentSessionAvailability;
         if (newAvailabilities) {
           setAvailabilities(newAvailabilities);
         }
       });
-  }, [employeeId, days, shouldFetch]);
+  }, [employeeId, range, shouldFetch]);
 
   return availabilities;
 }

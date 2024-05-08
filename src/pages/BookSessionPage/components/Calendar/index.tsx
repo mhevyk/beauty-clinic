@@ -8,7 +8,8 @@ import { useDatetimePickerContext } from "@pages/BookSessionPage/context/Datetim
 import useDebouncedValue from "@hooks/useDebouncedValue";
 import CalendarDay from "./components/CalendarDay";
 import { CalendarCell } from "./components/CalendarCell";
-import { isBefore, startOfToday } from "date-fns";
+import { isBefore, startOfToday, subMinutes } from "date-fns";
+import { useMemo } from "react";
 
 const CalendarContainer = styled(Box)({
   minWidth: "200px",
@@ -53,11 +54,22 @@ const Calendar = () => {
     size: calendarSize,
   });
 
+  // don't remove useMemo because this variable is used as a dependency in useTreatmentSessionAvailabilities useEffect
+  const dateRange = useMemo(() => {
+    const startDate = days[0]!;
+    const endDate = days[days.length - 1]!;
+
+    return {
+      start: subMinutes(startDate, startDate.getTimezoneOffset()),
+      end: subMinutes(endDate, endDate.getTimezoneOffset()),
+    };
+  }, [days]);
+
   // tries to fetch only for last paged where user stopped if user clicks on previous or next page buttons very quickly
-  const debouncedDays = useDebouncedValue(days);
+  const debouncedDateRange = useDebouncedValue(dateRange);
 
   const treatmentSessionAvailabilities = useTreatmentSessionAvailabilities({
-    days: debouncedDays,
+    range: debouncedDateRange,
     shouldFetch: !isBefore(selectedPage, startOfToday()),
     employeeId: selectedEmployeeId,
   });
@@ -85,7 +97,8 @@ const Calendar = () => {
             day={day}
             calendarSize={calendarSize}
             hasAvailableSessions={Boolean(
-              days === debouncedDays && treatmentSessionAvailabilities?.[index]
+              dateRange === debouncedDateRange &&
+                treatmentSessionAvailabilities?.[index]
             )}
             utils={utils}
           />

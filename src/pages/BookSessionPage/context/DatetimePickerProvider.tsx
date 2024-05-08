@@ -14,6 +14,8 @@ import useSelectedQualifiedEmployee, {
 type DatetimePickerContextType = {
   selectedDate: Date;
   setSelectedDate: Dispatch<SetStateAction<Date>>;
+  selectedTime: Date | null;
+  setSelectedTime: Dispatch<SetStateAction<Date | null>>;
   selectedEmployeeId: number;
   setSelectedEmployeeId: Dispatch<SetStateAction<number>>;
   qualifiedEmployees: QualifiedEmployee[];
@@ -33,6 +35,7 @@ export default function DatetimePickerProvider({
   children,
 }: DatetimePickerProviderProps) {
   const [selectedDate, setSelectedDate] = useState(startOfToday);
+  const [selectedTime, setSelectedTime] = useState<Date | null>(null);
 
   const { selectedEmployeeId, setSelectedEmployeeId, qualifiedEmployees } =
     useSelectedQualifiedEmployee(treatmentId);
@@ -46,6 +49,8 @@ export default function DatetimePickerProvider({
         setSelectedEmployeeId,
         qualifiedEmployees,
         treatmentId,
+        selectedTime,
+        setSelectedTime,
       }}
     >
       {children}

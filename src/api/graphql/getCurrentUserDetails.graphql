@@ -1,0 +1,8 @@
+query GetCurrentUserDetails {
+    getCurrentUserDetails {
+        id,
+        email,
+        username,
+        phoneNumber
+    }
+}

@@ -17,7 +17,7 @@ import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
 const ANIMATION_DURATION_MS = 550;
 
 const ButtonStyled = styled(Button)({
-  padding: "12px 0",
+  padding: "7px 0",
   flexDirection: "column",
   alignItems: "baseline",
 });
@@ -54,7 +54,7 @@ export default function BookingDetails({
         </IconButton>
       </Box>
       <Collapse in={isOpen}>
-        <Box height="126px" paddingBottom="12px">
+        <Box height="116px" paddingBottom="12px">
           <Typography fontSize="16px">{treatment.name}</Typography>
           <Typography fontSize="16px">
             {format(date, `MMMM d, yyyy h:mm aaa `)}

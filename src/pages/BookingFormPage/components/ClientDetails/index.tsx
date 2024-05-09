@@ -1,6 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 import BookingForm from "@pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";
+import { useUserStore } from "@store/user/userStore.ts";
 
 const LoginPromptBox = styled(Box)({
   padding: "12px",
@@ -25,6 +26,12 @@ const TellAboutYou = styled("p")(({ theme }) => ({
 }));
 
 export default function ClientDetails() {
+  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+
+  if (isAuthenticated) {
+    return <BookingForm isAuthenticated={isAuthenticated} />;
+  }
+
   return (
     <>
       <TellAboutYou>Tell us a bit about yourself</TellAboutYou>
@@ -33,8 +40,7 @@ export default function ClientDetails() {
         <LoginPromptLink to="/auth/signin">Log In</LoginPromptLink>{" "}
         <LoginPromptTypography>for faster booking.</LoginPromptTypography>
       </LoginPromptBox>
-      <BookingForm />
-      <Box></Box>
+      <BookingForm isAuthenticated={isAuthenticated} />
     </>
   );
 }

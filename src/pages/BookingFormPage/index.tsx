@@ -6,6 +6,8 @@ import BookingDetails from "@pages/BookingFormPage/components/BookingDetails.tsx
 import { Treatment } from "@api/hooks";
 import { useOrderStore } from "@store/order/orderStore.ts";
 import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
+import { Formik } from "formik";
+import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
 
 const data: Treatment = {
   __typename: "Treatment",
@@ -47,6 +49,13 @@ type BookTreatmentSessionParams = {
   treatmentId: string;
 };
 
+const initialFormValues = {
+  name: "",
+  email: "",
+  phoneNumber: "",
+  message: "",
+};
+
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
@@ -56,6 +65,10 @@ export default function BookingFormPage() {
   // });
 
   const selectedDate = useOrderStore((store) => store.treatmentSessionDatetime);
+
+  function handleSubmit(values) {
+    console.log(values);
+  }
 
   return (
     <SectionStyled>
@@ -68,29 +81,48 @@ export default function BookingFormPage() {
           Back
         </ButtonStyled>
         <Box display="flex" flexWrap="wrap">
-          <Box width="608px" marginRight="26px" border="red solid 1px">
-            <ClientDetailsTitle>Client Details</ClientDetailsTitle>
-            <Divider color="black" />
-            <ClientDetails />
-          </Box>
-          <Box width="280px" marginLeft="26px">
-            <BookingDetails treatment={data} date={selectedDate} />
-            <Typography margin="20px 0 12px">Payment Details</Typography>
-            <Box
-              marginBottom="20px"
-              display="flex"
-              justifyContent="space-between"
-            >
-              <Typography>Total</Typography>
-              <Typography>${data.pricePerUnit}</Typography>
-            </Box>
-            <ButtonGroup fullWidth size="small" variant="primary-outlined">
-              Add to Cart
-            </ButtonGroup>
-            <ButtonGroup fullWidth size="small" variant="primary">
-              Book Now
-            </ButtonGroup>
-          </Box>
+          <Formik
+            initialValues={initialFormValues}
+            onSubmit={handleSubmit}
+            validationSchema={bookingFormSchema}
+          >
+            {({ handleSubmit }) => (
+              <>
+                <Box width="608px" marginRight="26px">
+                  <ClientDetailsTitle>Client Details</ClientDetailsTitle>
+                  <Divider color="black" />
+                  <ClientDetails />
+                </Box>
+                <Box width="280px" marginLeft="26px">
+                  <BookingDetails treatment={data} date={selectedDate} />
+                  <Typography margin="20px 0 12px">Payment Details</Typography>
+                  <Box
+                    marginBottom="20px"
+                    display="flex"
+                    justifyContent="space-between"
+                  >
+                    <Typography>Total</Typography>
+                    <Typography>${data.pricePerUnit}</Typography>
+                  </Box>
+                  <ButtonGroup
+                    fullWidth
+                    size="small"
+                    variant="primary-outlined"
+                  >
+                    Add to Cart
+                  </ButtonGroup>
+                  <ButtonGroup
+                    onClick={handleSubmit as () => void}
+                    fullWidth
+                    size="small"
+                    variant="primary"
+                  >
+                    Book Now
+                  </ButtonGroup>
+                </Box>
+              </>
+            )}
+          </Formik>
         </Box>
       </ContainerStyled>
     </SectionStyled>

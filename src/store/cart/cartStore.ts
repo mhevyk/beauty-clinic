@@ -16,6 +16,7 @@ type TreatmentDetails = {
   id: number;
   name: string;
   pricePerUnit: number;
+  duration: number;
   imageUrl?: string;
 };
 

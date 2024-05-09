@@ -60,6 +60,26 @@ const CaretIcon = styled(CaretIconSvg, {
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
 }));
 
+// TODO: remove mocks after implementing end logic
+const mockTreatment1Session1 = {
+  treatment: {
+    id: 1,
+    name: "Oxygen facial",
+    pricePerUnit: 200,
+    duration: 150,
+  },
+  session: {
+    id: 2,
+    employee: {
+      name: "Max",
+    },
+    time: {
+      start: new Date(),
+      end: new Date(),
+    },
+  },
+};
+
 type CartDrawerProps = {
   isCartDrawerOpen: boolean;
   closeCartDrawer: () => void;

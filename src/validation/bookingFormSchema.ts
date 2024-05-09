@@ -2,11 +2,13 @@ import * as Yup from "yup";
 import {
   emailFieldValidation,
   messageFieldValidation,
+  phoneNumberFieldValidation,
   usernameFieldValidation,
-} from "./common";
+} from "@validation/common.ts";
 
-export const contactFormSchema = Yup.object().shape({
+export const bookingFormSchema = Yup.object().shape({
   name: usernameFieldValidation.required("Username is required"),
   email: emailFieldValidation.required("Email is required"),
-  message: messageFieldValidation.required("Message is required"),
+  phoneNumber: phoneNumberFieldValidation,
+  message: messageFieldValidation,
 });

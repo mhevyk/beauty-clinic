@@ -21,6 +21,7 @@
     "@vis.gl/react-google-maps": "^0.7.0",
     "apollo-link-token-refresh": "^0.6.1",
     "date-fns": "^3.6.0",
+    "eventemitter3": "^5.0.1",
     "formik": "^2.4.5",
     "graphql": "^15.8.0",
     "jwt-decode": "^4.0.0",

@@ -1,0 +1,11 @@
+query GetTreatmentSessionAvailabilities(
+  $employeeId: Int!
+  $startDate: DateTime!
+  $endDate: DateTime!
+) {
+  getTreatmentSessionAvailability(
+    employeeId: $employeeId
+    startDate: $startDate
+    endDate: $endDate
+  )
+}

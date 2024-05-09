@@ -1,6 +1,6 @@
 import { addDays, isWeekend } from "date-fns";
 
-export default function getNextAvailabilityDay(date: Date) {
+export default function getNextWorkingDay(date: Date) {
   let nextDay = date;
 
   do {

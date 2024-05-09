@@ -1,11 +1,12 @@
 import { IconButton, Stack, Typography, styled } from "@mui/material";
 import CaretLeftIconSvg from "@icons/caret-left.svg?react";
-import { CalendarControls } from "../types";
+import { useCalendar } from "../hooks/useCalendar";
 
 const CaretLeftIcon = styled(CaretLeftIconSvg)(({ theme }) => ({
   color: theme.palette.secondary.main,
 }));
 
+// TODO: change outline after conversation with designer
 const PrevMonthButton = styled(IconButton)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     marginRight: "auto",
@@ -31,7 +32,7 @@ const SelectedMonth = styled(Typography)(({ theme }) => ({
 }));
 
 type CalendarHeaderProps = {
-  controls: CalendarControls;
+  controls: ReturnType<typeof useCalendar>["controls"];
   selectedPageLabel: string;
 };
 

@@ -1,10 +1,11 @@
-import { Box, Button, styled, Typography } from "@mui/material";
-import { format, getDay, getHours } from "date-fns";
+import { Box, Button, styled } from "@mui/material";
+import { subMinutes } from "date-fns";
 import theme from "@theme/theme.ts";
-import getHoursSession from "./utils/getHoursSession.ts";
-import getNextAvailabilityDay from "./utils/getNextAvailabilityDay.ts";
-import { useEffect } from "react";
 import useLimitedSessionHours from "./hooks/useLimitedSessionHours.ts";
+import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@api/hooks";
+import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider.tsx";
+import NoAvailability from "./components/NoAvailability.tsx";
+import TimeButton from "./components/TimeButton.tsx";
 
 const BoxGridStyled = styled(Box)({
   maxWidth: "375px",
@@ -28,80 +29,40 @@ const ButtonShowSessionStyled = styled(ButtonStyled)({
   },
 });
 
-type ButtonStyledPickerProps = {
-  isSelected: boolean;
-};
+const TimePicker = () => {
+  const { selectedDate, selectedEmployeeId } = useDatetimePickerContext();
 
-const ButtonStyledPicker = styled(Button)<ButtonStyledPickerProps>(
-  ({ isSelected }) => ({
-    backgroundColor: isSelected ? "#e0d9ce" : undefined,
-    color: isSelected ? "black" : undefined,
-    borderColor: isSelected ? theme.palette.secondary.main : "#66635e",
-
-    py: "8px",
-    width: "117.659px",
-    padding: "8px",
-    textAlign: "center",
-    "&:hover, &:focus": {
-      borderColor: theme.palette.secondary.main,
-      color: "black",
-      backgroundColor: "#e0d9ce",
+  const { data } = useGetAvailableTreatmentSessionHoursSuspenseQuery({
+    variables: {
+      day: subMinutes(selectedDate, selectedDate.getTimezoneOffset()),
+      employeeId: selectedEmployeeId,
     },
-  }),
-);
+  });
 
-type TimePickerProps = {
-  date: Date;
-  setSelectedDate: (date: Date) => void;
-};
+  let availableHours: Date[] = [];
 
-export default function TimePicker({
-  date: userDate,
-  setSelectedDate,
-}: TimePickerProps) {
-  const hours = getHoursSession(userDate);
-  const nextWorkingDay = getNextAvailabilityDay(userDate);
+  if (data) {
+    availableHours = data.getAvailableTreatmentSessionHours.map(
+      (ISODate) => new Date(ISODate)
+    );
+  }
 
   const { limitedHours, shouldRenderShowAllSessionsButton, showAllSessions } =
-    useLimitedSessionHours(hours);
+    useLimitedSessionHours(availableHours);
 
-  const currentHours = getHours(userDate);
-  const currentDay = getDay(userDate);
-
-  useEffect(() => {
-    if (hours && hours.length > 0 && currentHours === 0) {
-      const firstTime = hours[0]!;
-      setSelectedDate(firstTime);
-    }
-  }, [currentDay, currentHours]);
-
-  if (hours === null) {
-    return (
-      <>
-        <Typography>No availability</Typography>
-        <ButtonStyled
-          onClick={() => setSelectedDate(nextWorkingDay)}
-          size="small"
-          variant="primary"
-        >
-          Check Next Availability
-        </ButtonStyled>
-      </>
-    );
+  if (limitedHours.length === 0) {
+    return <NoAvailability />;
   }
 
   return (
     <>
       <BoxGridStyled>
-        {limitedHours.map((date) => (
-          <ButtonStyledPicker
-            isSelected={userDate.toTimeString() === date.toTimeString()}
-            key={date.getTime()}
-            onClick={() => setSelectedDate(date)}
-            variant="primary-outlined"
-          >
-            {format(date, "h:mm aaa")}
-          </ButtonStyledPicker>
+        {limitedHours.map((datetime, index) => (
+          <TimeButton
+            key={datetime.getTime()}
+            datetime={datetime}
+            isFirstAvailableTime={index === 0}
+          />
         ))}
       </BoxGridStyled>
       {shouldRenderShowAllSessionsButton && (
@@ -111,4 +72,6 @@ export default function TimePicker({
       )}
     </>
   );
-}
+};
+
+export default TimePicker;

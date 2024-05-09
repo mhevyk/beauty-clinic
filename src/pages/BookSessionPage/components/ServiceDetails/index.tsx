@@ -5,13 +5,13 @@ import {
   IconButton,
   keyframes,
   styled,
-  Typography,
 } from "@mui/material";
-import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
 import caretIcon from "@icons/caret-left.svg?react";
-import { Treatment } from "@api/hooks";
 import useToggle from "@hooks/useToggle.ts";
-import { format } from "date-fns";
+import TreatmentDetails from "./components/TreatmentDetails";
+import { Suspense } from "react";
+import ErrorBoundary from "@components/ErrorBoundary";
+import showSnackbar from "@utils/showSnackbar";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -34,15 +34,11 @@ const IconStyled = styled(caretIcon, {
 }));
 
 type ServiceDetailsProps = {
-  treatment: Treatment;
   hasAvailableSession: boolean;
-  date: Date;
 };
 
 export default function ServiceDetails({
-  treatment,
   hasAvailableSession,
-  date,
 }: ServiceDetailsProps) {
   const { isOpen, toggle } = useToggle();
 
@@ -55,27 +51,21 @@ export default function ServiceDetails({
         </IconButton>
       </Box>
       <Collapse in={isOpen}>
-        <Box paddingBottom="12px">
-          <Typography fontSize="16px">{treatment.name}</Typography>
-          {hasAvailableSession && (
-            <>
-              <Typography fontSize="16px">
-                {format(date, `MMMM d, yyyy h:mm aaa `)}
-              </Typography>
-              <Typography color="#605f5d" fontSize="14px">
-                {/*TODO: add employee to response from server*/}
-                {/*{details?.employee}*/}
-                Roma Linuxist
-              </Typography>
-              <Typography color="#605f5d" fontSize="14px">
-                {minutesToHourAndMinutes(treatment.duration)}
-              </Typography>
-            </>
-          )}
-          <Typography color="#605f5d" fontSize="14px">
-            $ {treatment.pricePerUnit}
-          </Typography>
-        </Box>
+        {/* TODO: improve error message */}
+        <ErrorBoundary
+          fallback={(error) => <p>{error?.message}</p>}
+          onError={(error) =>
+            showSnackbar({
+              message: error.message,
+              autohide: true,
+            })
+          }
+        >
+          {/* TODO: change fallback */}
+          <Suspense fallback={<div>Loading...</div>}>
+            <TreatmentDetails hasAvailableSession={hasAvailableSession} />
+          </Suspense>
+        </ErrorBoundary>
       </Collapse>
     </>
   );

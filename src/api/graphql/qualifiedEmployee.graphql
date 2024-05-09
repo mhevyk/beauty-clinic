@@ -1,0 +1,6 @@
+query QualifiedEmployees($treatmentId: Int!) {
+  qualifiedEmployees(treatmentId: $treatmentId) {
+    id
+    name
+  }
+}

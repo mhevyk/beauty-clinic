@@ -1,32 +1,37 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   startOfToday,
-  isToday,
   isSameMonth,
   isSameDay,
   sub,
   add,
   format,
+  isSameWeek,
 } from "date-fns";
 import { calendarConfig } from "../data/calendarConfig";
+import { WEEK_DAYS } from "../data/weekDays";
+import {
+  CalendarControls,
+  CalendarData,
+  CalendarSize,
+  CalendarUtils,
+} from "../types";
 
-export type CalendarSize = "normal" | "compact";
-
-export type CalendarDay = {
-  date: Date;
-  isToday: boolean;
-  isAnotherMonth: boolean;
-  isSelected: boolean;
-};
-
-const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
-
-type UseCalendar = {
+export type CalendarInput = {
   selectedDayDate: Date | null;
   size: CalendarSize;
 };
 
-export function useCalendar({ selectedDayDate, size }: UseCalendar) {
+export type CalendarOutput = {
+  data: CalendarData;
+  utils: CalendarUtils;
+  controls: CalendarControls;
+};
+
+export function useCalendar({
+  selectedDayDate,
+  size,
+}: CalendarInput): CalendarOutput {
   const [selectedPage, setSelectedPage] = useState(
     selectedDayDate ?? startOfToday()
   );
@@ -35,23 +40,39 @@ export function useCalendar({ selectedDayDate, size }: UseCalendar) {
 
   const showPreviousPage = useCallback(() => {
     setSelectedPage((page) => sub(page, { [unit]: 1 }));
-  }, [unit]);
+  }, [setSelectedPage, unit]);
 
   const showNextPage = useCallback(() => {
     setSelectedPage((page) => add(page, { [unit]: 1 }));
-  }, [unit]);
+  }, [setSelectedPage, unit]);
 
-  const daysRange = getRange(selectedPage);
+  const days = useMemo(() => getRange(selectedPage), [selectedPage, getRange]);
 
-  const days: CalendarDay[] = daysRange.map((day) => ({
-    date: day,
-    isToday: isToday(day),
-    isAnotherMonth: size === "normal" ? !isSameMonth(day, selectedPage) : false,
-    isSelected: selectedDayDate ? isSameDay(day, selectedDayDate) : false,
-  }));
+  const checkSamePage = useCallback(
+    (date1: Date, date2: Date) => {
+      return size === "normal"
+        ? isSameMonth(date1, date2)
+        : isSameWeek(date1, date2);
+    },
+    [size]
+  );
 
-  const firstDateInRange = daysRange[0]!;
-  const lastDayInRange = daysRange.at(-1)!;
+  const checkSelected = useCallback(
+    (day: Date) => {
+      return selectedDayDate ? isSameDay(day, selectedDayDate) : false;
+    },
+    [selectedDayDate]
+  );
+
+  const checkAnotherMonth = useCallback(
+    (day: Date) => {
+      return size === "normal" ? !isSameMonth(day, selectedPage) : false;
+    },
+    [size, selectedPage]
+  );
+
+  const firstDateInRange = days[0]!;
+  const lastDayInRange = days.at(-1)!;
 
   let selectedPageLabel;
 
@@ -67,9 +88,15 @@ export function useCalendar({ selectedDayDate, size }: UseCalendar) {
 
   return {
     data: {
+      selectedPage,
       selectedPageLabel,
       days,
-      weekDays,
+      weekDays: WEEK_DAYS,
+    },
+    utils: {
+      checkSelected,
+      checkAnotherMonth,
+      checkSamePage,
     },
     controls: {
       showNextPage,

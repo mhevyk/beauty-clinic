@@ -1,10 +1,14 @@
+import { EMAIL_PATTERN } from "@constants/index";
 import * as Yup from "yup";
 
 export const usernameFieldValidation = Yup.string()
   .min(3, "Username must be at least 3 characters")
   .max(50, "Username must be at most 50 characters");
 
-export const emailFieldValidation = Yup.string().email("Invalid email");
+export const emailFieldValidation = Yup.string().matches(
+  EMAIL_PATTERN,
+  "Invalid email"
+);
 
 export const passwordFieldValidation = Yup.string()
   .required("Password is required")

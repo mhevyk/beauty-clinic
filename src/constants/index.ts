@@ -11,3 +11,19 @@ export const CUSTOM_EVENTS = {
 };
 
 export const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/;
+export const PHONE_NUMBER_PATTERN = [
+  "(",
+  /[1-9]/,
+  /\d/,
+  /\d/,
+  ")",
+  " ",
+  /\d/,
+  /\d/,
+  /\d/,
+  "-",
+  /\d/,
+  /\d/,
+  /\d/,
+  /\d/,
+];

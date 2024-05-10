@@ -1,7 +1,7 @@
 import { Button, styled } from "@mui/material";
 import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
 import { format } from "date-fns";
-import { useCallback } from "react";
+import { useEffect } from "react";
 
 type ButtonStyledPickerProps = {
   isSelected: boolean;
@@ -28,14 +28,6 @@ const ButtonStyledPicker = styled(Button, {
   };
 });
 
-type ButtonDataset = {
-  timestamp: string;
-};
-
-interface HTMLButtonElementWithDataset extends HTMLButtonElement {
-  dataset: ButtonDataset;
-}
-
 type TimeButtonProps = {
   datetime: Date;
   isFirstAvailableTime: boolean;
@@ -45,21 +37,15 @@ export default function TimeButton({
   datetime,
   isFirstAvailableTime,
 }: TimeButtonProps) {
-  const { selectedTime, setSelectedTime } = useDatetimePickerContext();
+  const { selectedTime, setSelectedTime, selectedEmployeeId } =
+    useDatetimePickerContext();
 
-  const firstHourDynamicRef = useCallback(
-    (button: HTMLButtonElementWithDataset | null) => {
-      if (button === null) {
-        return;
-      }
-
-      const dataset = button.dataset;
-      if (dataset.timestamp) {
-        setSelectedTime(new Date(dataset.timestamp));
-      }
-    },
-    []
-  );
+  // TODO: think of better solution
+  useEffect(() => {
+    if (isFirstAvailableTime) {
+      setSelectedTime(datetime);
+    }
+  }, [selectedEmployeeId, isFirstAvailableTime]);
 
   const isSelected = Boolean(
     selectedTime && selectedTime.toTimeString() === datetime.toTimeString()
@@ -67,8 +53,6 @@ export default function TimeButton({
 
   return (
     <ButtonStyledPicker
-      ref={isFirstAvailableTime ? firstHourDynamicRef : undefined}
-      data-timestamp={datetime.toISOString()}
       isSelected={isSelected}
       key={datetime.getTime()}
       onClick={() => setSelectedTime(datetime)}

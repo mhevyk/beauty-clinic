@@ -4,10 +4,6 @@ import { emailFormSchema } from "./emailFormSchema";
 
 export const signUpFormSchema = Yup.object({
   username: usernameFieldValidation.required("Username is required"),
-  phoneNumber: Yup.string().matches(
-    /^\d{10}$/,
-    "Phone number must be 10 digits"
-  ),
 }).concat(emailFormSchema);
 
 export const repeatPasswordFormSchema = Yup.object({

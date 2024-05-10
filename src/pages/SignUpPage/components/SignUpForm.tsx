@@ -3,6 +3,8 @@ import { useFormikContext } from "formik";
 import { useId } from "react";
 import FormGroupWithError from "@components/FormGroupWithError";
 import { SignUpFormValues } from "..";
+import MaskedInput from "react-text-mask";
+import { PHONE_NUMBER_PATTERN } from "@constants/index";
 
 const Form = styled("form")({
   display: "flex",
@@ -49,14 +51,16 @@ export default function SignUpForm() {
       </FormGroupWithError>
       <FormGroupWithError errorMessage={errors.phoneNumber}>
         <LabelStyled htmlFor={`${id}-phone-number`}>Phone number</LabelStyled>
-        <TextField
-          size="small"
+        <MaskedInput
+          mask={PHONE_NUMBER_PATTERN}
           type="tel"
           id={`${id}-phone-number`}
           name="phoneNumber"
           value={values.phoneNumber}
           onChange={handleChange}
-          fullWidth
+          render={(ref, props) => (
+            <TextField inputRef={ref} size="small" fullWidth {...props} />
+          )}
         />
       </FormGroupWithError>
     </Form>

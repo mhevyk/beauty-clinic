@@ -1,8 +1,11 @@
 import FormGroupWithError from "@components/FormGroupWithError.tsx";
 import { Box, InputLabel, styled, TextField } from "@mui/material";
 import { useFormikContext } from "formik";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";
+import { useUserStore } from "@store/user/userStore.ts";
+import PhoneNumberFormGroup from "@components/PhoneNumberFormGroup.tsx";
+import theme from "@theme/theme.ts";
 
 type ForgotPasswordFormValues = {
   name: string;
@@ -36,26 +39,39 @@ const Counter = styled("p")(({ theme }) => ({
   display: "flex",
   justifyContent: "end",
   margin: "8px 0 0 0",
+  position: "absolute",
+  right: 0,
+  top: "58px",
 }));
 
-type BookingFormProps = {
-  isAuthenticated: boolean;
-};
-
-export default function BookingForm({ isAuthenticated }: BookingFormProps) {
+export default function BookingForm() {
   const [length, setLength] = useState(0);
-  const { values, handleChange, errors } =
+  const { values, handleChange, errors, setFieldValue, setValues } =
     useFormikContext<ForgotPasswordFormValues>();
+
+  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
 
   const { data } = useGetCurrentUserDetailsQuery();
 
-  if (isAuthenticated) {
-    values.name = data?.getCurrentUserDetails.username;
-    values.email = data?.getCurrentUserDetails.email;
-    values.phoneNumber = data?.getCurrentUserDetails.phoneNumber;
-  }
+  console.log(data);
 
-  values.name = "fdfd";
+  useEffect(() => {
+    const userDetails = data?.getCurrentUserDetails;
+
+    if (userDetails && isAuthenticated) {
+      setFieldValue("name", userDetails.username ?? "");
+      setFieldValue("email", userDetails.email ?? "");
+      setFieldValue("phoneNumber", userDetails.phoneNumber ?? "");
+    } else {
+      setValues({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        message: values.message,
+      });
+    }
+  }, [isAuthenticated, data]);
+
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newName = event.target.value;
     if (newName.length <= 50) {
@@ -68,7 +84,7 @@ export default function BookingForm({ isAuthenticated }: BookingFormProps) {
     <>
       <Form>
         <BoxStyled>
-          <Box flexGrow="1">
+          <Box position="relative" flexGrow="1">
             <FormGroupWithError errorMessage={errors?.name}>
               <InputLabelStyled>Name*</InputLabelStyled>
               <TextFieldStyled
@@ -97,21 +113,15 @@ export default function BookingForm({ isAuthenticated }: BookingFormProps) {
             />
           </FormGroupWithError>
         </BoxStyled>
-        <FormGroupWithError errorMessage={errors?.phoneNumber}>
-          <InputLabelStyled>Phone Number</InputLabelStyled>
-          <TextFieldStyled
-            size="small"
-            type="text"
-            name="phoneNumber"
-            value={values.phoneNumber}
-            onChange={handleChange}
-            fullWidth
-            disabled={isAuthenticated}
-          />
-        </FormGroupWithError>
+        <PhoneNumberFormGroup
+          backgroundColor={theme.palette.CreamyDawn.main}
+          isDisable={isAuthenticated}
+        />
         <FormGroupWithError errorMessage={errors?.message}>
           <InputLabelStyled>Add Your Message</InputLabelStyled>
           <TextFieldStyled
+            multiline
+            rows={2.5}
             size="small"
             type="text"
             name="message"

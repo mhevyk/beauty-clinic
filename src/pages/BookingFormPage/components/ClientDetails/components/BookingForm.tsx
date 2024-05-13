@@ -53,12 +53,12 @@ export default function BookingForm() {
 
   const { data } = useGetCurrentUserDetailsQuery();
 
-  console.log(data);
-
   useEffect(() => {
     const userDetails = data?.getCurrentUserDetails;
 
     if (userDetails && isAuthenticated) {
+      setLength(userDetails.username.length);
+
       setFieldValue("name", userDetails.username ?? "");
       setFieldValue("email", userDetails.email ?? "");
       setFieldValue("phoneNumber", userDetails.phoneNumber ?? "");
@@ -87,6 +87,7 @@ export default function BookingForm() {
           <Box position="relative" flexGrow="1">
             <FormGroupWithError errorMessage={errors?.name}>
               <InputLabelStyled>Name*</InputLabelStyled>
+              {/*TODO: maybe off focus when disabled is true */}
               <TextFieldStyled
                 size="small"
                 type="text"

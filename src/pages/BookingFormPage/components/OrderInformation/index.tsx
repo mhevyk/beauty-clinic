@@ -1,5 +1,5 @@
 import BookingDetails from "@pages/BookingFormPage/components/OrderInformation/components/BookingDetails.tsx";
-import { Box, styled, Typography } from "@mui/material";
+import { Box, CircularProgress, styled, Typography } from "@mui/material";
 import { useOrderStore } from "@store/order/orderStore.ts";
 import { GetTreatmentByIdDocument, Treatment } from "@api/hooks";
 import { Navigate, useLocation, useParams } from "react-router-dom";
@@ -35,8 +35,6 @@ export default function OrderInformation() {
   const [treatments, setTreatments] = useState<Treatment[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(isLoading);
-
   useEffect(() => {
     if (fromCalendar) {
       setIsLoading(true);
@@ -64,6 +62,14 @@ export default function OrderInformation() {
 
   if (sessionStartsAt === null) {
     return <Navigate to={`/book-session/${treatmentId}`} />;
+  }
+
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center" marginBottom="46px">
+        <CircularProgress color="secondary" />
+      </Box>
+    );
   }
 
   return (

@@ -29,7 +29,7 @@ export default function ClientDetails() {
   const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
 
   if (isAuthenticated) {
-    return <BookingForm isAuthenticated={isAuthenticated} />;
+    return <BookingForm />;
   }
 
   return (
@@ -40,7 +40,7 @@ export default function ClientDetails() {
         <LoginPromptLink to="/auth/signin">Log In</LoginPromptLink>{" "}
         <LoginPromptTypography>for faster booking.</LoginPromptTypography>
       </LoginPromptBox>
-      <BookingForm isAuthenticated={isAuthenticated} />
+      <BookingForm />
     </>
   );
 }

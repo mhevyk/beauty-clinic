@@ -8,7 +8,7 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { Treatment } from "@api/hooks";
+import { Employee, Treatment } from "@api/hooks";
 import caretIcon from "@icons/caret-left.svg?react";
 import useToggle from "@hooks/useToggle.ts";
 import { format } from "date-fns";
@@ -35,12 +35,14 @@ const IconStyled = styled(caretIcon, {
 }));
 
 type ServiceDetailsProps = {
-  treatment: Treatment;
+  employee: Employee;
+  treatments: Treatment[];
   date: Date;
 };
 
 export default function BookingDetails({
-  treatment,
+  employee,
+  treatments,
   date,
 }: ServiceDetailsProps) {
   const { isOpen, toggle } = useToggle();
@@ -54,20 +56,20 @@ export default function BookingDetails({
         </IconButton>
       </Box>
       <Collapse in={isOpen}>
-        <Box height="116px" paddingBottom="12px">
-          <Typography fontSize="16px">{treatment.name}</Typography>
-          <Typography fontSize="16px">
-            {format(date, `MMMM d, yyyy h:mm aaa `)}
-          </Typography>
-          <Typography color="#605f5d" fontSize="14px">
-            {/*TODO: add employee to response from server*/}
-            {/*{details?.employee}*/}
-            Roma Linuxist
-          </Typography>
-          <Typography color="#605f5d" fontSize="14px">
-            {minutesToHourAndMinutes(treatment.duration)}
-          </Typography>
-        </Box>
+        {treatments.map((treatment) => (
+          <Box key={treatment.id} height="116px" paddingBottom="12px">
+            <Typography fontSize="16px">{treatment.name}</Typography>
+            <Typography fontSize="16px">
+              {format(date, `MMMM d, yyyy h:mm aaa `)}
+            </Typography>
+            <Typography color="#605f5d" fontSize="14px">
+              {employee.name}
+            </Typography>
+            <Typography color="#605f5d" fontSize="14px">
+              {minutesToHourAndMinutes(treatment.duration)}
+            </Typography>
+          </Box>
+        ))}
       </Collapse>
       <Divider color="black" />
     </>

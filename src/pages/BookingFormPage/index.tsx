@@ -1,21 +1,11 @@
-import { Box, Button, Divider, styled, Typography } from "@mui/material";
+import { Box, Button, Divider, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Link, useParams } from "react-router-dom";
 import CaretLeft from "@icons/caret-left.svg?react";
-import BookingDetails from "@pages/BookingFormPage/components/BookingDetails.tsx";
-import { Treatment } from "@api/hooks";
-import { useOrderStore } from "@store/order/orderStore.ts";
 import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
 import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
-
-const data: Treatment = {
-  __typename: "Treatment",
-  pricePerUnit: 200,
-  id: "1",
-  duration: 90,
-  name: "Signature Facial",
-};
+import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -24,7 +14,7 @@ const SectionStyled = styled("section")({
 });
 
 const ContainerStyled = styled(Box)({
-  maxWidth: "980px",
+  maxWidth: "1000px",
   width: "100%",
   margin: "140px 10px 48px 10px",
 });
@@ -45,6 +35,29 @@ const ClientDetailsTitle = styled("h3")(({ theme }) => ({
   margin: "0 0 12px",
 }));
 
+const ClientDetailsBox = styled(Box)(({ theme }) => ({
+  width: "100%",
+  margin: "0 26px",
+  [theme.breakpoints.up("md")]: {
+    maxWidth: "608px",
+  },
+}));
+
+const BookingDetailsBox = styled(Box)(({ theme }) => ({
+  margin: "0 26px",
+  [theme.breakpoints.down("md")]: {
+    margin: "32px",
+    width: "100%",
+  },
+}));
+
+const BoxStyled = styled(Box)(({ theme }) => ({
+  display: "flex",
+  [theme.breakpoints.down("md")]: {
+    flexWrap: "wrap",
+  },
+}));
+
 type BookTreatmentSessionParams = {
   treatmentId: string;
 };
@@ -60,13 +73,7 @@ export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
 
-  // const { data } = useGetTreatmentByIdSuspenseQuery({
-  //   variables: { treatmentId },
-  // });
-
-  const selectedDate = useOrderStore((store) => store.treatmentSessionDatetime);
-
-  function handleSubmit(values) {
+  function handleSubmit(values: object) {
     console.log(values);
   }
 
@@ -80,30 +87,23 @@ export default function BookingFormPage() {
         >
           Back
         </ButtonStyled>
-        <Box display="flex" flexWrap="wrap">
+        <BoxStyled>
           <Formik
             initialValues={initialFormValues}
             onSubmit={handleSubmit}
             validationSchema={bookingFormSchema}
+            validateOnChange={false}
+            validateOnBlur={false}
           >
             {({ handleSubmit }) => (
               <>
-                <Box width="608px" marginRight="26px">
+                <ClientDetailsBox>
                   <ClientDetailsTitle>Client Details</ClientDetailsTitle>
                   <Divider color="black" />
                   <ClientDetails />
-                </Box>
-                <Box width="280px" marginLeft="26px">
-                  <BookingDetails treatment={data} date={selectedDate} />
-                  <Typography margin="20px 0 12px">Payment Details</Typography>
-                  <Box
-                    marginBottom="20px"
-                    display="flex"
-                    justifyContent="space-between"
-                  >
-                    <Typography>Total</Typography>
-                    <Typography>${data.pricePerUnit}</Typography>
-                  </Box>
+                </ClientDetailsBox>
+                <BookingDetailsBox>
+                  <OrderInformation />
                   <ButtonGroup
                     fullWidth
                     size="small"
@@ -119,11 +119,11 @@ export default function BookingFormPage() {
                   >
                     Book Now
                   </ButtonGroup>
-                </Box>
+                </BookingDetailsBox>
               </>
             )}
           </Formik>
-        </Box>
+        </BoxStyled>
       </ContainerStyled>
     </SectionStyled>
   );

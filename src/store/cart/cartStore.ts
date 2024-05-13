@@ -1,6 +1,7 @@
 import { PERSISTED_STORAGE_KEYS } from "@constants/index";
 import createPersistedStore from "@store/utils/createPersistedStore";
 import showSnackbar from "@utils/showSnackbar";
+import { Treatment } from "@api/hooks";
 
 // TODO: move types from here to reuse them
 type TreatmentSessionDuration = {
@@ -12,13 +13,6 @@ type EmployeeDetails = {
   name: string;
 };
 
-type TreatmentDetails = {
-  id: number;
-  name: string;
-  pricePerUnit: number;
-  imageUrl?: string;
-};
-
 type TreatmentSession = {
   id: number;
   employee: EmployeeDetails;
@@ -26,7 +20,7 @@ type TreatmentSession = {
 };
 
 type CartItemBase = {
-  treatment: TreatmentDetails;
+  treatment: Treatment;
 };
 
 export type CartItemWithOneSession = CartItemBase & {
@@ -54,18 +48,15 @@ export const useCartStore = createPersistedStore<CartStore>(
       }, 0);
     },
     getTotalPrice: () => {
-      return get().items.reduce(
-        (totalPrice, { treatment, sessions }) => {
-          return totalPrice + treatment.pricePerUnit * sessions.length;
-        },
-        0
-      );
+      return get().items.reduce((totalPrice, { treatment, sessions }) => {
+        return totalPrice + treatment.pricePerUnit * sessions.length;
+      }, 0);
     },
     addToCart: (cartItem) => {
       const items = get().items;
 
       const treatmentIndex = items.findIndex(
-        (item) => item.treatment.id === cartItem.treatment.id
+        (item) => item.treatment.id === cartItem.treatment.id,
       );
 
       const newItem = {
@@ -87,7 +78,7 @@ export const useCartStore = createPersistedStore<CartStore>(
 
       const item = items[treatmentIndex]!;
       const session = item.sessions.find(
-        (session) => session.id === cartItem.session.id
+        (session) => session.id === cartItem.session.id,
       );
 
       if (session) {
@@ -115,12 +106,13 @@ export const useCartStore = createPersistedStore<CartStore>(
       set((state) => ({
         items: state.items.reduce<CartItemWithMultipleSessions[]>(
           (result, item) => {
+            //   TODO: fix types
             if (item.treatment.id !== treatmentId) {
               return [...result, item];
             }
 
             const filteredSessions = item.sessions.filter(
-              (session) => session.id !== treatmentSessionId
+              (session) => session.id !== treatmentSessionId,
             );
 
             if (filteredSessions.length === 0) {
@@ -134,12 +126,12 @@ export const useCartStore = createPersistedStore<CartStore>(
 
             return [...result, itemWithFilteredSessions];
           },
-          []
+          [],
         ),
       }));
     },
   }),
   {
     name: PERSISTED_STORAGE_KEYS.cart,
-  }
+  },
 );

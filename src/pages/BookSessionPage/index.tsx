@@ -1,6 +1,6 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import Calendar from "./components/Calendar";
-import { format, getHours, startOfToday } from "date-fns";
+import { format } from "date-fns";
 import TimePicker from "./components/TimePicker";
 import {
   Box,

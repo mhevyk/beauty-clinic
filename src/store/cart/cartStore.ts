@@ -62,20 +62,11 @@ export const useCartStore = createPersistedStore<CartStore>(
             },
           ],
         }));
-        return;
-      }
-
-      const item = items[treatmentIndex]!;
-      const session = item.sessions.find(
-        (session) =>
-          session.sessionStartsAt.toString() ===
-          cartItem.session.sessionStartsAt.toString()
-      );
-
-      if (session) {
+        // TODO: make this code more reusable
         showSnackbar({
           autohide: true,
-          message: "Session was already added to the cart",
+          variant: "success",
+          message: `Item was successfully added to the cart`,
         });
         return;
       }

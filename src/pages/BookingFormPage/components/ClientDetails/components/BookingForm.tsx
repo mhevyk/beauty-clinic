@@ -19,8 +19,9 @@ const BoxStyled = styled(Box)({
   gap: "24px",
 });
 
-const TextFieldStyled = styled(TextField)(({ theme }) => ({
+const TextFieldStyled = styled(TextField)(({ theme, disabled }) => ({
   backgroundColor: theme.palette.CreamyDawn.main,
+  ...(disabled && { pointerEvents: "none" }),
 }));
 
 const InputLabelStyled = styled(InputLabel)(({ theme }) => ({
@@ -116,7 +117,7 @@ export default function BookingForm() {
         </BoxStyled>
         <PhoneNumberFormGroup
           backgroundColor={theme.palette.CreamyDawn.main}
-          isDisable={isAuthenticated}
+          isDisabled={isAuthenticated}
         />
         <FormGroupWithError errorMessage={errors?.message}>
           <InputLabelStyled>Add Your Message</InputLabelStyled>

@@ -6,6 +6,9 @@ import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
 import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
 import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
+import useCreateOrder from "./hooks/useCreateOrder";
+import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import AddToCartButton from "./components/AddToCartButton";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -19,13 +22,13 @@ const ContainerStyled = styled(Box)({
   margin: "140px 10px 48px 10px",
 });
 
-const ButtonStyled = styled(Button)({
+const BackButton = styled(Button)({
   textAlign: "left",
   marginBottom: "42px",
   fontWeight: 330,
 }) as typeof Button;
 
-const ButtonGroup = styled(Button)({
+const ActionButton = styled(ButtonWithSpinner)({
   marginTop: "12px",
 });
 
@@ -62,7 +65,14 @@ type BookTreatmentSessionParams = {
   treatmentId: string;
 };
 
-const initialFormValues = {
+export type CreateOrderSubmitForm = {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  message: string;
+};
+
+const initialFormValues: CreateOrderSubmitForm = {
   name: "",
   email: "",
   phoneNumber: "",
@@ -72,21 +82,22 @@ const initialFormValues = {
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
+  const [createOrder, { isLoading }] = useCreateOrder();
 
-  function handleSubmit(values: object) {
-    console.log(values);
+  async function handleSubmit(values: CreateOrderSubmitForm) {
+    await createOrder(values);
   }
 
   return (
     <SectionStyled>
       <ContainerStyled>
-        <ButtonStyled
+        <BackButton
           component={Link}
           to={`/book-session/${treatmentId}`}
           startIcon={<CaretLeft width={16} height={16} />}
         >
           Back
-        </ButtonStyled>
+        </BackButton>
         <BoxStyled>
           <Formik
             initialValues={initialFormValues}
@@ -104,21 +115,16 @@ export default function BookingFormPage() {
                 </ClientDetailsBox>
                 <BookingDetailsBox>
                   <OrderInformation />
-                  <ButtonGroup
-                    fullWidth
-                    size="small"
-                    variant="primary-outlined"
-                  >
-                    Add to Cart
-                  </ButtonGroup>
-                  <ButtonGroup
-                    onClick={handleSubmit as () => void}
+                  <AddToCartButton treatmentId={treatmentId} />
+                  <ActionButton
+                    onClick={() => handleSubmit()}
+                    loading={isLoading}
                     fullWidth
                     size="small"
                     variant="primary"
                   >
                     Book Now
-                  </ButtonGroup>
+                  </ActionButton>
                 </BookingDetailsBox>
               </>
             )}

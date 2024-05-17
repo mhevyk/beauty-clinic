@@ -1,0 +1,7 @@
+mutation CreateOrderByAuthorizedUser(
+  $input: CreateOrderByAuthorizedUserInput!
+) {
+  createOrderByAuthorizedUser(input: $input) {
+    id
+  }
+}

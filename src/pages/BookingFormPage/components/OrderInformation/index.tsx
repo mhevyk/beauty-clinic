@@ -1,11 +1,8 @@
 import BookingDetails from "@pages/BookingFormPage/components/OrderInformation/components/BookingDetails.tsx";
 import { Box, CircularProgress, styled, Typography } from "@mui/material";
 import { useOrderStore } from "@store/order/orderStore.ts";
-import { GetTreatmentByIdDocument, Treatment } from "@api/hooks";
-import { Navigate, useLocation, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { client } from "@config/apollo";
-import { useCartStore } from "@store/cart/cartStore.ts";
+import { Navigate, useParams } from "react-router-dom";
+import useBookingDetails from "@pages/BookingFormPage/hooks/useBookingDetails";
 
 const TotalPriceBox = styled(Box)({
   marginBottom: "20px",
@@ -17,47 +14,18 @@ type BookTreatmentSessionParams = {
   treatmentId: string;
 };
 
-type LocationState = {
-  fromCalendar?: boolean;
-  fromCart?: boolean;
-};
-
 export default function OrderInformation() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
 
-  const location = useLocation();
-  const { fromCalendar, fromCart } = location.state ?? ({} as LocationState);
+  const { treatments, isLoading } = useBookingDetails(treatmentId);
 
   const sessionStartsAt = useOrderStore((store) => store.sessionStartsAt);
   const employee = useOrderStore((store) => store.employee);
 
-  const [treatments, setTreatments] = useState<Treatment[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (fromCalendar) {
-      setIsLoading(true);
-      client
-        .query({
-          query: GetTreatmentByIdDocument,
-          variables: {
-            treatmentId,
-          },
-        })
-        .then((response) => setTreatments([response.data.treatment]))
-        .catch((error) => error.message)
-        .finally(() => setIsLoading(false));
-    } else if (fromCart) {
-      const itemsFromCart = useCartStore.getState().items;
-      const treatmentsFromCart = itemsFromCart.map((item) => item.treatment);
-      setTreatments(treatmentsFromCart);
-    }
-  }, [fromCalendar, fromCalendar, setIsLoading, setTreatments]);
-
   const totalPrice = treatments.reduce(
     (sum, item) => sum + item.pricePerUnit,
-    0,
+    0
   );
 
   if (sessionStartsAt === null) {

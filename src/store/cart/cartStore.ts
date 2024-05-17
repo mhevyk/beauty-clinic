@@ -3,32 +3,21 @@ import createPersistedStore from "@store/utils/createPersistedStore";
 import showSnackbar from "@utils/showSnackbar";
 import { Treatment } from "@api/hooks";
 
+type Session = {
+  employeeId: number;
+  employeeName: string;
+  sessionStartsAt: Date;
+};
+
 // TODO: move types from here to reuse them
-type TreatmentSessionDuration = {
-  start: Date;
-  end: Date;
-};
-
-type EmployeeDetails = {
-  name: string;
-};
-
-type TreatmentSession = {
-  id: number;
-  employee: EmployeeDetails;
-  time: TreatmentSessionDuration;
-};
-
-type CartItemBase = {
+type CartItemWithMultipleSessions = {
   treatment: Treatment;
+  sessions: Session[];
 };
 
-export type CartItemWithOneSession = CartItemBase & {
-  session: TreatmentSession;
-};
-
-export type CartItemWithMultipleSessions = CartItemBase & {
-  sessions: TreatmentSession[];
+type CartItemWithOneSession = {
+  treatment: Treatment;
+  session: Session;
 };
 
 type CartStore = {
@@ -36,7 +25,7 @@ type CartStore = {
   getItemsCount: () => number;
   getTotalPrice: () => number;
   addToCart: (cartItem: CartItemWithOneSession) => void;
-  removeFromCart: (treatmentId: number, treatmentSessionId: number) => void;
+  removeFromCart: (treatmentId: number, sessionStartsAt: Date) => void;
 };
 
 export const useCartStore = createPersistedStore<CartStore>(
@@ -56,7 +45,7 @@ export const useCartStore = createPersistedStore<CartStore>(
       const items = get().items;
 
       const treatmentIndex = items.findIndex(
-        (item) => item.treatment.id === cartItem.treatment.id,
+        (item) => item.treatment.id === cartItem.treatment.id
       );
 
       const newItem = {
@@ -78,13 +67,15 @@ export const useCartStore = createPersistedStore<CartStore>(
 
       const item = items[treatmentIndex]!;
       const session = item.sessions.find(
-        (session) => session.id === cartItem.session.id,
+        (session) =>
+          session.sessionStartsAt.toString() ===
+          cartItem.session.sessionStartsAt.toString()
       );
 
       if (session) {
         showSnackbar({
           autohide: true,
-          message: "Treatment cannot be duplicated!",
+          message: "Session was already added to the cart",
         });
         return;
       }
@@ -101,18 +92,25 @@ export const useCartStore = createPersistedStore<CartStore>(
           return item;
         }),
       }));
+
+      showSnackbar({
+        autohide: true,
+        variant: "success",
+        message: `Item was successfully added to the cart`,
+      });
     },
-    removeFromCart: (treatmentId, treatmentSessionId) => {
+    removeFromCart: (treatmentId, sessionStartsAt) => {
       set((state) => ({
         items: state.items.reduce<CartItemWithMultipleSessions[]>(
           (result, item) => {
-            //   TODO: fix types
             if (item.treatment.id !== treatmentId) {
               return [...result, item];
             }
 
             const filteredSessions = item.sessions.filter(
-              (session) => session.id !== treatmentSessionId,
+              (session) =>
+                session.sessionStartsAt.toString() !==
+                sessionStartsAt.toString()
             );
 
             if (filteredSessions.length === 0) {
@@ -126,12 +124,12 @@ export const useCartStore = createPersistedStore<CartStore>(
 
             return [...result, itemWithFilteredSessions];
           },
-          [],
+          []
         ),
       }));
     },
   }),
   {
     name: PERSISTED_STORAGE_KEYS.cart,
-  },
+  }
 );

@@ -15,21 +15,25 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
 
 interface MaskedInputStyledProps {
   backgroundColor: string;
+  disabled: boolean;
 }
 
-const MaskedInputStyled = styled(MaskedInput)<MaskedInputStyledProps>(
-  ({ backgroundColor }: MaskedInputStyledProps) => ({
+const MaskedInputStyled = styled(MaskedInput, {
+  shouldForwardProp: (prop) => prop !== "backgroundColor",
+})<MaskedInputStyledProps>(
+  ({ backgroundColor, disabled }: MaskedInputStyledProps) => ({
     backgroundColor,
-  }),
+    ...(disabled && { pointerEvents: "none" }),
+  })
 );
 
 type PhoneNumberFormGroupProps = {
-  isDisable: boolean;
+  isDisabled: boolean;
   backgroundColor: string;
 };
 
 export default function PhoneNumberFormGroup({
-  isDisable,
+  isDisabled,
   backgroundColor,
 }: PhoneNumberFormGroupProps) {
   const id = useId();
@@ -40,7 +44,7 @@ export default function PhoneNumberFormGroup({
       <LabelStyled htmlFor={`${id}-phone-number`}>Phone number</LabelStyled>
       <MaskedInputStyled
         backgroundColor={backgroundColor}
-        disabled={isDisable}
+        disabled={isDisabled}
         placeholder="(___) ___-____"
         mask={PHONE_NUMBER_PATTERN}
         type="tel"

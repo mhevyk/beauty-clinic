@@ -4,6 +4,8 @@ import { Button, Grid, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";
 import SkeletonTreatmentCard from "./components/SkeletonTreatmentCard";
+import ErrorBoundary from "@components/ErrorBoundary.tsx";
+import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
 
 const SectionStyled = styled("section")({
   display: "flex",
@@ -27,16 +29,20 @@ const ButtonStyled = styled(Button)({
 
 export default function MyTreatments() {
   return (
-    <SectionStyled>
-      <TitleStyled>MY TREATMENTS</TitleStyled>
-      <Grid justifyContent="center" container spacing={2} columns={12}>
-        <Suspense fallback={<SkeletonTreatmentCard />}>
-          <TreatmentCardList />
-        </Suspense>
-      </Grid>
-      <ButtonStyled component={Link} to="/treatments" variant="primary">
-        Book Now
-      </ButtonStyled>
-    </SectionStyled>
+    <ErrorBoundary
+      fallback={(error) => <ErrorAlertLayout errorMessage={error?.message} />}
+    >
+      <SectionStyled>
+        <TitleStyled>MY TREATMENTS</TitleStyled>
+        <Grid justifyContent="center" container spacing={2} columns={12}>
+          <Suspense fallback={<SkeletonTreatmentCard />}>
+            <TreatmentCardList />
+          </Suspense>
+        </Grid>
+        <ButtonStyled component={Link} to="/treatments" variant="primary">
+          Book Now
+        </ButtonStyled>
+      </SectionStyled>
+    </ErrorBoundary>
   );
 }

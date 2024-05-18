@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 import { Container, Grid, Hidden, styled } from "@mui/material";
 import TreatmentsCardList from "./components/TreatmentsCardList.tsx";
-import FernDecorationSvg from '@decorations/fern.svg?react'
+import FernDecorationSvg from "@decorations/fern.svg?react";
 import theme from "@theme/theme.ts";
 import SkeletonTreatmentsCard from "./components/SkeletonTreatmentsCard.tsx";
+import ErrorBoundary from "@components/ErrorBoundary.tsx";
+import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
 
 const SectionStyled = styled("section")(({ theme }) => ({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -46,14 +48,24 @@ export default function TreatmentsPage() {
         <TreatmentImageStyled />
       </Hidden>
       <Container sx={{ maxWidth: "1000px" }}>
-        <Grid justifyContent="center" container spacing={3.5} columns={12}>
-          <Grid item xs={12} sm={12} md={10} lg={12} xl={12}>
-            <TitleStyled>My Hand Crafted Treatments Menu</TitleStyled>
+        <ErrorBoundary
+          fallback={(error) => (
+            <ErrorAlertLayout
+              errorMessage={error?.message}
+              backButtonPath="/"
+              buttonLabel="Back to home"
+            />
+          )}
+        >
+          <Grid justifyContent="center" container spacing={3.5} columns={12}>
+            <Grid item xs={12} sm={12} md={10} lg={12} xl={12}>
+              <TitleStyled>My Hand Crafted Treatments Menu</TitleStyled>
+            </Grid>
+            <Suspense fallback={<SkeletonTreatmentsCard />}>
+              <TreatmentsCardList />
+            </Suspense>
           </Grid>
-          <Suspense fallback={<SkeletonTreatmentsCard />}>
-            <TreatmentsCardList />
-          </Suspense>
-        </Grid>
+        </ErrorBoundary>
       </Container>
     </SectionStyled>
   );

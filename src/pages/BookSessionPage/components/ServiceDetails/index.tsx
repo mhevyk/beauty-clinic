@@ -12,6 +12,7 @@ import TreatmentDetails from "./components/TreatmentDetails";
 import { Suspense } from "react";
 import ErrorBoundary from "@components/ErrorBoundary";
 import showSnackbar from "@utils/showSnackbar";
+import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -53,7 +54,9 @@ export default function ServiceDetails({
       <Collapse in={isOpen}>
         {/* TODO: improve error message */}
         <ErrorBoundary
-          fallback={(error) => <p>{error?.message}</p>}
+          fallback={(error) => (
+            <ErrorAlertLayout errorMessage={error?.message} size="small" />
+          )}
           onError={(error) =>
             showSnackbar({
               message: error.message,

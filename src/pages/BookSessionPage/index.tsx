@@ -19,6 +19,7 @@ import DatetimePickerProvider, {
 } from "./context/DatetimePickerProvider.tsx";
 import SubmitSessionDatetimeButton from "./components/SubmitSessionDatetimeButton.tsx";
 import ErrorBoundary from "@components/ErrorBoundary.tsx";
+import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
 
 const ContainerStyled = styled(Box)({
   maxWidth: "800px",
@@ -38,13 +39,6 @@ const ButtonStyled = styled(Button)({
   fontWeight: 330,
 }) as typeof Button;
 
-const BookNowLinkButton = styled(Button)({
-  padding: "8px 30px",
-  display: "block",
-  marginTop: "22px",
-  width: "max-content",
-}) as typeof Button;
-
 const DateNow = styled("p")({
   ...theme.typography.paragraph,
   margin: "0",
@@ -62,23 +56,12 @@ export default function BookSessionPage() {
       <ContainerStyled>
         {/* TODO: improve UI */}
         <ErrorBoundary
-          fallback={
-            <Box>
-              <Typography>
-                Sorry, but currently there are no employees specialized in
-                current session.
-                <br />
-                Please try again later or select another treatment
-              </Typography>
-              <BookNowLinkButton
-                component={Link}
-                to="/treatments"
-                variant="primary"
-              >
-                Back to treatments
-              </BookNowLinkButton>
-            </Box>
-          }
+          fallback={(error) => (
+            <ErrorAlertLayout
+              errorMessage={error?.message}
+              backButtonPath="/treatments"
+            />
+          )}
         >
           <Suspense
             key={params.treatmentId}
@@ -100,7 +83,6 @@ export default function BookSessionPage() {
 
 function BookSessionPageContent() {
   const { selectedTime, selectedDate } = useDatetimePickerContext();
-
   {
     /* TODO: fix styles */
   }

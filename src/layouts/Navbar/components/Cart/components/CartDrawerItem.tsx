@@ -8,7 +8,7 @@ import {
   alpha,
   styled,
 } from "@mui/material";
-import { CartItemWithMultipleSessions } from "@store/cart/cartStore";
+import { CartItem } from "@store/cart/cartStore";
 import concatUrls from "@utils/concatUrls";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -35,7 +35,7 @@ const OverlayLink = styled(Link)(({ theme }) => ({
 }));
 
 type CartDrawerItemProps = {
-  item: CartItemWithMultipleSessions;
+  item: CartItem;
 };
 
 // TODO: change UI, waiting for design

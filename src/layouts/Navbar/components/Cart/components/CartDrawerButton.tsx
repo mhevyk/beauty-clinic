@@ -5,7 +5,7 @@ import useToggle from "@hooks/useToggle";
 import { useCartStore } from "@store/cart/cartStore";
 
 function CartIcon() {
-  const cartItemsCount = useCartStore(store => store.getItemsCount());
+  const cartItemsCount = useCartStore((store) => store.getTotalSessionsCount());
 
   return (
     <svg width="30" height="30" viewBox="0 0 110 143">

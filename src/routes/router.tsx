@@ -11,6 +11,7 @@ import ProtectedRoute from "@routes/helpers/ProtectedRoute";
 import ResetPasswordpage from "@pages/ResetPasswordPage";
 import BookSessionPage from "@pages/BookSessionPage";
 import PostPage from "@pages/PostPage";
+import BookingFormPage from "@pages/BookingFormPage";
 
 const router: RouteObject[] = [
   {
@@ -23,6 +24,10 @@ const router: RouteObject[] = [
           { index: true, element: <HomePage /> },
           { path: "treatments", element: <TreatmentsPage /> },
           {
+            path: "booking-form",
+            children: [{ path: ":treatmentId", element: <BookingFormPage /> }],
+          },
+          {
             path: "book-session",
             children: [{ path: ":treatmentId", element: <BookSessionPage /> }],
           },
@@ -32,7 +37,7 @@ const router: RouteObject[] = [
               { index: true, element: <p>Posts page</p> },
               { path: ":postId", element: <PostPage /> },
             ],
-          }
+          },
         ],
       },
       {

@@ -34,6 +34,7 @@ export default function useTreatmentSessionAvailabilities({
     client
       .query({
         query: GetTreatmentSessionAvailabilitiesDocument,
+        fetchPolicy: "network-only", // TODO: make this refetch also
         variables,
       })
       .then(({ data }) => {

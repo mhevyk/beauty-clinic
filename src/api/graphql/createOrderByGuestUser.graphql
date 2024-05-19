@@ -1,0 +1,5 @@
+mutation CreateOrderByGuestUser($input: CreateOrderByGuestUserInput!) {
+  createOrderByGuestUser(input: $input) {
+    id
+  }
+}

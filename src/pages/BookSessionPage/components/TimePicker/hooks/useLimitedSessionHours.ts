@@ -1,7 +1,19 @@
 import useToggle from "@hooks/useToggle.ts";
+import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import { useEffect } from "react";
 
 export default function useLimitedSessionHours(hours: Date[] | null) {
-  const { isOpen: shouldShowAllSessions, open: showAllSessions } = useToggle();
+  const {
+    isOpen: shouldShowAllSessions,
+    open: showAllSessions,
+    close,
+  } = useToggle();
+  const { selectedDate, selectedEmployeeId } = useDatetimePickerContext();
+
+  // TODO: think of better solution
+  useEffect(() => {
+    close();
+  }, [selectedDate, close, selectedEmployeeId]);
 
   // TODO: consider using useMemo here
   const isOverflowing = hours && hours.length > 12;

@@ -11,7 +11,6 @@ const BookNowLinkButton = styled(Button)({
 
 const ErrorStyled = styled(ErrorIcon)({
   height: "60px",
-  justifyContent: "start",
 });
 
 const ErrorFallback = styled(Box)(({ theme }) => ({
@@ -82,11 +81,13 @@ export default function ErrorAlertLayout({
         <Description>
           We encountered an unexpected error. Please try the following:
         </Description>
-        <ListItemStyled>Check your internet connection.</ListItemStyled>
-        <ListItemStyled>Reload the page.</ListItemStyled>
-        <ListItemStyled>
-          If the problem persists, try again later.
-        </ListItemStyled>
+        <ul>
+          <ListItemStyled>Check your internet connection.</ListItemStyled>
+          <ListItemStyled>Reload the page.</ListItemStyled>
+          <ListItemStyled>
+            If the problem persists, try again later.
+          </ListItemStyled>
+        </ul>
       </>
     );
   }

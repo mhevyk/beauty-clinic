@@ -24,7 +24,7 @@ export default function SubmitSessionDatetimeButton() {
   const navigate = useNavigate();
 
   const qualifiedEmployee = qualifiedEmployees.find(
-    (employee) => employee.id === selectedEmployeeId,
+    (employee) => employee.id === selectedEmployeeId
   ) as Employee | undefined;
 
   const isTimeSelected = selectedTime !== null;
@@ -32,7 +32,7 @@ export default function SubmitSessionDatetimeButton() {
   function handleSubmit() {
     setSessionStartsAt(selectedTime);
     setEmployee(qualifiedEmployee!);
-    navigate(`/booking-form/${treatmentId}`, { state: { fromCalendar: true } });
+    navigate(`/booking-form/${treatmentId}`);
   }
 
   return (

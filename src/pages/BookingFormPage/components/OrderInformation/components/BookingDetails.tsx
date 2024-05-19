@@ -11,6 +11,7 @@ import caretIcon from "@icons/caret-left.svg?react";
 import useToggle from "@hooks/useToggle.ts";
 import useItemsToOrder from "@pages/BookingFormPage/hooks/useItemsToOrder";
 import BookingDetailsItem from "./BookingDetailsItem";
+import { useUserStore } from "@store/user/userStore";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -34,6 +35,7 @@ const IconStyled = styled(caretIcon, {
 
 export default function BookingDetails() {
   const { isOpen, toggle } = useToggle();
+  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
   const itemsToOrder = useItemsToOrder();
 
   return (
@@ -44,7 +46,13 @@ export default function BookingDetails() {
           <IconStyled pointsToRight={isOpen} />
         </IconButton>
       </Box>
-      <Collapse in={isOpen} sx={{ maxHeight: "220px", overflowY: "scroll" }}>
+      <Collapse
+        in={isOpen}
+        sx={{
+          maxHeight: isAuthenticated ? "110px" : "220px",
+          overflowY: "scroll",
+        }}
+      >
         {itemsToOrder.map((orderItem) => (
           <BookingDetailsItem
             key={`${orderItem.treatment.id}-${orderItem.employee.id}-${orderItem.sessionStartsAt}`}

@@ -27,7 +27,7 @@ export default function useBookingDetails(treatmentId: number) {
         .catch((error) => error.message)
         .finally(() => setIsLoading(false));
     } else if (fromCart) {
-      const itemsFromCart = useCartStore.getState().items;
+      const itemsFromCart = useCartStore.getState().getItems();
       const treatmentsFromCart = itemsFromCart.map((item) => item.treatment);
       setTreatments(treatmentsFromCart);
     }

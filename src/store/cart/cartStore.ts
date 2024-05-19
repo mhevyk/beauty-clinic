@@ -2,6 +2,18 @@ import { PERSISTED_STORAGE_KEYS } from "@constants/index";
 import createPersistedStore from "@store/utils/createPersistedStore";
 import showSnackbar from "@utils/showSnackbar";
 import { Treatment } from "@api/hooks";
+import { OrderStore } from "@store/order/orderStore";
+import { QualifiedEmployee } from "@pages/BookSessionPage/hooks/useSelectedQualifiedEmployee";
+
+function sessionComparator<
+  TSession1 extends RequiredSessionFields,
+  TSession2 extends RequiredSessionFields,
+>(session1: TSession1, session2: TSession2) {
+  return (
+    session1.employeeId === session2.employeeId &&
+    session1.sessionStartsAt.toString() === session2.sessionStartsAt.toString()
+  );
+}
 
 type Session = {
   employeeId: number;
@@ -9,115 +21,142 @@ type Session = {
   sessionStartsAt: Date;
 };
 
-// TODO: move types from here to reuse them
-type CartItemWithMultipleSessions = {
+export type CartItem = {
   treatment: Treatment;
   sessions: Session[];
 };
 
-type CartItemWithOneSession = {
-  treatment: Treatment;
-  session: Session;
-};
+type RequiredSessionFields = Pick<Session, "employeeId" | "sessionStartsAt">;
+
+type TreatmentId = number;
+type Cart = Record<TreatmentId, CartItem>;
 
 type CartStore = {
-  items: CartItemWithMultipleSessions[];
-  getItemsCount: () => number;
+  _cart: Cart;
+  getItems: () => CartItem[];
+  getTotalSessionsCount: () => number;
+  checkSessionExists: (
+    treatmentId: TreatmentId,
+    sessionToFind: {
+      employeeId?: QualifiedEmployee["id"];
+      sessionStartsAt?: OrderStore["sessionStartsAt"];
+    }
+  ) => boolean;
   getTotalPrice: () => number;
-  addToCart: (cartItem: CartItemWithOneSession) => void;
-  removeFromCart: (treatmentId: number, sessionStartsAt: Date) => void;
+  addToCart: (treatment: Treatment, sessionToAdd: Session) => void;
+  removeFromCart: (
+    treatmentId: number,
+    sessionToRemove: RequiredSessionFields
+  ) => void;
+  clearCart: () => void;
 };
 
 export const useCartStore = createPersistedStore<CartStore>(
   (set, get) => ({
-    items: [],
-    getItemsCount: () => {
-      return get().items.reduce((count, treatment) => {
-        return count + treatment.sessions.length;
-      }, 0);
+    _cart: {},
+    getItems() {
+      return Object.values(get()._cart);
     },
-    getTotalPrice: () => {
-      return get().items.reduce((totalPrice, { treatment, sessions }) => {
-        return totalPrice + treatment.pricePerUnit * sessions.length;
-      }, 0);
+    getTotalSessionsCount() {
+      const cartItems = get().getItems();
+      return cartItems.reduce(
+        (totalCount, { sessions }) => totalCount + sessions.length,
+        0
+      );
     },
-    addToCart: (cartItem) => {
-      const items = get().items;
+    checkSessionExists(treatmentId, sessionToFind) {
+      const cart = get()._cart;
+      const existingTreatment = cart[treatmentId];
 
-      const treatmentIndex = items.findIndex(
-        (item) => item.treatment.id === cartItem.treatment.id
+      if (!existingTreatment) {
+        return false;
+      }
+
+      const { employeeId, sessionStartsAt } = sessionToFind;
+
+      return existingTreatment.sessions.some((session) => {
+        if (!employeeId || !sessionStartsAt) {
+          return false;
+        }
+
+        return sessionComparator(session, { employeeId, sessionStartsAt });
+      });
+    },
+    getTotalPrice() {
+      const cartItems = get().getItems();
+      return cartItems.reduce(
+        (totalCount, { treatment, sessions }) =>
+          totalCount + treatment.pricePerUnit * sessions.length,
+        0
+      );
+    },
+    addToCart(treatment, sessionToAdd) {
+      const cart = get()._cart;
+      const treatmentId = treatment.id;
+      const existingTreatment = cart[treatmentId];
+
+      if (!existingTreatment) {
+        cart[treatmentId] = {
+          treatment,
+          sessions: [sessionToAdd],
+        };
+
+        set({ _cart: cart });
+        return;
+      }
+
+      const existingSessions = existingTreatment.sessions;
+      const existingSession = existingSessions.find((session) =>
+        sessionComparator(session, sessionToAdd)
       );
 
-      const newItem = {
-        treatment: cartItem.treatment,
-      };
-
-      if (treatmentIndex === -1) {
-        set((state) => ({
-          items: [
-            ...state.items,
-            {
-              ...newItem,
-              sessions: [cartItem.session],
-            },
-          ],
-        }));
-        // TODO: make this code more reusable
+      if (existingSession) {
         showSnackbar({
+          message: "Session is already added to cart!",
           autohide: true,
-          variant: "success",
-          message: `Item was successfully added to the cart`,
         });
         return;
       }
 
-      set((state) => ({
-        items: state.items.map((item) => {
-          if (item.treatment.id === cartItem.treatment.id) {
-            return {
-              ...newItem,
-              sessions: [...item.sessions, cartItem.session],
-            };
-          }
-
-          return item;
-        }),
-      }));
-
-      showSnackbar({
-        autohide: true,
-        variant: "success",
-        message: `Item was successfully added to the cart`,
-      });
+      existingTreatment.sessions.push(sessionToAdd);
+      set({ _cart: cart });
     },
-    removeFromCart: (treatmentId, sessionStartsAt) => {
-      set((state) => ({
-        items: state.items.reduce<CartItemWithMultipleSessions[]>(
-          (result, item) => {
-            if (item.treatment.id !== treatmentId) {
-              return [...result, item];
-            }
+    removeFromCart(treatmentId, sessionToRemove) {
+      const cart = get()._cart;
+      const existingTreatment = cart[treatmentId];
 
-            const filteredSessions = item.sessions.filter(
-              (session) =>
-                session.sessionStartsAt.toString() !==
-                sessionStartsAt.toString()
-            );
+      if (!existingTreatment) {
+        showSnackbar({
+          message: `Item with treatment id ${treatmentId} can't be deleted because it does not exists`,
+          autohide: true,
+        });
+        return;
+      }
 
-            if (filteredSessions.length === 0) {
-              return result;
-            }
+      const existingSessions = existingTreatment.sessions;
+      const existingSessionIndex = existingSessions.findIndex((session) =>
+        sessionComparator(session, sessionToRemove)
+      );
 
-            const itemWithFilteredSessions = {
-              treatment: item.treatment,
-              sessions: filteredSessions,
-            };
+      if (existingSessionIndex === -1) {
+        showSnackbar({
+          message: `Session does not exist, so it cannot be deleted`,
+          autohide: true,
+        });
+        return;
+      }
 
-            return [...result, itemWithFilteredSessions];
-          },
-          []
-        ),
-      }));
+      if (existingSessions.length === 1) {
+        delete cart[treatmentId];
+        set({ _cart: cart });
+        return;
+      }
+
+      existingTreatment.sessions.splice(existingSessionIndex, 1);
+      set({ _cart: cart });
+    },
+    clearCart() {
+      set({ _cart: {} });
     },
   }),
   {

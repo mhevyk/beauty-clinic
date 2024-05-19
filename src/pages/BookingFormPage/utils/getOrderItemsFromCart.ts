@@ -2,8 +2,7 @@ import { OrderTreatmentSession } from "@api/hooks";
 import { useCartStore } from "@store/cart/cartStore";
 
 export default function getOrderItemsFromCart() {
-  const orderItems = useCartStore.getState().items;
-
+  const orderItems = useCartStore.getState().getItems();
   const transformedSessions: OrderTreatmentSession[] = [];
 
   for (const orderItem of orderItems) {

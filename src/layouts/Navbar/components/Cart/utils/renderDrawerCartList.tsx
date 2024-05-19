@@ -11,7 +11,7 @@ const EmptyCartTypography = styled(Typography)({
 });
 
 export default function renderDrawerCartList() {
-  const cartItems = useCartStore((store) => store.items);
+  const cartItems = useCartStore((store) => store.getItems());
 
   if (cartItems.length === 0) {
     return (

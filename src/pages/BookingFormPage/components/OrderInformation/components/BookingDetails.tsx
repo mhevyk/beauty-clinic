@@ -47,7 +47,7 @@ export default function BookingDetails() {
       <Collapse in={isOpen} sx={{ maxHeight: "220px", overflowY: "scroll" }}>
         {itemsToOrder.map((orderItem) => (
           <BookingDetailsItem
-            key={`${orderItem.treatment}-${orderItem.employee.id}-${orderItem.sessionStartsAt}`}
+            key={`${orderItem.treatment.id}-${orderItem.employee.id}-${orderItem.sessionStartsAt}`}
             orderItem={orderItem}
           />
         ))}

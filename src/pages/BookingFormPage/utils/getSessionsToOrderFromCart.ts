@@ -5,7 +5,6 @@ export type OrderItem = {
   employee: Pick<Employee, "id" | "name">;
   sessionStartsAt: Date;
   treatment: Treatment;
-  isSelectedSession?: boolean;
 };
 
 export default function getSessionsToOrderFromCart() {

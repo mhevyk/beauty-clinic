@@ -1,4 +1,4 @@
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { OrderItem } from "@pages/BookingFormPage/utils/getSessionsToOrderFromCart";
 import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes";
 import { format } from "date-fns";
@@ -10,11 +10,10 @@ type BookingDetailsItemProps = {
 export default function BookingDetailsItem({
   orderItem,
 }: BookingDetailsItemProps) {
-  const { treatment, employee, sessionStartsAt, isSelectedSession } = orderItem;
+  const { treatment, employee, sessionStartsAt } = orderItem;
 
   return (
     <Box minHeight="116px" paddingBottom="12px">
-      <Chip label={isSelectedSession ? "Current" : "From cart"} size="small" />
       <Typography fontSize="16px">{treatment.name}</Typography>
       <Typography fontSize="16px">
         {format(sessionStartsAt, `MMMM d, yyyy h:mm aaa `)}

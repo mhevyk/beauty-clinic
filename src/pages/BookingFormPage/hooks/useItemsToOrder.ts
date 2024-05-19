@@ -17,14 +17,13 @@ export default function useItemsToOrder() {
     sessionStartsAt,
   });
 
-  const sessionsToOrder = getSessionsToOrderFromCart()
+  const sessionsToOrder = getSessionsToOrderFromCart();
 
   if (!sessionExists && !isLoading) {
     sessionsToOrder.push({
       employee,
       sessionStartsAt,
       treatment,
-      isSelectedSession: true,
     });
   }
 

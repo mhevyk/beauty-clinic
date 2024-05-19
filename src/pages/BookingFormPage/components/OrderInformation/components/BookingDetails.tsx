@@ -44,7 +44,7 @@ export default function BookingDetails() {
           <IconStyled pointsToRight={isOpen} />
         </IconButton>
       </Box>
-      <Collapse in={isOpen} sx={{ maxHeight: "220px", overflow: "auto" }}>
+      <Collapse in={isOpen} sx={{ maxHeight: "220px", overflowY: "scroll" }}>
         {itemsToOrder.map((orderItem) => (
           <BookingDetailsItem
             key={`${orderItem.treatment}-${orderItem.employee.id}-${orderItem.sessionStartsAt}`}

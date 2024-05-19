@@ -52,7 +52,6 @@ export default function ServiceDetails({
         </IconButton>
       </Box>
       <Collapse in={isOpen}>
-        {/* TODO: improve error message */}
         <ErrorBoundary
           fallback={(error) => (
             <ErrorAlertLayout errorMessage={error?.message} size="small" />

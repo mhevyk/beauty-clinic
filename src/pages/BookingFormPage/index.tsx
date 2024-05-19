@@ -7,8 +7,8 @@ import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
 import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
 import useCreateOrder from "./hooks/useCreateOrder";
-import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import AddToCartButton from "./components/AddToCartButton";
+import CreateOrderButton from "./components/CreateOrderButton";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -27,10 +27,6 @@ const BackButton = styled(Button)({
   marginBottom: "42px",
   fontWeight: 330,
 }) as typeof Button;
-
-const ActionButton = styled(ButtonWithSpinner)({
-  marginTop: "12px",
-});
 
 const ClientDetailsTitle = styled("h3")(({ theme }) => ({
   ...theme.typography.heading,
@@ -82,7 +78,7 @@ const initialFormValues: CreateOrderSubmitForm = {
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
-  const [createOrder, { isLoading }] = useCreateOrder();
+  const [createOrder, { isLoading: isOrderProcessing }] = useCreateOrder();
 
   async function handleSubmit(values: CreateOrderSubmitForm) {
     await createOrder(values);
@@ -106,28 +102,18 @@ export default function BookingFormPage() {
             validateOnChange={false}
             validateOnBlur={false}
           >
-            {({ handleSubmit }) => (
-              <>
-                <ClientDetailsBox>
-                  <ClientDetailsTitle>Client Details</ClientDetailsTitle>
-                  <Divider color="black" />
-                  <ClientDetails />
-                </ClientDetailsBox>
-                <BookingDetailsBox>
-                  <OrderInformation />
-                  <AddToCartButton treatmentId={treatmentId} />
-                  <ActionButton
-                    onClick={() => handleSubmit()}
-                    loading={isLoading}
-                    fullWidth
-                    size="small"
-                    variant="primary"
-                  >
-                    Book Now
-                  </ActionButton>
-                </BookingDetailsBox>
-              </>
-            )}
+            <>
+              <ClientDetailsBox>
+                <ClientDetailsTitle>Client Details</ClientDetailsTitle>
+                <Divider color="black" />
+                <ClientDetails />
+              </ClientDetailsBox>
+              <BookingDetailsBox>
+                <OrderInformation />
+                <AddToCartButton treatmentId={treatmentId} />
+                <CreateOrderButton isOrderProcessing={isOrderProcessing} />
+              </BookingDetailsBox>
+            </>
           </Formik>
         </BoxStyled>
       </ContainerStyled>

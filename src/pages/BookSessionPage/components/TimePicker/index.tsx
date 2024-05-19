@@ -37,6 +37,7 @@ const TimePicker = () => {
       day: subMinutes(selectedDate, selectedDate.getTimezoneOffset()),
       employeeId: selectedEmployeeId,
     },
+    fetchPolicy: "cache-and-network", // used to remove ordered session hours
   });
 
   let availableHours: Date[] = [];

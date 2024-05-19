@@ -5,8 +5,9 @@ import {
 import { useUserStore } from "@store/user/userStore";
 import { CreateOrderSubmitForm } from "..";
 import { useCallback, useEffect } from "react";
-import getOrderItemsFromCart from "../utils/getOrderItemsFromCart";
 import showSnackbar from "@utils/showSnackbar";
+import useItemsToOrder from "./useItemsToOrder";
+import useSuccessfulOrderHandler from "./useSuccessfulOrderHandler";
 
 export default function useCreateOrder() {
   const [
@@ -21,20 +22,21 @@ export default function useCreateOrder() {
     },
   ] = useCreateOrderByAuthorizedUserMutation();
   const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+  const itemsToOrder = useItemsToOrder();
+  const handleOrderSuccess = useSuccessfulOrderHandler();
 
   const createOrder = useCallback(
     async (values: CreateOrderSubmitForm) => {
-      const sessions = getOrderItemsFromCart();
-
       const baseVariables = {
         message: values.message,
-        treatmentSessions: sessions,
+        treatmentSessions: itemsToOrder,
       };
 
       if (isAuthenticated) {
         await createOrderByAuthorizedUser({
           variables: { input: baseVariables },
         });
+        handleOrderSuccess();
 
         return;
       }
@@ -52,6 +54,7 @@ export default function useCreateOrder() {
           input: guestUserVariables,
         },
       });
+      handleOrderSuccess();
     },
     [isAuthenticated]
   );
@@ -60,7 +63,7 @@ export default function useCreateOrder() {
     if (creatingOrderByGuestError) {
       showSnackbar({
         message: creatingOrderByGuestError.message,
-        autohide: true,
+        autohide: false,
       });
     }
   }, [creatingOrderByGuestError]);

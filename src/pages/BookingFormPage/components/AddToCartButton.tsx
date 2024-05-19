@@ -1,10 +1,9 @@
 import ButtonWithSpinner from "@components/ButtonWithSpinner";
 import { Box, Tooltip, styled, useMediaQuery } from "@mui/material";
 import { useCartStore } from "@store/cart/cartStore";
-import { useOrderStore } from "@store/order/orderStore";
-import { useGetTreatmentByIdQuery } from "@api/hooks";
 import { useState } from "react";
 import theme from "@theme/theme";
+import useSelectedTreatmentSession from "../hooks/useSelectedTreatmentSession";
 
 const ActionButton = styled(ButtonWithSpinner)({
   ":disabled": {
@@ -12,19 +11,12 @@ const ActionButton = styled(ButtonWithSpinner)({
   },
 });
 
-type AddToCartButtonProps = {
-  treatmentId: number;
-};
-
-export default function AddToCartButton({ treatmentId }: AddToCartButtonProps) {
+export default function AddToCartButton() {
   const addToCart = useCartStore((store) => store.addToCart);
   const checkSessionExists = useCartStore((store) => store.checkSessionExists);
-  const sessionStartsAt = useOrderStore((store) => store.sessionStartsAt);
-  const employee = useOrderStore((store) => store.employee);
-  const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
 
-  const { data } = useGetTreatmentByIdQuery({ variables: { treatmentId } });
-  const treatment = data?.treatment;
+  const [{ employee, sessionStartsAt, treatment }] = useSelectedTreatmentSession();
+  const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   const initialIsButtonDisabled =
     !treatment ||
@@ -45,8 +37,7 @@ export default function AddToCartButton({ treatmentId }: AddToCartButtonProps) {
     }
 
     addToCart(treatment!, {
-      employeeId: employee!.id,
-      employeeName: employee!.name,
+      employee: employee!,
       sessionStartsAt: sessionStartsAt!,
     });
     setIsButtonDisabled(true);

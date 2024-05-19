@@ -1,31 +1,30 @@
 import { useCartStore } from "@store/cart/cartStore";
 import useSelectedTreatmentSession from "./useSelectedTreatmentSession";
-import getOrderItemsFromCart from "../utils/getOrderItemsFromCart";
+import getSessionsToOrderFromCart from "../utils/getSessionsToOrderFromCart";
 
 export default function useItemsToOrder() {
   const checkSessionExists = useCartStore((store) => store.checkSessionExists);
 
   const [selectedSession, { isLoading }] = useSelectedTreatmentSession();
-  const { employee, sessionStartsAt, treatmentId } = selectedSession;
+  const { employee, sessionStartsAt, treatmentId, treatment } = selectedSession;
 
-  if (!employee) {
+  if (!employee || !treatment || !sessionStartsAt) {
     return [];
   }
 
-  const employeeId = employee.id;
-
   const sessionExists = checkSessionExists(treatmentId, {
-    employeeId,
+    employeeId: employee.id,
     sessionStartsAt,
   });
 
-  const sessionsToOrder = getOrderItemsFromCart();
+  const sessionsToOrder = getSessionsToOrderFromCart()
 
   if (!sessionExists && !isLoading) {
     sessionsToOrder.push({
-      employeeId,
-      startsAt: sessionStartsAt,
-      treatmentId,
+      employee,
+      sessionStartsAt,
+      treatment,
+      isSelectedSession: true,
     });
   }
 

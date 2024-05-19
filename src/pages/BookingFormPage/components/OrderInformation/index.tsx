@@ -1,7 +1,8 @@
-import BookingDetails from "@pages/BookingFormPage/components/OrderInformation/components/BookingDetails.tsx";
+import BookingDetails from "./components/BookingDetails";
 import { Box, CircularProgress, styled, Typography } from "@mui/material";
 import { Navigate } from "react-router-dom";
-import useSelectedTreatmentSession from "@pages/BookingFormPage/hooks/useSelectedTreatmentSession";
+import useSelectedTreatmentSession from "../../hooks/useSelectedTreatmentSession";
+import { useCartStore } from "@store/cart/cartStore";
 
 const TotalPriceBox = styled(Box)({
   marginBottom: "20px",
@@ -11,16 +12,13 @@ const TotalPriceBox = styled(Box)({
 
 export default function OrderInformation() {
   const [selectedSession, { isLoading }] = useSelectedTreatmentSession();
-
-  const { employee, sessionStartsAt, treatments, treatmentId } =
-    selectedSession;
-
-  const totalPrice = treatments.reduce(
-    (sum, item) => sum + item.pricePerUnit,
-    0
+  const totalPriceOfItemsFromCart = useCartStore((store) =>
+    store.getTotalPrice()
   );
 
-  if (sessionStartsAt === null) {
+  const { sessionStartsAt, treatmentId, treatment } = selectedSession;
+
+  if (sessionStartsAt === null || !treatment) {
     return <Navigate to={`/book-session/${treatmentId}`} />;
   }
 
@@ -32,13 +30,11 @@ export default function OrderInformation() {
     );
   }
 
+  const totalPrice = totalPriceOfItemsFromCart + treatment.pricePerUnit;
+
   return (
     <>
-      <BookingDetails
-        employee={employee}
-        treatments={treatments}
-        date={sessionStartsAt}
-      />
+      <BookingDetails />
       <Typography margin="20px 0 12px">Payment Details</Typography>
       <TotalPriceBox>
         <Typography>Total</Typography>

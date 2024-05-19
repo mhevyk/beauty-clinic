@@ -1,53 +1,51 @@
 import { PERSISTED_STORAGE_KEYS } from "@constants/index";
 import createPersistedStore from "@store/utils/createPersistedStore";
 import showSnackbar from "@utils/showSnackbar";
-import { Treatment } from "@api/hooks";
+import { Employee, Treatment } from "@api/hooks";
 import { OrderStore } from "@store/order/orderStore";
 import { QualifiedEmployee } from "@pages/BookSessionPage/hooks/useSelectedQualifiedEmployee";
+import sessionComparator from "./utils/sessionComparator";
 
-function sessionComparator<
-  TSession1 extends RequiredSessionFields,
-  TSession2 extends RequiredSessionFields,
->(session1: TSession1, session2: TSession2) {
-  return (
-    session1.employeeId === session2.employeeId &&
-    session1.sessionStartsAt.toString() === session2.sessionStartsAt.toString()
-  );
-}
-
-type Session = {
-  employeeId: number;
-  employeeName: string;
+export type CartSession = {
+  employee: Pick<Employee, "id" | "name">;
   sessionStartsAt: Date;
 };
 
 export type CartItem = {
   treatment: Treatment;
-  sessions: Session[];
+  sessions: CartSession[];
 };
 
-type RequiredSessionFields = Pick<Session, "employeeId" | "sessionStartsAt">;
+type RequiredSessionFields = Pick<CartSession, "sessionStartsAt"> & {
+  employeeId: number;
+};
 
 type TreatmentId = number;
 type Cart = Record<TreatmentId, CartItem>;
+
+type SessionToFind = {
+  employeeId?: QualifiedEmployee["id"];
+  sessionStartsAt?: OrderStore["sessionStartsAt"];
+};
+
+type CheckSessionExists = (
+  treatmentId: TreatmentId,
+  sessionToFind: SessionToFind
+) => boolean;
+
+type RemoveFromCart = (
+  treatmentId: number,
+  sessionToRemove: RequiredSessionFields
+) => void;
 
 type CartStore = {
   _cart: Cart;
   getItems: () => CartItem[];
   getTotalSessionsCount: () => number;
-  checkSessionExists: (
-    treatmentId: TreatmentId,
-    sessionToFind: {
-      employeeId?: QualifiedEmployee["id"];
-      sessionStartsAt?: OrderStore["sessionStartsAt"];
-    }
-  ) => boolean;
+  checkSessionExists: CheckSessionExists;
   getTotalPrice: () => number;
-  addToCart: (treatment: Treatment, sessionToAdd: Session) => void;
-  removeFromCart: (
-    treatmentId: number,
-    sessionToRemove: RequiredSessionFields
-  ) => void;
+  addToCart: (treatment: Treatment, sessionToAdd: CartSession) => void;
+  removeFromCart: RemoveFromCart;
   clearCart: () => void;
 };
 
@@ -55,7 +53,8 @@ export const useCartStore = createPersistedStore<CartStore>(
   (set, get) => ({
     _cart: {},
     getItems() {
-      return Object.values(get()._cart);
+      const cart = get()._cart;
+      return Object.values(cart);
     },
     getTotalSessionsCount() {
       const cartItems = get().getItems();
@@ -74,11 +73,11 @@ export const useCartStore = createPersistedStore<CartStore>(
 
       const { employeeId, sessionStartsAt } = sessionToFind;
 
-      return existingTreatment.sessions.some((session) => {
-        if (!employeeId || !sessionStartsAt) {
-          return false;
-        }
+      if (!employeeId || !sessionStartsAt) {
+        return false;
+      }
 
+      return existingTreatment.sessions.some((session) => {
         return sessionComparator(session, { employeeId, sessionStartsAt });
       });
     },
@@ -105,9 +104,14 @@ export const useCartStore = createPersistedStore<CartStore>(
         return;
       }
 
+      const { employee, sessionStartsAt } = sessionToAdd;
+
       const existingSessions = existingTreatment.sessions;
       const existingSession = existingSessions.find((session) =>
-        sessionComparator(session, sessionToAdd)
+        sessionComparator(session, {
+          employeeId: employee.id,
+          sessionStartsAt: sessionStartsAt,
+        })
       );
 
       if (existingSession) {

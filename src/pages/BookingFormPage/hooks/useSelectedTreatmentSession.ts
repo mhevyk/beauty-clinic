@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import useBookingDetails from "./useBookingDetails";
 import { useOrderStore } from "@store/order/orderStore";
+import { useGetTreatmentByIdQuery } from "@api/hooks";
 
 type BookTreatmentSessionParams = {
   treatmentId: string;
@@ -10,7 +10,9 @@ export default function useSelectedTreatmentSession() {
   const params = useParams<BookTreatmentSessionParams>();
   const treatmentId = Number(params.treatmentId);
 
-  const { treatments, isLoading } = useBookingDetails(treatmentId);
+  const { data, loading } = useGetTreatmentByIdQuery({
+    variables: { treatmentId },
+  });
 
   const sessionStartsAt = useOrderStore((store) => store.sessionStartsAt);
   const employee = useOrderStore((store) => store.employee);
@@ -18,10 +20,10 @@ export default function useSelectedTreatmentSession() {
   return [
     {
       treatmentId,
-      treatments,
+      treatment: data?.treatment,
       sessionStartsAt,
       employee,
     },
-    { isLoading },
+    { isLoading: loading },
   ] as const;
 }

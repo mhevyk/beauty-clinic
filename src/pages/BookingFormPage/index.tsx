@@ -77,7 +77,6 @@ const initialFormValues: CreateOrderSubmitForm = {
 
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
-  const treatmentId = Number(params.treatmentId);
   const [createOrder, { isLoading: isOrderProcessing }] = useCreateOrder();
 
   async function handleSubmit(values: CreateOrderSubmitForm) {
@@ -89,7 +88,7 @@ export default function BookingFormPage() {
       <ContainerStyled>
         <BackButton
           component={Link}
-          to={`/book-session/${treatmentId}`}
+          to={`/book-session/${params.treatmentId}`}
           startIcon={<CaretLeft width={16} height={16} />}
         >
           Back
@@ -110,7 +109,7 @@ export default function BookingFormPage() {
               </ClientDetailsBox>
               <BookingDetailsBox>
                 <OrderInformation />
-                <AddToCartButton treatmentId={treatmentId} />
+                <AddToCartButton />
                 <CreateOrderButton isOrderProcessing={isOrderProcessing} />
               </BookingDetailsBox>
             </>

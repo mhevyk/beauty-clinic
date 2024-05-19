@@ -6,13 +6,11 @@ import {
   IconButton,
   keyframes,
   styled,
-  Typography,
 } from "@mui/material";
-import { Employee, Treatment } from "@api/hooks";
 import caretIcon from "@icons/caret-left.svg?react";
 import useToggle from "@hooks/useToggle.ts";
-import { format } from "date-fns";
-import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
+import useItemsToOrder from "@pages/BookingFormPage/hooks/useItemsToOrder";
+import BookingDetailsItem from "./BookingDetailsItem";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -34,18 +32,9 @@ const IconStyled = styled(caretIcon, {
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
 }));
 
-type ServiceDetailsProps = {
-  employee: Employee;
-  treatments: Treatment[];
-  date: Date;
-};
-
-export default function BookingDetails({
-  employee,
-  treatments,
-  date,
-}: ServiceDetailsProps) {
+export default function BookingDetails() {
   const { isOpen, toggle } = useToggle();
+  const itemsToOrder = useItemsToOrder();
 
   return (
     <>
@@ -55,20 +44,12 @@ export default function BookingDetails({
           <IconStyled pointsToRight={isOpen} />
         </IconButton>
       </Box>
-      <Collapse in={isOpen}>
-        {treatments.map((treatment) => (
-          <Box key={treatment.id} height="116px" paddingBottom="12px">
-            <Typography fontSize="16px">{treatment.name}</Typography>
-            <Typography fontSize="16px">
-              {format(date, `MMMM d, yyyy h:mm aaa `)}
-            </Typography>
-            <Typography color="#605f5d" fontSize="14px">
-              {employee.name}
-            </Typography>
-            <Typography color="#605f5d" fontSize="14px">
-              {minutesToHourAndMinutes(treatment.duration)}
-            </Typography>
-          </Box>
+      <Collapse in={isOpen} sx={{ maxHeight: "220px", overflow: "auto" }}>
+        {itemsToOrder.map((orderItem) => (
+          <BookingDetailsItem
+            key={`${orderItem.treatment}-${orderItem.employee.id}-${orderItem.sessionStartsAt}`}
+            orderItem={orderItem}
+          />
         ))}
       </Collapse>
       <Divider color="black" />

@@ -1,4 +1,5 @@
 import {
+  CreateOrderByAuthorizedUserInput,
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
 } from "@api/hooks";
@@ -27,9 +28,16 @@ export default function useCreateOrder() {
 
   const createOrder = useCallback(
     async (values: CreateOrderSubmitForm) => {
+      const transformedItemsToOrder: CreateOrderByAuthorizedUserInput["treatmentSessions"] =
+        itemsToOrder.map((itemToOrder) => ({
+          employeeId: itemToOrder.employee.id,
+          treatmentId: itemToOrder.treatment.id,
+          startsAt: itemToOrder.sessionStartsAt,
+        }));
+
       const baseVariables = {
         message: values.message,
-        treatmentSessions: itemsToOrder,
+        treatmentSessions: transformedItemsToOrder,
       };
 
       if (isAuthenticated) {

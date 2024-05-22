@@ -1,41 +1,53 @@
 import { useCartStore } from "@store/cart/cartStore";
-import CartItemCard from "./components/CartItemCard";
 import { Box, Divider, Typography, styled } from "@mui/material";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import theme from "@theme/theme.ts";
+import { Fragment } from "react/jsx-runtime";
+import CartItemCard from "@pages/CartPage/components/CartItemCard";
 
-const Wrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.CreamyDawn.main,
-  padding: "100px 50px",
-}));
+const SectionStyled = styled("section")({
+  backgroundColor: theme.palette.PinkMarbleSky.main,
+  display: "flex",
+  justifyContent: "center",
+});
 
-// TODO: remove duplicated cart items
+const ContainerStyled = styled(Box)({
+  maxWidth: "940px",
+  width: "100%",
+  margin: "140px 10px 48px 10px",
+});
+
 export default function CartPage() {
-  const cartItems = useCartStore((store) => store.items);
+  const cartItems = useCartStore((store) => store.getItems());
 
   return (
-    <Wrapper>
-      <Typography>My cart</Typography>
-      <Divider />
-      <ResponsiveMasonry>
-        <Masonry gutter="30px">
-          {cartItems.map((cartItem) => (
-            <CartItemCard key={cartItem.treatment.id} item={cartItem} />
-          ))}
-          {cartItems.map((cartItem) => (
-            <CartItemCard key={cartItem.treatment.id} item={cartItem} />
-          ))}
-          {cartItems.map((cartItem) => (
-            <CartItemCard key={cartItem.treatment.id} item={cartItem} />
-          ))}
-          {cartItems.map((cartItem) => (
-            <CartItemCard key={cartItem.treatment.id} item={cartItem} />
-          ))}
-          {cartItems.map((cartItem) => (
-            <CartItemCard key={cartItem.treatment.id} item={cartItem} />
-          ))}
-        </Masonry>
-      </ResponsiveMasonry>
-      <Divider textAlign="right" />
-    </Wrapper>
+    <SectionStyled>
+      <ContainerStyled>
+        <Typography fontSize="20px" margin="16px 0">
+          My cart
+        </Typography>
+        <Divider color="#c7bdb5" />
+        {cartItems.length === 0 ? (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            width="100%"
+            height="410px"
+          >
+            <Typography fontSize="22px">Cart is empty</Typography>
+            {/*TODO: add link*/}
+          </Box>
+        ) : (
+          <Box>
+            {cartItems.map((item) => (
+              <Fragment key={item.treatment.id}>
+                <CartItemCard item={item} />
+              </Fragment>
+            ))}
+          </Box>
+        )}
+        <Divider color="#c7bdb5" />
+      </ContainerStyled>
+    </SectionStyled>
   );
 }

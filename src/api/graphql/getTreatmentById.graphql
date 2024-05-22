@@ -4,5 +4,6 @@ query GetTreatmentById($treatmentId: Int!) {
         name,
         duration,
         pricePerUnit,
+        imageUrl
     }
 }

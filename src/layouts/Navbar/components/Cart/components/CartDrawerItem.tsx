@@ -76,7 +76,7 @@ export default function CartDrawerItem({ item }: CartDrawerItemProps) {
         }}
       />
       <Fade in={isHovered} timeout={500}>
-        <OverlayLink to="/cart">
+        <OverlayLink onClick={close} to="/cart">
           <Typography color="white">Go to cart</Typography>
         </OverlayLink>
       </Fade>

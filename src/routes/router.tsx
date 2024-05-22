@@ -7,6 +7,7 @@ import ProtectedRoute from "@routes/helpers/ProtectedRoute";
 import guestRoutes from "./guestRoutes";
 import authRoutes from "./authRoutes";
 import protectedRoutes from "./protectedRoutes";
+import AppSuspense from "./helpers/AppSuspense";
 
 const ErrorPage = lazy(() => import("@pages/ErrorPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
@@ -14,7 +15,11 @@ const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 const router: RouteObject[] = [
   {
     path: "/",
-    errorElement: <ErrorPage />,
+    errorElement: (
+      <AppSuspense>
+        <ErrorPage />
+      </AppSuspense>
+    ),
     children: [
       {
         element: <RootLayout />,
@@ -31,7 +36,14 @@ const router: RouteObject[] = [
       },
     ],
   },
-  { path: "*", element: <NotFoundPage /> },
+  {
+    path: "*",
+    element: (
+      <AppSuspense>
+        <NotFoundPage />
+      </AppSuspense>
+    ),
+  },
 ];
 
 export default router;

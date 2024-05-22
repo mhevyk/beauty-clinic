@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import CaretIconSvg from "@icons/caret-left.svg?react";
 import useLockPageScroll from "@hooks/useLockPageScroll";
-import renderDrawerCartList from "../utils/renderDrawerCartList";
 import { useCartStore } from "@store/cart/cartStore";
 import CartDrawerFooter from "./CartDrawerFooter";
+import CartDrawerList from "./CartDrawerList";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -91,7 +91,9 @@ export default function CartDrawer({
             Cart
           </Typography>
         </CartHeader>
-        <CartContent>{renderDrawerCartList()}</CartContent>
+        <CartContent>
+          <CartDrawerList closeCartDrawer={closeCartDrawer} />
+        </CartContent>
         {totalPrice > 0 && <CartDrawerFooter totalPrice={totalPrice} />}
       </DrawerContentWrapper>
     </Drawer>

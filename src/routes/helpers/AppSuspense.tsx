@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 import Box from "@mui/material/Box";
@@ -19,10 +19,10 @@ function AppLoader() {
   );
 }
 
-export default function AppSuspense() {
-  return (
-    <Suspense fallback={<AppLoader />}>
-      <Outlet />
-    </Suspense>
-  );
+type AppSuspenseProps = {
+  children?: ReactNode;
+};
+
+export default function AppSuspense({ children }: AppSuspenseProps) {
+  return <Suspense fallback={<AppLoader />}>{children ?? <Outlet />}</Suspense>;
 }

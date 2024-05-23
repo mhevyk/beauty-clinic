@@ -10,7 +10,13 @@ const EmptyCartTypography = styled(Typography)({
   textAlign: "center",
 });
 
-export default function renderDrawerCartList() {
+type CartDrawerListProps = {
+  closeCartDrawer: () => void;
+};
+
+export default function CartDrawerList({
+  closeCartDrawer,
+}: CartDrawerListProps) {
   const cartItems = useCartStore((store) => store.getItems());
 
   if (cartItems.length === 0) {
@@ -25,7 +31,7 @@ export default function renderDrawerCartList() {
     <List>
       {cartItems.map((item) => (
         <Fragment key={item.treatment.id}>
-          <CartDrawerItem item={item} />
+          <CartDrawerItem item={item} closeCartDrawer={closeCartDrawer} />
           <Divider />
         </Fragment>
       ))}

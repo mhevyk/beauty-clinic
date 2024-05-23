@@ -36,10 +36,14 @@ const OverlayLink = styled(Link)(({ theme }) => ({
 
 type CartDrawerItemProps = {
   item: CartItem;
+  closeCartDrawer: () => void;
 };
 
 // TODO: change UI, waiting for design
-export default function CartDrawerItem({ item }: CartDrawerItemProps) {
+export default function CartDrawerItem({
+  item,
+  closeCartDrawer,
+}: CartDrawerItemProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const { treatment, sessions } = item;
@@ -76,7 +80,7 @@ export default function CartDrawerItem({ item }: CartDrawerItemProps) {
         }}
       />
       <Fade in={isHovered} timeout={500}>
-        <OverlayLink to="/cart">
+        <OverlayLink to="/cart" onClick={closeCartDrawer}>
           <Typography color="white">Go to cart</Typography>
         </OverlayLink>
       </Fade>

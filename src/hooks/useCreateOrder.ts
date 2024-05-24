@@ -23,7 +23,6 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
     },
   ] = useCreateOrderByAuthorizedUserMutation();
   const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
-  // const itemsToOrder = useItemsToOrder();
   const handleOrderSuccess = useSuccessfulOrderHandler();
 
   const createOrder = useCallback(

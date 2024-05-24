@@ -57,7 +57,7 @@ export default function CartCheckoutBar() {
       const orderDetails: CreateOrderSubmitForm = {
         name: userDetails.username,
         email: userDetails.email,
-        phoneNumber: userDetails.phoneNumber || "",
+        phoneNumber: userDetails.phoneNumber ?? "",
       };
       await createOrder(orderDetails);
       return;

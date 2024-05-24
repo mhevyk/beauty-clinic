@@ -42,7 +42,7 @@ export default function BookingDetails() {
   const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
   const itemsToOrderFromHook = useItemsToOrder();
 
-  const itemsToOrderFromState = location.state?.sessions || null;
+  const itemsToOrderFromState = location.state?.sessions ?? null;
   const itemsToOrder: OrderItem[] =
     itemsToOrderFromState || itemsToOrderFromHook;
 

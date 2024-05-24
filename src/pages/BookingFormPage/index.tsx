@@ -1,17 +1,15 @@
 import { Box, Button, Divider, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CaretLeft from "@icons/caret-left.svg?react";
 import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
 import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
-import OrderInformation, {
-  SessionFromLocation,
-} from "@pages/BookingFormPage/components/OrderInformation";
+import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
 import useCreateOrder from "@hooks/useCreateOrder.ts";
 import AddToCartButton from "./components/AddToCartButton";
 import CreateOrderButton from "./components/CreateOrderButton";
-import useItemsToOrder from "@pages/BookingFormPage/hooks/useItemsToOrder.ts";
+import useUnifiedOrderData from "@pages/BookingFormPage/hooks/useUnifiedOrderData.ts";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -80,14 +78,7 @@ const initialFormValues: CreateOrderSubmitForm = {
 
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
-  const location = useLocation();
-
-  const cartState = location.state as { sessions: SessionFromLocation[] };
-  const itemsToOrderFromHook = useItemsToOrder();
-
-  const itemsToOrderFromState = location.state?.sessions ?? null;
-  const itemsToOrder = itemsToOrderFromState || itemsToOrderFromHook;
-
+  const { itemsToOrder, cartState } = useUnifiedOrderData();
   const [createOrder, { isLoading: isOrderProcessing }] =
     useCreateOrder(itemsToOrder);
 

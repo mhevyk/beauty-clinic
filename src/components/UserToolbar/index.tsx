@@ -1,14 +1,18 @@
 import { CircularProgress, IconButton, styled } from "@mui/material";
-import { Link } from "react-router-dom";
 import UserIconSvg from "@icons/user-icon.svg?react";
 import { ComponentPropsWithoutRef } from "react";
 import { useUserStore } from "@store/user/userStore";
 import BellIconSvg from "@icons/bell.svg?react";
 import MyAccountButton from "./components/MyAccountButton";
+import AppLink from "@components/AppLink";
 
-const LinkStyled = styled(Link)({
+const LinkStyled = styled(AppLink)(({ theme }) => ({
   transition: "color 400ms",
-});
+  color: theme.palette.secondary.main,
+  "&:hover": {
+    textDecoration: "none",
+  },
+}));
 
 const UserIcon = styled(UserIconSvg)({
   width: 25,

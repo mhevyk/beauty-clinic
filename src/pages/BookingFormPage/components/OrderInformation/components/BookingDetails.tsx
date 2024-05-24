@@ -12,6 +12,8 @@ import useToggle from "@hooks/useToggle.ts";
 import useItemsToOrder from "@pages/BookingFormPage/hooks/useItemsToOrder";
 import BookingDetailsItem from "./BookingDetailsItem";
 import { useUserStore } from "@store/user/userStore";
+import { useLocation } from "react-router-dom";
+import { OrderItem } from "@utils/getSessionsToOrderFromCart.ts";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -35,8 +37,14 @@ const IconStyled = styled(caretIcon, {
 
 export default function BookingDetails() {
   const { isOpen, toggle } = useToggle();
+  const location = useLocation();
+
   const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
-  const itemsToOrder = useItemsToOrder();
+  const itemsToOrderFromHook = useItemsToOrder();
+
+  const itemsToOrderFromState = location.state?.sessions || null;
+  const itemsToOrder: OrderItem[] =
+    itemsToOrderFromState || itemsToOrderFromHook;
 
   return (
     <>

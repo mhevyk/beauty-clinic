@@ -3,14 +3,14 @@ import {
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
 } from "@api/hooks";
-import { useUserStore } from "@store/user/userStore";
-import { CreateOrderSubmitForm } from "..";
+import { useUserStore } from "@store/user/userStore.ts";
+import { CreateOrderSubmitForm } from "@pages/BookingFormPage";
 import { useCallback, useEffect } from "react";
-import showSnackbar from "@utils/showSnackbar";
-import useItemsToOrder from "./useItemsToOrder";
-import useSuccessfulOrderHandler from "./useSuccessfulOrderHandler";
+import showSnackbar from "@utils/showSnackbar.ts";
+import useSuccessfulOrderHandler from "@pages/BookingFormPage/hooks/useSuccessfulOrderHandler.ts";
+import { OrderItem } from "@utils/getSessionsToOrderFromCart.ts";
 
-export default function useCreateOrder() {
+export default function useCreateOrder(itemsToOrder: OrderItem[]) {
   const [
     createOrderByGuestUser,
     { loading: isCreatingOrderByGuest, error: creatingOrderByGuestError },
@@ -23,7 +23,7 @@ export default function useCreateOrder() {
     },
   ] = useCreateOrderByAuthorizedUserMutation();
   const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
-  const itemsToOrder = useItemsToOrder();
+  // const itemsToOrder = useItemsToOrder();
   const handleOrderSuccess = useSuccessfulOrderHandler();
 
   const createOrder = useCallback(
@@ -64,7 +64,7 @@ export default function useCreateOrder() {
       });
       handleOrderSuccess();
     },
-    [isAuthenticated]
+    [isAuthenticated],
   );
 
   useEffect(() => {

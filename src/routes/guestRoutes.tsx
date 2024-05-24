@@ -18,7 +18,10 @@ const guestRoutes: RouteObject[] = [
       { path: "treatments", element: <TreatmentsPage /> },
       {
         path: "booking-form",
-        children: [{ path: ":treatmentId", element: <BookingFormPage /> }],
+        children: [
+          { index: true, element: <BookingFormPage /> },
+          { path: ":treatmentId", element: <BookingFormPage /> },
+        ],
       },
       {
         path: "book-session",

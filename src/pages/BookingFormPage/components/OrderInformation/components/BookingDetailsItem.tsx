@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { OrderItem } from "@pages/BookingFormPage/utils/getSessionsToOrderFromCart";
+import { OrderItem } from "@utils/getSessionsToOrderFromCart.ts";
 import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes";
 import { format } from "date-fns";
 

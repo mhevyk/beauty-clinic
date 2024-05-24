@@ -1,14 +1,17 @@
 import { Box, Button, Divider, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import CaretLeft from "@icons/caret-left.svg?react";
 import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
 import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
-import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
-import useCreateOrder from "./hooks/useCreateOrder";
+import OrderInformation, {
+  SessionFromLocation,
+} from "@pages/BookingFormPage/components/OrderInformation";
+import useCreateOrder from "@hooks/useCreateOrder.ts";
 import AddToCartButton from "./components/AddToCartButton";
 import CreateOrderButton from "./components/CreateOrderButton";
+import useItemsToOrder from "@pages/BookingFormPage/hooks/useItemsToOrder.ts";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -65,7 +68,7 @@ export type CreateOrderSubmitForm = {
   name: string;
   email: string;
   phoneNumber: string;
-  message: string;
+  message?: string;
 };
 
 const initialFormValues: CreateOrderSubmitForm = {
@@ -77,7 +80,16 @@ const initialFormValues: CreateOrderSubmitForm = {
 
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
-  const [createOrder, { isLoading: isOrderProcessing }] = useCreateOrder();
+  const location = useLocation();
+
+  const cartState = location.state as { sessions: SessionFromLocation[] };
+  const itemsToOrderFromHook = useItemsToOrder();
+
+  const itemsToOrderFromState = location.state?.sessions ?? null;
+  const itemsToOrder = itemsToOrderFromState || itemsToOrderFromHook;
+
+  const [createOrder, { isLoading: isOrderProcessing }] =
+    useCreateOrder(itemsToOrder);
 
   async function handleSubmit(values: CreateOrderSubmitForm) {
     await createOrder(values);
@@ -88,7 +100,9 @@ export default function BookingFormPage() {
       <ContainerStyled>
         <BackButton
           component={Link}
-          to={`/book-session/${params.treatmentId}`}
+          to={
+            params.treatmentId ? `/book-session/${params.treatmentId}` : "/cart"
+          }
           startIcon={<CaretLeft width={16} height={16} />}
         >
           Back
@@ -108,7 +122,7 @@ export default function BookingFormPage() {
                 <ClientDetails />
               </ClientDetailsBox>
               <BookingDetailsBox>
-                <OrderInformation />
+                <OrderInformation sessionsFromLocation={cartState?.sessions} />
                 <AddToCartButton />
                 <CreateOrderButton isOrderProcessing={isOrderProcessing} />
               </BookingDetailsBox>

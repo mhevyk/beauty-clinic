@@ -10,16 +10,38 @@ const TotalPriceBox = styled(Box)({
   justifyContent: "space-between",
 });
 
-export default function OrderInformation() {
-  const [selectedSession, { isLoading }] = useSelectedTreatmentSession();
+export type SessionFromLocation = ReturnType<
+  typeof useSelectedTreatmentSession
+>[0];
+
+type OrderInformationProps = {
+  sessionsFromLocation: SessionFromLocation[];
+};
+
+export default function OrderInformation({
+  sessionsFromLocation,
+}: OrderInformationProps) {
+  const [selectedSessionFromHook, { isLoading }] =
+    useSelectedTreatmentSession();
+
   const totalPriceOfItemsFromCart = useCartStore((store) =>
-    store.getTotalPrice()
+    store.getTotalPrice(),
   );
 
-  const { sessionStartsAt, treatmentId, treatment } = selectedSession;
+  const lastSession = sessionsFromLocation?.at(-1) ?? null;
+
+  const checkSessionExists = useCartStore((store) => store.checkSessionExists);
+
+  const selectedSessions = lastSession || selectedSessionFromHook;
+  const { sessionStartsAt, treatmentId, treatment, employee } =
+    selectedSessions;
 
   if (sessionStartsAt === null || !treatment) {
-    return <Navigate to={`/book-session/${treatmentId}`} />;
+    return (
+      <Navigate
+        to={treatmentId ? `/book-session/${treatmentId}` : "/treatment"}
+      />
+    );
   }
 
   if (isLoading) {
@@ -30,7 +52,14 @@ export default function OrderInformation() {
     );
   }
 
-  const totalPrice = totalPriceOfItemsFromCart + treatment.pricePerUnit;
+  const totalPrice =
+    totalPriceOfItemsFromCart +
+    (checkSessionExists(treatmentId, {
+      sessionStartsAt,
+      employeeId: employee!.id,
+    })
+      ? 0
+      : treatment.pricePerUnit);
 
   return (
     <>

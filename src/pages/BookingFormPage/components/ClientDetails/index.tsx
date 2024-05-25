@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
-import { Link } from "react-router-dom";
 import BookingForm from "@pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";
 import { useUserStore } from "@store/user/userStore.ts";
+import AppLink from "@components/AppLink";
 
 const LoginPromptBox = styled(Box)({
   padding: "12px",
@@ -15,10 +15,12 @@ const LoginPromptTypography = styled("span")(({ theme }) => ({
   fontSize: "14px",
 }));
 
-const LoginPromptLink = styled(Link)({
+// TODO: replace all links in project to AppLink
+const LoginPromptLink = styled(AppLink)(({ theme }) => ({
   fontSize: "14px",
   textDecoration: "underline",
-});
+  color: theme.palette.secondary.main,
+}));
 
 const TellAboutYou = styled("p")(({ theme }) => ({
   ...theme.typography.paragraph,

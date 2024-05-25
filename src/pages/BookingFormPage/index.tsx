@@ -6,9 +6,10 @@ import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
 import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
 import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
-import useCreateOrder from "./hooks/useCreateOrder";
+import useCreateOrder from "@hooks/useCreateOrder.ts";
 import AddToCartButton from "./components/AddToCartButton";
 import CreateOrderButton from "./components/CreateOrderButton";
+import useUnifiedOrderData from "@pages/BookingFormPage/hooks/useUnifiedOrderData.ts";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,
@@ -65,7 +66,7 @@ export type CreateOrderSubmitForm = {
   name: string;
   email: string;
   phoneNumber: string;
-  message: string;
+  message?: string;
 };
 
 const initialFormValues: CreateOrderSubmitForm = {
@@ -77,7 +78,9 @@ const initialFormValues: CreateOrderSubmitForm = {
 
 export default function BookingFormPage() {
   const params = useParams<BookTreatmentSessionParams>();
-  const [createOrder, { isLoading: isOrderProcessing }] = useCreateOrder();
+  const { itemsToOrder, cartState } = useUnifiedOrderData();
+  const [createOrder, { isLoading: isOrderProcessing }] =
+    useCreateOrder(itemsToOrder);
 
   async function handleSubmit(values: CreateOrderSubmitForm) {
     await createOrder(values);
@@ -88,7 +91,9 @@ export default function BookingFormPage() {
       <ContainerStyled>
         <BackButton
           component={Link}
-          to={`/book-session/${params.treatmentId}`}
+          to={
+            params.treatmentId ? `/book-session/${params.treatmentId}` : "/cart"
+          }
           startIcon={<CaretLeft width={16} height={16} />}
         >
           Back
@@ -108,7 +113,7 @@ export default function BookingFormPage() {
                 <ClientDetails />
               </ClientDetailsBox>
               <BookingDetailsBox>
-                <OrderInformation />
+                <OrderInformation sessionsFromLocation={cartState?.sessions} />
                 <AddToCartButton />
                 <CreateOrderButton isOrderProcessing={isOrderProcessing} />
               </BookingDetailsBox>

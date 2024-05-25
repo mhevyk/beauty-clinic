@@ -8,6 +8,7 @@ const TreatmentsPage = lazy(() => import("@pages/TreatmentsPage"));
 const BookingFormPage = lazy(() => import("@pages/BookingFormPage"));
 const BookSessionPage = lazy(() => import("@pages/BookSessionPage"));
 const PostPage = lazy(() => import("@pages/PostPage"));
+const CartPage = lazy(() => import("@pages/CartPage"));
 
 const guestRoutes: RouteObject[] = [
   {
@@ -17,7 +18,10 @@ const guestRoutes: RouteObject[] = [
       { path: "treatments", element: <TreatmentsPage /> },
       {
         path: "booking-form",
-        children: [{ path: ":treatmentId", element: <BookingFormPage /> }],
+        children: [
+          { index: true, element: <BookingFormPage /> },
+          { path: ":treatmentId", element: <BookingFormPage /> },
+        ],
       },
       {
         path: "book-session",
@@ -30,6 +34,7 @@ const guestRoutes: RouteObject[] = [
           { path: ":postId", element: <PostPage /> },
         ],
       },
+      { path: "cart", children: [{ index: true, element: <CartPage /> }] },
     ],
   },
 ];

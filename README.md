@@ -115,6 +115,13 @@ Here is a working live demo: <a href="#">link</a>
     <li>Use default exports for functions, components, hooks etc</li>
     <li>Avoid using <code>useEffect</code> hook and use it the last resort</li>
     <li>Prefer using <code>flex</code> or <code>grid</code> over <code>absolute</code> of <code>fixed</code> position</li>
+    <li>Optimal code lines count in file is up to 100, approximate max code lines in file is 200. If this rule is broken, refactoring is needed (creating another component, splitting logic in custom hook etc)</li>
+    <li>All related business logic should be moved in custom hook if there is 3 or more related parts</li>
+    <li>Handler names should follow the pattern <code>handleSomeAction</code>, for example <code>handleButtonClick</code></li>
+    <li>Handlers should be moved above return statement to make our jsx as clean as possible</li>
+    <li>All methods in reusable hooks should be wrapped inside <code>useCallback</code></li>
+    <li>All application-level constants should be in uppercase</li>
+    <li>All pages should be lazy loaded using <code>React.lazy</code></li>
 </ul>
 
 #### Images

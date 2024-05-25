@@ -26,6 +26,14 @@ Here is a working live demo: <a href="#">link</a>
         Project root
         <ul>
             <li>
+                <code>/docs</code> - project docs folder
+                <ul>
+                    <li>
+                        <code>/assets</code> - for screenshots of app or other related assets to docs
+                    </li>
+                </ul>
+            </li>
+            <li>
              <code>/src</code> - project source code folder
                 <ul>
                     <li>

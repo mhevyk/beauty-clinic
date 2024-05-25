@@ -33,6 +33,13 @@ type CartSessionProps = {
 export default function CartSession({ session, treatment }: CartSessionProps) {
   const deleteSession = useCartStore((store) => store.removeFromCart);
 
+  function handleDeleteSession() {
+    deleteSession(treatment.id, {
+      sessionStartsAt: session.sessionStartsAt,
+      employeeId: session.employee.id,
+    });
+  }
+
   return (
     <TableRow>
       <TableCellStyled>
@@ -52,14 +59,7 @@ export default function CartSession({ session, treatment }: CartSessionProps) {
         <SessionDescription>${treatment.pricePerUnit}</SessionDescription>
       </TableCellStyled>
       <TableCell sx={{ border: "none" }} padding="none">
-        <IconButton
-          onClick={() =>
-            deleteSession(treatment.id, {
-              sessionStartsAt: session.sessionStartsAt,
-              employeeId: session.employee.id,
-            })
-          }
-        >
+        <IconButton onClick={handleDeleteSession}>
           <BinButton />
         </IconButton>
       </TableCell>

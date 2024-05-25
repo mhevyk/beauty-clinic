@@ -40,11 +40,7 @@ const BoxImageStyled = styled(Box, {
   justifyContent: "center",
   alignItems: "center",
   opacity: isLoading ? 0.3 : 1,
-  "& img": shouldShowImagePlaceholder
-    ? {
-        width: "100px",
-      }
-    : {},
+  ...(shouldShowImagePlaceholder && { "& img": { width: "100px" } }),
 }));
 
 const TreatmentImage = styled("img")({

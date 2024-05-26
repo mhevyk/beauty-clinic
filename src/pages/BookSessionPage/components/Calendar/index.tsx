@@ -11,11 +11,6 @@ import { CalendarCell } from "./components/CalendarCell";
 import { isBefore, startOfToday, subMinutes } from "date-fns";
 import { useMemo } from "react";
 
-const CalendarContainer = styled(Box)({
-  minWidth: "200px",
-  maxWidth: "min-content",
-});
-
 const CalendarCellsContainer = styled(Box)(() => {
   const CALENDAR_SMALL_CELL_SIZE = "30px";
   const CALENDAR_CELL_SIZE = "40px";
@@ -80,7 +75,7 @@ const Calendar = () => {
   });
 
   return (
-    <CalendarContainer>
+    <Box>
       <CalendarHeader
         controls={controls}
         selectedPageLabel={selectedPageLabel}
@@ -104,7 +99,7 @@ const Calendar = () => {
           />
         ))}
       </CalendarCellsContainer>
-    </CalendarContainer>
+    </Box>
   );
 };
 

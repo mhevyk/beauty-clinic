@@ -8,7 +8,7 @@ import NoAvailability from "./components/NoAvailability.tsx";
 import TimeButton from "./components/TimeButton.tsx";
 
 const BoxGridStyled = styled(Box)({
-  maxWidth: "375px",
+  width: "375px",
   display: "flex",
   flexWrap: "wrap",
   gap: "10px",

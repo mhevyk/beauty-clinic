@@ -157,7 +157,7 @@ Here is a working live demo: <a href="#">link</a>
 
 1. Clone the repo
 ```sh
-https://github.com/mhevyk/beauty-clinic.git
+git clone https://github.com/mhevyk/beauty-clinic.git
 ```
 2. Install NPM packages
 ```sh

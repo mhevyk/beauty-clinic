@@ -1,7 +1,6 @@
 import { LogoutDocument } from "@api/hooks";
 import { client } from "@config/apollo";
-import { PERSISTED_STORAGE_KEYS } from "@constants/index";
-import createPersistedStore from "@store/utils/createPersistedStore";
+import { create } from "zustand";
 
 export type AccessToken = string | null;
 
@@ -14,24 +13,18 @@ type UserStore = {
   logout: () => Promise<void>;
 };
 
-export const useUserStore = createPersistedStore<UserStore>(
-  (set, get) => ({
-    checkAuthenticated: () => {
-      return get().accessToken !== null;
-    },
-    isAuthenticating: false,
-    accessToken: null,
-    setAccessToken: (accessToken) => {
-      set({ accessToken });
-    },
-    setIsAuthenticating: (isAuthenticating) => set({ isAuthenticating }),
-    logout: async () => {
-      await client.mutate({ mutation: LogoutDocument });
-      set({ accessToken: null });
-    },
-  }),
-  {
-    name: PERSISTED_STORAGE_KEYS.auth,
-    fieldsToPersist: { accessToken: true },
-  }
-);
+export const useUserStore = create<UserStore>((set, get) => ({
+  checkAuthenticated: () => {
+    return get().accessToken !== null;
+  },
+  isAuthenticating: false,
+  accessToken: null,
+  setAccessToken: (accessToken) => {
+    set({ accessToken });
+  },
+  setIsAuthenticating: (isAuthenticating) => set({ isAuthenticating }),
+  logout: async () => {
+    await client.mutate({ mutation: LogoutDocument });
+    set({ accessToken: null });
+  },
+}));

@@ -12,7 +12,7 @@ import AppSuspense from "./helpers/AppSuspense";
 const ErrorPage = lazy(() => import("@pages/ErrorPage"));
 const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
 
-const router: RouteObject[] = [
+const routes: RouteObject[] = [
   {
     path: "/",
     errorElement: (
@@ -46,4 +46,4 @@ const router: RouteObject[] = [
   },
 ];
 
-export default router;
+export default routes;

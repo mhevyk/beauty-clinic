@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import router from "./routes/router";
+import routes from "./routes/routes";
 import useRefreshToken from "@hooks/auth/useRefreshToken";
 import AppSnackbar from "@components/AppSnackbar";
 
@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <>
-      <RouterProvider router={createBrowserRouter(router)} />
+      <RouterProvider router={createBrowserRouter(routes)} />
       <AppSnackbar />
     </>
   );

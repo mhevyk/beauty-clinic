@@ -40,7 +40,8 @@
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"],
       "@type-helpers": ["src/types/helpers.ts"],
-      "@routes/*": ["src/routes/*"]
+      "@routes/*": ["src/routes/*"],
+      "@tests/*": ["tests/*"]
     }
   },
   "include": ["src", "tests"],

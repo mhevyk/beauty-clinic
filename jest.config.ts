@@ -38,6 +38,7 @@ const config: Config = {
     "@utils/(.*)$": "<rootDir>/src/utils/$1",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",
+    "@tests/(.*)$": "<rootDir>/tests/$1",
 
     // mocks and stubs
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$":

@@ -5,8 +5,7 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/tests/setupTests.ts"],
   verbose: true,
   transform: {
-    // avoid error React is not defined
-    ".*\\.(tsx?|jsx?)$": [
+    "^.+\\.(t|j)sx?$": [
       "@swc/jest",
       {
         jsc: {
@@ -18,6 +17,7 @@ const config: Config = {
         },
       },
     ],
+    "^.+\\.svg$": "jest-transformer-svg", // TODO: use following in vite plugins: plugins: [react(), svgr({ include: '**/*.svg' })],
   },
   moduleNameMapper: {
     // import aliases
@@ -30,13 +30,13 @@ const config: Config = {
     "@backgrounds/(.*)$": "<rootDir>/src/assets/backgrounds/$1",
     "@decorations/(.*)$": "<rootDir>/src/assets/decorations/$1",
     "@theme/(.*)$": "<rootDir>/src/theme/$1",
-    "@api/hooks/(.*)$": "<rootDir>/src/api/generated/index.tsx",
+    "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
     "@constants/(.*)$": "<rootDir>/src/constants/$1",
     "@validation/(.*)$": "<rootDir>/src/validation/$1",
     "@store/(.*)$": "<rootDir>/src/store/$1",
     "@config/(.*)$": "<rootDir>/src/config/$1",
     "@utils/(.*)$": "<rootDir>/src/utils/$1",
-    "@type-helpers/(.*)$": "<rootDir>/src/types/helpers.ts",
+    "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",
 
     // mocks and stubs

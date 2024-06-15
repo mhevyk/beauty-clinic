@@ -1,4 +1,4 @@
-import BurgerIcon from "@icons/burger-icon.svg?react";
+import BurgerIcon from "@icons/burger-icon.svg";
 import { IconButton, styled } from "@mui/material";
 
 const BurgerButtonIcon = styled(BurgerIcon)({

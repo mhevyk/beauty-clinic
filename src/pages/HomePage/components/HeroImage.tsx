@@ -1,4 +1,4 @@
-import flowerCombinationDecoration from "@decorations/flower-combination.svg";
+import flowerCombinationDecoration from "@decorations/flower-combination.svg?url";
 import cottonImage from "@images/cotton.png";
 import coconutImage from "@images/coconut.png";
 import whitePetalImage from "@images/white-petal.png";

@@ -1,6 +1,7 @@
 import { Treatment } from "@api/hooks";
 import { Box, Grid, styled, SxProps, Typography } from "@mui/material";
 import theme from "@theme/theme.ts";
+import { ComponentType, SVGProps } from "react";
 
 const BoxStyled = styled(Box)({
   [theme.breakpoints.up("xs")]: {
@@ -29,11 +30,6 @@ const ImgStyled = styled("img")({
   },
 });
 
-const SvgImageStyled = styled("img")({
-  position: "absolute",
-  zIndex: 0,
-});
-
 const TitleStyled = styled("h4")({
   [theme.breakpoints.up("sm")]: {
     fontSize: "28px",
@@ -50,24 +46,23 @@ const TitleStyled = styled("h4")({
 
 type TreatmentCardProps = {
   treatment: Treatment;
-  decorationSvgImage: string;
+  DecorationComponent: ComponentType<SVGProps<SVGSVGElement>>;
   svgImageDecorationStyles: SxProps;
   treatmentImageUrl: string;
 };
 
 export default function TreatmentCard({
   treatment,
-  decorationSvgImage,
+  DecorationComponent,
   svgImageDecorationStyles,
   treatmentImageUrl,
 }: TreatmentCardProps) {
   return (
     <Grid item xs={12} sm={9} md={4.5} lg={3} xl={2.5}>
       <BoxStyled>
-        <SvgImageStyled
-          sx={svgImageDecorationStyles}
-          src={decorationSvgImage}
-          alt="image"
+        <Box
+          component={DecorationComponent}
+          sx={{ position: "absolute", zIndex: 0, ...svgImageDecorationStyles }}
         />
         <ImgStyled src={treatmentImageUrl} alt={treatment.name} />
         <TitleStyled>{treatment.name}</TitleStyled>

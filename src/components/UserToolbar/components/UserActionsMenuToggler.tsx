@@ -2,7 +2,7 @@ import { Avatar, Button, styled } from "@mui/material";
 import textToColor from "../utils/textToColor";
 import getAvatarLabel from "../utils/getAvatarLabel";
 import useCurrentUser from "@hooks/auth/useCurrentUser";
-import PointerDownIconSvg from "@icons/pointer-down.svg?react";
+import PointerDownIconSvg from "@icons/pointer-down.svg";
 import { MouseEventHandler } from "react";
 
 type AvatarStyledProps = {

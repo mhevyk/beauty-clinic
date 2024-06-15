@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, styled } from "@mui/material";
-import LeafDecorationSvg from '@decorations/sharp-leaf.svg?react'
+import LeafDecorationSvg from '@decorations/sharp-leaf.svg'
 import employeeLilyImage from '@images/lily.webp'
 import { EMPLOYEE_SHOWCASE_SECTION_ID } from "@constants/index";
 

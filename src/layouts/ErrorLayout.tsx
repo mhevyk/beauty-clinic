@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { alpha, Box, Button, styled } from "@mui/material";
-import ErrorIcon from "@icons/error-icon.svg?react";
+import ErrorIcon from "@icons/error-icon.svg";
 
 const BookNowLinkButton = styled(Button)({
   padding: "8px 30px",

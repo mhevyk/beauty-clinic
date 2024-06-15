@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
-import CaretLeftIconSvg from "@icons/caret-left.svg?react";
+import CaretLeftIconSvg from "@icons/caret-left.svg";
 
 import Calendar from "./Calendar";
 import TimePicker from "./TimePicker";

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Container, Grid, Hidden, styled } from "@mui/material";
 import TreatmentsCardList from "./components/TreatmentsCardList.tsx";
-import FernDecorationSvg from "@decorations/fern.svg?react";
+import FernDecorationSvg from "@decorations/fern.svg";
 import theme from "@theme/theme.ts";
 import SkeletonTreatmentsCard from "./components/SkeletonTreatmentsCard.tsx";
 import ErrorBoundary from "@components/ErrorBoundary.tsx";

@@ -28,8 +28,14 @@ export default defineConfig({
       "@utils": resolveSource("utils"),
       "@type-helpers": resolveSource("types", "helpers.ts"),
       "@routes": resolveSource("routes"),
-      "@tests": path.resolve(__dirname, "tests")
+      "@tests": path.resolve(__dirname, "tests"),
     },
   },
-  plugins: [react(), svgr({ include: "**/*.svg" })],
+  plugins: [
+    react(),
+    svgr({
+      include: "**/*.svg",
+      exclude: "**/*.svg?url",
+    }),
+  ],
 });

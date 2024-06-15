@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
-import TestimonialButtonClose from "@icons/testimonial-button-close-icon.svg?react";
-import TestimonialButtonOpen from "@icons/testimonial-button-open-icon.svg?react";
+import TestimonialButtonClose from "@icons/testimonial-button-close-icon.svg";
+import TestimonialButtonOpen from "@icons/testimonial-button-open-icon.svg";
 
 type PointButtonProps = {
   isSelected: boolean;

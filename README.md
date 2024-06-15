@@ -127,9 +127,9 @@ Here is a working live demo: <a href="#">link</a>
 #### Images
 
 <ul>
-    <li>You should use <code>vite-plugin-svgr</code> for importing <code>svg</code> format like following: <code>@assets/icons/instagram.svg?react</code></li>
+    <li>You should use <code>vite-plugin-svgr</code> for importing <code>svg</code> format like following: <code>@assets/icons/instagram.svg</code></li>
     <li>
-        Svgs, imported by <code>vite-plugin-svgr</code> should be in pascal pase using pattern <code>IconNameIconSvg</code>, for example importing facebook icon should look like following: <code>import FacebookIconSvg from "@assets/icons/facebook.svg?react"</code>    
+        Svgs, imported by <code>vite-plugin-svgr</code> should be in pascal pase using pattern <code>IconNameIconSvg</code>, for example importing facebook icon should look like following: <code>import FacebookIconSvg from "@assets/icons/facebook.svg"</code>    
     </li>
 </ul>
 

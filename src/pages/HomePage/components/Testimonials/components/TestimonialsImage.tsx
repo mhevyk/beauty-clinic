@@ -1,9 +1,9 @@
 import { Box, styled } from "@mui/material";
-import PionFlowerDecorationSvg from '@decorations/flower-pion.svg?react';
-import SpiralSharpLeafDecorationSvg from '@decorations/spiral-sharp-leaf.svg?react'
-import OpenBananaDecorationSvg from '@decorations/opened-banana.svg?react'
-import ThickSharpLeafDecorationSvg from '@decorations/thick-sharp-leaf.svg?react'
-import SeaweedDecorationSvg from '@decorations/seaweed.svg?react'
+import PionFlowerDecorationSvg from '@decorations/flower-pion.svg';
+import SpiralSharpLeafDecorationSvg from '@decorations/spiral-sharp-leaf.svg'
+import OpenBananaDecorationSvg from '@decorations/opened-banana.svg'
+import ThickSharpLeafDecorationSvg from '@decorations/thick-sharp-leaf.svg'
+import SeaweedDecorationSvg from '@decorations/seaweed.svg'
 import theme from "@theme/theme.ts";
 import { CSSProperties } from "react";
 

@@ -1,17 +1,18 @@
 import { SxProps } from "@mui/material";
 import theme from "@theme/theme.ts";
-import seaweedDecorationDecoration from "@decorations/seaweed.svg";
-import grassBladeDecoration from "@decorations/grass-blade.svg";
-import tulipDecoration from "@decorations/tulip.svg";
+import SeaweedDecorationDecoration from "@decorations/seaweed.svg";
+import GrassBladeDecoration from "@decorations/grass-blade.svg";
+import TulipDecoration from "@decorations/tulip.svg";
+import { ComponentType, SVGProps } from "react";
 
 type MyTreatmentDecorationImageType = {
-  svgImage: string;
+  svgImage: ComponentType<SVGProps<SVGSVGElement>>;
   styled: SxProps;
 };
 
 const myTreatmentDecorationImageData: MyTreatmentDecorationImageType[] = [
   {
-    svgImage: seaweedDecorationDecoration,
+    svgImage: SeaweedDecorationDecoration,
     styled: {
       top: "35%",
       right: "32%",
@@ -30,7 +31,7 @@ const myTreatmentDecorationImageData: MyTreatmentDecorationImageType[] = [
     },
   },
   {
-    svgImage: grassBladeDecoration,
+    svgImage: GrassBladeDecoration,
     styled: {
       top: "28%",
       left: "50%",
@@ -39,7 +40,7 @@ const myTreatmentDecorationImageData: MyTreatmentDecorationImageType[] = [
     },
   },
   {
-    svgImage: tulipDecoration,
+    svgImage: TulipDecoration,
     styled: {
       top: "25%",
       left: "40%",

@@ -24,7 +24,7 @@ export default function TreatmentCardList() {
       <TreatmentCard
         key={treatment.id}
         treatment={treatment}
-        decorationSvgImage={svgImage.svgImage}
+        DecorationComponent={svgImage.svgImage}
         svgImageDecorationStyles={svgImage.styled}
         treatmentImageUrl={treatmentImageUrl}
       />

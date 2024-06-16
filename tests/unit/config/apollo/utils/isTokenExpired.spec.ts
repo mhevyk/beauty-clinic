@@ -23,10 +23,6 @@ describe("isTokenExpired()", () => {
     jest.spyOn(Date, "now").mockImplementation(() => mockCurrentDate.getTime());
   });
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it("should return false if jwt token is valid and not expired", () => {
     expect(isTokenExpired(validToken)).toBeFalsy();
   });

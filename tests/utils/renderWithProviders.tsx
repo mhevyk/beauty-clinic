@@ -8,12 +8,12 @@ import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 
 const mocks: MockedResponse[] = [];
 
-function renderWithProviders(ui: ReactNode, { path = "/" } = {}) {
+function renderWithProviders(ui: ReactNode) {
   return render(
     <ThemeProvider theme={theme}>
       <CSSInit />
       <MockedProvider mocks={mocks}>
-        <MemoryRouter initialEntries={[path]}>{ui}</MemoryRouter>
+        <MemoryRouter>{ui}</MemoryRouter>
       </MockedProvider>
     </ThemeProvider>
   );

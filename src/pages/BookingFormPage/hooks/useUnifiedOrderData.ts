@@ -10,6 +10,7 @@ export default function useUnifiedOrderData() {
   const location = useLocation();
   const itemsToOrderFromHook = useItemsToOrder();
 
+  // TODO: remove any here
   const itemsToOrderFromState = location.state?.sessions ?? null;
   const itemsToOrder = itemsToOrderFromState || itemsToOrderFromHook;
 

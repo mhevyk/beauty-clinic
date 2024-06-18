@@ -10,7 +10,7 @@ type DateRange = {
 type UseTreatmentSessionAvailabilities = {
   range: DateRange;
   shouldFetch: boolean;
-  employeeId: number;
+  employeeId?: number;
 };
 
 export default function useTreatmentSessionAvailabilities({

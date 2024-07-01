@@ -7,7 +7,7 @@ describe("minutesToHourAndMinutes", () => {
 
   test("converts minutes less than an hour correctly", () => {
     expect(minutesToHourAndMinutes(5)).toBe("0 hr 5 min");
-    expect(minutesToHourAndMinutes(25)).toBe("0 hr 20 min");
+    expect(minutesToHourAndMinutes(25)).toBe("0 hr 25 min");
     expect(minutesToHourAndMinutes(45)).toBe("0 hr 45 min");
   });
 

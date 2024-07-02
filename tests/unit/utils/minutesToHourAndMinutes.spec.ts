@@ -1,8 +1,8 @@
-import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
+import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes";
 
 describe("minutesToHourAndMinutes", () => {
   test("converts 0 minutes correctly", () => {
-    expect(minutesToHourAndMinutes(0)).toBe("0 hr ");
+    expect(minutesToHourAndMinutes(0)).toBe("0 hr");
   });
 
   test("converts minutes less than an hour correctly", () => {
@@ -12,9 +12,9 @@ describe("minutesToHourAndMinutes", () => {
   });
 
   test("converts exactly one hour correctly", () => {
-    expect(minutesToHourAndMinutes(60)).toBe("1 hr ");
-    expect(minutesToHourAndMinutes(120)).toBe("2 hr ");
-    expect(minutesToHourAndMinutes(240)).toBe("4 hr ");
+    expect(minutesToHourAndMinutes(60)).toBe("1 hr");
+    expect(minutesToHourAndMinutes(120)).toBe("2 hr");
+    expect(minutesToHourAndMinutes(240)).toBe("4 hr");
   });
 
   test("converts more than an hour correctly", () => {

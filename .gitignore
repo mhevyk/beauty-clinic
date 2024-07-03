@@ -31,6 +31,9 @@ dist-ssr
 # Graphql codegen
 src/api/generated/*
 
-# Tests
+# Unit tests
 tests/coverage/*
+
+# Mutation tests
+stryker/*
 

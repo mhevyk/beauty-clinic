@@ -6,7 +6,7 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
-import caretIcon from "@icons/caret-left.svg";
+import caretIcon from "@/assets/icons/caret-left.svg";
 import useToggle from "@/hooks/useToggle.ts";
 import TreatmentDetails from "./components/TreatmentDetails";
 import { Suspense } from "react";

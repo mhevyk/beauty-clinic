@@ -1,5 +1,5 @@
 import { Box, Button, styled } from "@mui/material";
-import HelloDecorationSvg from '@decorations/hello.svg';
+import HelloDecorationSvg from '@/assets/decorations/hello.svg';
 import theme from "@/theme/theme.ts";
 import { Link } from "react-router-dom";
 import HeroImage from "@/pages/HomePage/components/HeroImage.tsx";

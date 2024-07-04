@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { Link } from "react-router-dom";
-import FacebookIconSvg from "@icons/facebook.svg";
-import InstagramIconSvg from "@icons/instagram.svg";
+import FacebookIconSvg from "@/assets/icons/facebook.svg";
+import InstagramIconSvg from "@/assets/icons/instagram.svg";
 import { cloneElement } from "react";
 
 const BoxStyled = styled(Box)(({ theme }) => {

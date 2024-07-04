@@ -22,10 +22,6 @@ const config: Config = {
   moduleNameMapper: {
     // import aliases
     "@/(.*)$": "<rootDir>/src/$1",
-    "@images/(.*)$": "<rootDir>/src/assets/images/$1",
-    "@icons/(.*)$": "<rootDir>/src/assets/icons/$1",
-    "@backgrounds/(.*)$": "<rootDir>/src/assets/backgrounds/$1",
-    "@decorations/(.*)$": "<rootDir>/src/assets/decorations/$1",
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",

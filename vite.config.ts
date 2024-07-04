@@ -12,10 +12,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@images": resolveSource("assets", "images"),
-      "@icons": resolveSource("assets", "icons"),
-      "@backgrounds": resolveSource("assets", "backgrounds"),
-      "@decorations": resolveSource("assets", "decorations"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
       "@type-helpers": resolveSource("types", "helpers.ts"),
       "@tests": path.resolve(__dirname, "tests"),

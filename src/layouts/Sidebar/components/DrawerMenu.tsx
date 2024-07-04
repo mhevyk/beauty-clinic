@@ -1,4 +1,4 @@
-import CloseIconSvg from "@icons/close-icon.svg";
+import CloseIconSvg from "@/assets/icons/close-icon.svg";
 import { Box, Drawer, IconButton, styled } from "@mui/material";
 import MenuLinks from "@/layouts/Sidebar/components/MenuLinks.tsx";
 import useLockPageScroll from "@/hooks/useLockPageScroll";

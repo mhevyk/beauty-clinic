@@ -1,8 +1,8 @@
 import { CircularProgress, IconButton, styled } from "@mui/material";
-import UserIconSvg from "@icons/user-icon.svg";
+import UserIconSvg from "@/assets/icons/user-icon.svg";
 import { ComponentPropsWithoutRef } from "react";
 import { useUserStore } from "@/store/user/userStore";
-import BellIconSvg from "@icons/bell.svg";
+import BellIconSvg from "@/assets/icons/bell.svg";
 import MyAccountButton from "./components/MyAccountButton";
 import AppLink from "@/components/AppLink";
 

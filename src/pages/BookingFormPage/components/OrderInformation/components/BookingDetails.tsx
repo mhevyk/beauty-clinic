@@ -7,7 +7,7 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
-import caretIcon from "@icons/caret-left.svg";
+import caretIcon from "@/assets/icons/caret-left.svg";
 import useToggle from "@/hooks/useToggle.ts";
 import useItemsToOrder from "@/pages/BookingFormPage/hooks/useItemsToOrder";
 import BookingDetailsItem from "./BookingDetailsItem";

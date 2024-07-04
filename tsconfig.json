@@ -25,10 +25,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@icons/*": ["src/assets/icons/*"],
-      "@backgrounds/*": ["src/assets/backgrounds/*"],
-      "@decorations/*": ["src/assets/decorations/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
       "@type-helpers": ["src/types/helpers.ts"],
       "@tests/*": ["tests/*"]

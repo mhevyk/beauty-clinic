@@ -9,7 +9,7 @@ import {
   styled,
   useMediaQuery,
 } from "@mui/material";
-import OpenLockIconSvg from "@icons/open-lock.svg";
+import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
 import useCountdown from "../../hooks/useCountdown.ts";
 import { Formik } from "formik";
 import ResetPasswordForm from "../ForgotPasswordForm.tsx";
@@ -19,7 +19,7 @@ import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
 import { useForgotPasswordMutation } from "@api/hooks";
 import showSnackbar from "@/utils/showSnackbar.ts";
 import extractErrorMessage from "@/utils/extractErrorMessage.ts";
-import CloseIconSvg from "@icons/close-icon-thin.svg";
+import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
 import AppLink from "@/components/AppLink.tsx";
 import theme from "@/theme/theme.ts";
 import { RESEND_EMAIL_MIN_SECONDS } from "./constants";

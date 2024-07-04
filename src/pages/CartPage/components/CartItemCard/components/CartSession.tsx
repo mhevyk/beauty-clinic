@@ -6,7 +6,7 @@ import {
   useCartStore,
 } from "@/store/cart/cartStore.ts";
 import { Treatment } from "@api/hooks";
-import BinIcon from "@icons/bin-icon.svg";
+import BinIcon from "@/assets/icons/bin-icon.svg";
 
 const BinButton = styled(BinIcon)({
   width: "25px",

@@ -13,7 +13,7 @@ import CartSessionList from "@/pages/CartPage/components/CartItemCard/components
 import TreatmentGeneralInfo from "@/pages/CartPage/components/TreatmentGeneralInfo.tsx";
 import concatUrls from "@/utils/concatUrls.ts";
 import { useLazyImage } from "@/hooks/useLazyImage.ts";
-import imagePlaceholder from "@icons/image-placeholder.svg";
+import imagePlaceholder from "@/assets/icons/image-placeholder.svg";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.primary.main, 0.4),

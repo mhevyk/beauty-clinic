@@ -14,7 +14,7 @@ import useCountdown from "../../hooks/useCountdown.ts";
 import { Formik } from "formik";
 import ResetPasswordForm from "../ForgotPasswordForm.tsx";
 import { useRef, useState } from "react";
-import { emailFormSchema } from "@validation/emailFormSchema.ts";
+import { emailFormSchema } from "@/validation/emailFormSchema.ts";
 import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
 import { useForgotPasswordMutation } from "@api/hooks";
 import showSnackbar from "@/utils/showSnackbar.ts";

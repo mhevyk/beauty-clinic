@@ -7,7 +7,7 @@ import { Formik, useFormikContext } from "formik";
 import {
   repeatPasswordFormSchema,
   signUpFormSchema,
-} from "@validation/signUpFormSchema";
+} from "@/validation/signUpFormSchema";
 import ButtonWithSpinner from "@/components/ButtonWithSpinner";
 import useSignUp from "@/hooks/auth/useSignUp";
 import SignUpForm from "./components/SignUpForm";

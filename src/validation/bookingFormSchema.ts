@@ -4,7 +4,7 @@ import {
   messageFieldValidation,
   phoneNumberFieldValidation,
   usernameFieldValidation,
-} from "@validation/common.ts";
+} from "@/validation/common.ts";
 
 export const bookingFormSchema = Yup.object().shape({
   name: usernameFieldValidation.required("Username is required"),

@@ -27,7 +27,6 @@ const config: Config = {
     "@backgrounds/(.*)$": "<rootDir>/src/assets/backgrounds/$1",
     "@decorations/(.*)$": "<rootDir>/src/assets/decorations/$1",
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
-    "@validation/(.*)$": "<rootDir>/src/validation/$1",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",
     "@tests/(.*)$": "<rootDir>/tests/unit/$1",

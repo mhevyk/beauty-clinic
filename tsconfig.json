@@ -30,7 +30,6 @@
       "@backgrounds/*": ["src/assets/backgrounds/*"],
       "@decorations/*": ["src/assets/decorations/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
-      "@validation/*": ["src/validation/*"],
       "@type-helpers": ["src/types/helpers.ts"],
       "@tests/*": ["tests/*"]
     }

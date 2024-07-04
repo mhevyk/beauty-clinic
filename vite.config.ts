@@ -17,7 +17,6 @@ export default defineConfig({
       "@backgrounds": resolveSource("assets", "backgrounds"),
       "@decorations": resolveSource("assets", "decorations"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
-      "@validation": resolveSource("validation"),
       "@type-helpers": resolveSource("types", "helpers.ts"),
       "@tests": path.resolve(__dirname, "tests"),
     },

@@ -30,7 +30,6 @@ const config: Config = {
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
     "@constants/(.*)$": "<rootDir>/src/constants/$1",
     "@validation/(.*)$": "<rootDir>/src/validation/$1",
-    "@store/(.*)$": "<rootDir>/src/store/$1",
     "@config/(.*)$": "<rootDir>/src/config/$1",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",

@@ -11,7 +11,7 @@ import caretIcon from "@icons/caret-left.svg";
 import useToggle from "@/hooks/useToggle.ts";
 import useItemsToOrder from "@/pages/BookingFormPage/hooks/useItemsToOrder";
 import BookingDetailsItem from "./BookingDetailsItem";
-import { useUserStore } from "@store/user/userStore";
+import { useUserStore } from "@/store/user/userStore";
 import { useLocation } from "react-router-dom";
 import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
 

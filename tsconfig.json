@@ -34,7 +34,6 @@
       "@constants/*": ["src/constants/*"],
       "@validation/*": ["src/validation/*"],
       "@config/*": ["src/config/*"],
-      "@store/*": ["src/store/*"],
       "@type-helpers": ["src/types/helpers.ts"],
       "@tests/*": ["tests/*"]
     }

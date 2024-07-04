@@ -1,8 +1,8 @@
 import { PERSISTED_STORAGE_KEYS } from "@constants/index";
-import createPersistedStore from "@store/utils/createPersistedStore";
+import createPersistedStore from "@/store/utils/createPersistedStore";
 import showSnackbar from "@/utils/showSnackbar";
 import { Employee, Treatment } from "@api/hooks";
-import { OrderStore } from "@store/order/orderStore";
+import { OrderStore } from "@/store/order/orderStore";
 import { QualifiedEmployee } from "@/pages/BookSessionPage/hooks/useSelectedQualifiedEmployee";
 import sessionComparator from "./utils/sessionComparator";
 

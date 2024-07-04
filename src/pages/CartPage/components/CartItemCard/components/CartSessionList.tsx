@@ -1,5 +1,5 @@
 import { Table, TableBody } from "@mui/material";
-import { CartSession as CartSessionType } from "@store/cart/cartStore.ts";
+import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
 import { Treatment } from "@api/hooks";
 import CartSession from "@/pages/CartPage/components/CartItemCard/components/CartSession.tsx";
 

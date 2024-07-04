@@ -1,5 +1,5 @@
 import { User } from "@api/hooks";
-import { useUserStore } from "@store/user/userStore";
+import { useUserStore } from "@/store/user/userStore";
 import { jwtDecode } from "jwt-decode";
 
 export type UserPayload = Pick<User, "id" | "email" | "username" | "role">;

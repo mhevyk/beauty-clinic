@@ -2,7 +2,7 @@ import BookingDetails from "./components/BookingDetails";
 import { Box, CircularProgress, styled, Typography } from "@mui/material";
 import { Navigate } from "react-router-dom";
 import useSelectedTreatmentSession from "../../hooks/useSelectedTreatmentSession";
-import { useCartStore } from "@store/cart/cartStore";
+import { useCartStore } from "@/store/cart/cartStore";
 
 const TotalPriceBox = styled(Box)({
   marginBottom: "20px",

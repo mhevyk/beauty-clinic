@@ -1,8 +1,8 @@
 import { Box, Button, Divider, styled, Typography } from "@mui/material";
-import { useCartStore } from "@store/cart/cartStore.ts";
+import { useCartStore } from "@/store/cart/cartStore.ts";
 import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
 import useCreateOrder from "@/hooks/useCreateOrder.ts";
-import { useUserStore } from "@store/user/userStore.ts";
+import { useUserStore } from "@/store/user/userStore.ts";
 import getSessionsToOrderFromCart from "@/utils/getSessionsToOrderFromCart.ts";
 import { useNavigate } from "react-router-dom";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";

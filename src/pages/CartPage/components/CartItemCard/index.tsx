@@ -1,4 +1,4 @@
-import { CartItem } from "@store/cart/cartStore.ts";
+import { CartItem } from "@/store/cart/cartStore.ts";
 import {
   alpha,
   Box,

@@ -3,7 +3,7 @@ import {
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
 } from "@api/hooks";
-import { useUserStore } from "@store/user/userStore.ts";
+import { useUserStore } from "@/store/user/userStore.ts";
 import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
 import { useCallback, useEffect } from "react";
 import showSnackbar from "@/utils/showSnackbar.ts";

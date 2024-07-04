@@ -1,6 +1,6 @@
 import { Button, styled } from "@mui/material";
 import { useDatetimePickerContext } from "../context/DatetimePickerProvider";
-import { useOrderStore } from "@store/order/orderStore";
+import { useOrderStore } from "@/store/order/orderStore";
 import { useNavigate } from "react-router-dom";
 import { Employee } from "@api/hooks";
 

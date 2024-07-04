@@ -1,4 +1,4 @@
-import { AccessToken, useUserStore } from "@store/user/userStore";
+import { AccessToken, useUserStore } from "@/store/user/userStore";
 import fetchAccessToken from "@/utils/fetchAccessToken";
 import showSnackbar from "@/utils/showSnackbar";
 import { useEffect } from "react";

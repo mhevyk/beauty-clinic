@@ -1,4 +1,4 @@
-import { useUserStore } from "@store/user/userStore";
+import { useUserStore } from "@/store/user/userStore";
 import { TokenRefreshLink } from "apollo-link-token-refresh";
 import isTokenExpired from "../utils/isTokenExpired";
 import fetchAccessToken from "@/utils/fetchAccessToken";

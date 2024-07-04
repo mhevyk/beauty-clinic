@@ -4,7 +4,7 @@ import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
 import {
   CartSession as CartSessionType,
   useCartStore,
-} from "@store/cart/cartStore.ts";
+} from "@/store/cart/cartStore.ts";
 import { Treatment } from "@api/hooks";
 import BinIcon from "@icons/bin-icon.svg";
 

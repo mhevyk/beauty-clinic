@@ -1,4 +1,4 @@
-import { useCartStore } from "@store/cart/cartStore";
+import { useCartStore } from "@/store/cart/cartStore";
 import useSelectedTreatmentSession from "./useSelectedTreatmentSession";
 import getSessionsToOrderFromCart from "@/utils/getSessionsToOrderFromCart.ts";
 

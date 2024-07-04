@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import CaretIconSvg from "@icons/caret-left.svg";
 import useLockPageScroll from "@/hooks/useLockPageScroll";
-import { useCartStore } from "@store/cart/cartStore";
+import { useCartStore } from "@/store/cart/cartStore";
 import CartDrawerFooter from "./CartDrawerFooter";
 import CartDrawerList from "./CartDrawerList";
 

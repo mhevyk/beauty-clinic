@@ -20,7 +20,6 @@ export default defineConfig({
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
       "@constants": resolveSource("constants"),
       "@validation": resolveSource("validation"),
-      "@store": resolveSource("store"),
       "@config": resolveSource("config"),
       "@type-helpers": resolveSource("types", "helpers.ts"),
       "@tests": path.resolve(__dirname, "tests"),

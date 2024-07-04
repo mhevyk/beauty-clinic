@@ -1,5 +1,5 @@
 import { Divider, Menu, MenuItem, MenuProps } from "@mui/material";
-import { useUserStore } from "@store/user/userStore";
+import { useUserStore } from "@/store/user/userStore";
 
 type UserActionsMenuProps = Pick<MenuProps, "anchorEl"> & {
   isOpen: boolean;

@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 
-import AppSuspense from "@routes/helpers/AppSuspense";
+import AppSuspense from "@/routes/helpers/AppSuspense";
 
 // TODO: add protected routes
 const protectedRoutes: RouteObject[] = [

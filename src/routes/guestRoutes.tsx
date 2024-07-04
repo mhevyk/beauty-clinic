@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
-import AppSuspense from "@routes/helpers/AppSuspense";
+import AppSuspense from "@/routes/helpers/AppSuspense";
 
 const HomePage = lazy(() => import("@/pages/HomePage"));
 const TreatmentsPage = lazy(() => import("@/pages/TreatmentsPage"));

@@ -1,4 +1,4 @@
-import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import ButtonWithSpinner from "@/components/ButtonWithSpinner";
 import { Box, Tooltip, styled, useMediaQuery } from "@mui/material";
 import { useCartStore } from "@store/cart/cartStore";
 import { useState } from "react";

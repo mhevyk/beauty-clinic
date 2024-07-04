@@ -24,7 +24,7 @@
     /* Import aliases */
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
+      "@/*": ["src/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],

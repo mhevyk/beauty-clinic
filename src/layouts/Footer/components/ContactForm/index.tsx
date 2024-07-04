@@ -8,7 +8,7 @@ import {
   useVerifyRecaptchaMutation,
   VerifyRecaptchaMutation,
 } from "@api/hooks";
-import FormGroupWithError from "@components/FormGroupWithError";
+import FormGroupWithError from "@/components/FormGroupWithError";
 import closeSnackbar from "@utils/closeSnackbar";
 import showSnackbar from "@utils/showSnackbar";
 import extractErrorMessage from "@utils/extractErrorMessage";

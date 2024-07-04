@@ -11,7 +11,7 @@ function resolveSource(...paths: string[]) {
 export default defineConfig({
   resolve: {
     alias: {
-      "@components": resolveSource("components"),
+      "@": path.resolve(__dirname, "src"),
       "@hooks": resolveSource("hooks"),
       "@pages": resolveSource("pages"),
       "@layouts": resolveSource("layouts"),

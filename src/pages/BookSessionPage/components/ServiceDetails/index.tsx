@@ -10,7 +10,7 @@ import caretIcon from "@icons/caret-left.svg";
 import useToggle from "@hooks/useToggle.ts";
 import TreatmentDetails from "./components/TreatmentDetails";
 import { Suspense } from "react";
-import ErrorBoundary from "@components/ErrorBoundary";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import showSnackbar from "@utils/showSnackbar";
 import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
 

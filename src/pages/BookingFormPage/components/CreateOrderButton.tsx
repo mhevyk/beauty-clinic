@@ -1,4 +1,4 @@
-import ButtonWithSpinner from "@components/ButtonWithSpinner";
+import ButtonWithSpinner from "@/components/ButtonWithSpinner";
 import { styled } from "@mui/material";
 import { useFormikContext } from "formik";
 

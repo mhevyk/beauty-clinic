@@ -1,4 +1,4 @@
-import AppLink from "@components/AppLink";
+import AppLink from "@/components/AppLink";
 import useToggle from "@hooks/useToggle";
 import { Typography, styled } from "@mui/material";
 import ForgotPasswordModal from "./ForgotPasswordModal";

@@ -1,9 +1,9 @@
 import { InputLabel, TextField, styled } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useId } from "react";
-import FormGroupWithError from "@components/FormGroupWithError";
+import FormGroupWithError from "@/components/FormGroupWithError";
 import { SignUpFormValues } from "..";
-import PhoneNumberFormGroup from "@components/PhoneNumberFormGroup.tsx";
+import PhoneNumberFormGroup from "@/components/PhoneNumberFormGroup.tsx";
 
 const Form = styled("form")({
   display: "flex",

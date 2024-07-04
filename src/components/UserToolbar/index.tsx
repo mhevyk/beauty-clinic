@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef } from "react";
 import { useUserStore } from "@store/user/userStore";
 import BellIconSvg from "@icons/bell.svg";
 import MyAccountButton from "./components/MyAccountButton";
-import AppLink from "@components/AppLink";
+import AppLink from "@/components/AppLink";
 
 const LinkStyled = styled(AppLink)(({ theme }) => ({
   transition: "color 400ms",

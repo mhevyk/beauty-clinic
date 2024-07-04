@@ -1,24 +1,24 @@
 {
   "packageManager": "npm",
-  "tempDirName": "stryker/tmp",
+  "tempDirName": "tests/mutation/tmp",
   "testRunner": "jest",
   "tsconfigFile": "tsconfig.json",
   "jest": {
     "configFile": "jest.config.ts"
   },
   "incremental": true,
-  "incrementalFile": "stryker/stryker-incremental.json",
+  "incrementalFile": "tests/mutation/stryker-incremental.json",
   "disableTypeChecks": true,
-  "mutate": [
-    "src/**/*.ts?(x)",
-    "!src/{assets,types,api}/**/*"
-  ],
+  "mutate": ["src/**/*.ts?(x)", "!src/{assets,types,api}/**/*"],
   "ignoreStatic": true,
   "reporters": ["clear-text", "progress", "html"],
   "coverageAnalysis": "perTest",
   "concurrency": 8,
   "cleanTempDir": true,
   "htmlReporter": {
-    "fileName": "stryker/reports/stryker.html"
+    "fileName": "tests/mutation/reports/stryker.html"
+  },
+  "jsonReporter": {
+    "fileName": "tests/mutation/reports/stryker.json"
   }
 }

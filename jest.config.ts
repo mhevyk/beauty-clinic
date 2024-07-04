@@ -2,7 +2,7 @@ import type { Config } from "jest";
 
 const config: Config = {
   testEnvironment: "jest-environment-jsdom",
-  setupFilesAfterEnv: ["<rootDir>/tests/setupTests.ts"],
+  setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.ts"],
   verbose: true,
   transform: {
     "^.+\\.(t|j)sx?$": [
@@ -38,7 +38,7 @@ const config: Config = {
     "@utils/(.*)$": "<rootDir>/src/utils/$1",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",
-    "@tests/(.*)$": "<rootDir>/tests/$1",
+    "@tests/(.*)$": "<rootDir>/tests/unit/$1",
 
     // mocks and stubs
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$":
@@ -50,7 +50,7 @@ const config: Config = {
   collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
   coverageReporters: ["html", "lcov"],
   coveragePathIgnorePatterns: ["node_modules"],
-  coverageDirectory: "<rootDir>/tests/coverage",
+  coverageDirectory: "<rootDir>/tests/unit/coverage",
 };
 
 export default config;

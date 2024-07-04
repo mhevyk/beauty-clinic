@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
 import Markdown from "react-markdown";
 import { Link, useParams } from "react-router-dom";
+
+import { Typography } from "@mui/material";
 
 const md = `
   ![Javatpoint](https://media-exp1.licdn.com/dms/image/C4D0BAQEwg5FK93uumQ/company-logo_200_200/0/1519923012279?e=2147483647&v=beta&t=63CNoS8OTR4lHjPhHSO7eFFqwLGwYunWfyDBV3tdc0c)  
@@ -32,15 +33,15 @@ export default function PostPage() {
       <Markdown
         children={md}
         components={{
-          blockquote: (props) => {
+          blockquote: props => {
             return (
               <blockquote style={{ color: "red" }}>{props.children}</blockquote>
             );
           },
-          h1: (props) => {
+          h1: props => {
             return <Typography>{props.children}</Typography>;
           },
-          a: (props) => {
+          a: props => {
             if (!props.href) {
               return;
             }

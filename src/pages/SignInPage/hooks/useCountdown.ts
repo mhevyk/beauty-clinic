@@ -24,7 +24,7 @@ export default function useCountdown({
     reset();
 
     timerRef.current = setInterval(() => {
-      setSecondsLeft((secondsLeft) => {
+      setSecondsLeft(secondsLeft => {
         const decreasedSeconds = secondsLeft - 1;
 
         if (decreasedSeconds <= 0) {

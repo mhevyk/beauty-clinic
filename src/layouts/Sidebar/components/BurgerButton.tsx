@@ -1,5 +1,6 @@
-import BurgerIcon from "@/assets/icons/burger-icon.svg";
 import { IconButton, styled } from "@mui/material";
+
+import BurgerIcon from "@/assets/icons/burger-icon.svg";
 
 const BurgerButtonIcon = styled(BurgerIcon)({
   cursor: "pointer",

@@ -1,7 +1,9 @@
-import { useUserStore } from "@/store/user/userStore";
 import { TokenRefreshLink } from "apollo-link-token-refresh";
-import isTokenExpired from "../utils/isTokenExpired";
+
+import { useUserStore } from "@/store/user/userStore";
 import fetchAccessToken from "@/utils/fetchAccessToken";
+
+import isTokenExpired from "../utils/isTokenExpired";
 
 export default new TokenRefreshLink({
   accessTokenField: "accessToken",
@@ -15,7 +17,7 @@ export default new TokenRefreshLink({
     return !isTokenExpired(token);
   },
   fetchAccessToken: fetchAccessToken,
-  handleFetch: (accessToken) => {
+  handleFetch: accessToken => {
     useUserStore.getState().setAccessToken(accessToken);
   },
 });

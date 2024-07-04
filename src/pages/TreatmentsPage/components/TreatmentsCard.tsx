@@ -1,8 +1,10 @@
-import { Box, Button, Grid, styled, Typography } from "@mui/material";
-import theme from "@/theme/theme.ts";
 import { Link } from "react-router-dom";
-import { Treatment } from "@api/hooks";
+
+import { Box, Button, Grid, Typography, styled } from "@mui/material";
+
+import theme from "@/theme/theme.ts";
 import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
+import { Treatment } from "@api/hooks";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -42,7 +44,6 @@ type TreatmentsCardProps = {
   treatment: Treatment;
 };
 export default function TreatmentsCard({ treatment }: TreatmentsCardProps) {
-
   return (
     <Grid item xs={12} sm={6} md={5} lg={4} xl={4}>
       <BoxStyled>

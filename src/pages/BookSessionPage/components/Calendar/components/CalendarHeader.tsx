@@ -1,5 +1,7 @@
 import { IconButton, Stack, Typography, styled } from "@mui/material";
+
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
+
 import { CalendarControls } from "../types";
 
 const CaretLeftIcon = styled(CaretLeftIconSvg)(({ theme }) => ({

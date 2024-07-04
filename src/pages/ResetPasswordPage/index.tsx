@@ -1,12 +1,14 @@
-import { useResetPasswordMutation } from "@api/hooks";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+import { Box } from "@mui/material";
+import { Formik } from "formik";
+
 import AuthAlternativeLink from "@/components/AuthAlternativeLink";
 import ButtonWithSpinner from "@/components/ButtonWithSpinner";
 import PasswordForm, { PasswordFormValues } from "@/components/PasswordForm";
-import { Box } from "@mui/material";
 import showSnackbar from "@/utils/showSnackbar";
 import { repeatPasswordFormSchema } from "@/validation/signUpFormSchema";
-import { Formik } from "formik";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useResetPasswordMutation } from "@api/hooks";
 
 const initialFormValues: PasswordFormValues = {
   password: "",

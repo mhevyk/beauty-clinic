@@ -1,7 +1,9 @@
-import { Treatment } from "@api/hooks";
-import { Box, Grid, styled, SxProps, Typography } from "@mui/material";
-import theme from "@/theme/theme.ts";
 import { ComponentType, SVGProps } from "react";
+
+import { Box, Grid, SxProps, Typography, styled } from "@mui/material";
+
+import theme from "@/theme/theme.ts";
+import { Treatment } from "@api/hooks";
 
 const BoxStyled = styled(Box)({
   [theme.breakpoints.up("xs")]: {

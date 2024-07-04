@@ -1,5 +1,6 @@
-import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from "@/constants/index";
 import * as Yup from "yup";
+
+import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from "@/constants/index";
 
 export const usernameFieldValidation = Yup.string()
   .min(3, "Username must be at least 3 characters")
@@ -17,7 +18,7 @@ export const passwordFieldValidation = Yup.string()
 
 // Combine all PHONE_NUMBER_PATTERN elements into single pattern
 const PHONE_NUMBER_JOINED_PATTERN = new RegExp(
-  PHONE_NUMBER_PATTERN.map((component) => {
+  PHONE_NUMBER_PATTERN.map(component => {
     return component instanceof RegExp ? component.source : `\\${component}`;
   }).join("")
 );

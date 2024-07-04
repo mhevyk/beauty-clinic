@@ -1,11 +1,14 @@
 import { useState } from "react";
-import QuoteItem from "./QuoteItem.tsx";
+
 import { Box, Stack, styled } from "@mui/material";
+
 import { Quote } from "@/pages/HomePage/components/Testimonials/data/quotes.ts";
-import PointButton from "./PointButton.tsx";
-import theme from "@/theme/theme.ts";
 import useInterval from "@/pages/HomePage/components/Testimonials/hooks/useInterval.ts";
+import theme from "@/theme/theme.ts";
+
 import { TESTIMONIALS_ANIMATION_DURATION } from "../../data/constants.ts";
+import PointButton from "./PointButton.tsx";
+import QuoteItem from "./QuoteItem.tsx";
 
 type BoxStyledProps = {
   backgroundColor: string;
@@ -44,7 +47,7 @@ export default function TestimonialCard({
 
   const { startInterval, stopInterval } = useInterval({
     onTick: () =>
-      setSelectedIndex((prevIndex) => (prevIndex + 1) % quotes.length),
+      setSelectedIndex(prevIndex => (prevIndex + 1) % quotes.length),
     duration: TESTIMONIALS_ANIMATION_DURATION,
   });
 

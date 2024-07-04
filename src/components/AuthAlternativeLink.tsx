@@ -1,4 +1,5 @@
-import { Divider, Box, styled } from "@mui/material";
+import { Box, Divider, styled } from "@mui/material";
+
 import AppLink from "./AppLink";
 
 const DividerStyled = styled(Divider)({

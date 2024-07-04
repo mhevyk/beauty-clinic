@@ -1,12 +1,14 @@
-import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import { SyntheticEvent } from "react";
+
+import Alert from "@mui/material/Alert";
+import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
+
 import { useSnackbarStore } from "@/store/snackbar/snackbarStore";
 
 export default function AppSnackbar() {
-  const isOpen = useSnackbarStore((store) => store.isOpen);
-  const { message, variant } = useSnackbarStore((store) => store.config);
-  const closeSnackbar = useSnackbarStore((store) => store.closeSnackbar);
+  const isOpen = useSnackbarStore(store => store.isOpen);
+  const { message, variant } = useSnackbarStore(store => store.config);
+  const closeSnackbar = useSnackbarStore(store => store.closeSnackbar);
 
   const handleClose = (
     _: SyntheticEvent | Event,

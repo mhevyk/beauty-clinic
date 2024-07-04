@@ -1,4 +1,5 @@
 import { Box, styled } from "@mui/material";
+
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
 import { Treatment } from "@api/hooks";
 

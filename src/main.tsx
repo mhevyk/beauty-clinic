@@ -1,11 +1,14 @@
-import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
-import { ThemeProvider } from "@mui/material";
-import theme from "@/theme/theme.ts";
-import { CSSInit } from "./theme/global.tsx";
+import ReactDOM from "react-dom/client";
+
 import { ApolloProvider } from "@apollo/client";
+import { ThemeProvider } from "@mui/material";
+
 import { client } from "@/config/apollo";
+import theme from "@/theme/theme.ts";
+
 import App from "./App.tsx";
+import { CSSInit } from "./theme/global.tsx";
 
 const rootElement = document.getElementById("root")!;
 const root = ReactDOM.createRoot(rootElement);

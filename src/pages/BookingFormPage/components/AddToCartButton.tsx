@@ -1,8 +1,11 @@
-import ButtonWithSpinner from "@/components/ButtonWithSpinner";
-import { Box, Tooltip, styled, useMediaQuery } from "@mui/material";
-import { useCartStore } from "@/store/cart/cartStore";
 import { useState } from "react";
+
+import { Box, Tooltip, styled, useMediaQuery } from "@mui/material";
+
+import ButtonWithSpinner from "@/components/ButtonWithSpinner";
+import { useCartStore } from "@/store/cart/cartStore";
 import theme from "@/theme/theme";
+
 import useSelectedTreatmentSession from "../hooks/useSelectedTreatmentSession";
 
 const ActionButton = styled(ButtonWithSpinner)({
@@ -12,10 +15,11 @@ const ActionButton = styled(ButtonWithSpinner)({
 });
 
 export default function AddToCartButton() {
-  const addToCart = useCartStore((store) => store.addToCart);
-  const checkSessionExists = useCartStore((store) => store.checkSessionExists);
+  const addToCart = useCartStore(store => store.addToCart);
+  const checkSessionExists = useCartStore(store => store.checkSessionExists);
 
-  const [{ employee, sessionStartsAt, treatment }] = useSelectedTreatmentSession();
+  const [{ employee, sessionStartsAt, treatment }] =
+    useSelectedTreatmentSession();
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   const initialIsButtonDisabled =

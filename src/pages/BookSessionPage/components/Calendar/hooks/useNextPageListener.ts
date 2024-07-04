@@ -1,5 +1,7 @@
-import useEventEmitter from "@/hooks/useEventEmitter";
 import { useEffect } from "react";
+
+import useEventEmitter from "@/hooks/useEventEmitter";
+
 import { CalendarControls, CalendarUtils } from "../types";
 
 type UseNextPageListener = {

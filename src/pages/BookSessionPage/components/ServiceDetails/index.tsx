@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import {
   Box,
   Button,
@@ -6,13 +8,15 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
+
 import caretIcon from "@/assets/icons/caret-left.svg";
-import useToggle from "@/hooks/useToggle.ts";
-import TreatmentDetails from "./components/TreatmentDetails";
-import { Suspense } from "react";
+
 import ErrorBoundary from "@/components/ErrorBoundary";
-import showSnackbar from "@/utils/showSnackbar";
+import useToggle from "@/hooks/useToggle.ts";
 import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
+import showSnackbar from "@/utils/showSnackbar";
+
+import TreatmentDetails from "./components/TreatmentDetails";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -28,7 +32,7 @@ type CaretIconProps = {
 
 //TODO: make this animation global
 const IconStyled = styled(caretIcon, {
-  shouldForwardProp: (prop) => prop !== "pointsToRight",
+  shouldForwardProp: prop => prop !== "pointsToRight",
 })<CaretIconProps>(({ pointsToRight, theme }) => ({
   stroke: theme.palette.secondary.main,
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
@@ -53,10 +57,10 @@ export default function ServiceDetails({
       </Box>
       <Collapse in={isOpen}>
         <ErrorBoundary
-          fallback={(error) => (
+          fallback={error => (
             <ErrorAlertLayout errorMessage={error?.message} size="small" />
           )}
-          onError={(error) =>
+          onError={error =>
             showSnackbar({
               message: error.message,
               autohide: true,

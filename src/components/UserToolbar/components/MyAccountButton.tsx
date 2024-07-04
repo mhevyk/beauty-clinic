@@ -1,7 +1,9 @@
-import useLockPageScroll from "@/hooks/useLockPageScroll";
 import { MouseEvent, useId, useState } from "react";
-import UserActionsMenuToggler from "./UserActionsMenuToggler";
+
+import useLockPageScroll from "@/hooks/useLockPageScroll";
+
 import UserActionsMenu from "./UserActionsMenu";
+import UserActionsMenuToggler from "./UserActionsMenuToggler";
 
 export default function MyAccountButton() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);

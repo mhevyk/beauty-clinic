@@ -16,7 +16,7 @@ export function useMultistepForm({ pages }: UseMultistepForm) {
       return;
     }
 
-    setPageIndex((page) => page + 1);
+    setPageIndex(page => page + 1);
   }
 
   function previousPage() {
@@ -24,7 +24,7 @@ export function useMultistepForm({ pages }: UseMultistepForm) {
       return;
     }
 
-    setPageIndex((page) => page - 1);
+    setPageIndex(page => page - 1);
   }
 
   return {

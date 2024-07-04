@@ -1,4 +1,5 @@
 import { HttpLink } from "@apollo/client";
+
 import concatUrls from "@/utils/concatUrls";
 
 export default new HttpLink({

@@ -1,8 +1,11 @@
-import BookingDetails from "./components/BookingDetails";
-import { Box, CircularProgress, styled, Typography } from "@mui/material";
 import { Navigate } from "react-router-dom";
-import useSelectedTreatmentSession from "../../hooks/useSelectedTreatmentSession";
+
+import { Box, CircularProgress, Typography, styled } from "@mui/material";
+
 import { useCartStore } from "@/store/cart/cartStore";
+
+import useSelectedTreatmentSession from "../../hooks/useSelectedTreatmentSession";
+import BookingDetails from "./components/BookingDetails";
 
 const TotalPriceBox = styled(Box)({
   marginBottom: "20px",
@@ -24,13 +27,13 @@ export default function OrderInformation({
   const [selectedSessionFromHook, { isLoading }] =
     useSelectedTreatmentSession();
 
-  const totalPriceOfItemsFromCart = useCartStore((store) =>
-    store.getTotalPrice(),
+  const totalPriceOfItemsFromCart = useCartStore(store =>
+    store.getTotalPrice()
   );
 
   const lastSession = sessionsFromLocation?.at(-1) ?? null;
 
-  const checkSessionExists = useCartStore((store) => store.checkSessionExists);
+  const checkSessionExists = useCartStore(store => store.checkSessionExists);
 
   const selectedSessions = lastSession || selectedSessionFromHook;
   const { sessionStartsAt, treatmentId, treatment, employee } =

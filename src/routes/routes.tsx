@@ -4,10 +4,10 @@ import { RouteObject } from "react-router-dom";
 import RootLayout from "@/layouts/RootLayout";
 import ProtectedRoute from "@/routes/helpers/ProtectedRoute";
 
-import guestRoutes from "./guestRoutes";
 import authRoutes from "./authRoutes";
-import protectedRoutes from "./protectedRoutes";
+import guestRoutes from "./guestRoutes";
 import AppSuspense from "./helpers/AppSuspense";
+import protectedRoutes from "./protectedRoutes";
 
 const ErrorPage = lazy(() => import("@/pages/ErrorPage"));
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));

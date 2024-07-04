@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
+import { format } from "date-fns";
+
 import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
 import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes";
-import { format } from "date-fns";
 
 type BookingDetailsItemProps = {
   orderItem: OrderItem;

@@ -1,19 +1,21 @@
-import { CartItem } from "@/store/cart/cartStore.ts";
 import {
-  alpha,
   Box,
   Button,
   Collapse,
   Divider,
-  styled,
   Typography,
+  alpha,
+  styled,
 } from "@mui/material";
+
+import imagePlaceholder from "@/assets/icons/image-placeholder.svg";
+
+import { useLazyImage } from "@/hooks/useLazyImage.ts";
 import useToggle from "@/hooks/useToggle.ts";
 import CartSessionList from "@/pages/CartPage/components/CartItemCard/components/CartSessionList.tsx";
 import TreatmentGeneralInfo from "@/pages/CartPage/components/TreatmentGeneralInfo.tsx";
+import { CartItem } from "@/store/cart/cartStore.ts";
 import concatUrls from "@/utils/concatUrls.ts";
-import { useLazyImage } from "@/hooks/useLazyImage.ts";
-import imagePlaceholder from "@/assets/icons/image-placeholder.svg";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.primary.main, 0.4),
@@ -27,7 +29,7 @@ type BoxImageStyledProps = {
 };
 
 const BoxImageStyled = styled(Box, {
-  shouldForwardProp: (prop) =>
+  shouldForwardProp: prop =>
     prop !== "isLoading" && prop !== "shouldShowImagePlaceholder",
 })<BoxImageStyledProps>(({ theme, isLoading, shouldShowImagePlaceholder }) => ({
   minWidth: "170px",
@@ -73,7 +75,7 @@ export default function CartItemCard({ item }: ItemCardProps) {
   const [src, { hasError, isLoading }] = useLazyImage({
     src: concatUrls(
       import.meta.env.VITE_API_BASE_IMAGE_URL,
-      treatment.imageUrl!,
+      treatment.imageUrl!
     ),
     placeholderSrc: imagePlaceholder,
   });

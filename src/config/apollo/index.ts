@@ -1,7 +1,8 @@
-import { ApolloClient, InMemoryCache, ApolloLink } from "@apollo/client";
+import { ApolloClient, ApolloLink, InMemoryCache } from "@apollo/client";
+
 import AuthorizationHeaderLink from "./links/AuthorizationHeaderLink";
-import RefreshTokenLink from "./links/RefreshTokenLink";
 import HttpLink from "./links/HttpLink";
+import RefreshTokenLink from "./links/RefreshTokenLink";
 
 const cache = new InMemoryCache();
 

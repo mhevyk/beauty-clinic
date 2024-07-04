@@ -1,5 +1,7 @@
-import { styled, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+
+import { Typography, styled } from "@mui/material";
+
 import { menuItems } from "../data/menuItems";
 
 const MenuWrapper = styled("ul")(({ theme }) => {

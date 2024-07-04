@@ -1,7 +1,8 @@
-import { ISO_DATE_PATTERN } from "@/constants/index";
-import { FilterPrimitiveKeys } from "@/types";
 import { StateCreator, create } from "zustand";
 import { PersistOptions, createJSONStorage, persist } from "zustand/middleware";
+
+import { ISO_DATE_PATTERN } from "@/constants/index";
+import { FilterPrimitiveKeys } from "@/types";
 
 // Deserialise Date object correctly
 const createStorage = <TState>() =>
@@ -33,7 +34,7 @@ export default function createPersistedStore<TState>(
   return create<TState>()(
     persist(initializer, {
       storage: createStorage<TState>(),
-      partialize: (state) => {
+      partialize: state => {
         if (!options.fieldsToPersist) {
           return state;
         }

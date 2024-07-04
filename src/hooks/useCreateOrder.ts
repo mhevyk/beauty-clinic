@@ -1,14 +1,15 @@
+import { useCallback, useEffect } from "react";
+
+import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
+import useSuccessfulOrderHandler from "@/pages/BookingFormPage/hooks/useSuccessfulOrderHandler.ts";
+import { useUserStore } from "@/store/user/userStore.ts";
+import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
+import showSnackbar from "@/utils/showSnackbar.ts";
 import {
   CreateOrderByAuthorizedUserInput,
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
 } from "@api/hooks";
-import { useUserStore } from "@/store/user/userStore.ts";
-import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
-import { useCallback, useEffect } from "react";
-import showSnackbar from "@/utils/showSnackbar.ts";
-import useSuccessfulOrderHandler from "@/pages/BookingFormPage/hooks/useSuccessfulOrderHandler.ts";
-import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
 
 export default function useCreateOrder(itemsToOrder: OrderItem[]) {
   const [
@@ -22,13 +23,13 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
       error: creatingOrderByAuthorizedUserError,
     },
   ] = useCreateOrderByAuthorizedUserMutation();
-  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
   const handleOrderSuccess = useSuccessfulOrderHandler();
 
   const createOrder = useCallback(
     async (values: CreateOrderSubmitForm) => {
       const transformedItemsToOrder: CreateOrderByAuthorizedUserInput["treatmentSessions"] =
-        itemsToOrder.map((itemToOrder) => ({
+        itemsToOrder.map(itemToOrder => ({
           employeeId: itemToOrder.employee.id,
           treatmentId: itemToOrder.treatment.id,
           startsAt: itemToOrder.sessionStartsAt,
@@ -63,7 +64,7 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
       });
       handleOrderSuccess();
     },
-    [isAuthenticated],
+    [isAuthenticated]
   );
 
   useEffect(() => {

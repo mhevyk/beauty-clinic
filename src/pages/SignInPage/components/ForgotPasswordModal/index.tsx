@@ -1,4 +1,5 @@
-import useLockPageScroll from "@/hooks/useLockPageScroll.ts";
+import { useRef, useState } from "react";
+
 import {
   Box,
   Dialog,
@@ -9,19 +10,22 @@ import {
   styled,
   useMediaQuery,
 } from "@mui/material";
-import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
-import useCountdown from "../../hooks/useCountdown.ts";
 import { Formik } from "formik";
-import ResetPasswordForm from "../ForgotPasswordForm.tsx";
-import { useRef, useState } from "react";
-import { emailFormSchema } from "@/validation/emailFormSchema.ts";
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
-import { useForgotPasswordMutation } from "@api/hooks";
-import showSnackbar from "@/utils/showSnackbar.ts";
-import extractErrorMessage from "@/utils/extractErrorMessage.ts";
+
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
+import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
+
 import AppLink from "@/components/AppLink.tsx";
+import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
+import useLockPageScroll from "@/hooks/useLockPageScroll.ts";
 import theme from "@/theme/theme.ts";
+import extractErrorMessage from "@/utils/extractErrorMessage.ts";
+import showSnackbar from "@/utils/showSnackbar.ts";
+import { emailFormSchema } from "@/validation/emailFormSchema.ts";
+import { useForgotPasswordMutation } from "@api/hooks";
+
+import useCountdown from "../../hooks/useCountdown.ts";
+import ResetPasswordForm from "../ForgotPasswordForm.tsx";
 import { RESEND_EMAIL_MIN_SECONDS } from "./constants";
 import updateResendEmailDuration from "./utils/updateResendEmailDuration.ts";
 
@@ -163,7 +167,7 @@ export default function Index({
       forgotPasswordAttemptsRef.current++;
       resendEmailDurationRef.current = updateResendEmailDuration(
         forgotPasswordAttemptsRef.current,
-        resendEmailDurationRef.current,
+        resendEmailDurationRef.current
       );
 
       startCountdown();

@@ -1,8 +1,11 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
-import Navbar from "./Navbar";
-import Sidebar from "@/layouts/Sidebar";
+
 import { Box, styled } from "@mui/material";
+
+import Sidebar from "@/layouts/Sidebar";
+
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const SidebarOmitWrapper = styled(Box)(({ theme }) => ({
   margin: "auto",

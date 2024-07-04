@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import { Employee } from "@api/hooks";
 
 export type OrderStore = {
@@ -8,9 +9,9 @@ export type OrderStore = {
   setEmployee: (employees: Employee | null) => void;
 };
 
-export const useOrderStore = create<OrderStore>((set) => ({
+export const useOrderStore = create<OrderStore>(set => ({
   sessionStartsAt: null,
-  setSessionStartsAt: (sessionStartsAt) => set({ sessionStartsAt }),
+  setSessionStartsAt: sessionStartsAt => set({ sessionStartsAt }),
   employee: null,
-  setEmployee: (employee) => set({ employee }),
+  setEmployee: employee => set({ employee }),
 }));

@@ -1,9 +1,9 @@
 query GetTreatments($limit: Int) {
-    treatments(limit: $limit) {
-        id,
-        name,
-        duration,
-        pricePerUnit,
-        imageUrl
-    }
+  treatments(limit: $limit) {
+    id
+    name
+    duration
+    pricePerUnit
+    imageUrl
+  }
 }

@@ -1,8 +1,11 @@
-import { Button, styled } from "@mui/material";
-import { useDatetimePickerContext } from "../context/DatetimePickerProvider";
-import { useOrderStore } from "@/store/order/orderStore";
 import { useNavigate } from "react-router-dom";
+
+import { Button, styled } from "@mui/material";
+
+import { useOrderStore } from "@/store/order/orderStore";
 import { Employee } from "@api/hooks";
+
+import { useDatetimePickerContext } from "../context/DatetimePickerProvider";
 
 //TODO: add color to palette
 const NextStepButtonStyled = styled(Button)(({ theme }) => ({
@@ -16,15 +19,15 @@ const NextStepButtonStyled = styled(Button)(({ theme }) => ({
 }));
 
 export default function SubmitSessionDatetimeButton() {
-  const setSessionStartsAt = useOrderStore((store) => store.setSessionStartsAt);
-  const setEmployee = useOrderStore((store) => store.setEmployee);
+  const setSessionStartsAt = useOrderStore(store => store.setSessionStartsAt);
+  const setEmployee = useOrderStore(store => store.setEmployee);
   const { selectedTime, selectedEmployeeId, treatmentId, qualifiedEmployees } =
     useDatetimePickerContext();
 
   const navigate = useNavigate();
 
   const qualifiedEmployee = qualifiedEmployees.find(
-    (employee) => employee.id === selectedEmployeeId
+    employee => employee.id === selectedEmployeeId
   ) as Employee | undefined;
 
   const isTimeSelected = selectedTime !== null;

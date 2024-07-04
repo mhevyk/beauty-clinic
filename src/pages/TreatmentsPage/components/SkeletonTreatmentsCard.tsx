@@ -1,5 +1,5 @@
 import { Box, Grid, Skeleton, styled } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,

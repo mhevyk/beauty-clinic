@@ -16,7 +16,6 @@ export default defineConfig({
       "@icons": resolveSource("assets", "icons"),
       "@backgrounds": resolveSource("assets", "backgrounds"),
       "@decorations": resolveSource("assets", "decorations"),
-      "@theme": resolveSource("theme"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
       "@validation": resolveSource("validation"),
       "@config": resolveSource("config"),

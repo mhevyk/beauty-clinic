@@ -4,7 +4,7 @@ import BurgerButton from "./components/BurgerButton";
 import MobileMenu from "./components/MobileMenu";
 import CartDrawerButton from "./components/Cart/components/CartDrawerButton";
 import { Link } from "react-router-dom";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import useToggle from "@/hooks/useToggle";
 import UserToolbar from "@/components/UserToolbar";
 

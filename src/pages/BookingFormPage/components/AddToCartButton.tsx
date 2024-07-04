@@ -2,7 +2,7 @@ import ButtonWithSpinner from "@/components/ButtonWithSpinner";
 import { Box, Tooltip, styled, useMediaQuery } from "@mui/material";
 import { useCartStore } from "@/store/cart/cartStore";
 import { useState } from "react";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import useSelectedTreatmentSession from "../hooks/useSelectedTreatmentSession";
 
 const ActionButton = styled(ButtonWithSpinner)({

@@ -1,6 +1,6 @@
 import { Treatment } from "@api/hooks";
 import { Box, Grid, styled, SxProps, Typography } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import { ComponentType, SVGProps } from "react";
 
 const BoxStyled = styled(Box)({

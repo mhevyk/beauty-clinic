@@ -21,7 +21,7 @@ import showSnackbar from "@/utils/showSnackbar.ts";
 import extractErrorMessage from "@/utils/extractErrorMessage.ts";
 import CloseIconSvg from "@icons/close-icon-thin.svg";
 import AppLink from "@/components/AppLink.tsx";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import { RESEND_EMAIL_MIN_SECONDS } from "./constants";
 import updateResendEmailDuration from "./utils/updateResendEmailDuration.ts";
 

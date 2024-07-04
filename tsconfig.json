@@ -29,7 +29,6 @@
       "@icons/*": ["src/assets/icons/*"],
       "@backgrounds/*": ["src/assets/backgrounds/*"],
       "@decorations/*": ["src/assets/decorations/*"],
-      "@theme/*": ["src/theme/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
       "@validation/*": ["src/validation/*"],
       "@config/*": ["src/config/*"],

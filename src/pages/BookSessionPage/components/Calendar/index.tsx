@@ -1,6 +1,6 @@
 import { Box, styled, useMediaQuery } from "@mui/material";
 import { useCalendar } from "./hooks/useCalendar";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import CalendarHeader from "./components/CalendarHeader";
 import useNextPageListener from "./hooks/useNextPageListener";
 import useTreatmentSessionAvailabilities from "./hooks/useTreatmentSessionAvailabilities";

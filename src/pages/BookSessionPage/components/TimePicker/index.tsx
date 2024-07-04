@@ -1,6 +1,6 @@
 import { Box, Button, styled } from "@mui/material";
 import { subMinutes } from "date-fns";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import useLimitedSessionHours from "./hooks/useLimitedSessionHours.ts";
 import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@api/hooks";
 import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider.tsx";

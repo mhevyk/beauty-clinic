@@ -2,7 +2,7 @@ import { Button, Stack } from "@mui/material";
 import PasswordForm, { PasswordFormValues } from "@/components/PasswordForm";
 import { useMultistepForm } from "@/hooks/useMultistepForm";
 import AuthAlternativeLink from "@/components/AuthAlternativeLink";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import { Formik, useFormikContext } from "formik";
 import {
   repeatPasswordFormSchema,

@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
 import { ThemeProvider } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import { CSSInit } from "./theme/global.tsx";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "@config/apollo";

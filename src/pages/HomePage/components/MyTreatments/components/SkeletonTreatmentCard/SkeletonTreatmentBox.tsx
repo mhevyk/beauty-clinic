@@ -1,5 +1,5 @@
 import { Box, Grid, Skeleton, styled } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 
 const SkeletonStyled = styled(Skeleton)({
   paddingTop: 200,

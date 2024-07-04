@@ -1,5 +1,5 @@
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import { Link } from "react-router-dom";
 import { Treatment } from "@api/hooks";
 import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";

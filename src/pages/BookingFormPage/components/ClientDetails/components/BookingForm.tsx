@@ -5,7 +5,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";
 import { useUserStore } from "@/store/user/userStore.ts";
 import PhoneNumberFormGroup from "@/components/PhoneNumberFormGroup.tsx";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 
 type ForgotPasswordFormValues = {
   name: string;

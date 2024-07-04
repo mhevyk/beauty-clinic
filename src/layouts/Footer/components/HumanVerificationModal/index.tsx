@@ -7,7 +7,7 @@ import {
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import CloseIconSvg from "@icons/close-icon-thin.svg";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import useLockPageScroll from "@/hooks/useLockPageScroll";
 import { RecaptchaVerification } from "./components/RecaptchaVerification";
 

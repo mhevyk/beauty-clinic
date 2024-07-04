@@ -3,16 +3,12 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import svgr from "vite-plugin-svgr";
 
-function resolveSource(...paths: string[]) {
-  return path.resolve(__dirname, "src", ...paths);
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@api/hooks": resolveSource("api", "generated", "index.tsx"),
+      "@api/hooks": path.resolve(__dirname, "src/api/generated/index.tsx"),
       "@tests": path.resolve(__dirname, "tests"),
     },
   },

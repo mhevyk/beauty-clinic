@@ -32,8 +32,10 @@ dist-ssr
 src/api/generated/*
 
 # Unit tests
-tests/coverage/*
+tests/unit/coverage/*
 
 # Mutation tests
-stryker/*
+tests/mutation/reports/*
+tests/mutation/tmp/*
+tests/mutation/stryker-incremental.json
 

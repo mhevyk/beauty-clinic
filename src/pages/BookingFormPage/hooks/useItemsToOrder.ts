@@ -1,6 +1,6 @@
 import { useCartStore } from "@store/cart/cartStore";
 import useSelectedTreatmentSession from "./useSelectedTreatmentSession";
-import getSessionsToOrderFromCart from "@utils/getSessionsToOrderFromCart.ts";
+import getSessionsToOrderFromCart from "@/utils/getSessionsToOrderFromCart.ts";
 
 export default function useItemsToOrder() {
   const checkSessionExists = useCartStore((store) => store.checkSessionExists);

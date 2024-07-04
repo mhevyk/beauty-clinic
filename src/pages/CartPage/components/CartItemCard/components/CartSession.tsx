@@ -1,6 +1,6 @@
 import { IconButton, styled, TableCell, TableRow } from "@mui/material";
 import { format } from "date-fns";
-import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes.ts";
+import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
 import {
   CartSession as CartSessionType,
   useCartStore,

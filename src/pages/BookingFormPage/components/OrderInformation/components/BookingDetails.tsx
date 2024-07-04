@@ -13,7 +13,7 @@ import useItemsToOrder from "@/pages/BookingFormPage/hooks/useItemsToOrder";
 import BookingDetailsItem from "./BookingDetailsItem";
 import { useUserStore } from "@store/user/userStore";
 import { useLocation } from "react-router-dom";
-import { OrderItem } from "@utils/getSessionsToOrderFromCart.ts";
+import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
 
 const ANIMATION_DURATION_MS = 550;
 

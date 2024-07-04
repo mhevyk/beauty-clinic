@@ -11,7 +11,7 @@ import {
 import useToggle from "@/hooks/useToggle.ts";
 import CartSessionList from "@/pages/CartPage/components/CartItemCard/components/CartSessionList.tsx";
 import TreatmentGeneralInfo from "@/pages/CartPage/components/TreatmentGeneralInfo.tsx";
-import concatUrls from "@utils/concatUrls.ts";
+import concatUrls from "@/utils/concatUrls.ts";
 import { useLazyImage } from "@/hooks/useLazyImage.ts";
 import imagePlaceholder from "@icons/image-placeholder.svg";
 

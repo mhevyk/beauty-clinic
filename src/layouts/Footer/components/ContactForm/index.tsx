@@ -9,9 +9,9 @@ import {
   VerifyRecaptchaMutation,
 } from "@api/hooks";
 import FormGroupWithError from "@/components/FormGroupWithError";
-import closeSnackbar from "@utils/closeSnackbar";
-import showSnackbar from "@utils/showSnackbar";
-import extractErrorMessage from "@utils/extractErrorMessage";
+import closeSnackbar from "@/utils/closeSnackbar";
+import showSnackbar from "@/utils/showSnackbar";
+import extractErrorMessage from "@/utils/extractErrorMessage";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 

@@ -35,7 +35,6 @@
       "@validation/*": ["src/validation/*"],
       "@config/*": ["src/config/*"],
       "@store/*": ["src/store/*"],
-      "@utils/*": ["src/utils/*"],
       "@type-helpers": ["src/types/helpers.ts"],
       "@tests/*": ["tests/*"]
     }

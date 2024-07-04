@@ -11,7 +11,7 @@ import useToggle from "@/hooks/useToggle.ts";
 import TreatmentDetails from "./components/TreatmentDetails";
 import { Suspense } from "react";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import showSnackbar from "@utils/showSnackbar";
+import showSnackbar from "@/utils/showSnackbar";
 import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
 
 const ANIMATION_DURATION_MS = 550;

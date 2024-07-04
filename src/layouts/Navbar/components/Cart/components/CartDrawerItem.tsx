@@ -9,7 +9,7 @@ import {
   styled,
 } from "@mui/material";
 import { CartItem } from "@store/cart/cartStore";
-import concatUrls from "@utils/concatUrls";
+import concatUrls from "@/utils/concatUrls";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 

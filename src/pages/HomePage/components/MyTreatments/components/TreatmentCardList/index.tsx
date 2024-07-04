@@ -1,4 +1,4 @@
-import concatUrls from "@utils/concatUrls.ts";
+import concatUrls from "@/utils/concatUrls.ts";
 import TreatmentCard from "../TreatmentCard.tsx";
 import myTreatmentDecorationImageData from "./data/treatmentItems";
 import { useGetTreatmentsSuspenseQuery } from "@api/hooks";

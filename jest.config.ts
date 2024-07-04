@@ -32,7 +32,6 @@ const config: Config = {
     "@validation/(.*)$": "<rootDir>/src/validation/$1",
     "@store/(.*)$": "<rootDir>/src/store/$1",
     "@config/(.*)$": "<rootDir>/src/config/$1",
-    "@utils/(.*)$": "<rootDir>/src/utils/$1",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",
     "@routes/(.*)$": "<rootDir>/src/routes/$1",
     "@tests/(.*)$": "<rootDir>/tests/unit/$1",

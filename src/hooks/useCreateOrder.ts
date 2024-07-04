@@ -6,9 +6,9 @@ import {
 import { useUserStore } from "@store/user/userStore.ts";
 import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
 import { useCallback, useEffect } from "react";
-import showSnackbar from "@utils/showSnackbar.ts";
+import showSnackbar from "@/utils/showSnackbar.ts";
 import useSuccessfulOrderHandler from "@/pages/BookingFormPage/hooks/useSuccessfulOrderHandler.ts";
-import { OrderItem } from "@utils/getSessionsToOrderFromCart.ts";
+import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
 
 export default function useCreateOrder(itemsToOrder: OrderItem[]) {
   const [

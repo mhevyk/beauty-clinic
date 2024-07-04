@@ -22,7 +22,6 @@ export default defineConfig({
       "@validation": resolveSource("validation"),
       "@store": resolveSource("store"),
       "@config": resolveSource("config"),
-      "@utils": resolveSource("utils"),
       "@type-helpers": resolveSource("types", "helpers.ts"),
       "@tests": path.resolve(__dirname, "tests"),
     },

@@ -1,9 +1,9 @@
 import useTreatmentSessionAvailabilities from "@/pages/BookSessionPage/components/Calendar/hooks/useTreatmentSessionAvailabilities";
 import { renderHook, waitFor } from "@testing-library/react";
-import { client } from "@config/apollo";
+import { client } from "@/config/apollo";
 import { GetTreatmentSessionAvailabilitiesDocument } from "@api/hooks";
 
-jest.mock("@config/apollo", () => ({
+jest.mock("@/config/apollo", () => ({
   __esModule: true,
   client: {
     query: jest.fn(),

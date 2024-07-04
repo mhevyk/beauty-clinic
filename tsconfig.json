@@ -31,7 +31,6 @@
       "@decorations/*": ["src/assets/decorations/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
       "@validation/*": ["src/validation/*"],
-      "@config/*": ["src/config/*"],
       "@type-helpers": ["src/types/helpers.ts"],
       "@tests/*": ["tests/*"]
     }

@@ -12,7 +12,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@layouts": resolveSource("layouts"),
       "@images": resolveSource("assets", "images"),
       "@icons": resolveSource("assets", "icons"),
       "@backgrounds": resolveSource("assets", "backgrounds"),

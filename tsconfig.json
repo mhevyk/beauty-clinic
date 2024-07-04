@@ -25,7 +25,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@layouts/*": ["src/layouts/*"],
       "@images/*": ["src/assets/images/*"],
       "@icons/*": ["src/assets/icons/*"],
       "@backgrounds/*": ["src/assets/backgrounds/*"],

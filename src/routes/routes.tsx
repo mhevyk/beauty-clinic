@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
-import RootLayout from "@layouts/RootLayout";
+import RootLayout from "@/layouts/RootLayout";
 import ProtectedRoute from "@routes/helpers/ProtectedRoute";
 
 import guestRoutes from "./guestRoutes";

@@ -5,7 +5,7 @@ import FernDecorationSvg from "@decorations/fern.svg";
 import theme from "@theme/theme.ts";
 import SkeletonTreatmentsCard from "./components/SkeletonTreatmentsCard.tsx";
 import ErrorBoundary from "@/components/ErrorBoundary.tsx";
-import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
+import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
 
 const SectionStyled = styled("section")(({ theme }) => ({
   backgroundColor: theme.palette.CreamyDawn.main,

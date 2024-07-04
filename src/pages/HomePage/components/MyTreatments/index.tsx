@@ -5,7 +5,7 @@ import theme from "@theme/theme.ts";
 import { Link } from "react-router-dom";
 import SkeletonTreatmentCard from "./components/SkeletonTreatmentCard";
 import ErrorBoundary from "@/components/ErrorBoundary.tsx";
-import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
+import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
 
 const SectionStyled = styled("section")({
   display: "flex",

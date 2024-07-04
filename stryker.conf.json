@@ -11,9 +11,8 @@
   "disableTypeChecks": true,
   "mutate": ["src/**/*.ts?(x)", "!src/{assets,types,api}/**/*"],
   "ignoreStatic": true,
-  "reporters": ["clear-text", "progress", "html"],
+  "reporters": ["progress", "html", "json"],
   "coverageAnalysis": "perTest",
-  "concurrency": 8,
   "cleanTempDir": true,
   "htmlReporter": {
     "fileName": "tests/mutation/reports/stryker.html"

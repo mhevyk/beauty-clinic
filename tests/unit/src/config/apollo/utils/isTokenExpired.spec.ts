@@ -1,5 +1,6 @@
-import isTokenExpired from "@/config/apollo/utils/isTokenExpired";
 import { addMinutes } from "date-fns";
+
+import isTokenExpired from "@/config/apollo/utils/isTokenExpired";
 
 const mockCurrentDate = new Date("2024-01-01T10:00:00Z");
 

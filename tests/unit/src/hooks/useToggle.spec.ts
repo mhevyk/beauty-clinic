@@ -1,4 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
+
 import useToggle from "@/hooks/useToggle";
 
 describe("useToggle()", () => {

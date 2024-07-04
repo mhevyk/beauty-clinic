@@ -1,7 +1,9 @@
 import { screen } from "@testing-library/react";
-import BookSessionPage from "@/pages/BookSessionPage";
-import renderWithProviders from "@tests/utils/renderWithProviders";
 import { PropsWithChildren, ReactNode } from "react";
+
+import renderWithProviders from "@tests/utils/renderWithProviders";
+
+import BookSessionPage from "@/pages/BookSessionPage";
 import BookSessionPageContent from "@/pages/BookSessionPage/components/BookSessionPageContent";
 
 jest.mock("@/pages/BookSessionPage/context/DatetimePickerProvider", () => ({

@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { PropsWithChildren, ReactNode } from "react";
 
-import renderWithProviders from "@tests/utils/renderWithProviders";
+import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 
 import BookSessionPage from "@/pages/BookSessionPage";
 import BookSessionPageContent from "@/pages/BookSessionPage/components/BookSessionPageContent";

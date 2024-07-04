@@ -6,7 +6,7 @@ import ClientDetails from "@pages/BookingFormPage/components/ClientDetails";
 import { Formik } from "formik";
 import { bookingFormSchema } from "@validation/bookingFormSchema.ts";
 import OrderInformation from "@pages/BookingFormPage/components/OrderInformation";
-import useCreateOrder from "@hooks/useCreateOrder.ts";
+import useCreateOrder from "@/hooks/useCreateOrder.ts";
 import AddToCartButton from "./components/AddToCartButton";
 import CreateOrderButton from "./components/CreateOrderButton";
 import useUnifiedOrderData from "@pages/BookingFormPage/hooks/useUnifiedOrderData.ts";

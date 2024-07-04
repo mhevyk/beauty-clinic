@@ -12,7 +12,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@hooks": resolveSource("hooks"),
       "@pages": resolveSource("pages"),
       "@layouts": resolveSource("layouts"),
       "@images": resolveSource("assets", "images"),

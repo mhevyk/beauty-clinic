@@ -1,7 +1,7 @@
 import { Button, Fade, InputBase, Stack, styled } from "@mui/material";
 import { useContactFormValues } from "./hooks/useContactFormValues";
 import HumanVerificationModal from "../HumanVerificationModal";
-import useToggle from "@hooks/useToggle";
+import useToggle from "@/hooks/useToggle";
 import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
 import {
   useCreateContactFormEntryMutation,

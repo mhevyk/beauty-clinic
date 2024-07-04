@@ -1,4 +1,4 @@
-import useLockPageScroll from "@hooks/useLockPageScroll.ts";
+import useLockPageScroll from "@/hooks/useLockPageScroll.ts";
 import {
   Box,
   Dialog,

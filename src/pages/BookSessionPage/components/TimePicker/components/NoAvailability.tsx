@@ -1,4 +1,4 @@
-import useEventEmitter from "@hooks/useEventEmitter";
+import useEventEmitter from "@/hooks/useEventEmitter";
 import { Button, Typography, styled } from "@mui/material";
 import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
 import getNextWorkingDay from "../utils/getNextWorkingDay";

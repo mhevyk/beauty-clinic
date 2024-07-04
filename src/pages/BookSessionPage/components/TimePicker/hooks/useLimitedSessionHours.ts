@@ -1,4 +1,4 @@
-import useToggle from "@hooks/useToggle.ts";
+import useToggle from "@/hooks/useToggle.ts";
 import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
 import { useEffect } from "react";
 

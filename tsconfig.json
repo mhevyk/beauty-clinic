@@ -25,7 +25,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@hooks/*": ["src/hooks/*"],
+      "@/hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],
       "@images/*": ["src/assets/images/*"],

@@ -4,7 +4,7 @@ import Logo from "@layouts/Sidebar/components/Logo.tsx";
 import SocialLinks from "@layouts/Sidebar/components/SocialLinks.tsx";
 import DrawerMenu from "@layouts/Sidebar/components/DrawerMenu.tsx";
 import theme from "@theme/theme.ts";
-import useToggle from "@hooks/useToggle";
+import useToggle from "@/hooks/useToggle";
 
 const SidebarStyled = styled(AppBar)({
   width: "78px",

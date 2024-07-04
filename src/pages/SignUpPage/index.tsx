@@ -1,6 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import PasswordForm, { PasswordFormValues } from "@/components/PasswordForm";
-import { useMultistepForm } from "@hooks/useMultistepForm";
+import { useMultistepForm } from "@/hooks/useMultistepForm";
 import AuthAlternativeLink from "@/components/AuthAlternativeLink";
 import theme from "@theme/theme";
 import { Formik, useFormikContext } from "formik";
@@ -9,7 +9,7 @@ import {
   signUpFormSchema,
 } from "@validation/signUpFormSchema";
 import ButtonWithSpinner from "@/components/ButtonWithSpinner";
-import useSignUp from "@hooks/auth/useSignUp";
+import useSignUp from "@/hooks/auth/useSignUp";
 import SignUpForm from "./components/SignUpForm";
 
 export type SignUpFormValues = PasswordFormValues & {

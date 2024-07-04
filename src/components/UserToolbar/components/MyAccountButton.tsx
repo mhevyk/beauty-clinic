@@ -1,4 +1,4 @@
-import useLockPageScroll from "@hooks/useLockPageScroll";
+import useLockPageScroll from "@/hooks/useLockPageScroll";
 import { MouseEvent, useId, useState } from "react";
 import UserActionsMenuToggler from "./UserActionsMenuToggler";
 import UserActionsMenu from "./UserActionsMenu";

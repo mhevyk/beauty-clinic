@@ -3,31 +3,12 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import svgr from "vite-plugin-svgr";
 
-function resolveSource(...paths: string[]) {
-  return path.resolve(__dirname, "src", ...paths);
-}
-
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
     alias: {
-      "@components": resolveSource("components"),
-      "@hooks": resolveSource("hooks"),
-      "@pages": resolveSource("pages"),
-      "@layouts": resolveSource("layouts"),
-      "@images": resolveSource("assets", "images"),
-      "@icons": resolveSource("assets", "icons"),
-      "@backgrounds": resolveSource("assets", "backgrounds"),
-      "@decorations": resolveSource("assets", "decorations"),
-      "@theme": resolveSource("theme"),
-      "@api/hooks": resolveSource("api", "generated", "index.tsx"),
-      "@constants": resolveSource("constants"),
-      "@validation": resolveSource("validation"),
-      "@store": resolveSource("store"),
-      "@config": resolveSource("config"),
-      "@utils": resolveSource("utils"),
-      "@type-helpers": resolveSource("types", "helpers.ts"),
-      "@routes": resolveSource("routes"),
+      "@": path.resolve(__dirname, "src"),
+      "@api/hooks": path.resolve(__dirname, "src/api/generated/index.tsx"),
       "@tests": path.resolve(__dirname, "tests"),
     },
   },

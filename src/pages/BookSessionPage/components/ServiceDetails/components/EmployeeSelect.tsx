@@ -1,5 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 import { useId } from "react";
 
 // TODO: change UI of select

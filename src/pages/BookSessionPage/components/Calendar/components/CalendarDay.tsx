@@ -1,6 +1,6 @@
 import { SxProps, alpha, styled } from "@mui/material";
 import { format, isBefore, isToday, startOfToday } from "date-fns";
-import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 import { CalendarCell } from "./CalendarCell";
 import { CalendarSize, CalendarUtils } from "../types";
 

@@ -5,8 +5,8 @@ import {
   AdvancedMarker,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
-import GoogleMapPinIcon from "@icons/map-pin.svg";
-import useToggle from "@hooks/useToggle.ts";
+import GoogleMapPinIcon from "@/assets/icons/map-pin.svg";
+import useToggle from "@/hooks/useToggle.ts";
 
 const MARKER_COORDINATES: google.maps.LatLngLiteral = {
   lat: 37.77489791779846,

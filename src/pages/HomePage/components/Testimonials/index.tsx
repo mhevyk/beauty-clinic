@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import TestimonialsImage from "./components/TestimonialsImage.tsx";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import TestimonialCard from "./components/TestimonialCard/index.tsx";
 import { quotes } from "./data/quotes.ts";
 

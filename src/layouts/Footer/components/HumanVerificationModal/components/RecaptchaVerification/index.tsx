@@ -1,7 +1,7 @@
 import { DialogContentText, useMediaQuery, Box, styled } from "@mui/material";
 import { HumanVerificationModalProps } from "../..";
 import { useRecaptcha } from "./hooks/useRecaptcha";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({

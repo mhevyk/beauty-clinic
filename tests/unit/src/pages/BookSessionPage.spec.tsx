@@ -1,15 +1,15 @@
 import { screen } from "@testing-library/react";
-import BookSessionPage from "@pages/BookSessionPage";
+import BookSessionPage from "@/pages/BookSessionPage";
 import renderWithProviders from "@tests/utils/renderWithProviders";
 import { PropsWithChildren, ReactNode } from "react";
-import BookSessionPageContent from "@pages/BookSessionPage/components/BookSessionPageContent";
+import BookSessionPageContent from "@/pages/BookSessionPage/components/BookSessionPageContent";
 
-jest.mock("@pages/BookSessionPage/context/DatetimePickerProvider", () => ({
+jest.mock("@/pages/BookSessionPage/context/DatetimePickerProvider", () => ({
   __esModule: true,
   default: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-jest.mock("@pages/BookSessionPage/components/BookSessionPageContent", () => ({
+jest.mock("@/pages/BookSessionPage/components/BookSessionPageContent", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

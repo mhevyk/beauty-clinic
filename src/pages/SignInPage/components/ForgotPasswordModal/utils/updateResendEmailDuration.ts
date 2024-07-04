@@ -1,7 +1,7 @@
 import {
   RESEND_EMAIL_MAX_SECONDS,
   RESEND_EMAIL_STEP_SECONDS,
-} from "@pages/SignInPage/components/ForgotPasswordModal/constants";
+} from "@/pages/SignInPage/components/ForgotPasswordModal/constants";
 
 export default function updateResendEmailDuration(
   currentClick: number,

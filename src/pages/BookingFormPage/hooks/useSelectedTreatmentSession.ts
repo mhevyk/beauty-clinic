@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useOrderStore } from "@store/order/orderStore";
+import { useOrderStore } from "@/store/order/orderStore";
 import { useGetTreatmentByIdQuery } from "@api/hooks";
 
 type BookTreatmentSessionParams = {

@@ -1,11 +1,11 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
-import SignInPage from "@pages/SignInPage";
-import useSignIn from "@hooks/auth/useSignIn";
+import SignInPage from "@/pages/SignInPage";
+import useSignIn from "@/hooks/auth/useSignIn";
 import renderWithProviders from "@tests/utils/renderWithProviders";
 import typeIntoInput from "@tests/utils/typeIntoInput";
 import mockSignInCredentials from "@tests/mocks/mockSignInCredentials";
 
-jest.mock("@hooks/auth/useSignIn", () => ({
+jest.mock("@/hooks/auth/useSignIn", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

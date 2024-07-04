@@ -1,16 +1,16 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
-import RootLayout from "@layouts/RootLayout";
-import ProtectedRoute from "@routes/helpers/ProtectedRoute";
+import RootLayout from "@/layouts/RootLayout";
+import ProtectedRoute from "@/routes/helpers/ProtectedRoute";
 
 import guestRoutes from "./guestRoutes";
 import authRoutes from "./authRoutes";
 import protectedRoutes from "./protectedRoutes";
 import AppSuspense from "./helpers/AppSuspense";
 
-const ErrorPage = lazy(() => import("@pages/ErrorPage"));
-const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
+const ErrorPage = lazy(() => import("@/pages/ErrorPage"));
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
 const routes: RouteObject[] = [
   {

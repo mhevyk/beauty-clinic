@@ -1,4 +1,4 @@
-import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes";
+import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes";
 
 describe("minutesToHourAndMinutes", () => {
   test("converts 0 minutes correctly", () => {

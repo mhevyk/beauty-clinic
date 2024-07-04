@@ -1,4 +1,4 @@
-import useEventEmitter from "@hooks/useEventEmitter";
+import useEventEmitter from "@/hooks/useEventEmitter";
 import { useEffect } from "react";
 import { CalendarControls, CalendarUtils } from "../types";
 

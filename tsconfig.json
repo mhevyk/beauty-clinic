@@ -24,23 +24,8 @@
     /* Import aliases */
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@pages/*": ["src/pages/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@icons/*": ["src/assets/icons/*"],
-      "@backgrounds/*": ["src/assets/backgrounds/*"],
-      "@decorations/*": ["src/assets/decorations/*"],
-      "@theme/*": ["src/theme/*"],
+      "@/*": ["src/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
-      "@constants/*": ["src/constants/*"],
-      "@validation/*": ["src/validation/*"],
-      "@config/*": ["src/config/*"],
-      "@store/*": ["src/store/*"],
-      "@utils/*": ["src/utils/*"],
-      "@type-helpers": ["src/types/helpers.ts"],
-      "@routes/*": ["src/routes/*"],
       "@tests/*": ["tests/*"]
     }
   },

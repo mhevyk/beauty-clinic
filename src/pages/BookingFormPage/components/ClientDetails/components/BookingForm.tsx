@@ -1,11 +1,11 @@
-import FormGroupWithError from "@components/FormGroupWithError.tsx";
+import FormGroupWithError from "@/components/FormGroupWithError.tsx";
 import { Box, InputLabel, styled, TextField } from "@mui/material";
 import { useFormikContext } from "formik";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";
-import { useUserStore } from "@store/user/userStore.ts";
-import PhoneNumberFormGroup from "@components/PhoneNumberFormGroup.tsx";
-import theme from "@theme/theme.ts";
+import { useUserStore } from "@/store/user/userStore.ts";
+import PhoneNumberFormGroup from "@/components/PhoneNumberFormGroup.tsx";
+import theme from "@/theme/theme.ts";
 
 type ForgotPasswordFormValues = {
   name: string;

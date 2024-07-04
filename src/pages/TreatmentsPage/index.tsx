@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import { Container, Grid, Hidden, styled } from "@mui/material";
 import TreatmentsCardList from "./components/TreatmentsCardList.tsx";
-import FernDecorationSvg from "@decorations/fern.svg";
-import theme from "@theme/theme.ts";
+import FernDecorationSvg from "@/assets/decorations/fern.svg";
+import theme from "@/theme/theme.ts";
 import SkeletonTreatmentsCard from "./components/SkeletonTreatmentsCard.tsx";
-import ErrorBoundary from "@components/ErrorBoundary.tsx";
-import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
+import ErrorBoundary from "@/components/ErrorBoundary.tsx";
+import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
 
 const SectionStyled = styled("section")(({ theme }) => ({
   backgroundColor: theme.palette.CreamyDawn.main,

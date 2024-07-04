@@ -1,9 +1,9 @@
-import flowerCombinationDecoration from "@decorations/flower-combination.svg?url";
-import cottonImage from "@images/cotton.png";
-import coconutImage from "@images/coconut.png";
-import whitePetalImage from "@images/white-petal.png";
+import flowerCombinationDecoration from "@/assets/decorations/flower-combination.svg?url";
+import cottonImage from "@/assets/images/cotton.png";
+import coconutImage from "@/assets/images/coconut.png";
+import whitePetalImage from "@/assets/images/white-petal.png";
 import { Box, styled } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 const middleScreenMediaQuery = theme.breakpoints.down(1200);

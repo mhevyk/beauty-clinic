@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import TreatmentCardList from "./components/TreatmentCardList";
 import { Button, Grid, styled } from "@mui/material";
-import theme from "@theme/theme.ts";
+import theme from "@/theme/theme.ts";
 import { Link } from "react-router-dom";
 import SkeletonTreatmentCard from "./components/SkeletonTreatmentCard";
-import ErrorBoundary from "@components/ErrorBoundary.tsx";
-import ErrorAlertLayout from "@layouts/ErrorLayout.tsx";
+import ErrorBoundary from "@/components/ErrorBoundary.tsx";
+import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
 
 const SectionStyled = styled("section")({
   display: "flex",

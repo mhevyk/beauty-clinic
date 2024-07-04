@@ -1,8 +1,8 @@
 import { useSignUpMutation } from "@api/hooks";
-import { SignUpFormValues } from "@pages/SignUpPage";
-import { useUserStore } from "@store/user/userStore";
-import extractErrorMessage from "@utils/extractErrorMessage";
-import showSnackbar from "@utils/showSnackbar";
+import { SignUpFormValues } from "@/pages/SignUpPage";
+import { useUserStore } from "@/store/user/userStore";
+import extractErrorMessage from "@/utils/extractErrorMessage";
+import showSnackbar from "@/utils/showSnackbar";
 import { useNavigate } from "react-router-dom";
 
 export default function useSignUp() {

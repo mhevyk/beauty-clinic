@@ -5,9 +5,9 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import ErrorBoundary from "@components/ErrorBoundary";
-import ErrorAlertLayout from "@layouts/ErrorLayout";
-import theme from "@theme/theme.ts";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import ErrorAlertLayout from "@/layouts/ErrorLayout";
+import theme from "@/theme/theme.ts";
 
 import DatetimePickerProvider from "./context/DatetimePickerProvider";
 import BookSessionPageContent from "./components/BookSessionPageContent";

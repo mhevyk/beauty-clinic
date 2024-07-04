@@ -1,8 +1,8 @@
 import { SxProps } from "@mui/material";
-import theme from "@theme/theme.ts";
-import SeaweedDecorationDecoration from "@decorations/seaweed.svg";
-import GrassBladeDecoration from "@decorations/grass-blade.svg";
-import TulipDecoration from "@decorations/tulip.svg";
+import theme from "@/theme/theme.ts";
+import SeaweedDecorationDecoration from "@/assets/decorations/seaweed.svg";
+import GrassBladeDecoration from "@/assets/decorations/grass-blade.svg";
+import TulipDecoration from "@/assets/decorations/tulip.svg";
 import { ComponentType, SVGProps } from "react";
 
 type MyTreatmentDecorationImageType = {

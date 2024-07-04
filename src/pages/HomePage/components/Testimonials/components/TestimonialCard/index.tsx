@@ -1,10 +1,10 @@
 import { useState } from "react";
 import QuoteItem from "./QuoteItem.tsx";
 import { Box, Stack, styled } from "@mui/material";
-import { Quote } from "@pages/HomePage/components/Testimonials/data/quotes.ts";
+import { Quote } from "@/pages/HomePage/components/Testimonials/data/quotes.ts";
 import PointButton from "./PointButton.tsx";
-import theme from "@theme/theme.ts";
-import useInterval from "@pages/HomePage/components/Testimonials/hooks/useInterval.ts";
+import theme from "@/theme/theme.ts";
+import useInterval from "@/pages/HomePage/components/Testimonials/hooks/useInterval.ts";
 import { TESTIMONIALS_ANIMATION_DURATION } from "../../data/constants.ts";
 
 type BoxStyledProps = {

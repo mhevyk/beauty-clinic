@@ -1,7 +1,7 @@
 import { Container, styled } from "@mui/material";
 import ContactDetails from "./components/ContactDetails";
 import GoogleMap from "./components/GoogleMap";
-import { CONTACTS_SECTION_ID } from "@constants/index";
+import { CONTACTS_SECTION_ID } from "@/constants/index";
 
 const FooterWrapper = styled(Container)({
   scrollMarginTop: "230px",

@@ -1,8 +1,8 @@
 import { IconButton } from "@mui/material";
 import { CSSProperties } from "react";
 import CartDrawer from "./CartDrawer";
-import useToggle from "@hooks/useToggle";
-import { useCartStore } from "@store/cart/cartStore";
+import useToggle from "@/hooks/useToggle";
+import { useCartStore } from "@/store/cart/cartStore";
 
 function CartIcon() {
   const cartItemsCount = useCartStore((store) => store.getTotalSessionsCount());

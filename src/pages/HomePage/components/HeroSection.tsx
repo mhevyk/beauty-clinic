@@ -1,8 +1,8 @@
 import { Box, Button, styled } from "@mui/material";
-import HelloDecorationSvg from '@decorations/hello.svg';
-import theme from "@theme/theme.ts";
+import HelloDecorationSvg from '@/assets/decorations/hello.svg';
+import theme from "@/theme/theme.ts";
 import { Link } from "react-router-dom";
-import HeroImage from "@pages/HomePage/components/HeroImage.tsx";
+import HeroImage from "@/pages/HomePage/components/HeroImage.tsx";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 const middleScreenMediaQuery = theme.breakpoints.down(1200);

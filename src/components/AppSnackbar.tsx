@@ -1,7 +1,7 @@
 import Snackbar, { SnackbarCloseReason } from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { SyntheticEvent } from "react";
-import { useSnackbarStore } from "@store/snackbar/snackbarStore";
+import { useSnackbarStore } from "@/store/snackbar/snackbarStore";
 
 export default function AppSnackbar() {
   const isOpen = useSnackbarStore((store) => store.isOpen);

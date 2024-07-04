@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useUserStore } from "@store/user/userStore";
+import { useUserStore } from "@/store/user/userStore";
 
 type ProtectionMode = "auth" | "no-auth";
 

@@ -1,5 +1,5 @@
 import { LogoutDocument } from "@api/hooks";
-import { client } from "@config/apollo";
+import { client } from "@/config/apollo";
 import { create } from "zustand";
 
 export type AccessToken = string | null;

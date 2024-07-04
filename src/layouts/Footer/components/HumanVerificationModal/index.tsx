@@ -6,9 +6,9 @@ import {
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import CloseIconSvg from "@icons/close-icon-thin.svg";
-import theme from "@theme/theme";
-import useLockPageScroll from "@hooks/useLockPageScroll";
+import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
+import theme from "@/theme/theme";
+import useLockPageScroll from "@/hooks/useLockPageScroll";
 import { RecaptchaVerification } from "./components/RecaptchaVerification";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({

@@ -1,11 +1,11 @@
 import { Box, styled, useMediaQuery } from "@mui/material";
 import { useCalendar } from "./hooks/useCalendar";
-import theme from "@theme/theme";
+import theme from "@/theme/theme";
 import CalendarHeader from "./components/CalendarHeader";
 import useNextPageListener from "./hooks/useNextPageListener";
 import useTreatmentSessionAvailabilities from "./hooks/useTreatmentSessionAvailabilities";
-import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
-import useDebouncedValue from "@hooks/useDebouncedValue";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
+import useDebouncedValue from "@/hooks/useDebouncedValue";
 import CalendarDay from "./components/CalendarDay";
 import { CalendarCell } from "./components/CalendarCell";
 import { isBefore, startOfToday, subMinutes } from "date-fns";

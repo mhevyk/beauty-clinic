@@ -21,23 +21,8 @@ const config: Config = {
   },
   moduleNameMapper: {
     // import aliases
-    "@components/(.*)$": "<rootDir>/src/components/$1",
-    "@hooks/(.*)$": "<rootDir>/src/hooks/$1",
-    "@pages/(.*)$": "<rootDir>/src/pages/$1",
-    "@layouts/(.*)$": "<rootDir>/src/layouts/$1",
-    "@images/(.*)$": "<rootDir>/src/assets/images/$1",
-    "@icons/(.*)$": "<rootDir>/src/assets/icons/$1",
-    "@backgrounds/(.*)$": "<rootDir>/src/assets/backgrounds/$1",
-    "@decorations/(.*)$": "<rootDir>/src/assets/decorations/$1",
-    "@theme/(.*)$": "<rootDir>/src/theme/$1",
+    "@/(.*)$": "<rootDir>/src/$1",
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
-    "@constants/(.*)$": "<rootDir>/src/constants/$1",
-    "@validation/(.*)$": "<rootDir>/src/validation/$1",
-    "@store/(.*)$": "<rootDir>/src/store/$1",
-    "@config/(.*)$": "<rootDir>/src/config/$1",
-    "@utils/(.*)$": "<rootDir>/src/utils/$1",
-    "@type-helpers$": "<rootDir>/src/types/helpers.ts",
-    "@routes/(.*)$": "<rootDir>/src/routes/$1",
     "@tests/(.*)$": "<rootDir>/tests/unit/$1",
 
     // mocks and stubs

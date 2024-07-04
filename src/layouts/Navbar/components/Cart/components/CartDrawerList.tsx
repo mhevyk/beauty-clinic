@@ -1,4 +1,4 @@
-import { useCartStore } from "@store/cart/cartStore";
+import { useCartStore } from "@/store/cart/cartStore";
 import CartDrawerItem from "../components/CartDrawerItem";
 import { Divider, List, Typography, styled } from "@mui/material";
 import { Fragment } from "react/jsx-runtime";

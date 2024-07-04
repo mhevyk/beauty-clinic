@@ -1,6 +1,6 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "./Navbar";
-import Sidebar from "@layouts/Sidebar";
+import Sidebar from "@/layouts/Sidebar";
 import { Box, styled } from "@mui/material";
 import Footer from "./Footer";
 

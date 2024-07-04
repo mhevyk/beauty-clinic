@@ -1,4 +1,4 @@
-import FormGroupWithError from "@components/FormGroupWithError";
+import FormGroupWithError from "@/components/FormGroupWithError";
 import { InputLabel, TextField, styled } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useId } from "react";

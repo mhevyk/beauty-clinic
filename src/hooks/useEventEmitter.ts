@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import EventEmitter from "eventemitter3";
-import { CUSTOM_EVENTS } from "@constants/index";
+import { CUSTOM_EVENTS } from "@/constants/index";
 
 type Listener = (...args: any[]) => void;
 type CustomEvent = keyof typeof CUSTOM_EVENTS;

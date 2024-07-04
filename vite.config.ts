@@ -18,7 +18,6 @@ export default defineConfig({
       "@decorations": resolveSource("assets", "decorations"),
       "@theme": resolveSource("theme"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
-      "@constants": resolveSource("constants"),
       "@validation": resolveSource("validation"),
       "@config": resolveSource("config"),
       "@type-helpers": resolveSource("types", "helpers.ts"),

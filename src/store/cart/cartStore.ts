@@ -1,4 +1,4 @@
-import { PERSISTED_STORAGE_KEYS } from "@constants/index";
+import { PERSISTED_STORAGE_KEYS } from "@/constants/index";
 import createPersistedStore from "@/store/utils/createPersistedStore";
 import showSnackbar from "@/utils/showSnackbar";
 import { Employee, Treatment } from "@api/hooks";

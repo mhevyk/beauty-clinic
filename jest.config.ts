@@ -28,7 +28,6 @@ const config: Config = {
     "@decorations/(.*)$": "<rootDir>/src/assets/decorations/$1",
     "@theme/(.*)$": "<rootDir>/src/theme/$1",
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
-    "@constants/(.*)$": "<rootDir>/src/constants/$1",
     "@validation/(.*)$": "<rootDir>/src/validation/$1",
     "@config/(.*)$": "<rootDir>/src/config/$1",
     "@type-helpers$": "<rootDir>/src/types/helpers.ts",

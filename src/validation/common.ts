@@ -1,4 +1,4 @@
-import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from "@constants/index";
+import { EMAIL_PATTERN, PHONE_NUMBER_PATTERN } from "@/constants/index";
 import * as Yup from "yup";
 
 export const usernameFieldValidation = Yup.string()

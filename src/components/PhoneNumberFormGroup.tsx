@@ -1,5 +1,5 @@
 import MaskedInput from "react-text-mask";
-import { PHONE_NUMBER_PATTERN } from "@constants/index.ts";
+import { PHONE_NUMBER_PATTERN } from "@/constants/index.ts";
 import { InputLabel, styled, TextField } from "@mui/material";
 import FormGroupWithError from "@/components/FormGroupWithError.tsx";
 import { useId } from "react";

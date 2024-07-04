@@ -4,7 +4,7 @@ import theme from "@theme/theme";
 import CalendarHeader from "./components/CalendarHeader";
 import useNextPageListener from "./hooks/useNextPageListener";
 import useTreatmentSessionAvailabilities from "./hooks/useTreatmentSessionAvailabilities";
-import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 import useDebouncedValue from "@/hooks/useDebouncedValue";
 import CalendarDay from "./components/CalendarDay";
 import { CalendarCell } from "./components/CalendarCell";

@@ -2,8 +2,8 @@ import { useCartStore } from "@store/cart/cartStore";
 import { Box, Divider, Typography, styled } from "@mui/material";
 import theme from "@theme/theme.ts";
 import { Fragment } from "react/jsx-runtime";
-import CartItemCard from "@pages/CartPage/components/CartItemCard";
-import CartCheckoutBar from "@pages/CartPage/components/CartCheckoutBar.tsx";
+import CartItemCard from "@/pages/CartPage/components/CartItemCard";
+import CartCheckoutBar from "@/pages/CartPage/components/CartCheckoutBar.tsx";
 import { Link } from "react-router-dom";
 
 const SectionStyled = styled("section")({

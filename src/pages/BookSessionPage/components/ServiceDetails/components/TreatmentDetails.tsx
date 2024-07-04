@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import minutesToHourAndMinutes from "@utils/minutesToHourAndMinutes";
 import { format } from "date-fns";
 import EmployeeSelect from "./EmployeeSelect";
-import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 
 type TreatmentDetailsProps = {
   hasAvailableSession: boolean;

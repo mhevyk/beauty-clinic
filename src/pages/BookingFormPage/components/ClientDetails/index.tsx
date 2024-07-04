@@ -1,5 +1,5 @@
 import { Box, styled } from "@mui/material";
-import BookingForm from "@pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";
+import BookingForm from "@/pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";
 import { useUserStore } from "@store/user/userStore.ts";
 import AppLink from "@/components/AppLink";
 

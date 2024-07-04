@@ -1,5 +1,5 @@
 import { useSignUpMutation } from "@api/hooks";
-import { SignUpFormValues } from "@pages/SignUpPage";
+import { SignUpFormValues } from "@/pages/SignUpPage";
 import { useUserStore } from "@store/user/userStore";
 import extractErrorMessage from "@utils/extractErrorMessage";
 import showSnackbar from "@utils/showSnackbar";

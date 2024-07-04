@@ -1,4 +1,4 @@
-import useTreatmentSessionAvailabilities from "@pages/BookSessionPage/components/Calendar/hooks/useTreatmentSessionAvailabilities";
+import useTreatmentSessionAvailabilities from "@/pages/BookSessionPage/components/Calendar/hooks/useTreatmentSessionAvailabilities";
 import { renderHook, waitFor } from "@testing-library/react";
 import { client } from "@config/apollo";
 import { GetTreatmentSessionAvailabilitiesDocument } from "@api/hooks";

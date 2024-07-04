@@ -9,8 +9,8 @@ import authRoutes from "./authRoutes";
 import protectedRoutes from "./protectedRoutes";
 import AppSuspense from "./helpers/AppSuspense";
 
-const ErrorPage = lazy(() => import("@pages/ErrorPage"));
-const NotFoundPage = lazy(() => import("@pages/NotFoundPage"));
+const ErrorPage = lazy(() => import("@/pages/ErrorPage"));
+const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
 
 const routes: RouteObject[] = [
   {

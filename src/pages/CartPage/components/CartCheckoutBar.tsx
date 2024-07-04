@@ -6,7 +6,7 @@ import { useUserStore } from "@store/user/userStore.ts";
 import getSessionsToOrderFromCart from "@utils/getSessionsToOrderFromCart.ts";
 import { useNavigate } from "react-router-dom";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";
-import { CreateOrderSubmitForm } from "@pages/BookingFormPage";
+import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
 
 const CartBar = styled(Box)(({ theme }) => ({
   width: "100%",

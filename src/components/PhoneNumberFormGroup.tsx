@@ -4,7 +4,7 @@ import { InputLabel, styled, TextField } from "@mui/material";
 import FormGroupWithError from "@/components/FormGroupWithError.tsx";
 import { useId } from "react";
 import { useFormikContext } from "formik";
-import { SignUpFormValues } from "@pages/SignUpPage";
+import { SignUpFormValues } from "@/pages/SignUpPage";
 
 const LabelStyled = styled(InputLabel)(({ theme }) => ({
   color: theme.palette.secondary.main,

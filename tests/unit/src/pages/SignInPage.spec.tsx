@@ -1,5 +1,5 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
-import SignInPage from "@pages/SignInPage";
+import SignInPage from "@/pages/SignInPage";
 import useSignIn from "@/hooks/auth/useSignIn";
 import renderWithProviders from "@tests/utils/renderWithProviders";
 import typeIntoInput from "@tests/utils/typeIntoInput";

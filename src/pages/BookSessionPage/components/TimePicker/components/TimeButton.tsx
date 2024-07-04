@@ -1,5 +1,5 @@
 import { Button, styled } from "@mui/material";
-import { useDatetimePickerContext } from "@pages/BookSessionPage/context/DatetimePickerProvider";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 import { format } from "date-fns";
 import { useEffect } from "react";
 

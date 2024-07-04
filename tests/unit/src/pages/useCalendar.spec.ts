@@ -2,7 +2,7 @@ import {
   CalendarInput,
   CalendarOutput,
   useCalendar,
-} from "@pages/BookSessionPage/components/Calendar/hooks/useCalendar";
+} from "@/pages/BookSessionPage/components/Calendar/hooks/useCalendar";
 import { renderHook, act } from "@testing-library/react";
 import { addDays, addMonths, startOfToday, subMonths } from "date-fns";
 

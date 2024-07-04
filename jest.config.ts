@@ -22,7 +22,6 @@ const config: Config = {
   moduleNameMapper: {
     // import aliases
     "@/(.*)$": "<rootDir>/src/$1",
-    "@pages/(.*)$": "<rootDir>/src/pages/$1",
     "@layouts/(.*)$": "<rootDir>/src/layouts/$1",
     "@images/(.*)$": "<rootDir>/src/assets/images/$1",
     "@icons/(.*)$": "<rootDir>/src/assets/icons/$1",

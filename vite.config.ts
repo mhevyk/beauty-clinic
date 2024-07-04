@@ -13,7 +13,6 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "src"),
       "@api/hooks": resolveSource("api", "generated", "index.tsx"),
-      "@type-helpers": resolveSource("types", "helpers.ts"),
       "@tests": path.resolve(__dirname, "tests"),
     },
   },

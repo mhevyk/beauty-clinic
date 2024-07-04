@@ -26,7 +26,6 @@
     "paths": {
       "@/*": ["src/*"],
       "@api/hooks": ["src/api/generated/index.tsx"],
-      "@type-helpers": ["src/types/helpers.ts"],
       "@tests/*": ["tests/*"]
     }
   },

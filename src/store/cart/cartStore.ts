@@ -1,9 +1,10 @@
 import { PERSISTED_STORAGE_KEYS } from "@/constants/index";
+import { QualifiedEmployee } from "@/pages/BookSessionPage/hooks/useSelectedQualifiedEmployee";
+import { OrderStore } from "@/store/order/orderStore";
 import createPersistedStore from "@/store/utils/createPersistedStore";
 import showSnackbar from "@/utils/showSnackbar";
 import { Employee, Treatment } from "@api/hooks";
-import { OrderStore } from "@/store/order/orderStore";
-import { QualifiedEmployee } from "@/pages/BookSessionPage/hooks/useSelectedQualifiedEmployee";
+
 import sessionComparator from "./utils/sessionComparator";
 
 export type CartSession = {
@@ -77,7 +78,7 @@ export const useCartStore = createPersistedStore<CartStore>(
         return false;
       }
 
-      return existingTreatment.sessions.some((session) => {
+      return existingTreatment.sessions.some(session => {
         return sessionComparator(session, { employeeId, sessionStartsAt });
       });
     },
@@ -107,7 +108,7 @@ export const useCartStore = createPersistedStore<CartStore>(
       const { employee, sessionStartsAt } = sessionToAdd;
 
       const existingSessions = existingTreatment.sessions;
-      const existingSession = existingSessions.find((session) =>
+      const existingSession = existingSessions.find(session =>
         sessionComparator(session, {
           employeeId: employee.id,
           sessionStartsAt: sessionStartsAt,
@@ -138,7 +139,7 @@ export const useCartStore = createPersistedStore<CartStore>(
       }
 
       const existingSessions = existingTreatment.sessions;
-      const existingSessionIndex = existingSessions.findIndex((session) =>
+      const existingSessionIndex = existingSessions.findIndex(session =>
         sessionComparator(session, sessionToRemove)
       );
 

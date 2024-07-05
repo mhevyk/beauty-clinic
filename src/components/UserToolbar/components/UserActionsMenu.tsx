@@ -1,4 +1,5 @@
 import { Divider, Menu, MenuItem, MenuProps } from "@mui/material";
+
 import { useUserStore } from "@/store/user/userStore";
 
 type UserActionsMenuProps = Pick<MenuProps, "anchorEl"> & {
@@ -13,7 +14,7 @@ export default function UserActionsMenu({
   handleClose,
   id,
 }: UserActionsMenuProps) {
-  const logout = useUserStore((store) => store.logout);
+  const logout = useUserStore(store => store.logout);
 
   async function logoutAndCloseMenu() {
     await logout();

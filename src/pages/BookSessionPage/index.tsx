@@ -9,8 +9,8 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import ErrorAlertLayout from "@/layouts/ErrorLayout";
 import theme from "@/theme/theme.ts";
 
-import DatetimePickerProvider from "./context/DatetimePickerProvider";
 import BookSessionPageContent from "./components/BookSessionPageContent";
+import DatetimePickerProvider from "./context/DatetimePickerProvider";
 
 const ContainerStyled = styled(Box)({
   maxWidth: "800px",
@@ -24,8 +24,6 @@ const SectionStyled = styled("section")({
   justifyContent: "center",
 });
 
-
-
 type BookSessionPageParams = {
   treatmentId: string;
 };
@@ -37,7 +35,7 @@ export default function BookSessionPage() {
     <SectionStyled>
       <ContainerStyled>
         <ErrorBoundary
-          fallback={(error) => (
+          fallback={error => (
             <ErrorAlertLayout
               errorMessage={error!.message}
               backButtonPath="/treatments"

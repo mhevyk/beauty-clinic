@@ -1,14 +1,15 @@
-import { useSignInMutation } from "@api/hooks";
+import { useNavigate } from "react-router-dom";
+
 import { SignInFormValues } from "@/pages/SignInPage";
 import { useUserStore } from "@/store/user/userStore";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";
-import { useNavigate } from "react-router-dom";
+import { useSignInMutation } from "@api/hooks";
 
 export default function useSignIn() {
   const [signIn, { loading: isSigningIn }] = useSignInMutation();
   const navigate = useNavigate();
-  const setAccessToken = useUserStore((store) => store.setAccessToken);
+  const setAccessToken = useUserStore(store => store.setAccessToken);
 
   const handleSignIn = async (values: SignInFormValues) => {
     try {

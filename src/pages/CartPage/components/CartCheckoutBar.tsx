@@ -1,12 +1,14 @@
-import { Box, Button, Divider, styled, Typography } from "@mui/material";
-import { useCartStore } from "@/store/cart/cartStore.ts";
+import { useNavigate } from "react-router-dom";
+
+import { Box, Button, Divider, Typography, styled } from "@mui/material";
+
 import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
 import useCreateOrder from "@/hooks/useCreateOrder.ts";
+import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
+import { useCartStore } from "@/store/cart/cartStore.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
 import getSessionsToOrderFromCart from "@/utils/getSessionsToOrderFromCart.ts";
-import { useNavigate } from "react-router-dom";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";
-import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
 
 const CartBar = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -41,13 +43,13 @@ export default function CartCheckoutBar() {
   const { data } = useGetCurrentUserDetailsQuery();
 
   const [createOrder, { isLoading: isOrderProcessing }] = useCreateOrder(
-    sessionsToOrderFromCart,
+    sessionsToOrderFromCart
   );
 
-  const totalPrice = useCartStore((store) => store.getTotalPrice());
-  const clearCart = useCartStore((store) => store.clearCart);
+  const totalPrice = useCartStore(store => store.getTotalPrice());
+  const clearCart = useCartStore(store => store.clearCart);
 
-  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
   const navigate = useNavigate();
 
   const handleBookNow = async () => {

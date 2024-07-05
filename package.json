@@ -11,8 +11,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format:check": "prettier --check ./src",
-    "format:fix": "prettier --write ./src",
+    "format:check": "prettier --check ./",
+    "format:fix": "prettier --write ./",
     "codegen": "dotenvx run --env-file=.env.development -- graphql-codegen --config codegen.yml"
   },
   "dependencies": {
@@ -49,6 +49,7 @@
     "@swc/jest": "^0.2.36",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

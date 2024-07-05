@@ -1,14 +1,15 @@
-import { useSignUpMutation } from "@api/hooks";
+import { useNavigate } from "react-router-dom";
+
 import { SignUpFormValues } from "@/pages/SignUpPage";
 import { useUserStore } from "@/store/user/userStore";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";
-import { useNavigate } from "react-router-dom";
+import { useSignUpMutation } from "@api/hooks";
 
 export default function useSignUp() {
   const [signUp, { loading: isSigningUp }] = useSignUpMutation();
   const navigate = useNavigate();
-  const setAccessToken = useUserStore((store) => store.setAccessToken);
+  const setAccessToken = useUserStore(store => store.setAccessToken);
 
   const handleSignUp = async (values: SignUpFormValues) => {
     try {

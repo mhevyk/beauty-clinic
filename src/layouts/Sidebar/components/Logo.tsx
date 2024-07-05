@@ -1,5 +1,6 @@
-import { styled, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { Typography, styled } from "@mui/material";
 
 const TypographyLogo = styled(Typography)({
   margin: "auto",

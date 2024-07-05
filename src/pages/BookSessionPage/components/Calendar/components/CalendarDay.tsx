@@ -1,8 +1,10 @@
 import { SxProps, alpha, styled } from "@mui/material";
 import { format, isBefore, isToday, startOfToday } from "date-fns";
+
 import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
-import { CalendarCell } from "./CalendarCell";
+
 import { CalendarSize, CalendarUtils } from "../types";
+import { CalendarCell } from "./CalendarCell";
 
 type CalendarDayCellProps = {
   isToday?: boolean;
@@ -13,7 +15,7 @@ type CalendarDayCellProps = {
 };
 
 const CalendarDayCell = styled(CalendarCell, {
-  shouldForwardProp: (prop) =>
+  shouldForwardProp: prop =>
     prop !== "isToday" &&
     prop !== "isSelected" &&
     prop !== "isAnotherMonth" &&

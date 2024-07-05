@@ -1,14 +1,17 @@
 import {
-  IconButton,
-  useMediaQuery,
-  styled,
   CircularProgress,
+  IconButton,
+  styled,
+  useMediaQuery,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
+
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
-import theme from "@/theme/theme";
+
 import useLockPageScroll from "@/hooks/useLockPageScroll";
+import theme from "@/theme/theme";
+
 import { RecaptchaVerification } from "./components/RecaptchaVerification";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({

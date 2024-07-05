@@ -1,6 +1,8 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 import { useId } from "react";
+
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 
 // TODO: change UI of select
 export default function EmployeeSelect() {
@@ -14,9 +16,9 @@ export default function EmployeeSelect() {
       <Select
         labelId={`${id}-select-label`}
         value={selectedEmployeeId?.toString()}
-        onChange={(event) => setSelectedEmployeeId(Number(event.target.value))}
+        onChange={event => setSelectedEmployeeId(Number(event.target.value))}
       >
-        {qualifiedEmployees.map((option) => (
+        {qualifiedEmployees.map(option => (
           <MenuItem key={option.id} value={option.id}>
             {option.name}
           </MenuItem>

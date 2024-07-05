@@ -1,11 +1,14 @@
-import { IconButton } from "@mui/material";
 import { CSSProperties } from "react";
-import CartDrawer from "./CartDrawer";
+
+import { IconButton } from "@mui/material";
+
 import useToggle from "@/hooks/useToggle";
 import { useCartStore } from "@/store/cart/cartStore";
 
+import CartDrawer from "./CartDrawer";
+
 function CartIcon() {
-  const cartItemsCount = useCartStore((store) => store.getTotalSessionsCount());
+  const cartItemsCount = useCartStore(store => store.getTotalSessionsCount());
 
   return (
     <svg width="30" height="30" viewBox="0 0 110 143">

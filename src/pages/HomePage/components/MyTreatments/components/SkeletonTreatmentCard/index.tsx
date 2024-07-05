@@ -1,4 +1,5 @@
 import { Grid, styled } from "@mui/material";
+
 import SkeletonTreatmentBox from "./SkeletonTreatmentBox.tsx";
 
 const GridStyled = styled(Grid)({

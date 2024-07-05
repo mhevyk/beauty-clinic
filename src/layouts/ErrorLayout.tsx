@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { alpha, Box, Button, styled } from "@mui/material";
+
+import { Box, Button, alpha, styled } from "@mui/material";
+
 import ErrorIcon from "@/assets/icons/error-icon.svg";
 
 const BookNowLinkButton = styled(Button)({

@@ -1,7 +1,8 @@
+import { useEffect } from "react";
+
 import { AccessToken, useUserStore } from "@/store/user/userStore";
 import fetchAccessToken from "@/utils/fetchAccessToken";
 import showSnackbar from "@/utils/showSnackbar";
-import { useEffect } from "react";
 
 type RefreshTokenResponse = {
   ok: boolean;
@@ -9,10 +10,8 @@ type RefreshTokenResponse = {
 };
 
 export default function useRefreshToken() {
-  const setAccessToken = useUserStore((store) => store.setAccessToken);
-  const setIsAuthenticating = useUserStore(
-    (store) => store.setIsAuthenticating
-  );
+  const setAccessToken = useUserStore(store => store.setAccessToken);
+  const setIsAuthenticating = useUserStore(store => store.setIsAuthenticating);
 
   useEffect(() => {
     setIsAuthenticating(true);
@@ -21,11 +20,11 @@ export default function useRefreshToken() {
     const signal = controller.signal;
 
     fetchAccessToken({ signal })
-      .then(async (response) => {
+      .then(async response => {
         const data = (await response.json()) as RefreshTokenResponse;
         setAccessToken(data.accessToken);
       })
-      .catch((error) => {
+      .catch(error => {
         if (error.name === "AbortError") {
           return; //request is canceled here
         }

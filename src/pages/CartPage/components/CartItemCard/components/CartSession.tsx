@@ -1,12 +1,14 @@
-import { IconButton, styled, TableCell, TableRow } from "@mui/material";
+import { IconButton, TableCell, TableRow, styled } from "@mui/material";
 import { format } from "date-fns";
-import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
+
+import BinIcon from "@/assets/icons/bin-icon.svg";
+
 import {
   CartSession as CartSessionType,
   useCartStore,
 } from "@/store/cart/cartStore.ts";
+import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
 import { Treatment } from "@api/hooks";
-import BinIcon from "@/assets/icons/bin-icon.svg";
 
 const BinButton = styled(BinIcon)({
   width: "25px",
@@ -31,7 +33,7 @@ type CartSessionProps = {
 };
 
 export default function CartSession({ session, treatment }: CartSessionProps) {
-  const deleteSession = useCartStore((store) => store.removeFromCart);
+  const deleteSession = useCartStore(store => store.removeFromCart);
 
   function handleDeleteSession() {
     deleteSession(treatment.id, {

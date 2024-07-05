@@ -1,11 +1,13 @@
-import FormGroupWithError from "@/components/FormGroupWithError.tsx";
-import { Box, InputLabel, styled, TextField } from "@mui/material";
-import { useFormikContext } from "formik";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useGetCurrentUserDetailsQuery } from "@api/hooks";
-import { useUserStore } from "@/store/user/userStore.ts";
+
+import { Box, InputLabel, TextField, styled } from "@mui/material";
+import { useFormikContext } from "formik";
+
+import FormGroupWithError from "@/components/FormGroupWithError.tsx";
 import PhoneNumberFormGroup from "@/components/PhoneNumberFormGroup.tsx";
+import { useUserStore } from "@/store/user/userStore.ts";
 import theme from "@/theme/theme.ts";
+import { useGetCurrentUserDetailsQuery } from "@api/hooks";
 
 type ForgotPasswordFormValues = {
   name: string;
@@ -50,7 +52,7 @@ export default function BookingForm() {
   const { values, handleChange, errors, setFieldValue, setValues } =
     useFormikContext<ForgotPasswordFormValues>();
 
-  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
   const { data } = useGetCurrentUserDetailsQuery();
 

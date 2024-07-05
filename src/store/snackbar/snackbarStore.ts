@@ -32,7 +32,7 @@ export const useSnackbarStore = create<SnackbarStore>((set, get) => ({
     message: "",
     variant: "error",
   },
-  showSnackbar: (config) => {
+  showSnackbar: config => {
     set({
       isOpen: true,
       config: {

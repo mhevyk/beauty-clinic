@@ -22,7 +22,7 @@ export function useLazyImage({ src, placeholderSrc }: UseLazyImage) {
     const image = new Image();
     image.src = src;
     image.addEventListener("load", handleLoad);
-    image.addEventListener('error', handleError)
+    image.addEventListener("error", handleError);
 
     return () => {
       image.removeEventListener("load", handleLoad);

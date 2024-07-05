@@ -6,9 +6,12 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
+
 import CaretIconSvg from "@/assets/icons/caret-left.svg";
+
 import useLockPageScroll from "@/hooks/useLockPageScroll";
 import { useCartStore } from "@/store/cart/cartStore";
+
 import CartDrawerFooter from "./CartDrawerFooter";
 import CartDrawerList from "./CartDrawerList";
 
@@ -54,7 +57,7 @@ type CaretIconProps = {
 };
 
 const CaretIcon = styled(CaretIconSvg, {
-  shouldForwardProp: (prop) => prop !== "pointsToRight",
+  shouldForwardProp: prop => prop !== "pointsToRight",
 })<CaretIconProps>(({ pointsToRight, theme }) => ({
   stroke: theme.palette.primary.main,
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
@@ -70,7 +73,7 @@ export default function CartDrawer({
   isCartDrawerOpen,
   closeCartDrawer,
 }: CartDrawerProps) {
-  const totalPrice = useCartStore((store) => store.getTotalPrice());
+  const totalPrice = useCartStore(store => store.getTotalPrice());
   useLockPageScroll(isCartDrawerOpen, false);
 
   return (

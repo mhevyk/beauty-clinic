@@ -1,10 +1,12 @@
-import { useCartStore } from "@/store/cart/cartStore";
-import { Box, Divider, Typography, styled } from "@mui/material";
-import theme from "@/theme/theme.ts";
-import { Fragment } from "react/jsx-runtime";
-import CartItemCard from "@/pages/CartPage/components/CartItemCard";
-import CartCheckoutBar from "@/pages/CartPage/components/CartCheckoutBar.tsx";
 import { Link } from "react-router-dom";
+import { Fragment } from "react/jsx-runtime";
+
+import { Box, Divider, Typography, styled } from "@mui/material";
+
+import CartCheckoutBar from "@/pages/CartPage/components/CartCheckoutBar.tsx";
+import CartItemCard from "@/pages/CartPage/components/CartItemCard";
+import { useCartStore } from "@/store/cart/cartStore";
+import theme from "@/theme/theme.ts";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.PinkMarbleSky.main,
@@ -34,7 +36,7 @@ const BoxStyled = styled(Box)({
 });
 
 export default function CartPage() {
-  const cartItems = useCartStore((store) => store.getItems());
+  const cartItems = useCartStore(store => store.getItems());
 
   return (
     <SectionStyled>
@@ -50,7 +52,7 @@ export default function CartPage() {
           </BoxStyled>
         ) : (
           <Box>
-            {cartItems.map((item) => (
+            {cartItems.map(item => (
               <Fragment key={item.treatment.id}>
                 <CartItemCard item={item} />
               </Fragment>

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+
 import { useOrderStore } from "@/store/order/orderStore";
 import { useGetTreatmentByIdQuery } from "@api/hooks";
 
@@ -14,8 +15,8 @@ export default function useSelectedTreatmentSession() {
     variables: { treatmentId },
   });
 
-  const sessionStartsAt = useOrderStore((store) => store.sessionStartsAt);
-  const employee = useOrderStore((store) => store.employee);
+  const sessionStartsAt = useOrderStore(store => store.sessionStartsAt);
+  const employee = useOrderStore(store => store.employee);
 
   return [
     {

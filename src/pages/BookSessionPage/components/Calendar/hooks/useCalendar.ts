@@ -1,13 +1,15 @@
 import { useCallback, useMemo, useState } from "react";
+
 import {
-  startOfToday,
-  isSameMonth,
-  isSameDay,
-  sub,
   add,
   format,
+  isSameDay,
+  isSameMonth,
   isSameWeek,
+  startOfToday,
+  sub,
 } from "date-fns";
+
 import { calendarConfig } from "../data/calendarConfig";
 import { WEEK_DAYS } from "../data/weekDays";
 import {
@@ -39,11 +41,11 @@ export function useCalendar({
   const { unit, getRange } = calendarConfig[size];
 
   const showPreviousPage = useCallback(() => {
-    setSelectedPage((page) => sub(page, { [unit]: 1 }));
+    setSelectedPage(page => sub(page, { [unit]: 1 }));
   }, [setSelectedPage, unit]);
 
   const showNextPage = useCallback(() => {
-    setSelectedPage((page) => add(page, { [unit]: 1 }));
+    setSelectedPage(page => add(page, { [unit]: 1 }));
   }, [setSelectedPage, unit]);
 
   const days = useMemo(() => getRange(selectedPage), [selectedPage, getRange]);

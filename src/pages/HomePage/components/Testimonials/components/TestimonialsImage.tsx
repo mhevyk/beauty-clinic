@@ -1,11 +1,14 @@
-import { Box, styled } from "@mui/material";
-import PionFlowerDecorationSvg from '@/assets/decorations/flower-pion.svg';
-import SpiralSharpLeafDecorationSvg from '@/assets/decorations/spiral-sharp-leaf.svg'
-import OpenBananaDecorationSvg from '@/assets/decorations/opened-banana.svg'
-import ThickSharpLeafDecorationSvg from '@/assets/decorations/thick-sharp-leaf.svg'
-import SeaweedDecorationSvg from '@/assets/decorations/seaweed.svg'
-import theme from "@/theme/theme.ts";
 import { CSSProperties } from "react";
+
+import { Box, styled } from "@mui/material";
+
+import PionFlowerDecorationSvg from "@/assets/decorations/flower-pion.svg";
+import OpenBananaDecorationSvg from "@/assets/decorations/opened-banana.svg";
+import SeaweedDecorationSvg from "@/assets/decorations/seaweed.svg";
+import SpiralSharpLeafDecorationSvg from "@/assets/decorations/spiral-sharp-leaf.svg";
+import ThickSharpLeafDecorationSvg from "@/assets/decorations/thick-sharp-leaf.svg";
+
+import theme from "@/theme/theme.ts";
 
 const breakpointScreen = theme.breakpoints.up("lg");
 

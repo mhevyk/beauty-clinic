@@ -1,11 +1,13 @@
 import {
   APIProvider,
-  Map,
-  InfoWindow,
   AdvancedMarker,
+  InfoWindow,
+  Map,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
+
 import GoogleMapPinIcon from "@/assets/icons/map-pin.svg";
+
 import useToggle from "@/hooks/useToggle.ts";
 
 const MARKER_COORDINATES: google.maps.LatLngLiteral = {

@@ -1,9 +1,11 @@
-import MaskedInput from "react-text-mask";
-import { PHONE_NUMBER_PATTERN } from "@/constants/index.ts";
-import { InputLabel, styled, TextField } from "@mui/material";
-import FormGroupWithError from "@/components/FormGroupWithError.tsx";
 import { useId } from "react";
+import MaskedInput from "react-text-mask";
+
+import { InputLabel, TextField, styled } from "@mui/material";
 import { useFormikContext } from "formik";
+
+import FormGroupWithError from "@/components/FormGroupWithError.tsx";
+import { PHONE_NUMBER_PATTERN } from "@/constants/index.ts";
 import { SignUpFormValues } from "@/pages/SignUpPage";
 
 const LabelStyled = styled(InputLabel)(({ theme }) => ({
@@ -19,7 +21,7 @@ interface MaskedInputStyledProps {
 }
 
 const MaskedInputStyled = styled(MaskedInput, {
-  shouldForwardProp: (prop) => prop !== "backgroundColor",
+  shouldForwardProp: prop => prop !== "backgroundColor",
 })<MaskedInputStyledProps>(
   ({ backgroundColor, disabled }: MaskedInputStyledProps) => ({
     backgroundColor,

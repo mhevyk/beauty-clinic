@@ -6,7 +6,7 @@ export default function getAvatarLabel(username: string) {
   }
 
   const relevantWords = words.slice(0, 2);
-  const initials = relevantWords.map((word) => word[0]!.toUpperCase());
+  const initials = relevantWords.map(word => word[0]!.toUpperCase());
 
   return initials.join("");
 }

@@ -1,7 +1,8 @@
+import { Duration } from "date-fns";
+
 import { CalendarSize } from "../types";
 import { getMonthRange } from "../utils/getMonthRange";
 import { getWeekRange } from "../utils/getWeekRange";
-import { Duration } from "date-fns";
 
 type CalendarConfigItem = {
   unit: keyof Duration;

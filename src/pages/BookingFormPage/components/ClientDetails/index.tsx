@@ -1,7 +1,8 @@
 import { Box, styled } from "@mui/material";
+
+import AppLink from "@/components/AppLink";
 import BookingForm from "@/pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";
 import { useUserStore } from "@/store/user/userStore.ts";
-import AppLink from "@/components/AppLink";
 
 const LoginPromptBox = styled(Box)({
   padding: "12px",
@@ -28,7 +29,7 @@ const TellAboutYou = styled("p")(({ theme }) => ({
 }));
 
 export default function ClientDetails() {
-  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
   if (isAuthenticated) {
     return <BookingForm />;

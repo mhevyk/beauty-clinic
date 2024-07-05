@@ -1,5 +1,6 @@
-import { Components } from "@mui/material";
 import { CSSProperties } from "react";
+
+import { Components } from "@mui/material";
 
 const baseButtonStyles: CSSProperties = {
   textTransform: "none",

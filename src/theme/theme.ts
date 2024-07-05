@@ -1,12 +1,13 @@
 import { createTheme } from "@mui/material";
-import { palette, typography, breakpoints } from "./base";
-import components from "./components/index.ts";
+
+import { breakpoints, palette, typography } from "@/theme/base";
+import components from "@/theme/components";
 
 const theme = createTheme({
   palette,
   typography,
   breakpoints,
-  components
+  components,
 });
 
 export default theme;

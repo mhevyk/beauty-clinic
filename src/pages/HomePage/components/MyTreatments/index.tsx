@@ -1,11 +1,14 @@
 import { Suspense } from "react";
-import TreatmentCardList from "./components/TreatmentCardList";
-import { Button, Grid, styled } from "@mui/material";
-import theme from "@/theme/theme.ts";
 import { Link } from "react-router-dom";
-import SkeletonTreatmentCard from "./components/SkeletonTreatmentCard";
+
+import { Button, Grid, styled } from "@mui/material";
+
 import ErrorBoundary from "@/components/ErrorBoundary.tsx";
 import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
+import theme from "@/theme/theme.ts";
+
+import SkeletonTreatmentCard from "./components/SkeletonTreatmentCard";
+import TreatmentCardList from "./components/TreatmentCardList";
 
 const SectionStyled = styled("section")({
   display: "flex",
@@ -30,7 +33,7 @@ const ButtonStyled = styled(Button)({
 export default function MyTreatments() {
   return (
     <ErrorBoundary
-      fallback={(error) => <ErrorAlertLayout errorMessage={error?.message} />}
+      fallback={error => <ErrorAlertLayout errorMessage={error?.message} />}
     >
       <SectionStyled>
         <TitleStyled>MY TREATMENTS</TitleStyled>

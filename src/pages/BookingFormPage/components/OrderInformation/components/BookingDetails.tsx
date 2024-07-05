@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import {
   Box,
   Button,
@@ -7,13 +9,15 @@ import {
   keyframes,
   styled,
 } from "@mui/material";
+
 import caretIcon from "@/assets/icons/caret-left.svg";
+
 import useToggle from "@/hooks/useToggle.ts";
 import useItemsToOrder from "@/pages/BookingFormPage/hooks/useItemsToOrder";
-import BookingDetailsItem from "./BookingDetailsItem";
 import { useUserStore } from "@/store/user/userStore";
-import { useLocation } from "react-router-dom";
 import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
+
+import BookingDetailsItem from "./BookingDetailsItem";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -29,7 +33,7 @@ type CaretIconProps = {
 
 //TODO: make this animation global
 const IconStyled = styled(caretIcon, {
-  shouldForwardProp: (prop) => prop !== "pointsToRight",
+  shouldForwardProp: prop => prop !== "pointsToRight",
 })<CaretIconProps>(({ pointsToRight, theme }) => ({
   stroke: theme.palette.secondary.main,
   animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
@@ -39,7 +43,7 @@ export default function BookingDetails() {
   const { isOpen, toggle } = useToggle();
   const location = useLocation();
 
-  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
   const itemsToOrderFromHook = useItemsToOrder();
 
   const itemsToOrderFromState = location.state?.sessions ?? null;
@@ -61,7 +65,7 @@ export default function BookingDetails() {
           overflowY: "scroll",
         }}
       >
-        {itemsToOrder.map((orderItem) => (
+        {itemsToOrder.map(orderItem => (
           <BookingDetailsItem
             key={`${orderItem.treatment.id}-${orderItem.employee.id}-${orderItem.sessionStartsAt}`}
             orderItem={orderItem}

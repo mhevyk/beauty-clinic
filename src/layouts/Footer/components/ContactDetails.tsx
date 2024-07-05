@@ -1,7 +1,9 @@
-import { Grid, Typography, styled, Button } from "@mui/material";
-import { DefinitionItem, DefinitionList } from "./DefinitionList";
-import ContactForm from "./ContactForm";
 import { Link } from "react-router-dom";
+
+import { Button, Grid, Typography, styled } from "@mui/material";
+
+import ContactForm from "./ContactForm";
+import { DefinitionItem, DefinitionList } from "./DefinitionList";
 
 const GridStyled = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
@@ -31,7 +33,7 @@ type SectionProps = {
 };
 
 const Section = styled(Grid, {
-  shouldForwardProp: (prop) => prop !== "disableBlockCentering",
+  shouldForwardProp: prop => prop !== "disableBlockCentering",
 })<SectionProps>(({ theme, disableBlockCentering }) => ({
   [theme.breakpoints.down("md")]: {
     display: "flex",

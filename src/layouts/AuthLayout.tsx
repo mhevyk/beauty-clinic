@@ -1,5 +1,7 @@
-import { Box, Typography, alpha, styled } from "@mui/material";
 import { Outlet } from "react-router-dom";
+
+import { Box, Typography, alpha, styled } from "@mui/material";
+
 import backgroundImage from "@/assets/backgrounds/flower-background.png";
 import HelloDecorationSvg from "@/assets/decorations/hello.svg";
 

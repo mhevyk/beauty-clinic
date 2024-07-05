@@ -1,8 +1,9 @@
 import * as Yup from "yup";
+
 import {
-  usernameFieldValidation,
   passwordFieldValidation,
   phoneNumberFieldValidation,
+  usernameFieldValidation,
 } from "./common";
 import { emailFormSchema } from "./emailFormSchema";
 

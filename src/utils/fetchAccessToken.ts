@@ -10,7 +10,7 @@ export default function fetchAccessToken(
 
   return fetch(refreshTokenUrl, {
     method: "POST",
-    credentials: 'include',
+    credentials: "include",
     ...options,
   });
 }

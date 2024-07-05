@@ -1,15 +1,18 @@
+import { useMemo } from "react";
+
 import { Box, styled, useMediaQuery } from "@mui/material";
-import { useCalendar } from "./hooks/useCalendar";
+import { isBefore, startOfToday, subMinutes } from "date-fns";
+
+import useDebouncedValue from "@/hooks/useDebouncedValue";
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 import theme from "@/theme/theme";
+
+import { CalendarCell } from "./components/CalendarCell";
+import CalendarDay from "./components/CalendarDay";
 import CalendarHeader from "./components/CalendarHeader";
+import { useCalendar } from "./hooks/useCalendar";
 import useNextPageListener from "./hooks/useNextPageListener";
 import useTreatmentSessionAvailabilities from "./hooks/useTreatmentSessionAvailabilities";
-import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
-import useDebouncedValue from "@/hooks/useDebouncedValue";
-import CalendarDay from "./components/CalendarDay";
-import { CalendarCell } from "./components/CalendarCell";
-import { isBefore, startOfToday, subMinutes } from "date-fns";
-import { useMemo } from "react";
 
 const CalendarCellsContainer = styled(Box)(() => {
   const CALENDAR_SMALL_CELL_SIZE = "30px";
@@ -81,7 +84,7 @@ const Calendar = () => {
         selectedPageLabel={selectedPageLabel}
       />
       <CalendarCellsContainer>
-        {weekDays.map((weekDay) => (
+        {weekDays.map(weekDay => (
           <CalendarWeekDay key={weekDay} as="div">
             {weekDay}
           </CalendarWeekDay>

@@ -1,7 +1,10 @@
-import { useCartStore } from "@/store/cart/cartStore";
-import CartDrawerItem from "../components/CartDrawerItem";
-import { Divider, List, Typography, styled } from "@mui/material";
 import { Fragment } from "react/jsx-runtime";
+
+import { Divider, List, Typography, styled } from "@mui/material";
+
+import { useCartStore } from "@/store/cart/cartStore";
+
+import CartDrawerItem from "../components/CartDrawerItem";
 
 const EmptyCartTypography = styled(Typography)({
   display: "block",
@@ -17,7 +20,7 @@ type CartDrawerListProps = {
 export default function CartDrawerList({
   closeCartDrawer,
 }: CartDrawerListProps) {
-  const cartItems = useCartStore((store) => store.getItems());
+  const cartItems = useCartStore(store => store.getItems());
 
   if (cartItems.length === 0) {
     return (
@@ -29,7 +32,7 @@ export default function CartDrawerList({
 
   return (
     <List>
-      {cartItems.map((item) => (
+      {cartItems.map(item => (
         <Fragment key={item.treatment.id}>
           <CartDrawerItem item={item} closeCartDrawer={closeCartDrawer} />
           <Divider />

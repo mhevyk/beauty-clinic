@@ -1,7 +1,8 @@
 import concatUrls from "@/utils/concatUrls.ts";
+import { useGetTreatmentsSuspenseQuery } from "@api/hooks";
+
 import TreatmentCard from "../TreatmentCard.tsx";
 import myTreatmentDecorationImageData from "./data/treatmentItems";
-import { useGetTreatmentsSuspenseQuery } from "@api/hooks";
 
 export default function TreatmentCardList() {
   const { data } = useGetTreatmentsSuspenseQuery({

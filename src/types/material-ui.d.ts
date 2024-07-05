@@ -1,6 +1,6 @@
-import { SimplePaletteColorOptions } from "@mui/material";
 import { CSSProperties } from "react";
-import { SimplePaletteColorOptions } from "@mui/material/styles/createPalette";
+
+import { SimplePaletteColorOptions } from "@mui/material";
 
 type CustomColors =
   | "LogoActive"

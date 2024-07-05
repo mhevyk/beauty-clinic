@@ -3,7 +3,7 @@ import { IconButton, IconButtonProps, styled } from "@mui/material";
 const MIDDLE_BURGER_BAR_Y = 46.5;
 
 // FIXME: close icon is not focusable when mobile menu is open
-const BurgerIconButton = styled(IconButton)((props) => {
+const BurgerIconButton = styled(IconButton)(props => {
   const isButtonActive = props["aria-expanded"] === "true";
 
   if (!isButtonActive) {

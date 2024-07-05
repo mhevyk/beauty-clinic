@@ -1,10 +1,14 @@
-import { CircularProgress, IconButton, styled } from "@mui/material";
-import UserIconSvg from "@/assets/icons/user-icon.svg";
 import { ComponentPropsWithoutRef } from "react";
-import { useUserStore } from "@/store/user/userStore";
+
+import { CircularProgress, IconButton, styled } from "@mui/material";
+
 import BellIconSvg from "@/assets/icons/bell.svg";
-import MyAccountButton from "./components/MyAccountButton";
+import UserIconSvg from "@/assets/icons/user-icon.svg";
+
 import AppLink from "@/components/AppLink";
+import { useUserStore } from "@/store/user/userStore";
+
+import MyAccountButton from "./components/MyAccountButton";
 
 const LinkStyled = styled(AppLink)(({ theme }) => ({
   transition: "color 400ms",
@@ -32,8 +36,8 @@ type UserToolbarProps = Omit<ComponentPropsWithoutRef<typeof LoginLink>, "to">;
 
 // TODO: complete design for mobile
 export default function UserToolbar(props: UserToolbarProps) {
-  const isAuthenticated = useUserStore((store) => store.checkAuthenticated());
-  const isAuthenticating = useUserStore((store) => store.isAuthenticating);
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
+  const isAuthenticating = useUserStore(store => store.isAuthenticating);
 
   if (isAuthenticating) {
     return <CircularProgress color="secondary" size={25} />;

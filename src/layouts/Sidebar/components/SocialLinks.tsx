@@ -1,8 +1,10 @@
-import { Box, styled } from "@mui/material";
+import { cloneElement } from "react";
 import { Link } from "react-router-dom";
+
+import { Box, styled } from "@mui/material";
+
 import FacebookIconSvg from "@/assets/icons/facebook.svg";
 import InstagramIconSvg from "@/assets/icons/instagram.svg";
-import { cloneElement } from "react";
 
 const BoxStyled = styled(Box)(({ theme }) => {
   const smallScreenMediaQuery = theme.breakpoints.down("md");

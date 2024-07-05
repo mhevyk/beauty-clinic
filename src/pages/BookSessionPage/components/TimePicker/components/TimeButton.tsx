@@ -1,14 +1,16 @@
-import { Button, styled } from "@mui/material";
-import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
-import { format } from "date-fns";
 import { useEffect } from "react";
+
+import { Button, styled } from "@mui/material";
+import { format } from "date-fns";
+
+import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";
 
 type ButtonStyledPickerProps = {
   isSelected: boolean;
 };
 
 const ButtonStyledPicker = styled(Button, {
-  shouldForwardProp: (prop) => prop !== "isSelected",
+  shouldForwardProp: prop => prop !== "isSelected",
 })<ButtonStyledPickerProps>(({ isSelected, theme }) => () => {
   const selectedStyles = {
     borderColor: theme.palette.secondary.main,

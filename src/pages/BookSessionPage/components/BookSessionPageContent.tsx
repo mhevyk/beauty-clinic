@@ -1,21 +1,21 @@
-import { format } from "date-fns";
 import { Suspense } from "react";
 import { Link } from "react-router-dom";
 
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
+import { format } from "date-fns";
 
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
 
+import { useDatetimePickerContext } from "../context/DatetimePickerProvider.tsx";
 import Calendar from "./Calendar";
-import TimePicker from "./TimePicker";
 import ServiceDetails from "./ServiceDetails";
 import SubmitSessionDatetimeButton from "./SubmitSessionDatetimeButton";
-import { useDatetimePickerContext } from "../context/DatetimePickerProvider.tsx";
-import { styled } from "@mui/material";
+import TimePicker from "./TimePicker";
 
 const ButtonStyled = styled(Button)({
   textAlign: "left",

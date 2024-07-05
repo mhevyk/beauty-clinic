@@ -1,8 +1,8 @@
 import { Components } from "@mui/material";
 
-import MuiButtonStyles from "./Button.styles";
-import { MuiLinkStyles } from "./Link.styles";
-import MuiTextFieldStyles from "./TextField.styles";
+import MuiButtonStyles from "@/theme/components/Button.styles";
+import MuiLinkStyles from "@/theme/components/Link.styles";
+import MuiTextFieldStyles from "@/theme/components/TextField.styles";
 
 const components: Components = {
   MuiButton: MuiButtonStyles,

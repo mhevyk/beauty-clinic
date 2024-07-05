@@ -1,6 +1,6 @@
 import { CssBaseline, GlobalStyles } from "@mui/material";
 
-import theme from "./theme.ts";
+import theme from "@/theme/theme";
 
 const styles = {
   html: {

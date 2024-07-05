@@ -12,7 +12,7 @@ const baseLinkStyles = {
 
 // TODO: add link variants
 // TODO: fix type
-export const MuiLinkStyles: Components["MuiLink"] = {
+const MuiLinkStyles: Components["MuiLink"] = {
   variants: [
     {
       props: { variant: "secondary" },
@@ -36,3 +36,5 @@ export const MuiLinkStyles: Components["MuiLink"] = {
     },
   ],
 };
+
+export default MuiLinkStyles;

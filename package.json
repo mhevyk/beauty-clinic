@@ -11,8 +11,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format:check": "prettier --check ./src ./tests",
-    "format:fix": "prettier --write ./src ./tests",
+    "format:check": "prettier --check ./",
+    "format:fix": "prettier --write ./",
     "codegen": "dotenvx run --env-file=.env.development -- graphql-codegen --config codegen.yml"
   },
   "dependencies": {

@@ -156,15 +156,20 @@ Here is a working live demo: <a href="#">link</a>
 ## Installation
 
 1. Clone the repo
+
 ```sh
 git clone https://github.com/mhevyk/beauty-clinic.git
 ```
+
 2. Install NPM packages
+
 ```sh
 npm install
 ```
+
 3. Add <code>.env</code> files to the root of the project
 4. Run project
+
 ```sh
 npm run dev
 ```

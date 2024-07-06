@@ -1,4 +1,4 @@
-import IconButton, {IconButtonProps} from "@mui/material/IconButton";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import styled from "@mui/material/styles/styled";
 
 const MIDDLE_BURGER_BAR_Y = 46.5;

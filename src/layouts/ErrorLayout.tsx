@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
+import { alpha } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { alpha } from "@mui/material";
 import styled from "@mui/material/styles/styled";
 
 import ErrorIcon from "@/assets/icons/error-icon.svg";

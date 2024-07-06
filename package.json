@@ -8,6 +8,8 @@
     "test": "dotenvx run --env-file=.env.test -- jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",
     "test:mutation": "stryker run",
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
@@ -39,6 +41,8 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.1.0",
+    "@cypress/browserify-preprocessor": "^3.0.2",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/typescript": "^4.0.6",
     "@graphql-codegen/typescript-operations": "^4.2.0",
@@ -59,6 +63,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "cypress": "^13.13.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -71,5 +76,10 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-svgr": "^4.2.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "tests/e2e/cypress/support/step-definitions/**/*.{js,ts}"
+    ]
   }
 }

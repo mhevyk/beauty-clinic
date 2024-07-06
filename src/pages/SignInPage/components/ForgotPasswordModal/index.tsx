@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 
+import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
@@ -7,7 +8,6 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import styled from "@mui/material/styles/styled";
-import { useMediaQuery } from "@mui/material";
 import { Formik } from "formik";
 
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";

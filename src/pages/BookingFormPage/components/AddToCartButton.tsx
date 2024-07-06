@@ -1,9 +1,9 @@
 import { useState } from "react";
 
+import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 import styled from "@mui/material/styles/styled";
-import { useMediaQuery } from "@mui/material";
 
 import ButtonWithSpinner from "@/components/ButtonWithSpinner";
 import { useCartStore } from "@/store/cart/cartStore";

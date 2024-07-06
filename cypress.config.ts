@@ -1,27 +1,17 @@
-import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
-import { preprocessor } from "@badeball/cypress-cucumber-preprocessor/browserify";
 import { defineConfig } from "cypress";
-import { createRequire } from "node:module";
+import path from "path";
 
-const require = createRequire(import.meta.url);
-const typescript = require.resolve("typescript");
+import setupNodeEvents from "./tests/e2e/cypress/setupNodeEvents";
 
-async function setupNodeEvents(
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions
-) {
-  await addCucumberPreprocessorPlugin(on, config);
-
-  on("file:preprocessor", preprocessor(config, { typescript }));
-
-  return config;
-}
+const cypressFolder = "tests/e2e/cypress";
 
 export default defineConfig({
   e2e: {
     baseUrl: "https://duckduckgo.com",
-    specPattern: "tests/e2e/cypress/features/**/*.feature",
+    specPattern: path.resolve(cypressFolder, "features/**/*.feature"),
     setupNodeEvents,
-    supportFile: "tests/e2e/cypress/support/index.ts",
+    supportFile: path.resolve(cypressFolder, "support/index.ts"),
+    video: false,
+    screenshotsFolder: path.resolve(cypressFolder, "screenshots"),
   },
 });

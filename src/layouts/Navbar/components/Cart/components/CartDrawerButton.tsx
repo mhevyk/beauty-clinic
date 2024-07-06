@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-import { IconButton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 import useToggle from "@/hooks/useToggle";
 import { useCartStore } from "@/store/cart/cartStore";

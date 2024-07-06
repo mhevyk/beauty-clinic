@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 
-import { styled } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 

@@ -1,4 +1,6 @@
-import { Box, Fade, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import Fade from "@mui/material/Fade";
+import styled from "@mui/material/styles/styled";
 
 import theme from "@/theme/theme.ts";
 

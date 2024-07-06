@@ -1,4 +1,6 @@
-import { Dialog, DialogContent, styled } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import styled from "@mui/material/styles/styled";
 
 import UserToolbar from "@/components/UserToolbar";
 import useLockPageScroll from "@/hooks/useLockPageScroll";

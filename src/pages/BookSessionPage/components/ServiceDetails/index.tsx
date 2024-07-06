@@ -1,13 +1,11 @@
 import { Suspense } from "react";
 
-import {
-  Box,
-  Button,
-  Collapse,
-  IconButton,
-  keyframes,
-  styled,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import { keyframes } from "@mui/material/styles";
+import styled from "@mui/material/styles/styled";
 
 import caretIcon from "@/assets/icons/caret-left.svg";
 

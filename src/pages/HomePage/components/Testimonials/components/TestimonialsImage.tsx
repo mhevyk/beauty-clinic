@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
 
-import { Box, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import styled from "@mui/material/styles/styled";
 
 import PionFlowerDecorationSvg from "@/assets/decorations/flower-pion.svg";
 import OpenBananaDecorationSvg from "@/assets/decorations/opened-banana.svg";

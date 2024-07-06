@@ -1,9 +1,7 @@
-import {
-  CircularProgress,
-  IconButton,
-  styled,
-  useMediaQuery,
-} from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import IconButton from "@mui/material/IconButton";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import styled from "@mui/material/styles/styled";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 

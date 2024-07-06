@@ -1,11 +1,9 @@
-import {
-  Box,
-  Drawer,
-  IconButton,
-  Typography,
-  keyframes,
-  styled,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { keyframes } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 
 import CaretIconSvg from "@/assets/icons/caret-left.svg";
 

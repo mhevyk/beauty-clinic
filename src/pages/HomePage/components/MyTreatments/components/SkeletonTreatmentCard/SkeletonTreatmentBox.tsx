@@ -1,4 +1,7 @@
-import { Box, Grid, Skeleton, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Skeleton from "@mui/material/Skeleton";
+import styled from "@mui/material/styles/styled";
 
 import theme from "@/theme/theme.ts";
 

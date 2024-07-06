@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
 import AuthAlternativeLink from "@/components/AuthAlternativeLink";

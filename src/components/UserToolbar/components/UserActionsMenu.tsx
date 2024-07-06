@@ -1,4 +1,6 @@
-import { Divider, Menu, MenuItem, MenuProps } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import Menu, {MenuProps} from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 import { useUserStore } from "@/store/user/userStore";
 

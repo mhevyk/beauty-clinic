@@ -1,6 +1,10 @@
 import { ComponentType, SVGProps } from "react";
 
-import { Box, Grid, SxProps, Typography, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { SxProps } from "@mui/system";
+import styled from "@mui/material/styles/styled";
 
 import theme from "@/theme/theme.ts";
 import { Treatment } from "@api/hooks";

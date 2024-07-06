@@ -4,7 +4,7 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import { Link as MuiLink, LinkProps as MuiLinkProps } from "@mui/material";
+import MuiLink, { LinkProps as MuiLinkProps } from "@mui/material/Link";
 
 type AppLinkProps = MuiLinkProps & RouterLinkProps;
 

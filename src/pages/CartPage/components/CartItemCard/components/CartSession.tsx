@@ -1,4 +1,7 @@
-import { IconButton, TableCell, TableRow, styled } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import styled from "@mui/material/styles/styled";
 import { format } from "date-fns";
 
 import BinIcon from "@/assets/icons/bin-icon.svg";

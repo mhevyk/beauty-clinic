@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  Avatar,
-  Fade,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Typography,
-  alpha,
-  styled,
-} from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Fade from "@mui/material/Fade";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
+import { alpha } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 
 import { CartItem } from "@/store/cart/cartStore";
 import concatUrls from "@/utils/concatUrls";

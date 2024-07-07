@@ -1,4 +1,6 @@
-import { Box, Divider, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import styled from "@mui/material/styles/styled";
 
 import AppLink from "./AppLink";
 

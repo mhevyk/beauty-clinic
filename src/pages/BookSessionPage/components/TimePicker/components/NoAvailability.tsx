@@ -1,4 +1,6 @@
-import { Button, Typography, styled } from "@mui/material";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import styled from "@mui/material/styles/styled";
 
 import useEventEmitter from "@/hooks/useEventEmitter";
 import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";

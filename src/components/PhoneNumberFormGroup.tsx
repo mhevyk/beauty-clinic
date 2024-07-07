@@ -1,7 +1,9 @@
 import { useId } from "react";
 import MaskedInput from "react-text-mask";
 
-import { InputLabel, TextField, styled } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import TextField from "@mui/material/TextField";
+import styled from "@mui/material/styles/styled";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/FormGroupWithError.tsx";

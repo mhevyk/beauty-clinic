@@ -1,4 +1,5 @@
-import { SxProps, alpha, styled } from "@mui/material";
+import { SxProps, alpha } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 import { format, isBefore, isToday, startOfToday } from "date-fns";
 
 import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider";

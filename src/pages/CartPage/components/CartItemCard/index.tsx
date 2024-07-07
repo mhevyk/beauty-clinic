@@ -1,12 +1,10 @@
-import {
-  Box,
-  Button,
-  Collapse,
-  Divider,
-  Typography,
-  alpha,
-  styled,
-} from "@mui/material";
+import { alpha } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Collapse from "@mui/material/Collapse";
+import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import styled from "@mui/material/styles/styled";
 
 import imagePlaceholder from "@/assets/icons/image-placeholder.svg";
 

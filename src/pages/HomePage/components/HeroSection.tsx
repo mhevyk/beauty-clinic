@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { Box, Button, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import styled from "@mui/material/styles/styled";
 
 import HelloDecorationSvg from "@/assets/decorations/hello.svg";
 

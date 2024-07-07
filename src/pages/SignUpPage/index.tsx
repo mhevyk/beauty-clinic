@@ -1,4 +1,5 @@
-import { Button, Stack } from "@mui/material";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 import { Formik, useFormikContext } from "formik";
 
 import AuthAlternativeLink from "@/components/AuthAlternativeLink";

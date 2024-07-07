@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Button, styled } from "@mui/material";
+import Button from "@mui/material/Button";
+import styled from "@mui/material/styles/styled";
 
 import { useOrderStore } from "@/store/order/orderStore";
 import { Employee } from "@api/hooks";

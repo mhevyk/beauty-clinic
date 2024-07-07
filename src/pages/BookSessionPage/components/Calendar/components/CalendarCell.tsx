@@ -1,4 +1,5 @@
-import { ButtonBase, styled } from "@mui/material";
+import ButtonBase from "@mui/material/ButtonBase";
+import styled from "@mui/material/styles/styled";
 
 export const CalendarCell = styled(ButtonBase)(({ theme }) => ({
   [theme.breakpoints.down(320)]: {

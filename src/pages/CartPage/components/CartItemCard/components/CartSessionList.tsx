@@ -1,4 +1,5 @@
-import { Table, TableBody } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
 
 import CartSession from "@/pages/CartPage/components/CartItemCard/components/CartSession.tsx";
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";

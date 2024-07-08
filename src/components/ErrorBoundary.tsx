@@ -1,13 +1,13 @@
 import { Component, ErrorInfo, PropsWithChildren, ReactNode } from "react";
 
-interface ErrorBoundaryProps<TError extends Error> extends PropsWithChildren {
+type ErrorBoundaryProps<TError extends Error> = PropsWithChildren & {
   fallback?: ReactNode | ((error: TError | null) => ReactNode);
   onError?: (error: TError, errorInfo: ErrorInfo) => void;
-}
+};
 
-interface ErrorBoundaryState<TError extends Error> {
+type ErrorBoundaryState<TError extends Error> = {
   error: TError | null;
-}
+};
 
 export default class ErrorBoundary<TError extends Error> extends Component<
   ErrorBoundaryProps<TError>,

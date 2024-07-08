@@ -17,10 +17,10 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
   fontWeight: 400,
 }));
 
-interface MaskedInputStyledProps {
+type MaskedInputStyledProps = {
   backgroundColor: string;
   disabled: boolean;
-}
+};
 
 const MaskedInputStyled = styled(MaskedInput, {
   shouldForwardProp: prop => prop !== "backgroundColor",

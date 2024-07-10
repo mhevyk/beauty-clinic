@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import { Quote } from "@/pages/HomePage/components/Testimonials/data/quotes.ts";
 import useInterval from "@/pages/HomePage/components/Testimonials/hooks/useInterval.ts";

@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import imagePlaceholder from "@/assets/icons/image-placeholder.svg";
 

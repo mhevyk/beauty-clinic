@@ -6,7 +6,7 @@ import Collapse from "@mui/material/Collapse";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import { keyframes } from "@mui/material/styles";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import caretIcon from "@/assets/icons/caret-left.svg";
 

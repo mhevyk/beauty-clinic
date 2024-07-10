@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";

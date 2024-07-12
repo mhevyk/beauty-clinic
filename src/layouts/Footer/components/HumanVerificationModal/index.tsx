@@ -2,7 +2,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";

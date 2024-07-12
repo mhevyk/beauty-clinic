@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 import { subMinutes } from "date-fns";
 
 import { useDatetimePickerContext } from "@/pages/BookSessionPage/context/DatetimePickerProvider.tsx";

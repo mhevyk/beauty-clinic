@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import InputBase from "@mui/material/InputBase";
 import Stack from "@mui/material/Stack";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import FormGroupWithError from "@/components/FormGroupWithError";
 import useToggle from "@/hooks/useToggle";

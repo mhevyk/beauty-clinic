@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Hidden from "@mui/material/Hidden";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import FernDecorationSvg from "@/assets/decorations/fern.svg";
 

@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import flowerCombinationDecoration from "@/assets/decorations/flower-combination.svg?url";
 import coconutImage from "@/assets/images/coconut.png";

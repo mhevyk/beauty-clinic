@@ -3,7 +3,7 @@ import MaskedInput from "react-text-mask";
 
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/FormGroupWithError.tsx";
@@ -17,10 +17,10 @@ const LabelStyled = styled(InputLabel)(({ theme }) => ({
   fontWeight: 400,
 }));
 
-interface MaskedInputStyledProps {
+type MaskedInputStyledProps = {
   backgroundColor: string;
   disabled: boolean;
-}
+};
 
 const MaskedInputStyled = styled(MaskedInput, {
   shouldForwardProp: prop => prop !== "backgroundColor",

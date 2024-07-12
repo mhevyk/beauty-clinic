@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import ErrorBoundary from "@/components/ErrorBoundary.tsx";
 import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";

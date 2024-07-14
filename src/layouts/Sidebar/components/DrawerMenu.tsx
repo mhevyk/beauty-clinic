@@ -3,7 +3,7 @@ import { Box, Drawer, IconButton, styled } from "@mui/material";
 import CloseIconSvg from "@/assets/icons/close-icon.svg";
 
 import useLockPageScroll from "@/hooks/useLockPageScroll";
-import MenuLinks from "@/layouts/Sidebar/components/MenuLinks.tsx";
+import MenuLinks from "@/layouts/sidebar/components/MenuLinks";
 
 const CloseIcon = styled(CloseIconSvg)({
   position: "relative",

@@ -8,7 +8,7 @@ import {
 
 import GoogleMapPinIcon from "@/assets/icons/map-pin.svg";
 
-import useToggle from "@/hooks/useToggle.ts";
+import useToggle from "@/hooks/useToggle";
 
 const MARKER_COORDINATES: google.maps.LatLngLiteral = {
   lat: 37.77489791779846,

@@ -2,15 +2,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
 
 import useLockPageScroll from "@/hooks/useLockPageScroll";
+import RecaptchaVerification from "@/layouts/footer/components/RecaptchaVerification";
 import theme from "@/theme/theme";
-
-import { RecaptchaVerification } from "./components/RecaptchaVerification";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   display: "flex",

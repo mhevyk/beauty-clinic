@@ -5,14 +5,14 @@ import { useMediaQuery } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import { styled } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 
 import UserToolbar from "@/components/UserToolbar";
 import useToggle from "@/hooks/useToggle";
 import theme from "@/theme/theme";
 
 import BurgerButton from "./components/BurgerButton";
-import CartDrawerButton from "./components/Cart/components/CartDrawerButton";
+import CartDrawerButton from "./components/CartDrawerButton";
 import MobileMenu from "./components/MobileMenu";
 
 const AppBarStyled = styled(AppBar)(({ theme }) => ({

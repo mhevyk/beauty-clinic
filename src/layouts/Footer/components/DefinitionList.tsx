@@ -30,7 +30,10 @@ type DefinitionItemProps = PropsWithChildren & {
   label: string;
 };
 
-export function DefinitionItem({ label, children }: DefinitionItemProps) {
+export function DefinitionItem({
+  label,
+  children,
+}: DefinitionItemProps) {
   return (
     <div>
       <DefinitionItemLabel>{label}</DefinitionItemLabel>

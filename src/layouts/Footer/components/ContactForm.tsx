@@ -2,10 +2,13 @@ import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
 import InputBase from "@mui/material/InputBase";
 import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 
 import FormGroupWithError from "@/components/FormGroupWithError";
 import useToggle from "@/hooks/useToggle";
+import HumanVerificationModal from "@/layouts/footer/components/HumanVerificationModal";
+import { useContactFormValues } from "@/layouts/footer/hooks/useContactFormValues";
+import { useDelayedUnmount } from "@/layouts/footer/hooks/useDelayedUnmount";
 import closeSnackbar from "@/utils/closeSnackbar";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";
@@ -14,10 +17,6 @@ import {
   useCreateContactFormEntryMutation,
   useVerifyRecaptchaMutation,
 } from "@api/hooks";
-
-import HumanVerificationModal from "../HumanVerificationModal";
-import { useContactFormValues } from "./hooks/useContactFormValues";
-import { useDelayedUnmount } from "./hooks/useDelayedUnmount";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 

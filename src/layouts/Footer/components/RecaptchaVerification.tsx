@@ -2,13 +2,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import Box from "@mui/material/Box";
 import DialogContentText from "@mui/material/DialogContentText";
-import { styled } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import { HumanVerificationModalProps } from "@/layouts/footer/components/HumanVerificationModal";
+import { useRecaptcha } from "@/layouts/footer/hooks/useRecaptcha";
 import theme from "@/theme/theme";
-
-import { HumanVerificationModalProps } from "../..";
-import { useRecaptcha } from "./hooks/useRecaptcha";
 
 const DialogContentTextStyled = styled(DialogContentText)(({ theme }) => ({
   ...theme.typography.paragraph,
@@ -27,7 +26,9 @@ const ReCAPTCHABox = styled(Box)(({ theme }) => ({
 
 type DialogInnerProps = Pick<HumanVerificationModalProps, "handleConfirm">;
 
-export function RecaptchaVerification({ handleConfirm }: DialogInnerProps) {
+export default function RecaptchaVerification({
+  handleConfirm,
+}: DialogInnerProps) {
   const isVerySmallScreen = useMediaQuery(theme.breakpoints.down(304));
   const recaptchaRefCallback = useRecaptcha();
 

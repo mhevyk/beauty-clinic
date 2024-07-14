@@ -5,8 +5,8 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material";
 
-import ErrorBoundary from "@/components/ErrorBoundary.tsx";
-import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";
 import theme from "@/theme/theme.ts";
 
 import SkeletonTreatmentCard from "./components/SkeletonTreatmentCard";

@@ -1,5 +1,5 @@
-import Box from "@mui/material/Box";
 import { styled } from "@mui/material";
+import Box from "@mui/material/Box";
 
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
 import { Treatment } from "@api/hooks";

@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useMediaQuery } from "@mui/material";
+import { styled } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import styled from "@mui/material/styles/styled";
 
 import UserToolbar from "@/components/UserToolbar";
 import useToggle from "@/hooks/useToggle";

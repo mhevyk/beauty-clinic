@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { Link } from "react-router-dom";
 
+import { styled } from "@mui/material";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";

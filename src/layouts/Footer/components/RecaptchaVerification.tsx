@@ -1,8 +1,8 @@
 import ReCAPTCHA from "react-google-recaptcha";
 
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import DialogContentText from "@mui/material/DialogContentText";
-import styled from "@mui/material/styles/styled";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { HumanVerificationModalProps } from "@/layouts/footer/components/HumanVerificationModal";

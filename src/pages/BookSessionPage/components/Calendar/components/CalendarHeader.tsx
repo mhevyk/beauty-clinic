@@ -1,7 +1,7 @@
+import { styled } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
 
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
 

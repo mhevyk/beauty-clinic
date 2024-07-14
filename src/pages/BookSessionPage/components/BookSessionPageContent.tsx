@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 import { format } from "date-fns";
 
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";

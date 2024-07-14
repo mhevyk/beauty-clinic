@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import { CONTACTS_SECTION_ID } from "@/constants/index";
 

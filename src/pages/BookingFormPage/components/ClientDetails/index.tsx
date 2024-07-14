@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import AppLink from "@/components/AppLink";
 import BookingForm from "@/pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";

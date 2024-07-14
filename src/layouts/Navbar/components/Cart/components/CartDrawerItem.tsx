@@ -8,7 +8,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import { CartItem } from "@/store/cart/cartStore";
 import concatUrls from "@/utils/concatUrls";

@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 
 import PointerDownIconSvg from "@/assets/icons/pointer-down.svg";
 

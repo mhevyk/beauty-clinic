@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
-import styled from "@mui/material/styles/styled";
+import { styled } from "@mui/material";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/FormGroupWithError.tsx";

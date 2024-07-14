@@ -11,7 +11,7 @@ import caretIcon from "@/assets/icons/caret-left.svg";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
 import useToggle from "@/hooks/useToggle.ts";
-import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
+import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";
 import showSnackbar from "@/utils/showSnackbar";
 
 import TreatmentDetails from "./components/TreatmentDetails";

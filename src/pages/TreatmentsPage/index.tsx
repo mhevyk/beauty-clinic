@@ -8,7 +8,7 @@ import Hidden from "@mui/material/Hidden";
 import FernDecorationSvg from "@/assets/decorations/fern.svg";
 
 import ErrorBoundary from "@/components/ErrorBoundary.tsx";
-import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
+import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";
 import theme from "@/theme/theme.ts";
 
 import SkeletonTreatmentsCard from "./components/SkeletonTreatmentsCard.tsx";

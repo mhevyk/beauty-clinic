@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
-import ErrorAlertLayout from "@/layouts/ErrorLayout";
+import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";
 import theme from "@/theme/theme.ts";
 
 import BookSessionPageContent from "./components/BookSessionPageContent";

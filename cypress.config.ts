@@ -1,9 +1,9 @@
 import { defineConfig } from "cypress";
 import path from "path";
 
-import setupNodeEvents from "./tests/e2e/cypress/setupNodeEvents";
+import setupNodeEvents from "./tests/e2e/setupNodeEvents";
 
-const cypressFolder = "tests/e2e/cypress";
+const cypressFolder = "tests/e2e";
 
 export default defineConfig({
   e2e: {

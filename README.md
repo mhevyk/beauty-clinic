@@ -60,6 +60,9 @@ Here is a working live demo: <a href="#">link</a>
                         <code>/constants</code> - for general constants
                     </li>
                     <li>
+                        <code>/containers</code> - for bigger than components and smaller than pages component excluding layouts
+                    </li>
+                    <li>
                         <code>/hooks</code> - for reusable hooks
                     </li>
                     <li>
@@ -92,10 +95,63 @@ Here is a working live demo: <a href="#">link</a>
                 <code>/tests</code> - project tests folder
                 <ul>
                     <li>
-                        <code>/coverage</code> - for test coverage
+                        <code>/e2e</code> - for integration (e2e) tests
+                        <ul>
+                            <li>
+                                <code>/features</code> - for feature files (user stories)
+                            </li>
+                            <li>
+                                <code>/fixtures</code> - for e2e testing constants
+                            </li>
+                            <li>
+                                <code>/plugins</code> - for plugins
+                            </li>
+                            <li>
+                                <code>/support</code> - main integration tests folder
+                                <ul>
+                                    <li>
+                                        <code>/step-definitions</code> - implementations for feature files (user stories)
+                                    </li>
+                                    <li>
+                                        <code>commands.ts</code> - for custom e2e commands
+                                    </li>
+                                    <li>
+                                        <code>index.ts</code> - main file, searched by cypress package
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <code>/mutation</code> - for mutation tests
+                        <ul>
+                            <li>
+                                <code>/reports</code> - for mutation test reports
+                            </li>
+                            <li>
+                                <code>stryker-incremental.json</code> - incremental file
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <code>/unit</code> - for unit tests
+                        <ul>
+                            <li>
+                                <code>/coverage</code> - for unit tests coverage
+                            </li>
+                            <li>
+                                <code>/mocks</code> - for reusable mock data
+                            </li>
+                            <li>
+                                <code>/src</code> - for tests. Folder structure from global src folder should be reflected
+                            </li>
+                            <li>
+                                <code>/utils</code> - for test utils
+                            </li>
+                            <li>
+                                <code>setupTests.ts</code> - for global test setup
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -127,7 +183,8 @@ Here is a working live demo: <a href="#">link</a>
 #### Images
 
 <ul>
-    <li>You should use <code>vite-plugin-svgr</code> for importing <code>svg</code> format like following: <code>@assets/icons/instagram.svg</code></li>
+    <li>You should use <code>vite-plugin-svgr</code> for importing <code>svg</code> as <code>&lt;svg&gt;</code> dom element like following: <code>@assets/icons/instagram.svg</code></li>
+    <li>You should use <code>vite-plugin-svgr</code> for importing <code>svg</code> as <code>&lt;img&gt;</code> source like following: <code>@assets/icons/instagram.svg?url</code></li>
     <li>
         Svgs, imported by <code>vite-plugin-svgr</code> should be in pascal pase using pattern <code>IconNameIconSvg</code>, for example importing facebook icon should look like following: <code>import FacebookIconSvg from "@assets/icons/facebook.svg"</code>    
     </li>

@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 
 import { alpha } from "@mui/material";
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
 
-import backgroundImage from "@/assets/backgrounds/flower-background.png";
+import backgroundImage from "@/assets/backgrounds/flower-background.png?url";
 import HelloDecorationSvg from "@/assets/decorations/hello.svg";
 
 const PageWrapper = styled(Box)(({ theme }) => {

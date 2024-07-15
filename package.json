@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "dotenvx run --env-file=.env.development -- vite",
+    "start": "dotenvx run --env-file=.env.development -- vite",
     "test": "dotenvx run --env-file=.env.test -- jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",
     "test:mutation": "stryker run",
@@ -79,7 +79,7 @@
   },
   "cypress-cucumber-preprocessor": {
     "stepDefinitions": [
-      "tests/e2e/cypress/support/step-definitions/**/*.{js,ts}"
+      "tests/e2e/support/step-definitions/**/*.{js,ts}"
     ]
   }
 }

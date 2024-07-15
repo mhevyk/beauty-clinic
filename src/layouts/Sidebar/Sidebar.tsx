@@ -1,11 +1,11 @@
 import { AppBar, styled, useMediaQuery } from "@mui/material";
 
 import useToggle from "@/hooks/useToggle";
-import BurgerButton from "@/layouts/Sidebar/components/BurgerButton.tsx";
-import DrawerMenu from "@/layouts/Sidebar/components/DrawerMenu.tsx";
-import Logo from "@/layouts/Sidebar/components/Logo.tsx";
-import SocialLinks from "@/layouts/Sidebar/components/SocialLinks.tsx";
-import theme from "@/theme/theme.ts";
+import BurgerButton from "@/layouts/sidebar/components/BurgerButton";
+import DrawerMenu from "@/layouts/sidebar/components/DrawerMenu";
+import Logo from "@/layouts/sidebar/components/Logo";
+import SocialLinks from "@/layouts/sidebar/components/SocialLinks";
+import theme from "@/theme/theme";
 
 const SidebarStyled = styled(AppBar)({
   width: "78px",

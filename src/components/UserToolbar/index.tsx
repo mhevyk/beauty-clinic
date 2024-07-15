@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef } from "react";
 
+import { styled } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material";
 
 import BellIconSvg from "@/assets/icons/bell.svg";
 import UserIconSvg from "@/assets/icons/user-icon.svg";

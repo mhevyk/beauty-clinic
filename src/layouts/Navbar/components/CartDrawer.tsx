@@ -1,17 +1,16 @@
 import { keyframes } from "@mui/material";
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
 
 import CaretIconSvg from "@/assets/icons/caret-left.svg";
 
 import useLockPageScroll from "@/hooks/useLockPageScroll";
+import CartDrawerFooter from "@/layouts/navbar/components/CartDrawerFooter";
+import CartDrawerList from "@/layouts/navbar/components/CartDrawerList";
 import { useCartStore } from "@/store/cart/cartStore";
-
-import CartDrawerFooter from "./CartDrawerFooter";
-import CartDrawerList from "./CartDrawerList";
 
 const ANIMATION_DURATION_MS = 550;
 

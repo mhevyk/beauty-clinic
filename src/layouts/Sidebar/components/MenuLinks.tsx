@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import { Typography, styled } from "@mui/material";
 
-import { menuItems } from "../data/menuItems";
+import { menuItems } from "@/layouts/sidebar/data/menuItems";
 
 const MenuWrapper = styled("ul")(({ theme }) => {
   const smallScreenMediaQuery = theme.breakpoints.down("md");

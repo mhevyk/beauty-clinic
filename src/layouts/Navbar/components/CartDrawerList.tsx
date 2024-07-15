@@ -3,11 +3,10 @@ import { Fragment } from "react/jsx-runtime";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
+import styled from "@mui/material/styles/styled";
 
+import CartDrawerItem from "@/layouts/navbar/components/CartDrawerItem";
 import { useCartStore } from "@/store/cart/cartStore";
-
-import CartDrawerItem from "../components/CartDrawerItem";
 
 const EmptyCartTypography = styled(Typography)({
   display: "block",

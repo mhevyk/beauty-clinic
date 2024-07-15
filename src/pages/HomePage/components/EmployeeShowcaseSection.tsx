@@ -1,7 +1,7 @@
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material";
 
 import LeafDecorationSvg from "@/assets/decorations/sharp-leaf.svg";
 import employeeLilyImage from "@/assets/images/lily.webp";

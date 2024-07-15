@@ -1,5 +1,5 @@
-import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 import AppLink from "@/components/AppLink";
 import useToggle from "@/hooks/useToggle";

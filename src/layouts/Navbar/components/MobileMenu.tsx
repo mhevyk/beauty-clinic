@@ -1,11 +1,11 @@
+import { styled } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { styled } from "@mui/material";
 
 import UserToolbar from "@/components/UserToolbar";
 import useLockPageScroll from "@/hooks/useLockPageScroll";
-import MenuLinks from "@/layouts/Sidebar/components/MenuLinks.tsx";
-import SocialLinks from "@/layouts/Sidebar/components/SocialLinks.tsx";
+import MenuLinks from "@/layouts/sidebar/components/MenuLinks";
+import SocialLinks from "@/layouts/sidebar/components/SocialLinks";
 
 const DialogContentStyled = styled(DialogContent)(({ theme }) => ({
   background: theme.palette.PinkMarbleSky.main,

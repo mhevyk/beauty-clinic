@@ -3,9 +3,8 @@ import { CSSProperties } from "react";
 import IconButton from "@mui/material/IconButton";
 
 import useToggle from "@/hooks/useToggle";
+import CartDrawer from "@/layouts/navbar/components/CartDrawer";
 import { useCartStore } from "@/store/cart/cartStore";
-
-import CartDrawer from "./CartDrawer";
 
 function CartIcon() {
   const cartItemsCount = useCartStore(store => store.getTotalSessionsCount());

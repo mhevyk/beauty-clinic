@@ -1,7 +1,4 @@
-import {
-  CONTACTS_SECTION_ID,
-  EMPLOYEE_SHOWCASE_SECTION_ID,
-} from "@/constants/index";
+import { CONTACTS_SECTION_ID, EMPLOYEE_SHOWCASE_SECTION_ID } from "@/constants";
 
 type MenuItem = {
   path: string;

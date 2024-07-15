@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
-import AuthLayout from "@/layouts/AuthLayout";
+import AuthLayout from "@/layouts/auth-layout/AuthLayout";
 import AppSuspense from "@/routes/helpers/AppSuspense";
 
 const SignUpPage = lazy(() => import("@/pages/SignUpPage"));

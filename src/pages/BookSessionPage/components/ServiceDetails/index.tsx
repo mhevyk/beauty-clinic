@@ -1,17 +1,17 @@
 import { Suspense } from "react";
 
+import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import { keyframes } from "@mui/material/styles";
-import { styled } from "@mui/material";
 
 import caretIcon from "@/assets/icons/caret-left.svg";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
 import useToggle from "@/hooks/useToggle.ts";
-import ErrorAlertLayout from "@/layouts/ErrorLayout.tsx";
+import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";
 import showSnackbar from "@/utils/showSnackbar";
 
 import TreatmentDetails from "./components/TreatmentDetails";

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@mui/material";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import App from "@/App.tsx";
 import { client } from "@/config/apollo";

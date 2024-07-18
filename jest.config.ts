@@ -17,7 +17,7 @@ const config: Config = {
         },
       },
     ],
-    "^.+\\.svg$": "jest-transformer-svg", // TODO: use following in vite plugins: plugins: [react(), svgr({ include: '**/*.svg' })],
+    "^.+\\.svg$": "jest-transformer-svg",
   },
   moduleNameMapper: {
     // import aliases

@@ -1,5 +1,6 @@
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import googleMapPinIcon from "@/assets/icons/map-pin.svg?url";
 

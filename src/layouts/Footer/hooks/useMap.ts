@@ -2,10 +2,12 @@ import { useEffect, useRef } from "react";
 
 import mapboxgl, { LngLatLike, MapboxOptions } from "mapbox-gl";
 
-const coordinates: LngLatLike = {
+export const MAP_COORDINATES: LngLatLike = {
   lng: -122.41942697025132,
   lat: 37.77489791779846,
 };
+
+const isTestMode = import.meta.env.MODE === "test";
 
 const createMapOptions = (
   container: MapboxOptions["container"]
@@ -14,10 +16,10 @@ const createMapOptions = (
     container,
     accessToken: import.meta.env.VITE_APP_MAPBOX_ACCESS_TOKEN,
     style: import.meta.env.VITE_APP_MAPBOX_STYLE_LINK,
-    center: coordinates,
+    center: MAP_COORDINATES,
     zoom: 13.2,
     interactive: false,
-    testMode: import.meta.env.MODE === "test",
+    testMode: isTestMode,
   };
 };
 
@@ -45,7 +47,7 @@ export default function useMap() {
     popup.addTo(map);
 
     const marker = new mapboxgl.Marker({ element: markerIcon });
-    marker.setLngLat(coordinates);
+    marker.setLngLat(MAP_COORDINATES);
     marker.addTo(map);
     marker.setPopup(popup);
   }, []);

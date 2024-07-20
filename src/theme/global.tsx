@@ -23,6 +23,9 @@ const styles = {
   ".MuiDialog-root:has(.MuiDialog-paperFullScreen)": {
     width: "100vw",
   },
+  ".mapboxgl-popup-content": {
+    padding: "7px 13px",
+  },
 };
 
 export function CSSInit() {

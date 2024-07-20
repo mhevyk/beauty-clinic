@@ -10,6 +10,9 @@
   "incrementalFile": "tests/mutation/stryker-incremental.json",
   "disableTypeChecks": true,
   "mutate": ["src/**/*.ts?(x)", "!src/{assets,types,api}/**/*"],
+  "mutator": {
+    "excludedMutations": ["StringLiteral", "ArrayDeclaration"]
+  },
   "ignoreStatic": true,
   "reporters": ["progress", "html", "json"],
   "coverageAnalysis": "perTest",

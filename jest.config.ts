@@ -1,5 +1,15 @@
 import type { Config } from "jest";
 
+const { parsed } = require("@dotenvx/dotenvx").config();
+
+const envVars = Object.keys(parsed).reduce<Record<string, string>>(
+  (vars, envVariableKey) => {
+    vars[`import.meta.env.${envVariableKey}`] = `'${envVariableKey}'`;
+    return vars;
+  },
+  {}
+);
+
 const config: Config = {
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.ts"],
@@ -10,6 +20,14 @@ const config: Config = {
       {
         jsc: {
           transform: {
+            optimizer: {
+              globals: {
+                vars: {
+                  "import.meta.env.MODE": "'test'",
+                  ...envVars,
+                },
+              },
+            },
             react: {
               runtime: "automatic",
             },
@@ -17,7 +35,7 @@ const config: Config = {
         },
       },
     ],
-    "^.+\\.svg$": "jest-transformer-svg", // TODO: use following in vite plugins: plugins: [react(), svgr({ include: '**/*.svg' })],
+    "^.+\\.svg$": "jest-transformer-svg",
   },
   moduleNameMapper: {
     // import aliases

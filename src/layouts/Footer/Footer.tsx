@@ -1,9 +1,9 @@
+import { styled } from "@mui/material";
 import Container from "@mui/material/Container";
-import styled from "@mui/material/styles/styled";
 
-import { CONTACTS_SECTION_ID } from "@/constants/index";
+import { CONTACTS_SECTION_ID } from "@/constants";
 import ContactDetails from "@/layouts/footer/components/ContactDetails";
-import GoogleMap from "@/layouts/footer/components/GoogleMap";
+import LocationMap from "@/layouts/footer/components/LocationMap";
 
 const FooterWrapper = styled(Container)({
   scrollMarginTop: "230px",
@@ -41,7 +41,7 @@ export default function Footer() {
     <FooterWrapper component="footer" id={CONTACTS_SECTION_ID} maxWidth={false}>
       <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
       <ContactDetails />
-      <GoogleMap />
+      <LocationMap />
       <CopyrightText>© 2023 by Maksym Hevyk and Vasyl Feniak</CopyrightText>
     </FooterWrapper>
   );

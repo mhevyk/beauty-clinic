@@ -27,6 +27,9 @@ jest.mock("mapbox-gl", () => ({
   })),
 }));
 
+const mapContainer = document.createElement("div");
+const markerIcon = document.createElement("img");
+
 const MapPlayground = () => {
   const { mapContainerRef, markerIconRef } = useMap();
 
@@ -54,12 +57,23 @@ const mockRefs = (
     .mockReturnValueOnce({ current: markerIcon });
 };
 
+const testHookWithRefs = (
+  mapContainer: HTMLDivElement | null,
+  markerIcon: HTMLImageElement | null
+) => {
+  mockRefs(mapContainer, markerIcon);
+  renderHook(() => useMap());
+
+  expect(mapboxgl.Map).not.toHaveBeenCalled();
+};
+
 describe("useMap()", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it("should initialize map with marker and popup", async () => {
+    mockRefs(mapContainer, markerIcon);
     render(<MapPlayground />);
 
     await waitFor(() => {
@@ -80,11 +94,16 @@ describe("useMap()", () => {
       showCompass: false,
     });
 
+    expect(mapboxgl.Popup).toHaveBeenCalledWith({
+      offset: 25,
+      closeOnClick: false,
+    });
     expect(mockSetHTML).toHaveBeenCalledWith(
       expect.stringContaining("Lily Organic Beautician")
     );
     expect(mockAddTo).toHaveBeenCalledTimes(2);
 
+    expect(mapboxgl.Marker).toHaveBeenCalledWith({ element: markerIcon });
     expect(mockSetLngLat).toHaveBeenCalledWith(MAP_COORDINATES);
     expect(mockSetPopup).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -95,16 +114,10 @@ describe("useMap()", () => {
   });
 
   it("should not initialize map if map container ref is null", () => {
-    mockRefs(null, document.createElement("img"));
-    renderHook(() => useMap());
-
-    expect(mapboxgl.Map).not.toHaveBeenCalled();
+    testHookWithRefs(null, markerIcon);
   });
 
   it("should not initialize map if marker icons ref is null", () => {
-    mockRefs(document.createElement("div"), null);
-    renderHook(() => useMap());
-
-    expect(mapboxgl.Map).not.toHaveBeenCalled();
+    testHookWithRefs(mapContainer, null);
   });
 });

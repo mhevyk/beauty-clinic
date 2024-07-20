@@ -6,15 +6,14 @@ import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import { keyframes } from "@mui/material/styles";
 
-import caretIcon from "@/assets/icons/caret-left.svg";
+import CaretAnimatedIcon from "@/components/CaretAnimatedIcon.tsx";
+import useToggle from "@/hooks/useToggle.ts";
+import useItemsToOrder from "@/pages/BookingFormPage/hooks/useItemsToOrder";
+import { useUserStore } from "@/store/user/userStore";
+import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
 
-import useToggle from "@/hooks/use-toggle/useToggle.ts";
-import BookingDetailsItem from "@/pages/booking-form/components/booking-details-item/BookingDetailsItem";
-import useItemsToOrder from "@/pages/booking-form/hooks/use-items-to-order/useItemsToOrder";
-import { useUserStore } from "@/store/user/userStore.ts";
-import { OrderItem } from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart.ts";
+import BookingDetailsItem from "./BookingDetailsItem";
 
 const ANIMATION_DURATION_MS = 550;
 
@@ -23,18 +22,6 @@ const ButtonStyled = styled(Button)({
   flexDirection: "column",
   alignItems: "baseline",
 });
-
-type CaretIconProps = {
-  pointsToRight: boolean;
-};
-
-//TODO: make this animation global
-const IconStyled = styled(caretIcon, {
-  shouldForwardProp: prop => prop !== "pointsToRight",
-})<CaretIconProps>(({ pointsToRight, theme }) => ({
-  stroke: theme.palette.secondary.main,
-  animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
-}));
 
 export default function BookingDetails() {
   const { isOpen, toggle } = useToggle();
@@ -52,7 +39,12 @@ export default function BookingDetails() {
       <Box alignItems="center" display="flex" onClick={toggle}>
         <ButtonStyled fullWidth>Booking Details</ButtonStyled>
         <IconButton>
-          <IconStyled pointsToRight={isOpen} />
+          <CaretAnimatedIcon
+            hasToggle={isOpen}
+            AnimationDuration={ANIMATION_DURATION_MS}
+            rotateStartPosition="270deg"
+            rotateEndPosition="90deg"
+          />
         </IconButton>
       </Box>
       <Collapse
@@ -73,21 +65,3 @@ export default function BookingDetails() {
     </>
   );
 }
-
-const rotateForward = keyframes`
-  from {
-    transform: rotate(270deg);
-  }
-  to {
-    transform: rotate(90deg);
-  }
-`;
-
-const rotateBackward = keyframes`
-  from {
-    transform: rotate(90deg);
-  }
-  to {
-    transform: rotate(270deg);
-  }
-`;

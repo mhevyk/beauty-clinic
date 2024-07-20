@@ -1,15 +1,13 @@
-import { keyframes } from "@mui/material";
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-import CaretIconSvg from "@/assets/icons/caret-left.svg";
-
-import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";
-import CartDrawerFooter from "@/containers/drawers/cart-drawer/components/CartDrawerFooter";
-import CartDrawerList from "@/containers/drawers/cart-drawer/components/CartDrawerList";
+import CaretAnimatedIcon from "@/components/CaretAnimatedIcon.tsx";
+import useLockPageScroll from "@/hooks/useLockPageScroll";
+import CartDrawerFooter from "@/layouts/navbar/components/CartDrawerFooter";
+import CartDrawerList from "@/layouts/navbar/components/CartDrawerList";
 import { useCartStore } from "@/store/cart/cartStore";
 
 const ANIMATION_DURATION_MS = 550;
@@ -49,17 +47,6 @@ const CartContent = styled(Box)({
   padding: "0 8px",
 });
 
-type CaretIconProps = {
-  pointsToRight: boolean;
-};
-
-const CaretIcon = styled(CaretIconSvg, {
-  shouldForwardProp: prop => prop !== "pointsToRight",
-})<CaretIconProps>(({ pointsToRight, theme }) => ({
-  stroke: theme.palette.primary.main,
-  animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
-}));
-
 type CartDrawerProps = {
   isCartDrawerOpen: boolean;
   closeCartDrawer: () => void;
@@ -85,7 +72,13 @@ export default function CartDrawer({
       <DrawerContentWrapper>
         <CartHeader>
           <CaretIconButton onClick={closeCartDrawer}>
-            <CaretIcon pointsToRight={isCartDrawerOpen} />
+            <CaretAnimatedIcon
+              color="white"
+              hasToggle={isCartDrawerOpen}
+              AnimationDuration={ANIMATION_DURATION_MS}
+              rotateStartPosition="0deg"
+              rotateEndPosition="180deg"
+            />
           </CaretIconButton>
           <Typography variant="heading" color="white" fontSize="22px">
             Cart
@@ -99,21 +92,3 @@ export default function CartDrawer({
     </Drawer>
   );
 }
-
-const rotateForward = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(180deg);
-  }
-`;
-
-const rotateBackward = keyframes`
-  from {
-    transform: rotate(180deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
-`;

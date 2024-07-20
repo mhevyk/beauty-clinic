@@ -8,7 +8,7 @@ const renderHookWithValue = (value: string, delay?: number) => {
   });
 };
 
-describe("useDebouncedValue", () => {
+describe("useDebouncedValue()", () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });

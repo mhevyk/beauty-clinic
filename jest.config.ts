@@ -50,9 +50,9 @@ const config: Config = {
   },
 
   // coverage
-  collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
+  collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
   coverageReporters: ["html", "lcov"],
-  coveragePathIgnorePatterns: ["node_modules"],
+  coveragePathIgnorePatterns: ["node_modules", "src/api/generated/index.tsx"],
   coverageDirectory: "<rootDir>/tests/unit/coverage",
 };
 

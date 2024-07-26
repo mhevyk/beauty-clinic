@@ -7,7 +7,7 @@ import {
   startOfWeek,
 } from "date-fns";
 
-export function getMonthRange(month: Date) {
+export default function getMonthRange(month: Date) {
   const days = eachDayOfInterval({
     start: startOfWeek(startOfMonth(month)),
     end: endOfWeek(endOfMonth(month)),
@@ -15,12 +15,7 @@ export function getMonthRange(month: Date) {
 
   // adding days for another week to force 42 days output
   while (days.length < 42) {
-    const lastDay = days.at(-1);
-
-    if (!lastDay) {
-      break;
-    }
-
+    const lastDay = days.at(-1)!;
     days.push(addDays(lastDay, 1));
   }
 

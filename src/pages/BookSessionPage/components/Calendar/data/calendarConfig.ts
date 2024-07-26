@@ -1,7 +1,8 @@
 import { Duration } from "date-fns";
 
+import getMonthRange from "@/pages/BookSessionPage/components/Calendar/utils/getMonthRange";
+
 import { CalendarSize } from "../types";
-import { getMonthRange } from "../utils/getMonthRange";
 import { getWeekRange } from "../utils/getWeekRange";
 
 type CalendarConfigItem = {

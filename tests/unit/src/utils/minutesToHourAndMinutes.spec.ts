@@ -1,7 +1,7 @@
 import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes";
 
-describe("minutesToHourAndMinutes", () => {
-  it("should convert 0 minutes correctly", () => {
+describe("minutesToHourAndMinutes()", () => {
+  test("converts 0 minutes correctly", () => {
     expect(minutesToHourAndMinutes(0)).toBe("0 hr");
   });
 

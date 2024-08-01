@@ -11,10 +11,10 @@ export default function useSelectedQualifiedEmployee(treatmentId: number) {
 
   const qualifiedEmployees: QualifiedEmployee[] = data.qualifiedEmployees;
 
-  // TODO: handle case if server returns empty array
-  const initialSelectedOption = qualifiedEmployees[0]!.id;
+  const initialSelectedOption =
+    qualifiedEmployees.length > 0 ? qualifiedEmployees[0].id : null;
 
-  const [selectedEmployeeId, setSelectedEmployeeId] = useState(
+  const [selectedEmployeeId, setSelectedEmployeeId] = useState<number | null>(
     initialSelectedOption
   );
 

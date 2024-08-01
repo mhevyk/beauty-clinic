@@ -1,8 +1,17 @@
 import { PaletteOptions } from "@mui/material";
 
 const palette: PaletteOptions = {
+  GrayDisable: {
+    main: "#BBBBBBFF",
+  },
+  CreamBeige: {
+    main: "#f1ebde",
+  },
   GrayPhoneNav: {
     main: "#605f5d",
+  },
+  SoftGray: {
+    main: "#b5b4b1",
   },
   Transparent: {
     main: "rgba(0, 0, 0, 0)",

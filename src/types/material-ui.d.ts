@@ -12,7 +12,10 @@ type CustomColors =
   | "SteelMist"
   | "PinkChiffon"
   | "Transparent"
-  | "GrayPhoneNav";
+  | "GrayPhoneNav"
+  | "SoftGray"
+  | "CreamBeige"
+  | "GrayDisable";
 
 type CustomPalette = Record<CustomColors, SimplePaletteColorOptions>;
 

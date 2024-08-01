@@ -17,12 +17,11 @@ export default function ForgotPasswordLink() {
 
   return (
     <>
-      {/* TODO: change theme to make it work */}
-      {/* @ts-expect-error */}
       <ForgotPasswordLinkStyled
         component={Typography}
         variant="accent"
         onClick={open}
+        to=""
       >
         Forgot password?
       </ForgotPasswordLinkStyled>

@@ -8,13 +8,12 @@ import { Employee } from "@api/hooks";
 
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 
-//TODO: add color to palette
 const NextStepButtonStyled = styled(Button)(({ theme }) => ({
   marginTop: "32px",
   fontWeight: 800,
   "&:disabled": {
-    backgroundColor: "#b5b4b1",
-    borderColor: "#b5b4b1",
+    backgroundColor: theme.palette.SoftGray.main,
+    borderColor: theme.palette.SoftGray.main,
     color: theme.palette.primary.main,
   },
 }));

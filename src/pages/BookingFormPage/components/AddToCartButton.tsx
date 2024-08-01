@@ -11,11 +11,12 @@ import theme from "@/theme/theme";
 
 import useSelectedTreatmentSession from "../hooks/useSelectedTreatmentSession";
 
-const ActionButton = styled(ButtonWithSpinner)({
+const ActionButton = styled(ButtonWithSpinner)(({ theme }) => ({
   ":disabled": {
-    border: "1px solid #bbb", // TODO: add some gray color to theme
+    borderColor: theme.palette.GrayDisable.main,
+    border: "1px solid",
   },
-});
+}));
 
 export default function AddToCartButton() {
   const addToCart = useCartStore(store => store.addToCart);

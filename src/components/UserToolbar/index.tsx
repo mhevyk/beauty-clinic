@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef } from "react";
 
 import { styled } from "@mui/material";
+import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 
@@ -36,7 +37,6 @@ const LoginLink = styled(LinkStyled)({
 
 type UserToolbarProps = Omit<ComponentPropsWithoutRef<typeof LoginLink>, "to">;
 
-// TODO: complete design for mobile
 export default function UserToolbar(props: UserToolbarProps) {
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
   const isAuthenticating = useUserStore(store => store.isAuthenticating);
@@ -47,12 +47,12 @@ export default function UserToolbar(props: UserToolbarProps) {
 
   if (isAuthenticated) {
     return (
-      <>
+      <Box display="flex">
         <MyAccountButton />
         <IconButton>
           <BellIconSvg style={{ width: "25px", height: "25px" }} />
         </IconButton>
-      </>
+      </Box>
     );
   }
 

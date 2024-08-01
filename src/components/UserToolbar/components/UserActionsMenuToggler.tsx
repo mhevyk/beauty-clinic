@@ -1,8 +1,9 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useRef } from "react";
 
 import { styled } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
 
 import PointerDownIconSvg from "@/assets/icons/pointer-down.svg";
 
@@ -35,13 +36,21 @@ export default function UserActionsMenuToggler({
 }: UserActionsMenuTogglerProps) {
   const user = useCurrentUser();
 
+  const iconButtonRef = useRef(null);
+
+  const handleButtonFocus = () => {
+    if (iconButtonRef.current) {
+      iconButtonRef.current.focus();
+    }
+  };
+
   if (!user) {
     return null;
   }
 
-  // TODO: fix styles on focus and improve on hover
   return (
     <Button
+      onFocus={handleButtonFocus}
       size="large"
       onClick={onClick}
       id={`${id}-button`}
@@ -49,11 +58,16 @@ export default function UserActionsMenuToggler({
       aria-expanded={isOpen ? "true" : undefined}
       aria-haspopup="true"
       startIcon={<PointerDownIconSvg width={15} height={15} />}
-      sx={{ padding: 0, gap: "4px" }}
+      sx={{
+        padding: 0,
+        gap: "4px",
+      }}
     >
-      <AvatarStyled username={user.username}>
-        {getAvatarLabel(user.username)}
-      </AvatarStyled>
+      <IconButton ref={iconButtonRef}>
+        <AvatarStyled username={user.username}>
+          {getAvatarLabel(user.username)}
+        </AvatarStyled>
+      </IconButton>
     </Button>
   );
 }

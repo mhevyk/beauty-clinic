@@ -23,6 +23,13 @@ const AppBarStyled = styled(AppBar)(({ theme }) => ({
   },
 }));
 
+const BoxStyled = styled(Box)({
+  marginRight: "12px",
+  display: "flex",
+  alignItems: "center",
+  gap: "12px",
+});
+
 const LinkStyled = styled(Link)({
   transition: "color 400ms",
 });
@@ -62,18 +69,10 @@ export default function BurgerMenu() {
           <Box sx={{ flexGrow: 1, visibility }}>
             {isSmallScreen && <LogoLink to="/">Lily.</LogoLink>}
           </Box>
-          {/* TODO: fix styles */}
           {!isSmallScreen && (
-            <Box
-              sx={{
-                marginRight: "12px",
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-              }}
-            >
+            <BoxStyled>
               <UserToolbar />
-            </Box>
+            </BoxStyled>
           )}
           <CartDrawerButton visibility={visibility} />
           {isSmallScreen && <BurgerButton isActive={isOpen} onClick={toggle} />}

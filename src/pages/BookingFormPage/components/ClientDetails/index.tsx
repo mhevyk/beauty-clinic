@@ -5,12 +5,11 @@ import AppLink from "@/components/AppLink";
 import BookingForm from "@/pages/BookingFormPage/components/ClientDetails/components/BookingForm.tsx";
 import { useUserStore } from "@/store/user/userStore.ts";
 
-const LoginPromptBox = styled(Box)({
+const LoginPromptBox = styled(Box)(({ theme }) => ({
   padding: "12px",
   margin: "16px 0",
-  //   TODO: add this button in palette
-  backgroundColor: "#f1ebde",
-});
+  backgroundColor: theme.palette.CreamBeige.main,
+}));
 
 const LoginPromptTypography = styled("span")(({ theme }) => ({
   ...theme.typography.paragraph,

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { styled } from "@mui/material";
+import { LinearProgress, styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
@@ -56,8 +56,13 @@ export default function ServiceDetails({
             })
           }
         >
-          {/* TODO: change fallback */}
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <Box padding="25px">
+                <LinearProgress color="secondary" />
+              </Box>
+            }
+          >
             <TreatmentDetails hasAvailableSession={hasAvailableSession} />
           </Suspense>
         </ErrorBoundary>

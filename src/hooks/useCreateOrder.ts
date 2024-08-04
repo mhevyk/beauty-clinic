@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from "react";
 
 import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
-import useSuccessfulOrderHandler from "@/pages/BookingFormPage/hooks/useSuccessfulOrderHandler.ts";
-import { useUserStore } from "@/store/user/userStore.ts";
-import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
-import showSnackbar from "@/utils/showSnackbar.ts";
+import useSuccessfulOrderHandler from "@/pages/BookingFormPage/hooks/useSuccessfulOrderHandler";
+import { useUserStore } from "@/store/user/userStore";
+import { OrderItem } from "@/utils/getSessionsToOrderFromCart";
+import showSnackbar from "@/utils/showSnackbar";
 import {
   CreateOrderByAuthorizedUserInput,
   useCreateOrderByAuthorizedUserMutation,
@@ -49,17 +49,12 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
         return;
       }
 
-      const guestUserVariables = {
-        ...baseVariables,
-        message: values.message,
-        email: values.email,
-        name: values.name,
-        phoneNumber: values.phoneNumber,
-      };
-
       await createOrderByGuestUser({
         variables: {
-          input: guestUserVariables,
+          input: {
+            ...baseVariables,
+            ...values,
+          },
         },
       });
       handleOrderSuccess();
@@ -71,7 +66,7 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
     if (creatingOrderByGuestError) {
       showSnackbar({
         message: creatingOrderByGuestError.message,
-        autohide: false,
+        autohide: true,
       });
     }
   }, [creatingOrderByGuestError]);

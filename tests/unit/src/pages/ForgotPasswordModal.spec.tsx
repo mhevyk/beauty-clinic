@@ -1,9 +1,11 @@
-import { act, fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { act } from "react";
 
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 import typeIntoInput from "@tests/unit/utils/typeIntoInput";
 
 import ForgotPasswordModal from "@/pages/SignInPage/components/ForgotPasswordModal";
+import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/SignInPage/components/ForgotPasswordModal/constants";
 import useCountdown from "@/pages/SignInPage/hooks/useCountdown";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";
@@ -22,7 +24,7 @@ const mockEmail = "test@gmail.com";
 const mockHandleClose = jest.fn();
 const mockSendEmail = jest.fn();
 
-jest.mock("@utils/showSnackbar", () => ({
+jest.mock("@/utils/showSnackbar", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
@@ -32,19 +34,15 @@ jest.mock("@api/hooks", () => ({
   useForgotPasswordMutation: jest.fn(() => [mockSendEmail, { loading: true }]),
 }));
 
-jest.mock("@pages/SignInPage/hooks/useCountdown");
-
-(useCountdown as jest.Mock).mockImplementation(
-  ({ onCountdownStarted, onCountdownFinished }) => {
-    return {
-      secondsLeft: 5,
-      start: () => {
-        onCountdownStarted();
-        setTimeout(onCountdownFinished, 5000); // Simulate countdown end
-      },
-    };
-  }
-);
+jest.mock("@/pages/SignInPage/hooks/useCountdown", () => ({
+  __esModule: true,
+  ...jest.requireActual("@/pages/SignInPage/hooks/useCountdown"),
+  default: jest
+    .fn()
+    .mockImplementation(
+      jest.requireActual("@/pages/SignInPage/hooks/useCountdown").default
+    ),
+}));
 
 const renderAndSubmitForm = async () => {
   renderWithProviders(
@@ -59,6 +57,10 @@ const renderAndSubmitForm = async () => {
 };
 
 describe("<ForgotPasswordModal />", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("should send letter to user's email correctly", async () => {
     (useForgotPasswordMutation as jest.Mock).mockReturnValue([
       mockSendEmail,
@@ -95,14 +97,23 @@ describe("<ForgotPasswordModal />", () => {
     jest.useFakeTimers();
     await renderAndSubmitForm();
 
-    act(() => {
-      jest.advanceTimersByTime(5000);
+    expect(useCountdown).toHaveBeenCalledWith({
+      seconds: RESEND_EMAIL_MIN_SECONDS,
     });
 
-    await waitFor(() => {
-      expect(useCountdown).toHaveBeenCalled();
+    act(() => {
+      jest.advanceTimersToNextTimer();
     });
 
     jest.useRealTimers();
+
+    const resendButtonAfterTimerFinished = screen.getByText("Send letter");
+    expect(resendButtonAfterTimerFinished).toBeInTheDocument();
+
+    const digitAfterTimerFinished = screen.queryByText("digit");
+    expect(digitAfterTimerFinished).not.toBeInTheDocument();
+
+    const openLockIconAfterTimerFinished = screen.getByTestId("open-lock-icon");
+    expect(openLockIconAfterTimerFinished).toBeInTheDocument();
   });
 });

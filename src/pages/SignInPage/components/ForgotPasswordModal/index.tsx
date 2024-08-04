@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { useMediaQuery } from "@mui/material";
 import { styled } from "@mui/material";
@@ -111,6 +111,11 @@ const DividerStyled = styled(Divider)({
   maxWidth: "198px",
 });
 
+const ResetPasswordFormWrapper = styled(Box)({
+  width: "100%",
+  marginBottom: "25px",
+});
+
 type ForgotPasswordModalProps = {
   isOpen: boolean;
   handleClose: () => void;
@@ -130,12 +135,13 @@ export default function ForgotPasswordModal({
 }: ForgotPasswordModalProps) {
   const forgotPasswordAttemptsRef = useRef(0);
   const resendEmailDurationRef = useRef(RESEND_EMAIL_MIN_SECONDS); // in seconds
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const { secondsLeft, start: startCountdown } = useCountdown({
+  const {
+    isTimerRunning,
+    secondsLeft,
+    start: startCountdown,
+  } = useCountdown({
     seconds: resendEmailDurationRef.current,
-    onCountdownStarted: () => setIsTimerRunning(true),
-    onCountdownFinished: () => setIsTimerRunning(false),
   });
 
   const [
@@ -201,9 +207,9 @@ export default function ForgotPasswordModal({
           <Box>
             <CircleWrapper>
               {isTimerRunning ? (
-                <Digit>{secondsLeft}</Digit>
+                <Digit data-testid="digit">{secondsLeft}</Digit>
               ) : (
-                <OpenLockIconSvg />
+                <OpenLockIconSvg data-testid="open-lock-icon" />
               )}
             </CircleWrapper>
           </Box>
@@ -223,9 +229,9 @@ export default function ForgotPasswordModal({
         >
           {({ handleSubmit }) => (
             <>
-              <Box sx={{ width: "100%", marginBottom: "25px" }}>
+              <ResetPasswordFormWrapper>
                 <ResetPasswordForm />
-              </Box>
+              </ResetPasswordFormWrapper>
               <SubmitButton
                 variant="primary"
                 size="small"

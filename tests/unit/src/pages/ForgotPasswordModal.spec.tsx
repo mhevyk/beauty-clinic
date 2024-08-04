@@ -1,5 +1,4 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
-import { act } from "react";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 import typeIntoInput from "@tests/unit/utils/typeIntoInput";
@@ -53,7 +52,10 @@ const renderAndSubmitForm = async () => {
   await typeIntoInput(emailInput, mockEmail);
 
   const submitButton = screen.getByText("Send letter");
-  fireEvent.click(submitButton);
+
+  await act(async () => {
+    fireEvent.click(submitButton);
+  });
 };
 
 describe("<ForgotPasswordModal />", () => {

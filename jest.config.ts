@@ -13,6 +13,7 @@ const envVars = Object.keys(parsed).reduce<Record<string, string>>(
 const config: Config = {
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.ts"],
+  testMatch: ["<rootDir>/tests/unit/**/*.spec.ts?(x)"], // directories to find tests
   verbose: true,
   transform: {
     "^.+\\.(t|j)sx?$": [

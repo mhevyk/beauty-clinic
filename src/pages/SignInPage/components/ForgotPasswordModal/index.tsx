@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { useMediaQuery } from "@mui/material";
 import { styled } from "@mui/material";
@@ -13,19 +13,18 @@ import { Formik } from "formik";
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
 import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
 
-import AppLink from "@/components/AppLink.tsx";
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
-import useLockPageScroll from "@/hooks/useLockPageScroll.ts";
+import AppLink from "@/components/AppLink";
+import ButtonWithSpinner from "@/components/ButtonWithSpinner";
+import useLockPageScroll from "@/hooks/useLockPageScroll";
+import ResetPasswordForm from "@/pages/SignInPage/components/ForgotPasswordForm";
+import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/SignInPage/components/ForgotPasswordModal/constants";
+import updateResendEmailDuration from "@/pages/SignInPage/components/ForgotPasswordModal/utils/updateResendEmailDuration";
+import useCountdown from "@/pages/SignInPage/hooks/useCountdown";
 import theme from "@/theme/theme.ts";
-import extractErrorMessage from "@/utils/extractErrorMessage.ts";
-import showSnackbar from "@/utils/showSnackbar.ts";
-import { emailFormSchema } from "@/validation/emailFormSchema.ts";
+import extractErrorMessage from "@/utils/extractErrorMessage";
+import showSnackbar from "@/utils/showSnackbar";
+import { emailFormSchema } from "@/validation/emailFormSchema";
 import { useForgotPasswordMutation } from "@api/hooks";
-
-import useCountdown from "../../hooks/useCountdown.ts";
-import ResetPasswordForm from "../ForgotPasswordForm.tsx";
-import { RESEND_EMAIL_MIN_SECONDS } from "./constants";
-import updateResendEmailDuration from "./utils/updateResendEmailDuration.ts";
 
 const CircleWrapper = styled(Box)(({ theme }) => ({
   width: "115px",
@@ -112,6 +111,11 @@ const DividerStyled = styled(Divider)({
   maxWidth: "198px",
 });
 
+const ResetPasswordFormWrapper = styled(Box)({
+  width: "100%",
+  marginBottom: "25px",
+});
+
 type ForgotPasswordModalProps = {
   isOpen: boolean;
   handleClose: () => void;
@@ -125,18 +129,19 @@ const initialFormValues: ForgotPasswordFormValues = {
   email: "",
 };
 
-export default function Index({
+export default function ForgotPasswordModal({
   isOpen,
   handleClose,
 }: ForgotPasswordModalProps) {
   const forgotPasswordAttemptsRef = useRef(0);
   const resendEmailDurationRef = useRef(RESEND_EMAIL_MIN_SECONDS); // in seconds
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  const { secondsLeft, start: startCountdown } = useCountdown({
+  const {
+    isTimerRunning,
+    secondsLeft,
+    start: startCountdown,
+  } = useCountdown({
     seconds: resendEmailDurationRef.current,
-    onCountdownStarted: () => setIsTimerRunning(true),
-    onCountdownFinished: () => setIsTimerRunning(false),
   });
 
   const [
@@ -202,9 +207,9 @@ export default function Index({
           <Box>
             <CircleWrapper>
               {isTimerRunning ? (
-                <Digit>{secondsLeft}</Digit>
+                <Digit data-testid="digit">{secondsLeft}</Digit>
               ) : (
-                <OpenLockIconSvg />
+                <OpenLockIconSvg data-testid="open-lock-icon" />
               )}
             </CircleWrapper>
           </Box>
@@ -224,9 +229,9 @@ export default function Index({
         >
           {({ handleSubmit }) => (
             <>
-              <Box sx={{ width: "100%", marginBottom: "25px" }}>
+              <ResetPasswordFormWrapper>
                 <ResetPasswordForm />
-              </Box>
+              </ResetPasswordFormWrapper>
               <SubmitButton
                 variant="primary"
                 size="small"

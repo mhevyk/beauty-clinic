@@ -15,6 +15,11 @@ describe("<ErrorBoundary />", () => {
     jest.spyOn(console, "error").mockImplementation(() => {});
   });
 
+  it("should have null value initially for error", () => {
+    const instance = new ErrorBoundary({ children: <div /> });
+    expect(instance.state.error).toBeNull();
+  });
+
   it("should render children when no error is thrown", () => {
     render(
       <ErrorBoundary>

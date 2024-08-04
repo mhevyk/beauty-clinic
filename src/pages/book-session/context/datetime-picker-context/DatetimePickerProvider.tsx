@@ -18,8 +18,8 @@ type DatetimePickerContextType = {
   setSelectedDate: Dispatch<SetStateAction<Date>>;
   selectedTime: Date | null;
   setSelectedTime: Dispatch<SetStateAction<Date | null>>;
-  selectedEmployeeId: number;
-  setSelectedEmployeeId: Dispatch<SetStateAction<number>>;
+  selectedEmployeeId: number | null;
+  setSelectedEmployeeId: Dispatch<SetStateAction<number | null>>;
   qualifiedEmployees: QualifiedEmployee[];
   treatmentId: number;
 };

@@ -18,7 +18,7 @@ export default function EmployeeSelect() {
       <InputLabel id={`${id}-select-label`}>Employee</InputLabel>
       <Select
         labelId={`${id}-select-label`}
-        value={selectedEmployeeId?.toString()}
+        value={selectedEmployeeId}
         onChange={event => setSelectedEmployeeId(Number(event.target.value))}
       >
         {qualifiedEmployees.map(option => (

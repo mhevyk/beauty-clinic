@@ -9,8 +9,8 @@ import { keyframes } from "@mui/material/styles";
 
 import caretIcon from "@/assets/icons/caret-left.svg";
 
-import ErrorBoundary from "@/components/ErrorBoundary.tsx";
-import useToggle from "@/hooks/useToggle.ts";
+import ErrorBoundary from "@/components/error-boundary/ErrorBoundary.tsx";
+import useToggle from "@/hooks/use-toggle/useToggle.ts";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout.tsx";
 import showSnackbar from "@/utils/showSnackbar.ts";
 

@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 import { useFormikContext } from "formik";
 
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
+import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 
 const ActionButton = styled(ButtonWithSpinner)({
   marginTop: "12px",

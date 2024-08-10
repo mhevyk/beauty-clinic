@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 
+import { Interval } from "@/types/helpers";
+
 type UseInterval = {
   onTick: () => void;
   duration: number;
 };
 
 export default function useInterval({ onTick, duration }: UseInterval) {
-  const timerRef = useRef<ReturnType<typeof setInterval>>();
+  const timerRef = useRef<Interval>();
 
   useEffect(() => {
     startInterval();

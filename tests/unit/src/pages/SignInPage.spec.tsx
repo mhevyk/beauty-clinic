@@ -4,7 +4,7 @@ import mockSignInCredentials from "@tests/unit/mocks/mockSignInCredentials";
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 import typeIntoInput from "@tests/unit/utils/typeIntoInput";
 
-import useSignIn from "@/hooks/auth/useSignIn";
+import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import SignInPage from "@/pages/sign-in/SignInPage.tsx";
 
 jest.mock("@/hooks/auth/useSignIn", () => ({

@@ -1,65 +1,44 @@
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import { Formik, useFormikContext } from "formik";
+import { Formik } from "formik";
 
-import AuthAlternativeLink from "@/components/AuthAlternativeLink.tsx";
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
-import PasswordForm, { PasswordFormValues } from "@/components/PasswordForm.tsx";
-import useSignUp from "@/hooks/auth/useSignUp.ts";
-import { useMultistepForm } from "@/hooks/useMultistepForm.ts";
-import theme from "@/theme/theme.ts";
+import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
+import useSignUp from "@/hooks/use-sign-up/useSignUp";
+import { useMultistepForm } from "@/hooks/use-multistep-form/useMultistepForm";
+import {
+  initialFormValues,
+  multistepFormConfig,
+} from "@/pages/sign-up/SignUpPage.constants";
+import { ButtonGroup } from "@/pages/sign-up/SignUpPage.styles";
+import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.types";
+import NextPageButton from "@/pages/sign-up/components/next-page-button/NextPageButton";
 import {
   repeatPasswordFormSchema,
   signUpFormSchema,
-} from "@/validation/signUpFormSchema.ts";
-
-import SignUpForm from "@/pages/sign-up/components/SignUpForm.tsx";
-
-export type SignUpFormValues = PasswordFormValues & {
-  username: string;
-  email: string;
-  phoneNumber: string;
-};
-
-const initialFormValues: SignUpFormValues = {
-  username: "",
-  email: "",
-  phoneNumber: "",
-  password: "",
-  repeatedPassword: "",
-};
+} from "@/validation/signUpFormSchema";
 
 export default function SignUpPage() {
   const { page, controls, hasNextPage, hasPreviousPage, isFirstPage } =
-    useMultistepForm({
-      pages: [<SignUpForm />, <PasswordForm />],
-    });
+    useMultistepForm(multistepFormConfig);
+
   const [signUp, { isSigningUp }] = useSignUp();
 
   async function handleSubmit(values: SignUpFormValues) {
     await signUp(values);
   }
 
+  const validationSchema = isFirstPage
+    ? signUpFormSchema
+    : repeatPasswordFormSchema;
+
   return (
     <Formik
       initialValues={initialFormValues}
       onSubmit={handleSubmit}
-      validationSchema={
-        isFirstPage ? signUpFormSchema : repeatPasswordFormSchema
-      }
+      validationSchema={validationSchema}
     >
       <>
         {page}
-        <Stack
-          direction="row"
-          gap="18px"
-          mt="48px"
-          sx={{
-            [theme.breakpoints.down("md")]: {
-              flexWrap: "wrap",
-            },
-          }}
-        >
+        <ButtonGroup>
           {hasPreviousPage && (
             <Button
               size="small"
@@ -75,7 +54,7 @@ export default function SignUpPage() {
             openNextPage={controls.nextPage}
             loading={isSigningUp}
           />
-        </Stack>
+        </ButtonGroup>
         <AuthAlternativeLink
           linkProps={{
             to: "/auth/signin",
@@ -84,41 +63,5 @@ export default function SignUpPage() {
         />
       </>
     </Formik>
-  );
-}
-
-type NextPageButtonProps = {
-  hasNextPage: boolean;
-  openNextPage: () => void;
-  loading: boolean;
-};
-
-function NextPageButton({
-  hasNextPage,
-  openNextPage,
-  loading,
-}: NextPageButtonProps) {
-  const { handleSubmit, validateForm } = useFormikContext();
-  async function handleNextPage() {
-    if (!hasNextPage) {
-      return handleSubmit();
-    }
-
-    const errors = await validateForm();
-    if (Object.keys(errors).length === 0) {
-      openNextPage();
-    }
-  }
-
-  return (
-    <ButtonWithSpinner
-      variant="primary"
-      size="small"
-      fullWidth
-      onClick={handleNextPage}
-      loading={loading}
-    >
-      {hasNextPage ? "Next" : "Sign up"}
-    </ButtonWithSpinner>
   );
 }

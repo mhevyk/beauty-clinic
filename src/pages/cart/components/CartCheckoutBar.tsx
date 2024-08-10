@@ -6,8 +6,8 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
-import useCreateOrder from "@/hooks/useCreateOrder.ts";
+import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
+import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import { useUserStore } from "@/store/user/userStore.ts";

@@ -1,6 +1,6 @@
 import { AppBar, styled, useMediaQuery } from "@mui/material";
 
-import useToggle from "@/hooks/useToggle";
+import useToggle from "@/hooks/use-toggle/useToggle";
 import BurgerButton from "@/layouts/sidebar/components/BurgerButton";
 import DrawerMenu from "@/layouts/sidebar/components/DrawerMenu";
 import Logo from "@/layouts/sidebar/components/Logo";

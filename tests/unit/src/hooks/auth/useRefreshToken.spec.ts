@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import useRefreshToken from "@/hooks/auth/useRefreshToken";
+import useRefreshToken from "@/hooks/use-refresh-token/useRefreshToken";
 import fetchAccessToken from "@/utils/fetchAccessToken";
 import showSnackbar from "@/utils/showSnackbar";
 

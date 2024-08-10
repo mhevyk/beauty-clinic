@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import mockZustandStore from "@tests/unit/utils/mockZustandStore";
 
-import useCreateOrder from "@/hooks/useCreateOrder";
+import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
 import useSuccessfulOrderHandler from "@/pages/booking-form/hooks/useSuccessfulOrderHandler";
 import { useUserStore } from "@/store/user/userStore";

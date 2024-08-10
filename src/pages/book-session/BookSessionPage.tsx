@@ -5,7 +5,7 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import ErrorBoundary from "@/components/ErrorBoundary.tsx";
+import ErrorBoundary from "@/components/error-boundary/ErrorBoundary.tsx";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout.tsx";
 import theme from "@/theme/theme.ts";
 

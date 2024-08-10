@@ -3,9 +3,9 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
-import AuthAlternativeLink from "@/components/AuthAlternativeLink.tsx";
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
-import PasswordForm, { PasswordFormValues } from "@/components/PasswordForm.tsx";
+import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
+import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
+import PasswordForm, { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
 import showSnackbar from "@/utils/showSnackbar.ts";
 import { repeatPasswordFormSchema } from "@/validation/signUpFormSchema.ts";
 import { useResetPasswordMutation } from "@api/hooks";

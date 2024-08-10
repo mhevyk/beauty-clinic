@@ -5,7 +5,7 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import { isBefore, startOfToday, subMinutes } from "date-fns";
 
-import useDebouncedValue from "@/hooks/useDebouncedValue.ts";
+import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue.ts";
 import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
 import theme from "@/theme/theme.ts";
 

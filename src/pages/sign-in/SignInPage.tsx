@@ -1,14 +1,13 @@
 import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
-import AuthAlternativeLink from "@/components/AuthAlternativeLink.tsx";
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
-import { PasswordFormValues } from "@/components/PasswordForm.tsx";
-import useSignIn from "@/hooks/auth/useSignIn.ts";
-import { signInFormSchema } from "@/validation/signInFormSchema.ts";
-
-import ResetPasswordLink from "./components/ForgotPasswordLink.tsx";
-import SignInForm from "./components/SignInForm.tsx";
+import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
+import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
+import { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
+import SignInForm from "@/containers/forms/sign-in-form/SignInForm";
+import useSignIn from "@/hooks/use-sign-in/useSignIn";
+import ResetPasswordLink from "@/pages/sign-in/components/forgot-password-link/ForgotPasswordLink";
+import { signInFormSchema } from "@/validation/signInFormSchema";
 
 export type SignInFormValues = Pick<PasswordFormValues, "password"> & {
   usernameOrEmail: string;

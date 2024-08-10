@@ -10,7 +10,7 @@ import { keyframes } from "@mui/material/styles";
 
 import caretIcon from "@/assets/icons/caret-left.svg";
 
-import useToggle from "@/hooks/useToggle.ts";
+import useToggle from "@/hooks/use-toggle/useToggle.ts";
 import useItemsToOrder from "@/pages/booking-form/hooks/useItemsToOrder.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
 import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";

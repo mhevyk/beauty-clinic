@@ -5,7 +5,7 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 
-import ButtonWithSpinner from "@/components/ButtonWithSpinner.tsx";
+import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import theme from "@/theme/theme.ts";
 

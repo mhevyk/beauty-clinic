@@ -5,7 +5,7 @@ import typeIntoInput from "@tests/unit/utils/typeIntoInput";
 
 import ForgotPasswordModal from "@/pages/sign-in/components/ForgotPasswordModal.tsx";
 import { RESEND_EMAIL_MIN_SECONDS } from "src/pages/sign-in/constants";
-import useCountdown from "@/pages/sign-in/hooks/useCountdown";
+import useCountdown from "@/pages/sign-in/hooks/use-countdown/useCountdown";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";
 import { useForgotPasswordMutation } from "@api/hooks";

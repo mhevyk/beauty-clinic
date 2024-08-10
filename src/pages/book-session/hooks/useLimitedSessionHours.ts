@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import useToggle from "@/hooks/useToggle.ts";
+import useToggle from "@/hooks/use-toggle/useToggle";
 import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
 
 export default function useLimitedSessionHours(hours: Date[] | null) {

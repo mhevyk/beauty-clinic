@@ -7,12 +7,12 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 
-import UserToolbar from "@/components/UserToolbar";
-import useToggle from "@/hooks/useToggle";
+import UserToolbar from "@/components/user-toolbar";
+import useToggle from "@/hooks/use-toggle/useToggle";
 import theme from "@/theme/theme";
 
 import BurgerButton from "./components/BurgerButton";
-import CartDrawerButton from "./components/CartDrawerButton";
+import CartDrawerButton from "../../containers/drawers/cart-drawer/components/CartDrawerButton";
 import MobileMenu from "./components/MobileMenu";
 
 const AppBarStyled = styled(AppBar)(({ theme }) => ({

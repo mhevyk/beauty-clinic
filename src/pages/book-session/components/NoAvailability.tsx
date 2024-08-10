@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-import useEventEmitter from "@/hooks/useEventEmitter.ts";
+import useEventEmitter from "@/hooks/use-event-emitter/useEventEmitter";
 import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
 
 import getNextWorkingDay from "@/pages/book-session/utils/getNextWorkingDay.ts";

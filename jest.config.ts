@@ -36,7 +36,9 @@ const config: Config = {
         },
       },
     ],
-    "^.+\\.svg$": "jest-transformer-svg",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/tests/unit/utils/fileTransformer.js",
+    "^.+\\.svg(\\?url)?$": "<rootDir>/tests/unit/utils/svgTransformer.js",
   },
   moduleNameMapper: {
     // import aliases
@@ -44,9 +46,9 @@ const config: Config = {
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
     "@tests/(.*)$": "<rootDir>/tests/$1",
 
+    "^@/(.*)\\?url$": "<rootDir>/src/$1",
+
     // mocks and stubs
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$":
-      "identity-obj-proxy",
     "\\.(css|scss)$": "identity-obj-proxy",
   },
 

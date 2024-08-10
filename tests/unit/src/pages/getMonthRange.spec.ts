@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-import getMonthRange from "@/pages/BookSessionPage/components/Calendar/utils/getMonthRange";
+import getMonthRange from "@/pages/book-session/utils/getMonthRange.ts";
 
 const date = new Date("2024-07-26");
 

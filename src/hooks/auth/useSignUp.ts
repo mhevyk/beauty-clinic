@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { SignUpFormValues } from "@/pages/SignUpPage";
+import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.tsx";
 import { useUserStore } from "@/store/user/userStore";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";

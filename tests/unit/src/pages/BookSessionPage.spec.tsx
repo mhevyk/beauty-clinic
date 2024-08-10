@@ -3,15 +3,15 @@ import { PropsWithChildren, ReactNode } from "react";
 
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 
-import BookSessionPage from "@/pages/BookSessionPage";
-import BookSessionPageContent from "@/pages/BookSessionPage/components/BookSessionPageContent";
+import BookSessionPage from "@/pages/book-session/BookSessionPage.tsx";
+import BookSessionPageContent from "@/pages/book-session/components/BookSessionPageContent.tsx";
 
-jest.mock("@/pages/BookSessionPage/context/DatetimePickerProvider", () => ({
+jest.mock("@/pages/book-session/context/DatetimePickerProvider", () => ({
   __esModule: true,
   default: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-jest.mock("@/pages/BookSessionPage/components/BookSessionPageContent", () => ({
+jest.mock("@/pages/book-session/components/BookSessionPageContent.tsx", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

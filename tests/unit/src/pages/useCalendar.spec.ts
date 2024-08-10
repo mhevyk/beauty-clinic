@@ -6,7 +6,7 @@ import {
   CalendarInput,
   CalendarOutput,
   useCalendar,
-} from "@/pages/BookSessionPage/components/Calendar/hooks/useCalendar";
+} from "@/pages/book-session/hooks/useCalendar.ts";
 
 const mockSelectedDate = new Date("2024-02-01");
 const mockSelectedFirstDateOfNormalCalendarSize = new Date("2024-01-28");

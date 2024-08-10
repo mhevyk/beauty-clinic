@@ -8,7 +8,7 @@ import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/FormGroupWithError.tsx";
 import { PHONE_NUMBER_PATTERN } from "@/constants/index.ts";
-import { SignUpFormValues } from "@/pages/SignUpPage";
+import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.tsx";
 
 const LabelStyled = styled(InputLabel)(({ theme }) => ({
   color: theme.palette.secondary.main,

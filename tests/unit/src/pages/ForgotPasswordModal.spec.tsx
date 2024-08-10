@@ -3,9 +3,9 @@ import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 import typeIntoInput from "@tests/unit/utils/typeIntoInput";
 
-import ForgotPasswordModal from "@/pages/SignInPage/components/ForgotPasswordModal";
-import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/SignInPage/components/ForgotPasswordModal/constants";
-import useCountdown from "@/pages/SignInPage/hooks/useCountdown";
+import ForgotPasswordModal from "@/pages/sign-in/components/ForgotPasswordModal.tsx";
+import { RESEND_EMAIL_MIN_SECONDS } from "src/pages/sign-in/constants";
+import useCountdown from "@/pages/sign-in/hooks/useCountdown";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import showSnackbar from "@/utils/showSnackbar";
 import { useForgotPasswordMutation } from "@api/hooks";
@@ -33,13 +33,13 @@ jest.mock("@api/hooks", () => ({
   useForgotPasswordMutation: jest.fn(() => [mockSendEmail, { loading: true }]),
 }));
 
-jest.mock("@/pages/SignInPage/hooks/useCountdown", () => ({
+jest.mock("@/pages/sign-in/hooks/useCountdown", () => ({
   __esModule: true,
-  ...jest.requireActual("@/pages/SignInPage/hooks/useCountdown"),
+  ...jest.requireActual("@/pages/sign-in/hooks/useCountdown"),
   default: jest
     .fn()
     .mockImplementation(
-      jest.requireActual("@/pages/SignInPage/hooks/useCountdown").default
+      jest.requireActual("@/pages/sign-in/hooks/useCountdown").default
     ),
 }));
 

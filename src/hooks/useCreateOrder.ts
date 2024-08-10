@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 
-import { CreateOrderSubmitForm } from "@/pages/BookingFormPage";
-import useSuccessfulOrderHandler from "@/pages/BookingFormPage/hooks/useSuccessfulOrderHandler";
+import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
+import useSuccessfulOrderHandler from "@/pages/booking-form/hooks/useSuccessfulOrderHandler";
 import { useUserStore } from "@/store/user/userStore";
 import { OrderItem } from "@/utils/getSessionsToOrderFromCart";
 import showSnackbar from "@/utils/showSnackbar";

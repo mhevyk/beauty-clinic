@@ -9,8 +9,8 @@ import guestRoutes from "./guestRoutes";
 import AppSuspense from "./helpers/AppSuspense";
 import protectedRoutes from "./protectedRoutes";
 
-const ErrorPage = lazy(() => import("@/pages/ErrorPage"));
-const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
+const ErrorPage = lazy(() => import("@/pages/error/ErrorPage.tsx"));
+const NotFoundPage = lazy(() => import("@/pages/not-found/NotFoundPage.tsx"));
 
 const routes: RouteObject[] = [
   {

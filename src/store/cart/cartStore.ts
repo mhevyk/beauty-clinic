@@ -1,5 +1,5 @@
 import { PERSISTED_STORAGE_KEYS } from "@/constants/index";
-import { QualifiedEmployee } from "@/pages/BookSessionPage/hooks/useSelectedQualifiedEmployee";
+import { QualifiedEmployee } from "@/pages/book-session/hooks/useSelectedQualifiedEmployee";
 import { OrderStore } from "@/store/order/orderStore";
 import createPersistedStore from "@/store/utils/createPersistedStore";
 import showSnackbar from "@/utils/showSnackbar";

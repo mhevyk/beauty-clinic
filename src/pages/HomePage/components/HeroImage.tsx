@@ -6,7 +6,7 @@ import coconutImage from "@/assets/images/coconut.png";
 import cottonImage from "@/assets/images/cotton.png";
 import whitePetalImage from "@/assets/images/white-petal.png";
 
-import theme from "@/theme/theme.ts";
+import theme from "@/theme/theme";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 const middleScreenMediaQuery = theme.breakpoints.down(1200);

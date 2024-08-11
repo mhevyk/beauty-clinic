@@ -11,8 +11,8 @@
   "disableTypeChecks": true,
   "mutate": [
     "./src/**/*.ts?(x)",
-    "!./src/**/*.styled.ts?(x)",
-    "!./src/{api,assets,types}/**/*"
+    "!./src/**/*.styles.ts?(x)",
+    "!./src/{api,assets,types,theme,validation}/**/*"
   ],
   "mutator": {
     "excludedMutations": ["StringLiteral", "ArrayDeclaration"]

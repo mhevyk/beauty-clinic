@@ -1,3 +1,6 @@
+export type Interval = ReturnType<typeof setInterval>;
+export type Timer = ReturnType<typeof setInterval>;
+
 type SerializablePrimitive = string | number | boolean | null | undefined;
 
 // Gets keys, which value if serializable primitive

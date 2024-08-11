@@ -1,6 +1,8 @@
 import { AlertProps } from "@mui/material";
 import { create } from "zustand";
 
+import { Timer } from "@/types/helpers";
+
 type SnackbarVariant = AlertProps["severity"];
 
 const DEFAULT_AUTOHIDE_DURATION_MS = 2000;
@@ -24,7 +26,7 @@ type SnackbarStore = {
   closeSnackbar: () => void;
 };
 
-let timeoutId: ReturnType<typeof setTimeout> | undefined = undefined;
+let timeoutId: Timer | undefined = undefined;
 
 export const useSnackbarStore = create<SnackbarStore>((set, get) => ({
   isOpen: false,

@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-import ContactForm from "@/layouts/footer/components/ContactForm";
+import ContactForm from "@/containers/forms/contact-form/ContactForm";
 import {
   DefinitionItem,
   DefinitionList,

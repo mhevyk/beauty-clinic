@@ -1,8 +1,8 @@
 import { AppBar, styled, useMediaQuery } from "@mui/material";
 
-import useToggle from "@/hooks/useToggle";
+import SidebarDrawer from "@/containers/drawers/sidebar-drawer/SidebarDrawer";
+import useToggle from "@/hooks/use-toggle/useToggle";
 import BurgerButton from "@/layouts/sidebar/components/BurgerButton";
-import DrawerMenu from "@/layouts/sidebar/components/DrawerMenu";
 import Logo from "@/layouts/sidebar/components/Logo";
 import SocialLinks from "@/layouts/sidebar/components/SocialLinks";
 import theme from "@/theme/theme";
@@ -30,7 +30,7 @@ export default function Sidebar() {
       <BurgerButton openSidebar={open} />
       <Logo />
       <SocialLinks />
-      <DrawerMenu isSidebarOpen={isOpen} onClose={close} />
+      <SidebarDrawer isSidebarOpen={isOpen} onClose={close} />
     </SidebarStyled>
   );
 }

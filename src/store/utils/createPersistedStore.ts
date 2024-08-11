@@ -2,7 +2,7 @@ import { StateCreator, create } from "zustand";
 import { PersistOptions, createJSONStorage, persist } from "zustand/middleware";
 
 import { ISO_DATE_PATTERN } from "@/constants/index";
-import { FilterPrimitiveKeys } from "@/types";
+import { FilterPrimitiveKeys } from "@/types/helpers";
 
 // Deserialise Date object correctly
 const createStorage = <TState>() =>

@@ -4,9 +4,9 @@ import { RouteObject } from "react-router-dom";
 import AuthLayout from "@/layouts/auth-layout/AuthLayout";
 import AppSuspense from "@/routes/helpers/AppSuspense";
 
-const SignUpPage = lazy(() => import("@/pages/SignUpPage"));
-const SignInPage = lazy(() => import("@/pages/SignInPage"));
-const ResetPasswordPage = lazy(() => import("@/pages/ResetPasswordPage"));
+const SignUpPage = lazy(() => import("@/pages/sign-up/SignUpPage.tsx"));
+const SignInPage = lazy(() => import("@/pages/sign-in/SignInPage.tsx"));
+const ResetPasswordPage = lazy(() => import("@/pages/reset-password/ResetPasswordPage.tsx"));
 
 const authRoutes: RouteObject[] = [
   {

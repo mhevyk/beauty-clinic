@@ -1,7 +1,7 @@
 import { TokenRefreshLink } from "apollo-link-token-refresh";
 
 import { useUserStore } from "@/store/user/userStore";
-import fetchAccessToken from "@/utils/fetchAccessToken";
+import fetchAccessToken from "@/utils/fetch-access-token/fetchAccessToken";
 
 import isTokenExpired from "../utils/isTokenExpired";
 

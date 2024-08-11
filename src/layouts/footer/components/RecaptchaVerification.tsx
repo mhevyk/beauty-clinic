@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import DialogContentText from "@mui/material/DialogContentText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import { HumanVerificationModalProps } from "@/layouts/footer/components/HumanVerificationModal";
+import { HumanVerificationModalProps } from "@/containers/modals/human-verication-modal/HumanVerificationModal";
 import { useRecaptcha } from "@/layouts/footer/hooks/useRecaptcha";
 import theme from "@/theme/theme";
 

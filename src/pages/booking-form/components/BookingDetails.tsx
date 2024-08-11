@@ -13,7 +13,7 @@ import caretIcon from "@/assets/icons/caret-left.svg";
 import useToggle from "@/hooks/use-toggle/useToggle.ts";
 import useItemsToOrder from "@/pages/booking-form/hooks/useItemsToOrder.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
-import { OrderItem } from "@/utils/getSessionsToOrderFromCart.ts";
+import { OrderItem } from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart.ts";
 
 import BookingDetailsItem from "./BookingDetailsItem.tsx";
 

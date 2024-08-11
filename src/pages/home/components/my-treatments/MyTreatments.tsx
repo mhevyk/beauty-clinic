@@ -7,10 +7,9 @@ import Grid from "@mui/material/Grid";
 
 import ErrorBoundary from "@/components/error-boundary/ErrorBoundary.tsx";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout.tsx";
+import SkeletonTreatmentCard from "@/pages/home/components/skeleton-treatment-card/SkeletonTreatmentCard";
+import TreatmentCardList from "@/pages/home/components/treatment-card-list/TreatmentCardList";
 import theme from "@/theme/theme.ts";
-
-import SkeletonTreatmentCard from "./SkeletonTreatmentCard.tsx";
-import TreatmentCardList from "./TreatmentCardList.tsx";
 
 const SectionStyled = styled("section")({
   display: "flex",

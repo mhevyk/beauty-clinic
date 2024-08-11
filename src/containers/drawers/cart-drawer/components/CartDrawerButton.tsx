@@ -2,8 +2,8 @@ import { CSSProperties } from "react";
 
 import IconButton from "@mui/material/IconButton";
 
+import CartDrawer from "@/containers/drawers/cart-drawer/CartDrawer";
 import useToggle from "@/hooks/use-toggle/useToggle";
-import CartDrawer from "@/layouts/navbar/components/CartDrawer";
 import { useCartStore } from "@/store/cart/cartStore";
 
 function CartIcon() {

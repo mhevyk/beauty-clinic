@@ -10,7 +10,7 @@ import {
   CartSession as CartSessionType,
   useCartStore,
 } from "@/store/cart/cartStore.ts";
-import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
+import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
 import { Treatment } from "@api/hooks";
 
 const BinButton = styled(BinIcon)({

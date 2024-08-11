@@ -8,7 +8,7 @@ import {
   ButtonStyled,
   TitleStyled,
 } from "@/pages/treatments/components/treatment-card/TreatmentCard.styles";
-import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes";
+import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
 import { Treatment } from "@api/hooks";
 
 type TreatmentCardProps = {

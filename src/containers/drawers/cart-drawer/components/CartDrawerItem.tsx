@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 
 import { CartItem } from "@/store/cart/cartStore";
-import concatUrls from "@/utils/concatUrls";
+import concatUrls from "@/utils/concat-urls/concatUrls";
 
 const ListItemStyled = styled(ListItem)({
   position: "relative",

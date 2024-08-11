@@ -2,7 +2,7 @@ import { PERSISTED_STORAGE_KEYS } from "@/constants/index";
 import { QualifiedEmployee } from "@/pages/book-session/hooks/useSelectedQualifiedEmployee";
 import { OrderStore } from "@/store/order/orderStore";
 import createPersistedStore from "@/store/utils/createPersistedStore";
-import showSnackbar from "@/utils/showSnackbar";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { Employee, Treatment } from "@api/hooks";
 
 import sessionComparator from "./utils/sessionComparator";

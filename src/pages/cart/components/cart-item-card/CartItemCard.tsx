@@ -10,10 +10,10 @@ import imagePlaceholder from "@/assets/icons/image-placeholder.svg?url";
 
 import { useLazyImage } from "@/hooks/use-lazy-mage/useLazyImage";
 import useToggle from "@/hooks/use-toggle/useToggle";
-import CartSessionList from "@/pages/cart/components/CartSessionList.tsx";
-import TreatmentGeneralInfo from "@/pages/cart/components/TreatmentGeneralInfo.tsx";
+import CartSessionList from "@/pages/cart/components/cart-session-list/CartSessionList";
+import TreatmentGeneralInfo from "@/pages/cart/components/treatment-general-info/TreatmentGeneralInfo";
 import { CartItem } from "@/store/cart/cartStore.ts";
-import concatUrls from "@/utils/concatUrls.ts";
+import concatUrls from "@/utils/concat-urls/concatUrls";
 
 const BoxStyled = styled(Box)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.primary.main, 0.4),

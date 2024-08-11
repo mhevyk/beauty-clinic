@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import BellIconSvg from "@/assets/icons/bell.svg";
 import UserIconSvg from "@/assets/icons/user-icon.svg";
 
-import AppLink from "@/components/AppLink";
+import AppLink from "@/components/app-link/AppLink";
 import { useUserStore } from "@/store/user/userStore";
 
 import MyAccountButton from "./components/MyAccountButton";

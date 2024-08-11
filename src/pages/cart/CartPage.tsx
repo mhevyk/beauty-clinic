@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
-import CartCheckoutBar from "@/pages/cart/components/CartCheckoutBar.tsx";
-import CartItemCard from "@/pages/cart/components/CartItemCard.tsx";
+import CartCheckoutBar from "@/pages/cart/components/cart-checkout-bar/CartCheckoutBar";
+import CartItemCard from "@/pages/cart/components/cart-item-card/CartItemCard";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import theme from "@/theme/theme.ts";
 

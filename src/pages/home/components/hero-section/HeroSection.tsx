@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 
 import HelloDecorationSvg from "@/assets/decorations/hello.svg";
 
-import HeroImage from "@/pages/home/components/HeroImage.tsx";
+import HeroImage from "@/pages/home/components/hero-image/HeroImage";
 import theme from "@/theme/theme.ts";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");

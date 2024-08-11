@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { useCartStore } from "@/store/cart/cartStore.ts";
-import showSnackbar from "@/utils/showSnackbar.ts";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 export default function useSuccessfulOrderHandler() {
   const navigate = useNavigate();

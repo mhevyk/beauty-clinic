@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 
-import UserToolbar from "@/components/user-toolbar";
+import UserToolbar from "@/containers/user-toolbar/UserToolbar";
 import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";
 import MenuLinks from "@/layouts/sidebar/components/MenuLinks";
 import SocialLinks from "@/layouts/sidebar/components/SocialLinks";

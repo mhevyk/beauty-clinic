@@ -1,4 +1,4 @@
-import concatUrls from "@/utils/concatUrls";
+import concatUrls from "@/utils/concat-urls/concatUrls";
 
 export default function fetchAccessToken(
   options?: Omit<RequestInit, "method" | "credentials">

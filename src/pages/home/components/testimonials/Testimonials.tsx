@@ -3,8 +3,8 @@ import Box from "@mui/material/Box";
 
 import theme from "@/theme/theme.ts";
 
-import TestimonialCard from "./TestimonialCard.tsx";
-import TestimonialsImage from "./TestimonialsImage.tsx";
+import TestimonialCard from "../testimonial-card/TestimonialCard.tsx";
+import TestimonialsImage from "../testimonials-image/TestimonialsImage.tsx";
 import { quotes } from "@/pages/home/data/quotes.ts";
 
 const PinkChiffon = theme.palette.PinkChiffon.main;

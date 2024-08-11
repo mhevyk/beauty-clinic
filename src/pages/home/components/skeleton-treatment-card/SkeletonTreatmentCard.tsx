@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-import SkeletonTreatmentBox from "./SkeletonTreatmentBox.tsx";
+import SkeletonTreatmentBox from "@/pages/home/components/skeleton-treatment-box/SkeletonTreatmentBox";
 
 const GridStyled = styled(Grid)({
   marginBottom: 30,

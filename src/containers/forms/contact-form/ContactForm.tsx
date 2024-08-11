@@ -9,9 +9,9 @@ import HumanVerificationModal from "@/containers/modals/human-verication-modal/H
 import useToggle from "@/hooks/use-toggle/useToggle";
 import { useContactFormValues } from "@/layouts/footer/hooks/useContactFormValues";
 import { useDelayedUnmount } from "@/layouts/footer/hooks/useDelayedUnmount";
-import closeSnackbar from "@/utils/closeSnackbar";
-import extractErrorMessage from "@/utils/extractErrorMessage";
-import showSnackbar from "@/utils/showSnackbar";
+import closeSnackbar from "@/utils/close-snackbar/closeSnackbar";
+import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import {
   VerifyRecaptchaMutation,
   useCreateContactFormEntryMutation,

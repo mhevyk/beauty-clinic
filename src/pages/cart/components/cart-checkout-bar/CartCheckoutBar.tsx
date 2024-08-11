@@ -11,7 +11,7 @@ import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
-import getSessionsToOrderFromCart from "@/utils/getSessionsToOrderFromCart.ts";
+import getSessionsToOrderFromCart from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";
 
 const CartBar = styled(Box)(({ theme }) => ({

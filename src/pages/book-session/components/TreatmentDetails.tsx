@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
 
 import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
-import minutesToHourAndMinutes from "@/utils/minutesToHourAndMinutes.ts";
+import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
 import { useGetTreatmentByIdSuspenseQuery } from "@api/hooks";
 
 import EmployeeSelect from "@/pages/book-session/components/EmployeeSelect";

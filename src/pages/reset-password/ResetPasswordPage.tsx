@@ -6,7 +6,7 @@ import { Formik } from "formik";
 import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import PasswordForm, { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
-import showSnackbar from "@/utils/showSnackbar.ts";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { repeatPasswordFormSchema } from "@/validation/signUpFormSchema.ts";
 import { useResetPasswordMutation } from "@api/hooks";
 

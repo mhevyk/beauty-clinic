@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 import { AccessToken, useUserStore } from "@/store/user/userStore";
-import fetchAccessToken from "@/utils/fetchAccessToken";
-import showSnackbar from "@/utils/showSnackbar";
+import fetchAccessToken from "@/utils/fetch-access-token/fetchAccessToken";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 type RefreshTokenResponse = {
   ok: boolean;

@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
-import PhoneNumberFormGroup from "@/components/PhoneNumberFormGroup.tsx";
+import PhoneNumberFormGroup from "@/containers/phone-number-form-group/PhoneNumberFormGroup";
 import { useUserStore } from "@/store/user/userStore.ts";
 import theme from "@/theme/theme.ts";
 import { useGetCurrentUserDetailsQuery } from "@api/hooks";

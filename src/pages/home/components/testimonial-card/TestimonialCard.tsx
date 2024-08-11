@@ -9,8 +9,8 @@ import useInterval from "@/pages/home/hooks/use-interval/useInterval.ts";
 import theme from "@/theme/theme.ts";
 
 import { TESTIMONIALS_ANIMATION_DURATION } from "@/pages/home/data/constants.ts";
-import PointButton from "./PointButton.tsx";
-import QuoteItem from "./QuoteItem.tsx";
+import PointButton from "../point-button/PointButton.tsx";
+import QuoteItem from "../quote-item/QuoteItem.tsx";
 
 type BoxStyledProps = {
   backgroundColor: string;

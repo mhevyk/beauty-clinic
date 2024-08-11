@@ -21,8 +21,8 @@ import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/sign-in/constants";
 import useCountdown from "@/pages/sign-in/hooks/use-countdown/useCountdown";
 import updateResendEmailDuration from "@/pages/sign-in/utils/update-resend-email-duration/updateResendEmailDuration";
 import theme from "@/theme/theme.ts";
-import extractErrorMessage from "@/utils/extractErrorMessage.ts";
-import showSnackbar from "@/utils/showSnackbar.ts";
+import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { emailFormSchema } from "@/validation/emailFormSchema.ts";
 import { useForgotPasswordMutation } from "@api/hooks";
 

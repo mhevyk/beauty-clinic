@@ -1,5 +1,5 @@
 import { useCartStore } from "@/store/cart/cartStore.ts";
-import getSessionsToOrderFromCart from "@/utils/getSessionsToOrderFromCart.ts";
+import getSessionsToOrderFromCart from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart.ts";
 
 import useSelectedTreatmentSession from "./useSelectedTreatmentSession.ts";
 

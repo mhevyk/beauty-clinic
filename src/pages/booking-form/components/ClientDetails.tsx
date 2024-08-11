@@ -1,8 +1,8 @@
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
-import AppLink from "@/components/AppLink.tsx";
-import BookingForm from "@/pages/booking-form/components/BookingForm.tsx";
+import AppLink from "@/components/app-link/AppLink";
+import BookingForm from "@/containers/forms/booking-form/BookingForm";
 import { useUserStore } from "@/store/user/userStore.ts";
 
 const LoginPromptBox = styled(Box)({

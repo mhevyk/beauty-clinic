@@ -11,13 +11,13 @@ import {
 } from "date-fns";
 
 import { calendarConfig } from "@/pages/book-session/data/calendarConfig.ts";
-import { WEEK_DAYS } from "@/pages/book-session/data/weekDays.ts";
+import { WEEK_DAYS } from "@/pages/book-session/hooks/use-calendar/useCalendar.constants";
 import {
   CalendarControls,
   CalendarData,
   CalendarSize,
   CalendarUtils,
-} from "../types";
+} from "@/pages/book-session/hooks/use-calendar/useCalendar.types";
 
 export type CalendarInput = {
   selectedDayDate: Date | null;

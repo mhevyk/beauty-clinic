@@ -7,10 +7,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import ErrorBoundary from "@/components/error-boundary/ErrorBoundary.tsx";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout.tsx";
+import BookSessionPageContent from "@/pages/book-session/components/book-session-page-content/BookSessionPageContent";
+import DatetimePickerProvider from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
 import theme from "@/theme/theme.ts";
-
-import BookSessionPageContent from "./components/BookSessionPageContent.tsx";
-import DatetimePickerProvider from "@/pages/book-session/context/DatetimePickerProvider.tsx";
 
 const ContainerStyled = styled(Box)({
   maxWidth: "800px",

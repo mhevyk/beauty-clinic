@@ -5,10 +5,9 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 
-import { useCartStore } from "@/store/cart/cartStore.ts";
-
-import useSelectedTreatmentSession from "@/pages/booking-form/hooks/useSelectedTreatmentSession.ts";
-import BookingDetails from "./BookingDetails.tsx";
+import BookingDetails from "@/pages/booking-form/components/booking-details/BookingDetails";
+import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
+import { useCartStore } from "@/store/cart/cartStore";
 
 const TotalPriceBox = styled(Box)({
   marginBottom: "20px",

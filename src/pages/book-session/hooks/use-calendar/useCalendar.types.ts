@@ -1,4 +1,4 @@
-import { WEEK_DAYS } from "@/pages/book-session/data/weekDays.ts";
+import { WEEK_DAYS } from "@/pages/book-session/hooks/use-calendar/useCalendar.constants";
 
 export type CalendarSize = "normal" | "compact";
 

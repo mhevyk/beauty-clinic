@@ -3,9 +3,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import useEventEmitter from "@/hooks/use-event-emitter/useEventEmitter";
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 
-import getNextWorkingDay from "@/pages/book-session/utils/getNextWorkingDay.ts";
+import getNextWorkingDay from "@/pages/book-session/utils/get-next-working-day/getNextWorkingDay";
 
 const ButtonStyled = styled(Button)({
   marginTop: "30px",

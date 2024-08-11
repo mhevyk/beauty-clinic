@@ -2,10 +2,12 @@ import { SxProps, alpha } from "@mui/material";
 import { styled } from "@mui/material";
 import { format, isBefore, isToday, startOfToday } from "date-fns";
 
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
-
-import { CalendarSize, CalendarUtils } from "../types";
-import { CalendarCell } from "./CalendarCell.tsx";
+import { CalendarCell } from "@/pages/book-session/components/calendar-cell/CalendarCell";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
+import {
+  CalendarSize,
+  CalendarUtils,
+} from "@/pages/book-session/hooks/use-calendar/useCalendar.types";
 
 type CalendarDayCellProps = {
   isToday?: boolean;

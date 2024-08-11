@@ -2,11 +2,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
 
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
 import { useGetTreatmentByIdSuspenseQuery } from "@api/hooks";
 
-import EmployeeSelect from "@/pages/book-session/components/EmployeeSelect";
+import EmployeeSelect from "@/pages/book-session/components/employee-select/EmployeeSelect";
 
 type TreatmentDetailsProps = {
   hasAvailableSession: boolean;

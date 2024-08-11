@@ -9,14 +9,14 @@ import { Formik } from "formik";
 import CaretLeft from "@/assets/icons/caret-left.svg";
 
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder.ts";
-import ClientDetails from "@/pages/booking-form/components/ClientDetails.tsx";
-import OrderInformation from "@/pages/booking-form/components/OrderInformation.tsx";
-import useUnifiedOrderData from "@/pages/booking-form/hooks/useUnifiedOrderData.ts";
+import ClientDetails from "@/pages/booking-form/components/client-details/ClientDetails.tsx";
+import OrderInformation from "@/pages/booking-form/components/order-information/OrderInformation";
+import useUnifiedOrderData from "@/pages/booking-form/hooks/use-unified-order-data/useUnifiedOrderData";
 import theme from "@/theme/theme.ts";
 import { bookingFormSchema } from "@/validation/bookingFormSchema.ts";
 
-import AddToCartButton from "./components/AddToCartButton.tsx";
-import CreateOrderButton from "./components/CreateOrderButton.tsx";
+import AddToCartButton from "./components/add-to-cart-button/AddToCartButton.tsx";
+import CreateOrderButton from "./components/create-order-button/CreateOrderButton.tsx";
 
 const SectionStyled = styled("section")({
   backgroundColor: theme.palette.CreamyDawn.main,

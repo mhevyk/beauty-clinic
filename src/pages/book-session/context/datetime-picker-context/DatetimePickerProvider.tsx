@@ -11,7 +11,7 @@ import { startOfToday } from "date-fns";
 
 import useSelectedQualifiedEmployee, {
   QualifiedEmployee,
-} from "@/pages/book-session/hooks/useSelectedQualifiedEmployee.ts";
+} from "@/pages/book-session/hooks/use-selected-qualified-employee/useSelectedQualifiedEmployee";
 
 type DatetimePickerContextType = {
   selectedDate: Date;

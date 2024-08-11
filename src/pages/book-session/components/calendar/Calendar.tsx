@@ -6,15 +6,14 @@ import Box from "@mui/material/Box";
 import { isBefore, startOfToday, subMinutes } from "date-fns";
 
 import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue.ts";
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
-import theme from "@/theme/theme.ts";
-
-import { CalendarCell } from "./CalendarCell.tsx";
-import CalendarDay from "@/pages/book-session/components/CalendarDay";
-import CalendarHeader from "./CalendarHeader.tsx";
-import { useCalendar } from "../hooks/useCalendar.ts";
-import useNextPageListener from "../hooks/useNextPageListener.ts";
-import useTreatmentSessionAvailabilities from "../hooks/useTreatmentSessionAvailabilities.ts";
+import { CalendarCell } from "@/pages/book-session/components/calendar-cell/CalendarCell";
+import CalendarDay from "@/pages/book-session/components/calendar-day/CalendarDay";
+import CalendarHeader from "@/pages/book-session/components/calendar-header/CalendarHeader.tsx";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
+import { useCalendar } from "@/pages/book-session/hooks/use-calendar/useCalendar";
+import useNextPageListener from "@/pages/book-session/hooks/use-next-page-listener/useNextPageListener";
+import useTreatmentSessionAvailabilities from "@/pages/book-session/hooks/use-treatment-session-availabilities/useTreatmentSessionAvailabilities";
+import theme from "@/theme/theme";
 
 const CalendarCellsContainer = styled(Box)(() => {
   const CALENDAR_SMALL_CELL_SIZE = "30px";

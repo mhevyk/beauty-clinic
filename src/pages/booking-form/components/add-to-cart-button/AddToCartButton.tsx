@@ -9,7 +9,7 @@ import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinne
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import theme from "@/theme/theme.ts";
 
-import useSelectedTreatmentSession from "@/pages/booking-form/hooks/useSelectedTreatmentSession.ts";
+import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
 
 const ActionButton = styled(ButtonWithSpinner)({
   ":disabled": {

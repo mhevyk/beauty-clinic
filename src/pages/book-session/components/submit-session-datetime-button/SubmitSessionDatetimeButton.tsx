@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useOrderStore } from "@/store/order/orderStore.ts";
 import { Employee } from "@api/hooks";
 
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 
 //TODO: add color to palette
 const NextStepButtonStyled = styled(Button)(({ theme }) => ({

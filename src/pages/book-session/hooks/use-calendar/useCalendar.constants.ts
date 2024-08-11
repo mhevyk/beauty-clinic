@@ -1,8 +1,18 @@
 import { Duration } from "date-fns";
 
 import { CalendarSize } from "@/pages/book-session/hooks/use-calendar/useCalendar.types";
-import getMonthRange from "@/pages/book-session/utils/get-month-range/getMonthRange.ts";
+import getMonthRange from "@/pages/book-session/utils/get-month-range/getMonthRange";
 import { getWeekRange } from "@/pages/book-session/utils/get-week-range/getWeekRange";
+
+export const WEEK_DAYS = [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+] as const;
 
 type CalendarConfigItem = {
   unit: keyof Duration;

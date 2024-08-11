@@ -11,11 +11,11 @@ import { format } from "date-fns";
 
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
 
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
-import Calendar from "./Calendar.tsx";
-import ServiceDetails from "./ServiceDetails.tsx";
-import SubmitSessionDatetimeButton from "./SubmitSessionDatetimeButton.tsx";
-import TimePicker from "./TimePicker.tsx";
+import Calendar from "@/pages/book-session/components/calendar/Calendar";
+import ServiceDetails from "@/pages/book-session/components/service-details/ServiceDetails";
+import SubmitSessionDatetimeButton from "@/pages/book-session/components/submit-session-datetime-button/SubmitSessionDatetimeButton";
+import TimePicker from "@/pages/book-session/components/time-picker/TimePicker";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
 
 const ButtonStyled = styled(Button)({
   textAlign: "left",

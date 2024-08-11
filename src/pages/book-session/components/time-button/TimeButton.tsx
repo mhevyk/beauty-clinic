@@ -4,7 +4,7 @@ import { styled } from "@mui/material";
 import Button from "@mui/material/Button";
 import { format } from "date-fns";
 
-import { useDatetimePickerContext } from "@/pages/book-session/context/DatetimePickerProvider.tsx";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 
 type ButtonStyledPickerProps = {
   isSelected: boolean;

@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 
 import App from "@/App";
-import useRefreshToken from "@/hooks/auth/useRefreshToken";
+import useRefreshToken from "@/hooks/use-refresh-token/useRefreshToken";
 
 const mockUseRefreshToken = jest.fn();
 const mockCreateBrowserRouter = jest.fn();
@@ -23,7 +23,7 @@ jest.mock("@/routes/routes", () => ({
   },
 }));
 
-jest.mock("@/components/AppSnackbar", () => ({
+jest.mock("@/components/app-snackbar/AppSnackbar", () => ({
   __esModule: true,
   default: () => <div>AppSnackbar</div>,
 }));
@@ -34,7 +34,7 @@ jest.mock("react-router-dom", () => ({
   createBrowserRouter: jest.fn(),
 }));
 
-jest.mock("@/hooks/auth/useRefreshToken", () => ({
+jest.mock("@/hooks/use-refresh-token/useRefreshToken", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

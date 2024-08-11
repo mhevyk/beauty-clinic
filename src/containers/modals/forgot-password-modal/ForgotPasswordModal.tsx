@@ -13,7 +13,7 @@ import { Formik } from "formik";
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
 import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
 
-import AppLink from "@/components/AppLink.tsx";
+import AppLink from "@/components/app-link/AppLink";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import ResetPasswordForm from "@/containers/forms/forgot-password-form/ForgotPasswordForm.tsx";
 import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";

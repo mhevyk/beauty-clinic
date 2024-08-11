@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import ErrorBoundary from "@/components/error-boundary/ErrorBoundary.tsx";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout.tsx";
 import BookSessionPageContent from "@/pages/book-session/components/book-session-page-content/BookSessionPageContent";
-import DatetimePickerProvider from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
+import DatetimePickerProvider from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import theme from "@/theme/theme.ts";
 
 const ContainerStyled = styled(Box)({

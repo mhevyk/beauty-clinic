@@ -7,7 +7,7 @@ import typeIntoInput from "@tests/unit/utils/typeIntoInput";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";
 import SignInPage from "@/pages/sign-in/SignInPage.tsx";
 
-jest.mock("@/hooks/auth/useSignIn", () => ({
+jest.mock("@/hooks/use-sign-in/useSignIn", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

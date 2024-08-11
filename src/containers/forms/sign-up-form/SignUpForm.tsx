@@ -4,11 +4,11 @@ import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
-import PhoneNumberFormGroup from "@/components/PhoneNumberFormGroup";
 import {
   Form,
   LabelStyled,
 } from "@/containers/forms/sign-up-form/SignUpForm.styles";
+import PhoneNumberFormGroup from "@/containers/phone-number-form-group/PhoneNumberFormGroup";
 import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.types";
 
 export default function SignUpForm() {

@@ -4,7 +4,7 @@ import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 
 import ContactDetails from "@/layouts/footer/components/ContactDetails";
 
-jest.mock("@/layouts/footer/components/ContactForm", () => ({
+jest.mock("@/containers/forms/contact-form/ContactForm", () => ({
   __esModule: true,
   default: () => <div data-testid="contact-form">Contact form</div>,
 }));

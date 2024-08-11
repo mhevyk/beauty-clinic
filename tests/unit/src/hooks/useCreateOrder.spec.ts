@@ -19,8 +19,10 @@ const mockCreateOrderByGuestUser = jest.fn();
 const mockHandleOrderSuccess = jest.fn();
 const mockShowSnackbar = jest.fn();
 
-jest.mock("@/pages/booking-form/hooks/useSuccessfulOrderHandler");
-jest.mock("@/utils/showSnackbar");
+jest.mock(
+  "@/pages/booking-form/hooks/use-successful-order-handler/useSuccessfulOrderHandler"
+);
+jest.mock("@/utils/show-snackbar/showSnackbar");
 
 jest.mock("@/store/user/userStore", () => ({
   useUserStore: jest.fn(),

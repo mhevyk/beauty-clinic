@@ -10,12 +10,12 @@ const mockSetAccessToken = jest.fn();
 const mockSetIsAuthenticating = jest.fn();
 const mockAbort = jest.fn();
 
-jest.mock("@/utils/showSnackbar", () => ({
+jest.mock("@/utils/show-snackbar/showSnackbar", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
-jest.mock("@/utils/fetchAccessToken", () => ({
+jest.mock("@/utils/fetch-access-token/fetchAccessToken", () => ({
   __esModule: true,
   default: jest.fn(),
 }));

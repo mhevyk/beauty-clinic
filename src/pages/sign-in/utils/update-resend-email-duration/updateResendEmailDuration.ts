@@ -1,7 +1,7 @@
 import {
   RESEND_EMAIL_MAX_SECONDS,
   RESEND_EMAIL_STEP_SECONDS,
-} from "src/pages/sign-in/constants";
+} from "@/pages/sign-in/constants";
 
 export default function updateResendEmailDuration(
   currentClick: number,

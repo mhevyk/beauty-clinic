@@ -1,10 +1,9 @@
 import { styled } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-import AppLink from "@/components/AppLink.tsx";
+import AppLink from "@/components/app-link/AppLink";
+import ForgotPasswordModal from "@/containers/modals/forgot-password-modal/ForgotPasswordModal";
 import useToggle from "@/hooks/use-toggle/useToggle.ts";
-
-import ForgotPasswordModal from "./ForgotPasswordModal.tsx";
 
 const ForgotPasswordLinkStyled = styled(AppLink)({
   display: "block",

@@ -29,7 +29,11 @@
       "@tests/*": ["tests/*"]
     }
   },
-  "include": ["src", "tests/unit/**/*"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.spec.json" },
+    { "path": "./tsconfig.e2e.json" }
+  ]
 }

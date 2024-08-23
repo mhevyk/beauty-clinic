@@ -1,3 +1,5 @@
+import { USER_ROLES } from "@/constants";
+
 export type Interval = ReturnType<typeof setInterval>;
 export type Timer = ReturnType<typeof setInterval>;
 
@@ -12,3 +14,9 @@ export type FilterPrimitiveKeys<T> = {
 export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
+
+export type UserRole = keyof typeof USER_ROLES;
+
+export type PostPageParams = {
+  postId: string;
+};

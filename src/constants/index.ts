@@ -28,3 +28,9 @@ export const PHONE_NUMBER_PATTERN = [
   /\d/,
   /\d/,
 ];
+
+export const USER_ROLES = {
+  GUEST: "GUEST",
+  USER: "USER",
+  ADMIN: "ADMIN",
+} as const;

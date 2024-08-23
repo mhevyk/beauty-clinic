@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 
-import { SessionFromLocation } from "@/pages/booking-form/components/OrderInformation.tsx";
-import useItemsToOrder from "@/pages/booking-form/hooks/useItemsToOrder.ts";
+import { SessionFromLocation } from "@/pages/booking-form/components/order-information/OrderInformation";
+import useItemsToOrder from "@/pages/booking-form/hooks/use-items-to-order/useItemsToOrder";
 
 type LocationState = {
   sessions: SessionFromLocation[];

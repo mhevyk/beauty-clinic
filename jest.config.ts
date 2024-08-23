@@ -24,6 +24,7 @@ const config: Config = {
             optimizer: {
               globals: {
                 vars: {
+                  // TODO: bad solution, but it works for now
                   "import.meta.env.MODE": "'test'",
                   ...envVars,
                 },

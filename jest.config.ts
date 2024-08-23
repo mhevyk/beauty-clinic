@@ -57,7 +57,11 @@ const config: Config = {
   // coverage
   collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}"],
   coverageReporters: ["html", "lcov"],
-  coveragePathIgnorePatterns: ["node_modules", "src/api/generated/index.tsx"],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    "src/api/generated/index.tsx",
+    "\\.(styles|constants)\\.(js|jsx|ts|tsx)$", // ignore .styles.extension and .constants.extension files
+  ],
   coverageDirectory: "<rootDir>/tests/unit/coverage",
 };
 

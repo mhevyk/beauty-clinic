@@ -39,6 +39,10 @@ const config: Config = {
     "^.+\\.svg$": "jest-transformer-svg",
   },
   moduleNameMapper: {
+    // order is important
+    // import query parameters
+    "^@/(.*)\\.css\\?raw$": "<rootDir>/tests/unit/mocks/fileMock.js", // for css imported as string
+
     // import aliases
     "@/(.*)$": "<rootDir>/src/$1",
     "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",

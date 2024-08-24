@@ -47,7 +47,7 @@ export default function PostEditor({
       {isEditorLoading && <EditorSkeleton data-testid="editor-skeleton" />}
       <EditorWrapper isEditorLoading={isEditorLoading}>
         <Editor
-          apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
+          apiKey={process.env.VITE_TINYMCE_API_KEY}
           value={value}
           onEditorChange={onChange}
           onInit={handleEditorInit}

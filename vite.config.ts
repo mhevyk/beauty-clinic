@@ -1,5 +1,6 @@
 import react from "@vitejs/plugin-react-swc";
 
+import "dotenv/config";
 import path from "path";
 import { defineConfig } from "vite";
 import string from "vite-plugin-string";
@@ -21,4 +22,7 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
+  define: {
+    "process.env": process.env,
+  },
 });

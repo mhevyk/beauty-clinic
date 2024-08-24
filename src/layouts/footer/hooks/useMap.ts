@@ -7,15 +7,15 @@ export const MAP_COORDINATES: LngLatLike = {
   lat: 37.77489791779846,
 };
 
-const isTestMode = import.meta.env.MODE === "test";
+const isTestMode = process.env.MODE === "test";
 
 const createMapOptions = (
   container: MapboxOptions["container"]
 ): MapboxOptions => {
   return {
     container,
-    accessToken: import.meta.env.VITE_APP_MAPBOX_ACCESS_TOKEN,
-    style: import.meta.env.VITE_APP_MAPBOX_STYLE_LINK,
+    accessToken: process.env.VITE_APP_MAPBOX_ACCESS_TOKEN,
+    style: process.env.VITE_APP_MAPBOX_STYLE_LINK,
     center: MAP_COORDINATES,
     zoom: 13.2,
     interactive: false,

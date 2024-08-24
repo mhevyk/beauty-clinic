@@ -48,7 +48,7 @@ export default function CartDrawerItem({
 
   const { treatment, sessions } = item;
   const treatmentImage = treatment.imageUrl
-    ? concatUrls(import.meta.env.VITE_API_BASE_IMAGE_URL, treatment.imageUrl)
+    ? concatUrls(process.env.VITE_API_BASE_IMAGE_URL, treatment.imageUrl)
     : undefined;
 
   return (

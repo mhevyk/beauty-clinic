@@ -5,7 +5,7 @@
     "configFile": "jest.config.ts"
   },
   "tempDirName": "./tests/mutation/tmp",
-  "tsconfigFile": "./tsconfig.json",
+  "tsconfigFile": "./tsconfig.spec.json",
   "incremental": true,
   "incrementalFile": "./tests/mutation/stryker-incremental.json",
   "disableTypeChecks": true,

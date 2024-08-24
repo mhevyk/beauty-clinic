@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_MAPBOX_STYLE_LINK: string;
   readonly VITE_API_URL: string;
   readonly VITE_API_BASE_IMAGE_URL: string;
+  readonly VITE_TINYMCE_API_KEY: string;
 }
 
 interface ImportMeta {

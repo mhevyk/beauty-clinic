@@ -1,0 +1,19 @@
+/* TODO: adjust styles */
+#tinymce {
+  font-family: Nunito;
+  font-size: 18px;
+}
+
+h1 {
+  font-family: Arial Black;
+  font-size: 28px;
+}
+
+.mce-content-body:not([dir="rtl"]) blockquote {
+  border-color: black;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 18px;
+  font-style: oblique;
+  font-size: 24px;
+}

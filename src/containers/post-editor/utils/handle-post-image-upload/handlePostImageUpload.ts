@@ -6,7 +6,7 @@ import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 export type FilePickerCallback = (
   value: string,
-  meta?: Record<string, any>
+  meta?: Record<string, unknown>
 ) => void;
 
 export default async function handlePostImageUpload(

@@ -61,7 +61,7 @@ export default function ContactDetails() {
       <Section item xs={12} sm={12} md={4} lg={2.5} xl={3} as="section">
         <SectionTitle as="h1">Lily Organic Beautician</SectionTitle>
         <Typography variant="paragraph" lineHeight="2rem">
-          I'm a paragraph. Click here to add your own text and edit me.
+          I&apos;m a paragraph. Click here to add your own text and edit me.
         </Typography>
         <BookNowLinkButton component={Link} to="/treatments" variant="primary">
           Book Now

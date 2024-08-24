@@ -18,7 +18,7 @@ export default function ForgotPasswordLink() {
   return (
     <>
       {/* TODO: change theme to make it work */}
-      {/* @ts-expect-error */}
+      {/* @ts-expect-error TODO: change theme to make it work */}
       <ForgotPasswordLinkStyled
         component={Typography}
         variant="accent"

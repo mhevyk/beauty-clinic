@@ -43,7 +43,7 @@ export default function RecaptchaVerification({
   return (
     <>
       <DialogContentTextStyled as="p">
-        Please confirm you're human.
+        Please confirm you&apos;re human.
       </DialogContentTextStyled>
       <ReCAPTCHABox>
         <ReCAPTCHA

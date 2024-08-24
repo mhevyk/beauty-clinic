@@ -39,7 +39,7 @@ const CopyrightText = styled("p")(({ theme }) => ({
 export default function Footer() {
   return (
     <FooterWrapper component="footer" id={CONTACTS_SECTION_ID} maxWidth={false}>
-      <ContactDetailsTitle>Let's get in touch</ContactDetailsTitle>
+      <ContactDetailsTitle>Let&apos;s get in touch</ContactDetailsTitle>
       <ContactDetails />
       <LocationMap />
       <CopyrightText>© 2023 by Maksym Hevyk and Vasyl Feniak</CopyrightText>

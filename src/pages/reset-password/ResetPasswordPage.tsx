@@ -3,9 +3,11 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
-import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
-import PasswordForm, { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
+import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
+import PasswordForm, {
+  PasswordFormValues,
+} from "@/containers/forms/password-form/PasswordForm";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { repeatPasswordFormSchema } from "@/validation/signUpFormSchema.ts";
 import { useResetPasswordMutation } from "@api/hooks";
@@ -39,7 +41,7 @@ export default function ResetPasswordpage() {
         autohideDuration: 3000,
         message: "Password was successfully reset\nPlease sign in now",
       });
-    } catch (error) {
+    } catch {
       const errorMessage =
         "Password reset token is not valid\nPlease go to sign in page and try resetting password again";
       showSnackbar({

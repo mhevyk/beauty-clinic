@@ -4,15 +4,15 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-import HelloDecorationSvg from "@/assets/decorations/hello.svg";
+import HelloDecoration from "@/assets/decorations/hello.png";
 
 import HeroImage from "@/pages/home/components/hero-image/HeroImage";
-import theme from "@/theme/theme.ts";
+import theme from "@/theme/theme";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 const middleScreenMediaQuery = theme.breakpoints.down(1200);
 
-const HelloImg = styled(HelloDecorationSvg)({
+const HelloImg = styled("img")({
   userSelect: "none",
   zIndex: 1,
   width: 580,
@@ -109,7 +109,7 @@ export default function HeroSection() {
     <SectionStyled>
       <BoxStyled>
         <BoxTitleStyled>
-          <HelloImg />
+          <HelloImg src={HelloDecoration} alt="hello image" />
           <Header>
             Lily Organic
             <br /> Beautician

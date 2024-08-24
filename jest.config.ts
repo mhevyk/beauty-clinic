@@ -37,7 +37,9 @@ const config: Config = {
         },
       },
     ],
-    "^.+\\.svg$": "jest-transformer-svg",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/tests/unit/utils/fileTransformer.js",
+    "^.+\\.svg": "jest-transformer-svg",
   },
   moduleNameMapper: {
     // order is important
@@ -50,8 +52,6 @@ const config: Config = {
     "@tests/(.*)$": "<rootDir>/tests/$1",
 
     // mocks and stubs
-    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$":
-      "identity-obj-proxy",
     "\\.(css|scss)$": "identity-obj-proxy",
   },
 

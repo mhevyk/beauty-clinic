@@ -1,12 +1,12 @@
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
-import flowerCombinationDecoration from "@/assets/decorations/flower-combination.svg?url";
+import flowerCombinationDecoration from "@/assets/decorations/flower-combination.png";
 import coconutImage from "@/assets/images/coconut.png";
 import cottonImage from "@/assets/images/cotton.png";
 import whitePetalImage from "@/assets/images/white-petal.png";
 
-import theme from "@/theme/theme.ts";
+import theme from "@/theme/theme";
 
 const smallScreenMediaQuery = theme.breakpoints.down("md");
 const middleScreenMediaQuery = theme.breakpoints.down(1200);

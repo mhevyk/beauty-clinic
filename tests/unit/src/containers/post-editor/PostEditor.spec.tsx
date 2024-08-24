@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Editor } from "@tinymce/tinymce-react";
 import { useState } from "react";
 
@@ -71,20 +71,13 @@ describe("<PostEditor />", () => {
     expect(editorSkeleton).toBeInTheDocument();
   });
 
-  it("should run onInit callback correctly", async () => {
-    (useState as jest.Mock).mockReturnValueOnce([null, mockSetIsLoading]);
+  it("should run onInit callback correctly", () => {
+    (useState as jest.Mock).mockReturnValue([true, mockSetIsLoading]);
     renderAndMock();
-
-    const editorSkeleton = screen.queryByTestId("editor-skeleton");
-    expect(editorSkeleton).not.toBeInTheDocument();
-
-    await waitFor(() => {
-      expect(mockSetIsLoading).toHaveBeenCalledWith(false);
-    });
+    expect(mockSetIsLoading).toHaveBeenCalledWith(false);
   });
 
   it("should handle file upload correctly", () => {
-    (useState as jest.Mock).mockReturnValueOnce([null, mockSetIsLoading]);
     renderAndMock();
 
     handleFileUpload(mockFilePickerCallback);

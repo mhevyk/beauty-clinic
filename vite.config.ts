@@ -19,7 +19,6 @@ export default defineConfig({
     string(),
     svgr({
       include: "**/*.svg",
-      exclude: "**/*.svg?url",
     }),
   ],
 });

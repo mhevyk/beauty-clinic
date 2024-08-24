@@ -1,7 +1,6 @@
+import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import getSessionsToOrderFromCart from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart.ts";
-
-import useSelectedTreatmentSession from "./useSelectedTreatmentSession.ts";
 
 export default function useItemsToOrder() {
   const checkSessionExists = useCartStore(store => store.checkSessionExists);

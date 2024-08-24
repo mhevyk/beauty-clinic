@@ -11,7 +11,7 @@
     "test:e2e:open": "cypress open",
     "test:e2e:run": "cypress run",
     "build": "tsc && vite build",
-    "lint": "eslint \"./src/**/*.{js,ts,jsx,tsx}\" --max-warnings 0",
+    "lint:check": "eslint \"./src/**/*.{js,ts,jsx,tsx}\" --max-warnings 0",
     "lint:fix": "eslint \"./src/**/*.{js,ts,jsx,tsx}\" --fix",
     "preview": "vite preview",
     "format:check": "prettier --check ./",

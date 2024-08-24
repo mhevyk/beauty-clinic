@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import useRefreshToken from "@/hooks/use-refresh-token/useRefreshToken";
-import fetchAccessToken from "@/utils/fetch-access-token/fetchAccessToken";
-import showSnackbar from "@/utils/show-snackbar/showSnackbar";
+import useRefreshToken from "@/hooks/use-refresh-token/useRefreshToken.ts";
+import fetchAccessToken from "@/utils/fetch-access-token/fetchAccessToken.ts";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar.ts";
 
 const mockShowSnackbar = jest.fn();
 const mockFetchAccessToken = jest.fn();
@@ -10,17 +10,17 @@ const mockSetAccessToken = jest.fn();
 const mockSetIsAuthenticating = jest.fn();
 const mockAbort = jest.fn();
 
-jest.mock("@/utils/show-snackbar/showSnackbar", () => ({
+jest.mock("@/utils/show-snackbar/showSnackbar.ts", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
-jest.mock("@/utils/fetch-access-token/fetchAccessToken", () => ({
+jest.mock("@/utils/fetch-access-token/fetchAccessToken.ts", () => ({
   __esModule: true,
   default: jest.fn(),
 }));
 
-jest.mock("@/store/user/userStore", () => ({
+jest.mock("@/store/user/userStore.ts", () => ({
   useUserStore: jest.fn(fn => {
     const data = {
       setAccessToken: mockSetAccessToken,

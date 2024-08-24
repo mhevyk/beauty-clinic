@@ -1,15 +1,5 @@
 import type { Config } from "jest";
 
-const { parsed } = require("@dotenvx/dotenvx").config();
-
-const envVars = Object.keys(parsed).reduce<Record<string, string>>(
-  (vars, envVariableKey) => {
-    vars[`import.meta.env.${envVariableKey}`] = `'${envVariableKey}'`;
-    return vars;
-  },
-  {}
-);
-
 const config: Config = {
   testEnvironment: "jest-environment-jsdom",
   setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.ts"],
@@ -21,15 +11,6 @@ const config: Config = {
       {
         jsc: {
           transform: {
-            optimizer: {
-              globals: {
-                vars: {
-                  // TODO: bad solution, but it works for now
-                  "import.meta.env.MODE": "'test'",
-                  ...envVars,
-                },
-              },
-            },
             react: {
               runtime: "automatic",
             },

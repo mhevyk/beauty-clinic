@@ -17,7 +17,7 @@ export default function TreatmentCardList() {
     }
 
     const treatmentImageUrl = concatUrls(
-      import.meta.env.VITE_API_BASE_IMAGE_URL,
+      process.env.VITE_API_BASE_IMAGE_URL,
       treatment.imageUrl
     );
 

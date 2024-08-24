@@ -72,7 +72,7 @@ export default function CartItemCard({ item }: ItemCardProps) {
 
   const [src, { hasError, isLoading }] = useLazyImage({
     src: concatUrls(
-      import.meta.env.VITE_API_BASE_IMAGE_URL,
+      process.env.VITE_API_BASE_IMAGE_URL,
       treatment.imageUrl!
     ),
     placeholderSrc: imagePlaceholder,

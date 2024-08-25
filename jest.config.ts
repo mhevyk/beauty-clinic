@@ -5,6 +5,7 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.ts"],
   testMatch: ["<rootDir>/tests/unit/**/*.spec.ts?(x)"], // directories to find tests
   verbose: true,
+  bail: true, // exit after first test failure
   transform: {
     "^.+\\.(t|j)sx?$": [
       "@swc/jest",

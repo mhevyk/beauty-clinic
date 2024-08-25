@@ -106,11 +106,11 @@ export default function EmployeeShowcaseSection() {
             Hi, I&apos;m Lily
           </Typography>
           <EmployeeSummary variant="paragraph" as="p" data-testid="description">
-            I&apos;m a paragraph. Click here to add your own text and edit me. It&apos;s
-            easy. Just click “Edit Text” or double click me to add your own
-            content and make changes to the font. Feel free to drag and drop me
-            anywhere you like on your page. I&apos;m a great place for you to tell a
-            story and let your users know a little more about you.
+            I&apos;m a paragraph. Click here to add your own text and edit me.
+            It&apos;s easy. Just click “Edit Text” or double click me to add
+            your own content and make changes to the font. Feel free to drag and
+            drop me anywhere you like on your page. I&apos;m a great place for
+            you to tell a story and let your users know a little more about you.
           </EmployeeSummary>
         </EmployeeDetails>
       </Grid>

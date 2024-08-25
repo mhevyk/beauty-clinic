@@ -7,9 +7,9 @@ import Typography from "@mui/material/Typography";
 
 import CaretIconSvg from "@/assets/icons/caret-left.svg";
 
-import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";
 import CartDrawerFooter from "@/containers/drawers/cart-drawer/components/CartDrawerFooter";
 import CartDrawerList from "@/containers/drawers/cart-drawer/components/CartDrawerList";
+import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";
 import { useCartStore } from "@/store/cart/cartStore";
 
 const ANIMATION_DURATION_MS = 550;

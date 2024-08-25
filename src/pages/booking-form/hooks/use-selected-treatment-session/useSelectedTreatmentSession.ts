@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
-import { useOrderStore } from "@/store/order/orderStore.ts";
 import { useGetTreatmentByIdQuery } from "@/api/generated";
+import { useOrderStore } from "@/store/order/orderStore.ts";
 
 type BookTreatmentSessionParams = {
   treatmentId: string;

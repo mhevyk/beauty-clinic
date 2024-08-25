@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
+import { useResetPasswordMutation } from "@/api/generated";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import PasswordForm, {
@@ -10,7 +11,6 @@ import PasswordForm, {
 } from "@/containers/forms/password-form/PasswordForm";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { repeatPasswordFormSchema } from "@/validation/signUpFormSchema.ts";
-import { useResetPasswordMutation } from "@/api/generated";
 
 const initialFormValues: PasswordFormValues = {
   password: "",

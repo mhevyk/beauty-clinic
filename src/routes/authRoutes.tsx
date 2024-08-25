@@ -6,7 +6,9 @@ import AppSuspense from "@/routes/helpers/AppSuspense";
 
 const SignUpPage = lazy(() => import("@/pages/sign-up/SignUpPage.tsx"));
 const SignInPage = lazy(() => import("@/pages/sign-in/SignInPage.tsx"));
-const ResetPasswordPage = lazy(() => import("@/pages/reset-password/ResetPasswordPage.tsx"));
+const ResetPasswordPage = lazy(
+  () => import("@/pages/reset-password/ResetPasswordPage.tsx")
+);
 
 const authRoutes: RouteObject[] = [
   {

@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
+import { Treatment } from "@/api/generated";
 import {
   BoxStyled,
   ButtonStyled,
   TitleStyled,
 } from "@/pages/treatments/components/treatment-card/TreatmentCard.styles";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
-import { Treatment } from "@/api/generated";
 
 type TreatmentCardProps = {
   treatment: Treatment;

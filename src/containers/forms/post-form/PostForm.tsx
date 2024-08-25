@@ -8,13 +8,13 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
 
+import { useGetPostCategoriesQuery } from "@/api/generated";
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
 import { defaultPostFormValues } from "@/containers/forms/post-form/PostForm.constants";
 import { Form } from "@/containers/forms/post-form/PostForm.styles";
 import { PostFormValues } from "@/containers/forms/post-form/PostForm.types";
 import PostEditor from "@/containers/post-editor/PostEditor";
 import postFormValidationSchema from "@/validation/postFormValidationSchema";
-import { useGetPostCategoriesQuery } from "@/api/generated";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

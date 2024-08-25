@@ -21,7 +21,7 @@ export default function NextPageButton({
     }
 
     const errors = await validateForm();
-    
+
     if (Object.keys(errors).length === 0) {
       openNextPage();
     }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { client } from "@/config/apollo";
 import { GetTreatmentSessionAvailabilitiesDocument } from "@/api/generated";
+import { client } from "@/config/apollo";
 
 type DateRange = {
   start: Date;

@@ -1,5 +1,5 @@
-import TreatmentsCard from "@/pages/treatments/components/treatment-card/TreatmentsCard";
 import { useGetTreatmentsSuspenseQuery } from "@/api/generated";
+import TreatmentsCard from "@/pages/treatments/components/treatment-card/TreatmentsCard";
 
 export default function TreatmentCardList() {
   const { data } = useGetTreatmentsSuspenseQuery();

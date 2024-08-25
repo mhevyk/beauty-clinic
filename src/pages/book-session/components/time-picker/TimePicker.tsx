@@ -3,13 +3,13 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { subMinutes } from "date-fns";
 
+import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@/api/generated";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
 import theme from "@/theme/theme.ts";
-import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@/api/generated";
 
+import useLimitedSessionHours from "../../hooks/use-limited-session-hours/useLimitedSessionHours.ts";
 import NoAvailability from "../no-availability/NoAvailability.tsx";
 import TimeButton from "../time-button/TimeButton.tsx";
-import useLimitedSessionHours from "../../hooks/use-limited-session-hours/useLimitedSessionHours.ts";
 
 const BoxGridStyled = styled(Box)({
   width: "375px",

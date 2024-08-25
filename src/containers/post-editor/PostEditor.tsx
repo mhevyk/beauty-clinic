@@ -55,7 +55,6 @@ export default function PostEditor({
             ...postEditorConfig,
             file_picker_callback: handleFileUpload,
           }}
-          
         />
       </EditorWrapper>
     </>

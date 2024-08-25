@@ -1,9 +1,9 @@
+import { Employee, Treatment } from "@/api/generated";
 import { PERSISTED_STORAGE_KEYS } from "@/constants/index";
 import { QualifiedEmployee } from "@/pages/book-session/hooks/use-selected-qualified-employee/useSelectedQualifiedEmployee";
 import { OrderStore } from "@/store/order/orderStore";
 import createPersistedStore from "@/store/utils/createPersistedStore";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import { Employee, Treatment } from "@/api/generated";
 
 import sessionComparator from "./utils/sessionComparator";
 

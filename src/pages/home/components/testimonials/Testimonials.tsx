@@ -1,11 +1,11 @@
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
+import { quotes } from "@/pages/home/data/quotes.ts";
 import theme from "@/theme/theme.ts";
 
 import TestimonialCard from "../testimonial-card/TestimonialCard.tsx";
 import TestimonialsImage from "../testimonials-image/TestimonialsImage.tsx";
-import { quotes } from "@/pages/home/data/quotes.ts";
 
 const PinkChiffon = theme.palette.PinkChiffon.main;
 const SteelMist = theme.palette.SteelMist.main;

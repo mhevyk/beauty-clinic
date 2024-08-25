@@ -2,9 +2,8 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 
-import theme from "@/theme/theme.ts";
-
 import { Quote } from "@/pages/home/data/quotes.ts";
+import theme from "@/theme/theme.ts";
 
 const BoxInFade = styled(Box)({
   position: "absolute",

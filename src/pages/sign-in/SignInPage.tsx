@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
-import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
+import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
 import SignInForm from "@/containers/forms/sign-in-form/SignInForm";
 import useSignIn from "@/hooks/use-sign-in/useSignIn";

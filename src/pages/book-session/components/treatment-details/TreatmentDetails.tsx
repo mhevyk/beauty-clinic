@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
-import { useGetTreatmentByIdSuspenseQuery } from "@api/hooks";
+import { useGetTreatmentByIdSuspenseQuery } from "@/api/generated";
 
 import EmployeeSelect from "@/pages/book-session/components/employee-select/EmployeeSelect";
 

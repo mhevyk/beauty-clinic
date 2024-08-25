@@ -9,7 +9,7 @@ import {
   TitleStyled,
 } from "@/pages/treatments/components/treatment-card/TreatmentCard.styles";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
-import { Treatment } from "@api/hooks";
+import { Treatment } from "@/api/generated";
 
 type TreatmentCardProps = {
   treatment: Treatment;

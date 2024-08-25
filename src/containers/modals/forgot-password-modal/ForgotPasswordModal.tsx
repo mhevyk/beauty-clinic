@@ -13,6 +13,7 @@ import { Formik } from "formik";
 import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
 import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
 
+import { useForgotPasswordMutation } from "@/api/generated";
 import AppLink from "@/components/app-link/AppLink";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import ResetPasswordForm from "@/containers/forms/forgot-password-form/ForgotPasswordForm.tsx";
@@ -24,7 +25,6 @@ import theme from "@/theme/theme.ts";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { emailFormSchema } from "@/validation/emailFormSchema.ts";
-import { useForgotPasswordMutation } from "@api/hooks";
 
 const CircleWrapper = styled(Box)(({ theme }) => ({
   width: "115px",

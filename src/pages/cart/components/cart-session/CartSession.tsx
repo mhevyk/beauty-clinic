@@ -11,7 +11,7 @@ import {
   useCartStore,
 } from "@/store/cart/cartStore.ts";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
-import { Treatment } from "@api/hooks";
+import { Treatment } from "@/api/generated";
 
 const BinButton = styled(BinIcon)({
   width: "25px",

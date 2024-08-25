@@ -8,7 +8,7 @@ import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinne
 import PasswordForm, { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { repeatPasswordFormSchema } from "@/validation/signUpFormSchema.ts";
-import { useResetPasswordMutation } from "@api/hooks";
+import { useResetPasswordMutation } from "@/api/generated";
 
 const initialFormValues: PasswordFormValues = {
   password: "",

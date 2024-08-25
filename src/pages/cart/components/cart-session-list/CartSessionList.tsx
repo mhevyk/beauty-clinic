@@ -3,7 +3,7 @@ import TableBody from "@mui/material/TableBody";
 
 import CartSession from "@/pages/cart/components/cart-session/CartSession";
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
-import { Treatment } from "@api/hooks";
+import { Treatment } from "@/api/generated";
 
 type CartSessionListProps = {
   sessions: CartSessionType[];

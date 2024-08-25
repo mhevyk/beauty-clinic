@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { Employee } from "@api/hooks";
+import { Employee } from "@/api/generated";
 
 export type OrderStore = {
   sessionStartsAt: Date | null;

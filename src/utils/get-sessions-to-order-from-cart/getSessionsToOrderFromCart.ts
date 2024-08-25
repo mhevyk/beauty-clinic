@@ -1,5 +1,5 @@
 import { useCartStore } from "@/store/cart/cartStore.ts";
-import { Employee, Treatment } from "@api/hooks";
+import { Employee, Treatment } from "@/api/generated";
 
 export type OrderItem = {
   employee: Pick<Employee, "id" | "name">;

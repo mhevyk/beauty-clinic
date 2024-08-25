@@ -4,7 +4,7 @@ import { styled } from "@mui/material";
 import Button from "@mui/material/Button";
 
 import { useOrderStore } from "@/store/order/orderStore.ts";
-import { Employee } from "@api/hooks";
+import { Employee } from "@/api/generated";
 
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 

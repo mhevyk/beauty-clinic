@@ -12,7 +12,7 @@ import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx"
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
 import getSessionsToOrderFromCart from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
-import { useGetCurrentUserDetailsQuery } from "@api/hooks";
+import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 
 const CartBar = styled(Box)(({ theme }) => ({
   width: "100%",

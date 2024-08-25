@@ -11,7 +11,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-      "@api/hooks": path.resolve(__dirname, "src/api/generated/index.tsx"),
       "@tests": path.resolve(__dirname, "tests"),
     },
   },

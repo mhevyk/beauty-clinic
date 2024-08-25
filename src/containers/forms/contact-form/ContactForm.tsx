@@ -16,7 +16,7 @@ import {
   VerifyRecaptchaMutation,
   useCreateContactFormEntryMutation,
   useVerifyRecaptchaMutation,
-} from "@api/hooks";
+} from "@/api/generated";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 

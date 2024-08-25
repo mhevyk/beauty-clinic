@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import PostForm from "@/containers/forms/post-form/PostForm";
 import { PostFormValues } from "@/containers/forms/post-form/PostForm.types";
 import useCurrentUser from "@/hooks/use-current-user/useCurrentUser";
-import { useCreatePostMutation } from "@api/hooks";
+import { useCreatePostMutation } from "@/api/generated";
 
 export default function CreatePostPage() {
   const [createPost, { isLoading }] = useCreatePostMutation();

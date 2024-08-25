@@ -14,7 +14,7 @@ import { Form } from "@/containers/forms/post-form/PostForm.styles";
 import { PostFormValues } from "@/containers/forms/post-form/PostForm.types";
 import PostEditor from "@/containers/post-editor/PostEditor";
 import postFormValidationSchema from "@/validation/postFormValidationSchema";
-import { useGetPostCategoriesQuery } from "@api/hooks";
+import { useGetPostCategoriesQuery } from "@/api/generated";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

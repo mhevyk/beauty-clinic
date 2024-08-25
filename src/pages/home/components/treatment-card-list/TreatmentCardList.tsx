@@ -1,5 +1,5 @@
 import concatUrls from "@/utils/concat-urls/concatUrls.ts";
-import { useGetTreatmentsSuspenseQuery } from "@api/hooks";
+import { useGetTreatmentsSuspenseQuery } from "@/api/generated";
 
 import TreatmentCard from "../testimonials-card/TreatmentCard.tsx";
 import myTreatmentDecorationImageData from "../../data/treatmentItems.ts";

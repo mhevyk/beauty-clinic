@@ -10,7 +10,7 @@ import FormGroupWithError from "@/components/form-group-with-error/FormGroupWith
 import PhoneNumberFormGroup from "@/containers/phone-number-form-group/PhoneNumberFormGroup";
 import { useUserStore } from "@/store/user/userStore.ts";
 import theme from "@/theme/theme.ts";
-import { useGetCurrentUserDetailsQuery } from "@api/hooks";
+import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 
 type ForgotPasswordFormValues = {
   name: string;

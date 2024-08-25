@@ -25,7 +25,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@api/hooks": ["src/api/generated/index.tsx"],
       "@tests/*": ["tests/*"]
     }
   },

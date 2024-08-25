@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import theme from "@/theme/theme.ts";
-import { Treatment } from "@api/hooks";
+import { Treatment } from "@/api/generated";
 
 const BoxStyled = styled(Box)({
   [theme.breakpoints.up("xs")]: {

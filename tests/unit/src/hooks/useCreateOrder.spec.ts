@@ -12,7 +12,7 @@ import {
   CreateOrderByAuthorizedUserInput,
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
-} from "@api/hooks";
+} from "@/api/generated";
 
 const mockCreateOrderByAuthorizedUser = jest.fn();
 const mockCreateOrderByGuestUser = jest.fn();
@@ -28,7 +28,7 @@ jest.mock("@/store/user/userStore", () => ({
   useUserStore: jest.fn(),
 }));
 
-jest.mock("@api/hooks", () => ({
+jest.mock("@/api/generated", () => ({
   useCreateOrderByGuestUserMutation: jest.fn(),
   useCreateOrderByAuthorizedUserMutation: jest.fn(),
 }));

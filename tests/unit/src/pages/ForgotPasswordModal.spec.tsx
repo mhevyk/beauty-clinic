@@ -8,7 +8,7 @@ import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/sign-in/constants";
 import useCountdown from "@/pages/sign-in/hooks/use-countdown/useCountdown";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import { useForgotPasswordMutation } from "@api/hooks";
+import { useForgotPasswordMutation } from "@/api/generated";
 
 const successSnackbarOptions = {
   variant: "success",
@@ -28,7 +28,7 @@ jest.mock("@/utils/show-snackbar/showSnackbar", () => ({
   default: jest.fn(),
 }));
 
-jest.mock("@api/hooks", () => ({
+jest.mock("@/api/generated", () => ({
   __esModule: true,
   useForgotPasswordMutation: jest.fn(() => [mockSendEmail, { loading: true }]),
 }));

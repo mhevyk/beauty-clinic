@@ -4,7 +4,7 @@ import { SignInFormValues } from "@/pages/sign-in/SignInPage.tsx";
 import { useUserStore } from "@/store/user/userStore";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import { useSignInMutation } from "@api/hooks";
+import { useSignInMutation } from "@/api/generated";
 
 export default function useSignIn() {
   const [signIn, { loading: isSigningIn }] = useSignInMutation();

@@ -9,7 +9,7 @@ import {
   CreateOrderByAuthorizedUserInput,
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
-} from "@api/hooks";
+} from "@/api/generated";
 
 export default function useCreateOrder(itemsToOrder: OrderItem[]) {
   const [

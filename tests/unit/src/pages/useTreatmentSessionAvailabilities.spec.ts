@@ -2,7 +2,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 
 import { client } from "@/config/apollo";
 import useTreatmentSessionAvailabilities from "@/pages/book-session/hooks/use-treatment-session-availabilities/useTreatmentSessionAvailabilities";
-import { GetTreatmentSessionAvailabilitiesDocument } from "@api/hooks";
+import { GetTreatmentSessionAvailabilitiesDocument } from "@/api/generated";
 
 jest.mock("@/config/apollo", () => ({
   __esModule: true,

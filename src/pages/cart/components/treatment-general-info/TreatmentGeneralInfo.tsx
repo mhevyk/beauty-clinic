@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
-import { Treatment } from "@api/hooks";
+import { Treatment } from "@/api/generated";
 
 const TreatmentInfo = styled("p")(({ theme }) => ({
   ...theme.typography.paragraph,

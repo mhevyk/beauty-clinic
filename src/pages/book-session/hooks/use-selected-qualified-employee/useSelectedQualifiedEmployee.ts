@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Employee, useQualifiedEmployeesSuspenseQuery } from "@api/hooks";
+import { Employee, useQualifiedEmployeesSuspenseQuery } from "@/api/generated";
 
 export type QualifiedEmployee = Pick<Employee, "__typename" | "id" | "name">;
 

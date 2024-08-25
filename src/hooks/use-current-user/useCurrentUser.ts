@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
 import { useUserStore } from "@/store/user/userStore";
-import { User } from "@api/hooks";
+import { User } from "@/api/generated";
 
 export type UserPayload = Pick<User, "id" | "email" | "username" | "role">;
 

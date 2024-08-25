@@ -18,7 +18,6 @@ const config: Config = {
 
     // import aliases
     "@/(.*)$": "<rootDir>/src/$1",
-    "@api/hooks$": "<rootDir>/src/api/generated/index.tsx",
     "@tests/(.*)$": "<rootDir>/tests/$1",
 
     // mocks and stubs

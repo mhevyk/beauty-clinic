@@ -5,7 +5,7 @@ import { subMinutes } from "date-fns";
 
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
 import theme from "@/theme/theme.ts";
-import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@api/hooks";
+import { useGetAvailableTreatmentSessionHoursSuspenseQuery } from "@/api/generated";
 
 import NoAvailability from "../no-availability/NoAvailability.tsx";
 import TimeButton from "../time-button/TimeButton.tsx";

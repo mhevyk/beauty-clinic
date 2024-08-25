@@ -11,5 +11,8 @@ export const initialFormValues: SignUpFormValues = {
 };
 
 export const multistepFormConfig = {
-  pages: [<SignUpForm />, <PasswordForm />],
+  pages: [
+    <SignUpForm key="sign-up-form" />,
+    <PasswordForm key="password-form" />,
+  ],
 };

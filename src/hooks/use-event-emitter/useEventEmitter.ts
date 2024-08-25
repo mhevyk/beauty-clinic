@@ -4,6 +4,8 @@ import EventEmitter from "eventemitter3";
 
 import { CUSTOM_EVENTS } from "@/constants/index";
 
+// TODO: Remove eslint ignore
+// eslint-disable-next-line
 type Listener = (...args: any[]) => void;
 type CustomEvent = keyof typeof CUSTOM_EVENTS;
 
@@ -11,6 +13,8 @@ type CustomEvent = keyof typeof CUSTOM_EVENTS;
 const emitter = new EventEmitter();
 
 export default function useEventEmitter() {
+  // TODO: Remove eslint ignore
+  // eslint-disable-next-line
   const emit = useCallback((eventName: CustomEvent, ...args: any[]) => {
     emitter.emit(eventName, ...args);
   }, []);

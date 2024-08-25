@@ -6,7 +6,7 @@ import useCurrentUser from "@/hooks/use-current-user/useCurrentUser";
 import { useCreatePostMutation } from "@/api/generated";
 
 export default function CreatePostPage() {
-  const [createPost, { isLoading }] = useCreatePostMutation();
+  const [createPost] = useCreatePostMutation();
   const user = useCurrentUser();
 
   const handleSubmit = async (values: PostFormValues) => {
@@ -16,7 +16,7 @@ export default function CreatePostPage() {
           title: values.title,
           content: values.content,
           categoryIds: values.categoryIds,
-          authorId: user?.id!,
+          authorId: user!.id,
         },
       },
     });

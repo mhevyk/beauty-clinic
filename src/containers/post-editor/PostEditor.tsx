@@ -15,7 +15,7 @@ import handlePostImageUpload, {
   FilePickerCallback,
 } from "@/containers/post-editor/utils/handle-post-image-upload/handlePostImageUpload";
 
-type InitEditorEvent = EditorEvent<{}>;
+type InitEditorEvent = EditorEvent<object>;
 
 type PostEditorProps = {
   value: string;

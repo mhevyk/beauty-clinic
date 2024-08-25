@@ -217,8 +217,8 @@ export default function ForgotPasswordModal({
             <Title variant="heading">Reset your password</Title>
             <br />
             <Description variant="paragraph">
-              Please enter your email address. We'll send you a link to reset
-              your password
+              Please enter your email address. We&apos;ll send you a link to
+              reset your password
             </Description>
           </Information>
         </BoxStyled>
@@ -249,7 +249,7 @@ export default function ForgotPasswordModal({
         </Formik>
         <DividerStyled aria-hidden="true">or</DividerStyled>
         <AppLink variant="accent" to="/auth/signup">
-          Don't have an account?
+          Don&apos;t have an account?
         </AppLink>
       </DialogContentStyled>
     </Dialog>

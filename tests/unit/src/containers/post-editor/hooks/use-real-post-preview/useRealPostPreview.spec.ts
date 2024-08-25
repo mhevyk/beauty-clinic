@@ -25,10 +25,13 @@ const previewData: PostEditorPreviewData = { title: "Sample Title" };
 const mockContent = "<p>Original Content</p>";
 const previewLayout = "<div>Preview Layout</div>";
 
-jest.mock("@/containers/post-editor/utils/create-post-preview-layout/createPostPreviewLayout", () => ({
-  __esModule: true,
-  default: jest.fn(() => "<div>Preview Layout</div>"),
-}));
+jest.mock(
+  "@/containers/post-editor/utils/create-post-preview-layout/createPostPreviewLayout",
+  () => ({
+    __esModule: true,
+    default: jest.fn(() => "<div>Preview Layout</div>"),
+  })
+);
 
 const renderHookWithEditor = (editor: Partial<TinyMCEEditor> | null) => {
   mockEditor.getContent.mockReturnValue(mockContent);

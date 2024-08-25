@@ -6,10 +6,9 @@ import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
 
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
+import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import theme from "@/theme/theme.ts";
-
-import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
 
 const ActionButton = styled(ButtonWithSpinner)({
   ":disabled": {

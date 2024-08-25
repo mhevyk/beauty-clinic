@@ -1,9 +1,9 @@
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 
+import { Treatment } from "@/api/generated";
 import CartSession from "@/pages/cart/components/cart-session/CartSession";
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
-import { Treatment } from "@/api/generated";
 
 type CartSessionListProps = {
   sessions: CartSessionType[];

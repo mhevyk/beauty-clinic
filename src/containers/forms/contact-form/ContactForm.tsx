@@ -4,6 +4,11 @@ import Fade from "@mui/material/Fade";
 import InputBase from "@mui/material/InputBase";
 import Stack from "@mui/material/Stack";
 
+import {
+  VerifyRecaptchaMutation,
+  useCreateContactFormEntryMutation,
+  useVerifyRecaptchaMutation,
+} from "@/api/generated";
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
 import HumanVerificationModal from "@/containers/modals/human-verication-modal/HumanVerificationModal";
 import useToggle from "@/hooks/use-toggle/useToggle";
@@ -12,11 +17,6 @@ import { useDelayedUnmount } from "@/layouts/footer/hooks/useDelayedUnmount";
 import closeSnackbar from "@/utils/close-snackbar/closeSnackbar";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import {
-  VerifyRecaptchaMutation,
-  useCreateContactFormEntryMutation,
-  useVerifyRecaptchaMutation,
-} from "@/api/generated";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
 

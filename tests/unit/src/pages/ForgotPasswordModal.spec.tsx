@@ -3,12 +3,12 @@ import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 import typeIntoInput from "@tests/unit/utils/typeIntoInput";
 
+import { useForgotPasswordMutation } from "@/api/generated";
 import ForgotPasswordModal from "@/containers/modals/forgot-password-modal/ForgotPasswordModal";
 import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/sign-in/constants";
 import useCountdown from "@/pages/sign-in/hooks/use-countdown/useCountdown";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import { useForgotPasswordMutation } from "@/api/generated";
 
 const successSnackbarOptions = {
   variant: "success",

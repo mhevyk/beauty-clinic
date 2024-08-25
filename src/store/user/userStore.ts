@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
-import { client } from "@/config/apollo";
 import { LogoutDocument } from "@/api/generated";
+import { client } from "@/config/apollo";
 
 export type AccessToken = string | null;
 

@@ -4,11 +4,11 @@ import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 
+import { TESTIMONIALS_ANIMATION_DURATION } from "@/pages/home/data/constants.ts";
 import { Quote } from "@/pages/home/data/quotes.ts";
 import useInterval from "@/pages/home/hooks/use-interval/useInterval.ts";
 import theme from "@/theme/theme.ts";
 
-import { TESTIMONIALS_ANIMATION_DURATION } from "@/pages/home/data/constants.ts";
 import PointButton from "../point-button/PointButton.tsx";
 import QuoteItem from "../quote-item/QuoteItem.tsx";
 

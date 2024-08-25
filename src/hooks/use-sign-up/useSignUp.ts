@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
+import { useSignUpMutation } from "@/api/generated";
 import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.tsx";
 import { useUserStore } from "@/store/user/userStore";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import { useSignUpMutation } from "@/api/generated";
 
 export default function useSignUp() {
   const [signUp, { loading: isSigningUp }] = useSignUpMutation();

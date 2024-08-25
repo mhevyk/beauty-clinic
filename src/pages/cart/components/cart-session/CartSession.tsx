@@ -6,12 +6,12 @@ import { format } from "date-fns";
 
 import BinIcon from "@/assets/icons/bin-icon.svg";
 
+import { Treatment } from "@/api/generated";
 import {
   CartSession as CartSessionType,
   useCartStore,
 } from "@/store/cart/cartStore.ts";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
-import { Treatment } from "@/api/generated";
 
 const BinButton = styled(BinIcon)({
   width: "25px",

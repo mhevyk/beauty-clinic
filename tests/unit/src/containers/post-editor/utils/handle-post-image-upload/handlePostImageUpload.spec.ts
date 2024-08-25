@@ -7,7 +7,9 @@ import { uploadFileToMemory } from "@/containers/post-editor/utils/upload-file-t
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
-jest.mock("@/containers/post-editor/utils/upload-file-to-memory/uploadFileToMemory");
+jest.mock(
+  "@/containers/post-editor/utils/upload-file-to-memory/uploadFileToMemory"
+);
 jest.mock("@/utils/extract-error-message/extractErrorMessage");
 jest.mock("@/utils/show-snackbar/showSnackbar");
 

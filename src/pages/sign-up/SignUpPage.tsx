@@ -2,8 +2,8 @@ import Button from "@mui/material/Button";
 import { Formik } from "formik";
 
 import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
-import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import { useMultistepForm } from "@/hooks/use-multistep-form/useMultistepForm";
+import useSignUp from "@/hooks/use-sign-up/useSignUp";
 import {
   initialFormValues,
   multistepFormConfig,

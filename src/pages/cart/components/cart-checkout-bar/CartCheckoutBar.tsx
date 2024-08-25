@@ -6,13 +6,13 @@ import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 
+import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
 import getSessionsToOrderFromCart from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
-import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 
 const CartBar = styled(Box)(({ theme }) => ({
   width: "100%",

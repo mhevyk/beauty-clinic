@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 
 import useEventEmitter from "@/hooks/use-event-emitter/useEventEmitter";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
-
 import getNextWorkingDay from "@/pages/book-session/utils/get-next-working-day/getNextWorkingDay";
 
 const ButtonStyled = styled(Button)({

@@ -17,7 +17,7 @@ import {
 } from "@/validation/signUpFormSchema";
 
 export default function SignUpPage() {
-  const { page, controls, hasNextPage, hasPreviousPage, isFirstPage } =
+  const { page, controls, hasNextPage, hasPreviousPage } =
     useMultistepForm(multistepFormConfig);
 
   const [signUp, { isSigningUp }] = useSignUp();
@@ -26,7 +26,7 @@ export default function SignUpPage() {
     await signUp(values);
   }
 
-  const validationSchema = isFirstPage
+  const validationSchema = !hasPreviousPage
     ? signUpFormSchema
     : repeatPasswordFormSchema;
 

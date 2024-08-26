@@ -11,8 +11,9 @@ const pages = [
 ];
 
 const Sandbox = () => {
-  const { page, controls, hasNextPage, hasPreviousPage, isFirstPage } =
-    useMultistepForm({ pages });
+  const { page, controls, hasNextPage, hasPreviousPage } = useMultistepForm({
+    pages,
+  });
 
   return (
     <>
@@ -23,9 +24,6 @@ const Sandbox = () => {
       <button onClick={controls.nextPage} disabled={!hasNextPage}>
         Next
       </button>
-      {isFirstPage && (
-        <span data-testid="first-page-indicator">First Page</span>
-      )}
     </>
   );
 };
@@ -36,10 +34,10 @@ describe("useMultistepForm()", () => {
   });
 
   it("should render the first page initially", () => {
-    const firstPage = screen.getByTestId("first-page-indicator");
+    const PrevButton = screen.getByText("Previous");
     const pageNumber = screen.getByText("Page1");
 
-    expect(firstPage).toBeInTheDocument();
+    expect(PrevButton).toBeDisabled();
     expect(pageNumber).toBeInTheDocument();
   });
 
@@ -51,41 +49,39 @@ describe("useMultistepForm()", () => {
     expect(PrevButton).toBeDisabled();
   });
   it("should navigate to the next page", () => {
-    const firstPage = screen.getByTestId("first-page-indicator");
+    const PrevButton = screen.getByText("Previous");
+    const nextButton = screen.getByText("Next");
+    const pageOne = screen.getByText("Page1");
 
-    expect(firstPage).toBeInTheDocument();
+    expect(pageOne).toBeInTheDocument();
 
     act(() => {
-      screen.getByText("Next").click();
+      nextButton.click();
     });
 
-    const pageNumber = screen.getByText("Page2");
+    const pageTwo = screen.getByText("Page2");
 
-    expect(firstPage).not.toBeInTheDocument();
-    expect(pageNumber).toBeInTheDocument();
+    expect(PrevButton).toBeEnabled();
+    expect(pageTwo).toBeInTheDocument();
   });
 
   it("should navigate to the previous page", () => {
-    const firstPage = screen.getByTestId("first-page-indicator");
     const PrevButton = screen.getByText("Previous");
     const NextButton = screen.getByText("Next");
 
-    expect(firstPage).toBeInTheDocument();
-
     act(() => {
-      screen.getByText("Next").click();
-      screen.getByText("Next").click();
+      NextButton.click();
+      NextButton.click();
     });
 
     const pageThree = screen.getByText("Page3");
 
     expect(NextButton).toBeDisabled();
     expect(PrevButton).toBeEnabled();
-    expect(firstPage).not.toBeInTheDocument();
     expect(pageThree).toBeInTheDocument();
 
     act(() => {
-      screen.getByText("Previous").click();
+      PrevButton.click();
     });
 
     const pageTwo = screen.getByText("Page2");

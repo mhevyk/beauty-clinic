@@ -15,7 +15,7 @@ const testCases = [
 
 describe("createPostPreviewLayout()", () => {
   test.each(testCases)(
-    "renders correctly with title '$title' and content '$content'",
+    "should render correctly with title '$title' and content '$content'",
     data => {
       const result = createPostPreviewLayout(data);
 

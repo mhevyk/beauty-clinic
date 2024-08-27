@@ -5,7 +5,7 @@ import useUpdateEffect from "@/hooks/use-update-effect/useUpdateEffect";
 const mockCleanup = jest.fn();
 const mockCallback = jest.fn(() => mockCleanup);
 
-describe("useUpdateEffect", () => {
+describe("useUpdateEffect()", () => {
   it("should not call the callback on initial render", () => {
     renderHook(() => useUpdateEffect(mockCallback));
     expect(mockCallback).not.toHaveBeenCalled();

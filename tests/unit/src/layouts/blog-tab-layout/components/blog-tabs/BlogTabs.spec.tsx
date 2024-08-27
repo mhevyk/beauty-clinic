@@ -33,7 +33,7 @@ const apiMocks: MockedResponse[] = [
   },
 ];
 
-describe("BlogTabs", () => {
+describe("<BlogTabs />", () => {
   it("should render correctly", async () => {
     renderWithProviders(<BlogTabs />, { apiMocks });
 

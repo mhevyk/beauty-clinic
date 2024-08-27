@@ -5,34 +5,21 @@ import { MemoryRouter } from "react-router-dom";
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { GetPostCategoriesDocument } from "@/api/generated";
 import { CSSInit } from "@/theme/global";
 import theme from "@/theme/theme";
 
-const mocks: MockedResponse[] = [
-  {
-    request: {
-      query: GetPostCategoriesDocument,
-    },
-    result: {
-      data: {
-        categories: [
-          {
-            id: "1",
-            name: "Category 1",
-            slug: "category-1",
-          },
-        ],
-      },
-    },
-  },
-];
+type RenderWithProvidersOptions = {
+  apiMocks?: MockedResponse[];
+};
 
-function renderWithProviders(ui: ReactNode) {
+function renderWithProviders(
+  ui: ReactNode,
+  { apiMocks = [] }: Partial<RenderWithProvidersOptions> = {}
+) {
   return render(
     <ThemeProvider theme={theme}>
       <CSSInit />
-      <MockedProvider mocks={mocks}>
+      <MockedProvider mocks={apiMocks}>
         <MemoryRouter>{ui}</MemoryRouter>
       </MockedProvider>
     </ThemeProvider>

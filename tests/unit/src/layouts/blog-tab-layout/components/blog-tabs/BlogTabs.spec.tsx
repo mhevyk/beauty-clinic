@@ -1,7 +1,9 @@
 import { screen } from "@testing-library/react";
 
+import { MockedResponse } from "@apollo/client/testing";
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 
+import { GetPostCategoriesDocument } from "@/api/generated";
 import BlogTabs from "@/layouts/blog-tab-layout/components/blog-tabs/BlogTabs";
 
 jest.mock("@/components/error-boundary/ErrorBoundary", () =>
@@ -12,9 +14,28 @@ jest.mock("@/layouts/blog-tab-layout/components/blog-search/BlogSearch", () =>
   jest.fn(() => <div>BlogSearch</div>)
 );
 
+const apiMocks: MockedResponse[] = [
+  {
+    request: {
+      query: GetPostCategoriesDocument,
+    },
+    result: {
+      data: {
+        categories: [
+          {
+            id: "1",
+            name: "Category 1",
+            slug: "category-1",
+          },
+        ],
+      },
+    },
+  },
+];
+
 describe("BlogTabs", () => {
   it("should render correctly", async () => {
-    renderWithProviders(<BlogTabs />);
+    renderWithProviders(<BlogTabs />, { apiMocks });
 
     const blogSearch = screen.getByText("BlogSearch");
     expect(blogSearch).toBeInTheDocument();

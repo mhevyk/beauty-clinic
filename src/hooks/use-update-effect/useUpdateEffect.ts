@@ -1,7 +1,7 @@
-import { DependencyList, useEffect, useRef } from "react";
+import { DependencyList, EffectCallback, useEffect, useRef } from "react";
 
 export default function useUpdateEffect(
-  callback: Function,
+  callback: EffectCallback,
   dependencies?: DependencyList
 ) {
   const firstRenderRef = useRef(true);

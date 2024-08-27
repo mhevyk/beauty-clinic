@@ -7,7 +7,6 @@ type UseMultistepForm = {
 export function useMultistepForm({ pages }: UseMultistepForm) {
   const [pageIndex, setPageIndex] = useState(0);
 
-  const isFirstPage = pageIndex === 0;
   const hasPreviousPage = pageIndex > 0;
   const hasNextPage = pageIndex < pages.length - 1;
 
@@ -29,7 +28,6 @@ export function useMultistepForm({ pages }: UseMultistepForm) {
 
   return {
     page: pages[pageIndex],
-    isFirstPage,
     hasNextPage,
     hasPreviousPage,
     controls: { nextPage, previousPage },

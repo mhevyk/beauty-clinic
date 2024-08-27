@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 
-import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
+import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue.ts";
 
 const renderHookWithValue = (value: string, delay?: number) => {
   return renderHook(({ value, delay }) => useDebouncedValue(value, delay), {

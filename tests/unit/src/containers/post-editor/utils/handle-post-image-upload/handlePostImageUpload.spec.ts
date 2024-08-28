@@ -26,7 +26,7 @@ describe("handlePostImageUpload()", () => {
     jest.clearAllMocks();
   });
 
-  it("calls callback with the correct URL and metadata when upload succeeds", async () => {
+  it("should call callback with the correct URL and metadata when upload succeeds", async () => {
     const mockUrl = "http://example.com/image.png";
     const mockFilename = "image.png";
 
@@ -41,7 +41,7 @@ describe("handlePostImageUpload()", () => {
     expect(callback).toHaveBeenCalledWith(mockUrl, { title: mockFilename });
   });
 
-  it("shows a snackbar with an error message when upload fails", async () => {
+  it("should show a snackbar with an error message when upload fails", async () => {
     const mockError = new Error("Upload failed");
     const mockErrorMessage = "Failed to upload image";
 

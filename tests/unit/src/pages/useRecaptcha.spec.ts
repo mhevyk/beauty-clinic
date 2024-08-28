@@ -17,7 +17,7 @@ const mockRecaptchaRef = {
 };
 
 describe("useRecaptcha()", () => {
-  it("sets recaptcha ref correctly", () => {
+  it("should set recaptcha ref correctly", () => {
     (useState as jest.Mock).mockReturnValueOnce([null, mockSetRecaptcha]);
     const { result } = renderHook(() => useRecaptcha());
 

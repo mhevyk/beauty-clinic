@@ -19,7 +19,7 @@ export const menuItems: MenuItem[] = [
     label: "Treatments",
   },
   {
-    path: "/blog",
+    path: "/posts",
     label: "Blog",
   },
   {

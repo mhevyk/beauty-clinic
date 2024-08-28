@@ -8,13 +8,18 @@ import { ThemeProvider } from "@mui/material/styles";
 import { CSSInit } from "@/theme/global";
 import theme from "@/theme/theme";
 
-const mocks: MockedResponse[] = [];
+type RenderWithProvidersOptions = {
+  apiMocks?: MockedResponse[];
+};
 
-function renderWithProviders(ui: ReactNode) {
+function renderWithProviders(
+  ui: ReactNode,
+  { apiMocks = [] }: Partial<RenderWithProvidersOptions> = {}
+) {
   return render(
     <ThemeProvider theme={theme}>
       <CSSInit />
-      <MockedProvider mocks={mocks}>
+      <MockedProvider mocks={apiMocks}>
         <MemoryRouter>{ui}</MemoryRouter>
       </MockedProvider>
     </ThemeProvider>

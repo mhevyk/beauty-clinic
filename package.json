@@ -16,7 +16,8 @@
     "preview": "vite preview",
     "format:check": "prettier --check ./",
     "format:fix": "prettier --write ./",
-    "codegen": "dotenvx run --env-file=.env.development -- graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:dev": "dotenvx run --env-file=.env.development -- npm run codegen",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },

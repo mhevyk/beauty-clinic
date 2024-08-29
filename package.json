@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "dotenvx run --env-file=.env.development -- vite",
-    "test": "dotenvx run --env-file=.env.test -- jest --runInBand",
+    "test": "jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",
     "test:mutation": "stryker run",
     "test:e2e:open": "cypress open",

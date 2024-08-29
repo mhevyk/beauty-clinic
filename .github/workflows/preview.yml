@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    environment: Preview # Required for picking correct environment secrets
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate api requests
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        run: npm run codegen
+
+      - name: Lint
+        run: npm run lint:check
+
+      - name: Run tests
+        run: npm run test

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "dotenvx run --env-file=.env.development -- vite",
-    "test": "dotenvx run --env-file=.env.test -- jest --runInBand",
+    "test": "jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",
     "test:mutation": "stryker run",
     "test:e2e:open": "cypress open",
@@ -16,7 +16,8 @@
     "preview": "vite preview",
     "format:check": "prettier --check ./",
     "format:fix": "prettier --write ./",
-    "codegen": "dotenvx run --env-file=.env.development -- graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen:dev": "dotenvx run --env-file=.env.development -- npm run codegen",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
   },

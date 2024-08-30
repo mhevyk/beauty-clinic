@@ -26,6 +26,7 @@ export default function MyAccountButton() {
         onClick={handleMenuOpen}
         isOpen={isOpen}
         id={id}
+        data-testid="my-account-button"
       />
       <UserActionsMenu
         anchorEl={anchorEl}

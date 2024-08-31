@@ -52,7 +52,7 @@ describe("<MyAccountButton />", () => {
   it("should close the menu when the Close Menu button is clicked", () => {
     renderWithProviders(<MyAccountButton />);
 
-    fireEvent.click(screen.getByTestId("my-account-button")); // Open the menu
+    fireEvent.click(screen.getByTestId("my-account-button"));
 
     expect(screen.getByTestId("user-actions-menu")).toHaveAttribute("open");
 

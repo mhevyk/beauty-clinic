@@ -19,7 +19,7 @@ type InitEditorEvent = EditorEvent<object>;
 
 type PostEditorProps = {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (value: string, editor: TinyMCEEditor) => void;
   previewData: PostEditorPreviewData;
 };
 
@@ -38,8 +38,8 @@ export default function PostEditor({
     setIsEditorLoading(false);
   };
 
-  const handleFileUpload = (callback: FilePickerCallback) => {
-    handlePostImageUpload(editorRef.current!, callback);
+  const handleFileUpload = async (callback: FilePickerCallback) => {
+    await handlePostImageUpload(editorRef.current!, callback);
   };
 
   return (

@@ -9,6 +9,7 @@ export const plugins = [
   "preview",
   "link",
   "autoresize",
+  "wordcount",
 ];
 
 export const toolbarSections = [
@@ -26,7 +27,9 @@ export const toolbarSections = [
 
 export const postEditorConfig: InitOptions = {
   menubar: false,
-  statusbar: false,
+  statusbar: true,
+  branding: false,
+  elementpath: false,
   plugins,
   toolbar: toolbarSections.join(" | "),
   autoresize_bottom_margin: 50,

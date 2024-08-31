@@ -10,7 +10,7 @@ import { PostPageParams } from "@/types/helpers";
 export default function EditPostPage() {
   const params = useParams<PostPageParams>();
 
-  const handleSubmit = (values: PostFormValues) => {
+  const handleSubmit = async (values: PostFormValues) => {
     console.log(values, params.postId);
     // TODO: Implement submit logic
   };

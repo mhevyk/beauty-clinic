@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 
 import useEventEmitter from "@/hooks/use-event-emitter/useEventEmitter";
-
-import { CalendarControls, CalendarUtils } from "../types";
+import {
+  CalendarControls,
+  CalendarUtils,
+} from "@/pages/book-session/hooks/use-calendar/useCalendar.types";
 
 type UseNextPageListener = {
   showNextPage: CalendarControls["showNextPage"];

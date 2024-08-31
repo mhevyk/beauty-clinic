@@ -18,8 +18,12 @@ const MuiLinkStyles: Components["MuiLink"] = {
       props: { variant: "secondary" },
       style: {
         ...baseLinkStyles,
+        // TODO: fix error
+        // @ts-expect-error
         color: palette.secondary!.main,
         "&:active, &:hover": {
+          // TODO: fix error
+          // @ts-expect-error
           color: palette.secondary!.main,
         },
       },

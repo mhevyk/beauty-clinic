@@ -6,8 +6,7 @@ import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError.tsx";
-
-import { ForgotPasswordFormValues } from "./ForgotPasswordModal.tsx";
+import { ForgotPasswordFormValues } from "@/containers/modals/forgot-password-modal/ForgotPasswordModal";
 
 const LabelStyled = styled(InputLabel)(({ theme }) => ({
   color: theme.palette.secondary.main,

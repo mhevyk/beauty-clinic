@@ -4,4 +4,5 @@ export const defaultPostFormValues: PostFormValues = {
   title: "",
   content: "",
   categoryIds: [],
+  wordsCount: 0,
 };

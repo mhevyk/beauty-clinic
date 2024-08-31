@@ -4,7 +4,7 @@ export default function fetchAccessToken(
   options?: Omit<RequestInit, "method" | "credentials">
 ) {
   const refreshTokenUrl = concatUrls(
-    process.env.VITE_API_URL,
+    import.meta.env.VITE_API_URL,
     "/refresh_token"
   );
 

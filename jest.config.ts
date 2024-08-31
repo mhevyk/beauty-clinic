@@ -12,6 +12,13 @@ const config: Config = {
       {
         jsc: {
           transform: {
+            optimizer: {
+              globals: {
+                vars: {
+                  "import.meta.env": "{}",
+                },
+              },
+            },
             react: {
               runtime: "automatic",
             },

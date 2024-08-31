@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate api requests
         env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_GRAPHQL_API_URL: ${{ secrets.VITE_GRAPHQL_API_URL }}
         run: npm run codegen
 
       - name: Lint

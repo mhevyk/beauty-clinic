@@ -47,7 +47,7 @@ export default function RecaptchaVerification({
       </DialogContentTextStyled>
       <ReCAPTCHABox>
         <ReCAPTCHA
-          sitekey={process.env.VITE_APP_RECAPTCHA_KEY}
+          sitekey={import.meta.env.VITE_APP_RECAPTCHA_KEY}
           ref={recaptchaRefCallback}
           onChange={confirmContactForm}
           size={isVerySmallScreen ? "compact" : "normal"}

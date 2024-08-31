@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
 
-import { CalendarControls } from "../types";
+import { CalendarControls } from "@/pages/book-session/hooks/use-calendar/useCalendar.types";
 
 const CaretLeftIcon = styled(CaretLeftIconSvg)(({ theme }) => ({
   color: theme.palette.secondary.main,

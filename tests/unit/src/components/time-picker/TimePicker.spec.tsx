@@ -16,6 +16,7 @@ jest.mock(
   "@/pages/book-session/components/no-availability/NoAvailability",
   () => {
     const NoAvailability = () => <div>No Availability</div>;
+    //TODO: fix displayName because it is not ok
     NoAvailability.displayName = "NoAvailability";
     return NoAvailability;
   }
@@ -25,6 +26,7 @@ jest.mock("@/pages/book-session/components/time-button/TimeButton", () => {
   const MockTimeButton = ({ datetime }) => (
     <button>{datetime.toTimeString()}</button>
   );
+  //TODO: fix displayName because it is not ok
   MockTimeButton.displayName = "MockTimeButton"; // Add display name here
   return MockTimeButton;
 });

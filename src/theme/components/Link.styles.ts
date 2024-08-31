@@ -19,11 +19,11 @@ const MuiLinkStyles: Components["MuiLink"] = {
       style: {
         ...baseLinkStyles,
         // TODO: fix error
-        // @ts-expect-error
+        // @ts-expect-error // eslint-disable-line
         color: palette.secondary!.main,
         "&:active, &:hover": {
           // TODO: fix error
-          // @ts-expect-error
+          // @ts-expect-error // eslint-disable-line
           color: palette.secondary!.main,
         },
       },

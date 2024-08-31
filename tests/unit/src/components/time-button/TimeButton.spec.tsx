@@ -26,7 +26,7 @@ describe("<TimeButton />", () => {
     useDatetimePickerContext.mockReturnValue(mockContext);
   });
 
-  it("should renders the button with the correct time format", () => {
+  it("should display a button with the correct time format", () => {
     const testDate = new Date(2024, 7, 31, 10, 30); // August 31, 2024, 10:30 AM
     renderWithProviders(
       <TimeButton datetime={testDate} isFirstAvailableTime={false} />
@@ -38,7 +38,7 @@ describe("<TimeButton />", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("should calls setSelectedTime with datetime on button click", () => {
+  it("should call setSelectedTime with the date when the button is pressed", () => {
     const testDate = new Date(2024, 7, 31, 10, 30);
     renderWithProviders(
       <TimeButton datetime={testDate} isFirstAvailableTime={false} />
@@ -50,7 +50,7 @@ describe("<TimeButton />", () => {
     expect(mockSetSelectedTime).toHaveBeenCalledWith(testDate);
   });
 
-  it("should sets the initial selected time if isFirstAvailableTime is true", () => {
+  it("should set the initial selected time if isFirstAvailableTime is true", () => {
     const testDate = new Date(2024, 7, 31, 10, 30);
     renderWithProviders(
       <TimeButton datetime={testDate} isFirstAvailableTime={true} />
@@ -59,7 +59,7 @@ describe("<TimeButton />", () => {
     expect(mockSetSelectedTime).toHaveBeenCalledWith(testDate);
   });
 
-  it("should applies selected styles when the button is selected", () => {
+  it("should apply the selected styles when the button is selected", () => {
     const testDate = new Date(2024, 7, 31, 10, 30);
     useDatetimePickerContext.mockReturnValue({
       ...mockContext,
@@ -77,7 +77,7 @@ describe("<TimeButton />", () => {
     });
   });
 
-  it("should does not set selected time if another time is already selected", () => {
+  it("should not set the selected time if another time is already selected", () => {
     const testDate = new Date(2024, 7, 31, 10, 30);
     const otherDate = new Date(2024, 7, 31, 11, 0);
     useDatetimePickerContext.mockReturnValue({

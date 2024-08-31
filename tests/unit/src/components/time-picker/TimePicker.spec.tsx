@@ -34,7 +34,7 @@ describe("<TimePicker />", () => {
     jest.clearAllMocks();
   });
 
-  it("should renders no availability when no session hours are available", () => {
+  it("should not show unavailability if there are no free hours for sessions", () => {
     useDatetimePickerContext.mockReturnValue({
       selectedDate: new Date(),
       selectedEmployeeId: "123",
@@ -58,7 +58,7 @@ describe("<TimePicker />", () => {
     expect(noAvailability).toBeInTheDocument();
   });
 
-  it("should renders available session times as buttons", () => {
+  it("should display available session times in the form of buttons", () => {
     const mockAvailableHours = [
       new Date("2024-08-10T09:00:00Z"),
       new Date("2024-08-10T10:00:00Z"),
@@ -91,7 +91,7 @@ describe("<TimePicker />", () => {
     });
   });
 
-  it("should renders 'Show all sessions' button when applicable", () => {
+  it("should display the “Show all sessions” button when possible", () => {
     const mockAvailableHours = [new Date("2024-08-10T09:00:00Z")];
     const mockShowAllSessions = jest.fn();
 

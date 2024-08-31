@@ -8,9 +8,8 @@ import BellIconSvg from "@/assets/icons/bell.svg";
 import UserIconSvg from "@/assets/icons/user-icon.svg";
 
 import AppLink from "@/components/app-link/AppLink";
+import MyAccountButton from "@/containers/user-toolbar/components/MyAccountButton.tsx";
 import { useUserStore } from "@/store/user/userStore";
-
-import MyAccountButton from "./components/MyAccountButton";
 
 const LinkStyled = styled(AppLink)(({ theme }) => ({
   transition: "color 400ms",
@@ -42,7 +41,13 @@ export default function UserToolbar(props: UserToolbarProps) {
   const isAuthenticating = useUserStore(store => store.isAuthenticating);
 
   if (isAuthenticating) {
-    return <CircularProgress color="secondary" size={25} />;
+    return (
+      <CircularProgress
+        color="secondary"
+        size={25}
+        data-testid="circular-progress"
+      />
+    );
   }
 
   if (isAuthenticated) {
@@ -50,7 +55,10 @@ export default function UserToolbar(props: UserToolbarProps) {
       <>
         <MyAccountButton />
         <IconButton>
-          <BellIconSvg style={{ width: "25px", height: "25px" }} />
+          <BellIconSvg
+            style={{ width: "25px", height: "25px" }}
+            data-testid="bell-icon-svg"
+          />
         </IconButton>
       </>
     );

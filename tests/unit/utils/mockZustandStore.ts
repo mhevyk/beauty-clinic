@@ -4,7 +4,7 @@ export default function mockZustandStore<Store>(
   useStoreHook: UseBoundStore<StoreApi<Store>>,
   data: Partial<Store>
 ) {
-  (useStoreHook as unknown as jest.Mock).mockImplementationOnce(fn => {
+  (useStoreHook as unknown as jest.Mock).mockImplementation(fn => {
     return fn(data);
   });
 }

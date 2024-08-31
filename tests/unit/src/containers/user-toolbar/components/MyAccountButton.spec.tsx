@@ -4,20 +4,23 @@ import renderWithProviders from "@tests/unit/utils/renderWithProviders.tsx";
 
 import MyAccountButton from "@/containers/user-toolbar/components/MyAccountButton.tsx";
 
-jest.mock("@/hooks/use-lock-page-scroll/useLockPageScroll", () => jest.fn());
+jest.mock("@/hooks/use-lock-page-scroll/useLockPageScroll");
+
 jest.mock(
   "@/containers/user-toolbar/components/UserActionsMenuToggler.tsx",
-  // eslint-disable-next-line react/display-name
-  () => props => (
-    <button onClick={props.onClick} data-testid="my-account-button">
-      Toggle Menu
-    </button>
-  )
+  () => ({
+    __esModule: true,
+    default: props => (
+      <button onClick={props.onClick} data-testid="my-account-button">
+        Toggle Menu
+      </button>
+    ),
+  })
 );
-jest.mock(
-  "@/containers/user-toolbar/components/UserActionsMenu.tsx",
-  // eslint-disable-next-line react/display-name
-  () => props => (
+
+jest.mock("@/containers/user-toolbar/components/UserActionsMenu.tsx", () => ({
+  __esModule: true,
+  default: props => (
     <div
       data-testid="user-actions-menu"
       {...(props.isOpen ? { open: true } : {})}
@@ -25,8 +28,8 @@ jest.mock(
       <button onClick={props.handleClose}>Close Menu</button>
       Menu
     </div>
-  )
-);
+  ),
+}));
 
 describe("<MyAccountButton />", () => {
   it("should render the UserActionsMenuToggler and not show the menu initially", () => {

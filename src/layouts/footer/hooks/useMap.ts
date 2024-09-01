@@ -1,17 +1,13 @@
 import { useEffect, useRef } from "react";
 
-import mapboxgl, { LngLatLike, MapboxOptions } from "mapbox-gl";
+import mapboxgl, { LngLatLike, MapOptions } from "mapbox-gl";
 
 export const MAP_COORDINATES: LngLatLike = {
   lng: -122.41942697025132,
   lat: 37.77489791779846,
 };
 
-const isTestMode = import.meta.env.MODE === "test";
-
-const createMapOptions = (
-  container: MapboxOptions["container"]
-): MapboxOptions => {
+const createMapOptions = (container: MapOptions["container"]): MapOptions => {
   return {
     container,
     accessToken: import.meta.env.VITE_APP_MAPBOX_ACCESS_TOKEN,
@@ -19,7 +15,6 @@ const createMapOptions = (
     center: MAP_COORDINATES,
     zoom: 13.2,
     interactive: false,
-    testMode: isTestMode,
   };
 };
 

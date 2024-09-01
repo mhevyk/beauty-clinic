@@ -9,6 +9,18 @@ import svgr from "vite-plugin-svgr";
 export default defineConfig(({ mode }) => ({
   build: {
     minify: mode === "production",
+    sourcemap: mode !== "production",
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // grouping packages by chunks
+          mui: ["@mui/material", "@emotion/styled", "@emotion/react"],
+          api: ["@apollo/client", "apollo-link-token-refresh", "graphql"],
+          forms: ["formik", "yup"],
+          mapbox: ["mapbox-gl"], // mapbox-gl is a large package, there is an issue on github about this, developers of this package try to fix it
+        },
+      },
+    },
   },
   resolve: {
     alias: {

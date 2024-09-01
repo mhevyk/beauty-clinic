@@ -6,7 +6,10 @@ import string from "vite-plugin-string";
 import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
+  build: {
+    minify: mode === "production",
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -20,4 +23,4 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
-});
+}));

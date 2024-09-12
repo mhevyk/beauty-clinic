@@ -41,7 +41,7 @@ export default function Footer() {
     <FooterWrapper component="footer" id={CONTACTS_SECTION_ID} maxWidth={false}>
       <ContactDetailsTitle>Let&apos;s get in touch</ContactDetailsTitle>
       <ContactDetails />
-      <LocationMap />
+      {/* <LocationMap /> */}
       <CopyrightText>© 2023 by Maksym Hevyk and Vasyl Feniak</CopyrightText>
     </FooterWrapper>
   );

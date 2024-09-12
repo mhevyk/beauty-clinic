@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { Divider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -25,6 +25,8 @@ type PostFooterProps = {
 };
 
 export default function PostFooter({ post }: PostFooterProps) {
+  const params = useParams();
+
   return (
     <>
       <SocialsAndCategoriesSection>
@@ -68,7 +70,8 @@ export default function PostFooter({ post }: PostFooterProps) {
           </Typography>
         </PostStats>
         <LikeButton
-          initialIsPostLiked={post.isLiked}
+          postId={Number(params.postId)}
+          initialIsLiked={post.isLiked}
           initialLikesCount={post.likesCount}
         />
       </ActivitySection>

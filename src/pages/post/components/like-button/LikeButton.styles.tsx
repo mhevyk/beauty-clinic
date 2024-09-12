@@ -10,7 +10,9 @@ type LikeIconProps = {
   isLiked: boolean;
 };
 
-export const LikeIcon = styled(HeartIcon)<LikeIconProps>(props => ({
+export const LikeIcon = styled(HeartIcon, {
+  shouldForwardProp: prop => prop !== "isLiked",
+})<LikeIconProps>(props => ({
   fill: props.isLiked ? theme.palette.error.light : "none",
   stroke: theme.palette.error.light,
 }));

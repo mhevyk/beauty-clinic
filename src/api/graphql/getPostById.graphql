@@ -1,0 +1,22 @@
+query GetPostById($postId: Int!) {
+  post(id: $postId) {
+    id
+    author {
+      id
+      username
+      role
+    }
+    createdAt
+    estimatedReadTime
+    title
+    content
+    categories {
+      name
+      slug
+    }
+    viewsCount
+    commentsCount
+    isLiked
+    likesCount
+  }
+}

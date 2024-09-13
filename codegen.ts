@@ -22,7 +22,6 @@ for (const envFile of envFiles) {
 const config: CodegenConfig = {
   schema: process.env.VITE_GRAPHQL_API_URL,
   overwrite: true,
-  silent: !isProduction,
   documents: ["src/api/graphql/*.graphql"],
   generates: {
     [generatesFile]: {

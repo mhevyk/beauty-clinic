@@ -1,11 +1,22 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 import dotenv from "dotenv";
 import fs from "fs";
+import path from "path";
 
-dotenv.config();
+const mode = process.env.NODE_ENV ?? "development";
+const isProduction = mode === "production";
 
-if (fs.existsSync(".env.development")) {
-  dotenv.config({ path: ".env.development" });
+const generatesFile = isProduction
+  ? "dist/temp_api/index.tsx"
+  : "src/api/generated/index.tsx";
+
+const envFiles = [".env", `.env.${mode}`];
+for (const envFile of envFiles) {
+  const envPath = path.resolve(__dirname, envFile);
+
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath });
+  }
 }
 
 const config: CodegenConfig = {
@@ -13,7 +24,7 @@ const config: CodegenConfig = {
   overwrite: true,
   documents: ["src/api/graphql/*.graphql"],
   generates: {
-    "src/api/generated/index.tsx": {
+    [generatesFile]: {
       plugins: [
         "typescript",
         "typescript-operations",

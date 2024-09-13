@@ -1,6 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
+  readonly VITE_PORT: string;
+  readonly VITE_PREVIEW_PORT: string;
   readonly VITE_APP_TITLE: string;
   readonly VITE_APP_RECAPTCHA_KEY: string;
   readonly VITE_APP_MAPBOX_ACCESS_TOKEN: string;

@@ -21,13 +21,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate api requests
-        env:
-          VITE_GRAPHQL_API_URL: ${{ secrets.VITE_GRAPHQL_API_URL }}
-        run: npm run codegen
-
       - name: Lint
         run: npm run lint:check
 
       - name: Run tests
+        env:
+          VITE_GRAPHQL_API_URL: ${{ secrets.VITE_GRAPHQL_API_URL }}
         run: npm run test

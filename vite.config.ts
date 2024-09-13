@@ -1,23 +1,31 @@
 import react from "@vitejs/plugin-react-swc";
 
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
+import dts from "vite-plugin-dts";
 import codegen from "vite-plugin-graphql-codegen";
 import string from "vite-plugin-string";
 import svgr from "vite-plugin-svgr";
 
+const BUILD_DIR = "dist";
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
+  const env = loadEnv(mode, process.cwd());
+
+  const buildAliases = isProduction && {
+    "@/api/generated": path.resolve(__dirname, `${BUILD_DIR}/temp_api`),
+  };
 
   return {
     build: {
       minify: isProduction,
       sourcemap: !isProduction,
+      outDir: BUILD_DIR,
       rollupOptions: {
         output: {
           manualChunks: {
-            // grouping packages by chunks
             mui: ["@mui/material", "@emotion/styled", "@emotion/react"],
             api: ["@apollo/client", "apollo-link-token-refresh", "graphql"],
             forms: ["formik", "yup"],
@@ -28,6 +36,7 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
+        ...buildAliases, // should be placed exactly there
         "@": path.resolve(__dirname, "src"),
         "@tests": path.resolve(__dirname, "tests"),
       },
@@ -35,8 +44,19 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       string(),
-      codegen({ configOverride: { silent: !isProduction } }), // avoid output to console in case of error
       svgr({ include: "**/*.svg" }),
+      codegen({
+        throwOnStart: true,
+        configOverride: { schema: env.VITE_GRAPHQL_API_URL },
+        configFilePathOverride: `codegen.${mode}.ts`,
+        configOverrideOnBuild: {
+          hooks: {
+            afterAllFileWrite: () => {
+              dts();
+            },
+          },
+        },
+      }),
     ],
   };
 });

@@ -10,18 +10,19 @@ import svgr from "vite-plugin-svgr";
 const BUILD_DIR = "dist";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === "production";
+export default defineConfig(({ mode, command }) => {
+  const isProductionMode = mode === "production";
+  const isDevelopmentBuild = !isProductionMode && command === "build";
+
   const env = loadEnv(mode, process.cwd());
 
-  const buildAliases = isProduction && {
+  const buildAliases = isProductionMode && {
     "@/api/generated": path.resolve(__dirname, `${BUILD_DIR}/temp_api`),
   };
 
   return {
     build: {
-      minify: isProduction,
-      sourcemap: !isProduction,
+      sourcemap: isDevelopmentBuild,
       outDir: BUILD_DIR,
       rollupOptions: {
         output: {
@@ -33,6 +34,10 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+    },
+    server: {
+      port: Number(env.VITE_APP_PORT),
+      open: !isProductionMode,
     },
     resolve: {
       alias: {

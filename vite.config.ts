@@ -11,10 +11,8 @@ const BUILD_DIR = "dist";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
-  const isProductionMode = mode === "production";
-  const isDevelopmentBuild = !isProductionMode && command === "build";
-
   const env = loadEnv(mode, process.cwd());
+  const isProductionMode = mode === "production";
 
   const buildAliases = isProductionMode && {
     "@/api/generated": path.resolve(__dirname, `${BUILD_DIR}/temp_api`),
@@ -22,7 +20,7 @@ export default defineConfig(({ mode, command }) => {
 
   return {
     build: {
-      sourcemap: isDevelopmentBuild,
+      sourcemap: command === "build" && !isProductionMode,
       outDir: BUILD_DIR,
       rollupOptions: {
         output: {
@@ -36,8 +34,12 @@ export default defineConfig(({ mode, command }) => {
       },
     },
     server: {
-      port: Number(env.VITE_APP_PORT),
-      open: !isProductionMode,
+      port: Number(env.VITE_PORT),
+      open: true,
+    },
+    preview: {
+      port: Number(env.VITE_PREVIEW_PORT),
+      open: true,
     },
     resolve: {
       alias: {
@@ -52,8 +54,6 @@ export default defineConfig(({ mode, command }) => {
       svgr({ include: "**/*.svg" }),
       codegen({
         throwOnStart: true,
-        configOverride: { schema: env.VITE_GRAPHQL_API_URL },
-        configFilePathOverride: `codegen.${mode}.ts`,
         configOverrideOnBuild: {
           hooks: {
             afterAllFileWrite: () => {

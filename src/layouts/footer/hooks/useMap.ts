@@ -30,6 +30,8 @@ export default function useMap() {
       return;
     }
 
+    mapContainer.innerHTML = "";
+
     const map = new mapboxgl.Map(createMapOptions(mapContainer));
 
     const navigationControl = new mapboxgl.NavigationControl({

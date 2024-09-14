@@ -1,9 +1,12 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 import dotenv from "dotenv";
 import fs from "fs";
+import mri from "mri";
 import path from "path";
 
-const mode = process.env.NODE_ENV ?? "development";
+const parsedArgv = mri(process.argv);
+
+const mode = parsedArgv.mode ?? process.env.NODE_ENV ?? "development";
 const isProduction = mode === "production";
 
 const generatesFile = isProduction

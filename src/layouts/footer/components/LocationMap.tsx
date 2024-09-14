@@ -21,12 +21,13 @@ export default function LocationMap() {
   const { mapContainerRef, markerIconRef } = useMap();
 
   return (
-    <MapContainer ref={mapContainerRef}>
+    <>
+      <MapContainer ref={mapContainerRef} />
       <MapMarker
         src={googleMapPinIcon}
         alt="Our beauty clinic location"
         ref={markerIconRef}
       />
-    </MapContainer>
+    </>
   );
 }

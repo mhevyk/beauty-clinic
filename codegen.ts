@@ -8,7 +8,7 @@ import checkExistingCodegen from "./checkExistingCodegen";
 
 const parsedArgv = mri(process.argv);
 
-const mode = parsedArgv.mode ?? process.env.NODE_ENV ?? "development";
+const mode = parsedArgv.mode ?? process.env.NODE_ENV;
 const isProduction = mode === "production";
 
 const { generatesFile, codegenFileExists } = checkExistingCodegen(isProduction);
@@ -20,7 +20,12 @@ if (codegenFileExists && !isViteCommand) {
   process.exit(0);
 }
 
-const envFiles = [".env", `.env.${mode}`];
+const envFiles = [".env"];
+
+if (mode) {
+  envFiles.push(`.env.${mode}`);
+}
+
 for (const envFile of envFiles) {
   const envPath = path.resolve(__dirname, envFile);
 

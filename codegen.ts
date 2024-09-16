@@ -4,16 +4,28 @@ import fs from "fs";
 import mri from "mri";
 import path from "path";
 
+import checkExistingCodegen from "./checkExistingCodegen";
+
 const parsedArgv = mri(process.argv);
 
-const mode = parsedArgv.mode ?? process.env.NODE_ENV ?? "development";
+const mode = parsedArgv.mode ?? process.env.NODE_ENV;
 const isProduction = mode === "production";
 
-const generatesFile = isProduction
-  ? "dist/temp_api/index.tsx"
-  : "src/api/generated/index.tsx";
+const { generatesFile, codegenFileExists } = checkExistingCodegen(isProduction);
 
-const envFiles = [".env", `.env.${mode}`];
+const isViteCommand = process.env.npm_lifecycle_script.includes("vite");
+
+// if command source is not vite and codegen file exists, then we should skip codegen step because vite uses codegen plugin. That means process.exit(1) will terminate later vite command, but it is already handled inside vite.config.ts
+if (codegenFileExists && !isViteCommand) {
+  process.exit(0);
+}
+
+const envFiles = [".env"];
+
+if (mode) {
+  envFiles.push(`.env.${mode}`);
+}
+
 for (const envFile of envFiles) {
   const envPath = path.resolve(__dirname, envFile);
 

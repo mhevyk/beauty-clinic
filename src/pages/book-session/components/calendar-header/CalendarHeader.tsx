@@ -51,11 +51,17 @@ export default function CalendarHeader({
       justifyContent="center"
       sx={{ mb: "10px" }}
     >
-      <PrevMonthButton onClick={controls.showPreviousPage}>
+      <PrevMonthButton
+        onClick={controls.showPreviousPage}
+        data-testid="prev-page-button"
+      >
         <CaretLeftIcon />
       </PrevMonthButton>
       <SelectedMonth>{selectedPageLabel}</SelectedMonth>
-      <NextMonthButton onClick={controls.showNextPage}>
+      <NextMonthButton
+        onClick={controls.showNextPage}
+        data-testid="next-page-button"
+      >
         <CaretRightIcon />
       </NextMonthButton>
     </Stack>

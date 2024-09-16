@@ -33,6 +33,7 @@ export default function CalendarDay({
   return (
     <CalendarDayCell
       key={day.getTime()}
+      data-testid="day"
       calendarSize={calendarSize}
       disabled={isBefore(day, startOfToday()) || isAnotherMonth}
       hasAvailableSessions={hasAvailableSessions}

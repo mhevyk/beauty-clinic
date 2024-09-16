@@ -1,42 +1,21 @@
 import { useMemo } from "react";
 
 import { useMediaQuery } from "@mui/material";
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import { isBefore, startOfToday, subMinutes } from "date-fns";
 
-import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue.ts";
-import { CalendarCell } from "@/pages/book-session/components/calendar-cell/CalendarCell";
+import useDebouncedValue from "@/hooks/use-debounced-value/useDebouncedValue";
 import CalendarDay from "@/pages/book-session/components/calendar-day/CalendarDay";
-import CalendarHeader from "@/pages/book-session/components/calendar-header/CalendarHeader.tsx";
-import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
+import CalendarHeader from "@/pages/book-session/components/calendar-header/CalendarHeader";
+import {
+  CalendarCellsContainer,
+  CalendarWeekDay,
+} from "@/pages/book-session/components/calendar/Calendar.styles";
+import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import { useCalendar } from "@/pages/book-session/hooks/use-calendar/useCalendar";
 import useNextPageListener from "@/pages/book-session/hooks/use-next-page-listener/useNextPageListener";
 import useTreatmentSessionAvailabilities from "@/pages/book-session/hooks/use-treatment-session-availabilities/useTreatmentSessionAvailabilities";
 import theme from "@/theme/theme";
-
-const CalendarCellsContainer = styled(Box)(() => {
-  const CALENDAR_SMALL_CELL_SIZE = "30px";
-  const CALENDAR_CELL_SIZE = "40px";
-
-  return {
-    [theme.breakpoints.up(380)]: {
-      gap: "16px",
-    },
-    [theme.breakpoints.down(320)]: {
-      gridTemplateColumns: `repeat(7, ${CALENDAR_SMALL_CELL_SIZE})`,
-      gridAutoRows: CALENDAR_SMALL_CELL_SIZE,
-    },
-    display: "grid",
-    gridTemplateColumns: `repeat(7, ${CALENDAR_CELL_SIZE})`,
-    gridAutoRows: CALENDAR_CELL_SIZE,
-    gap: "6px",
-  };
-});
-
-const CalendarWeekDay = styled(CalendarCell)({
-  color: "rgb(96, 95, 93)",
-});
 
 const Calendar = () => {
   const { selectedDate, selectedEmployeeId } = useDatetimePickerContext();
@@ -78,6 +57,33 @@ const Calendar = () => {
     showNextPage: controls.showNextPage,
   });
 
+  const calendarWeekDays = useMemo(
+    () =>
+      weekDays.map(weekDay => (
+        <CalendarWeekDay key={weekDay} data-testid="weekday" as="div">
+          {weekDay}
+        </CalendarWeekDay>
+      )),
+    [weekDays]
+  );
+
+  const calendarDays = days.map((day, index) => {
+    const hasAvailableSessions = Boolean(
+      dateRange === debouncedDateRange &&
+        treatmentSessionAvailabilities?.[index]
+    );
+
+    return (
+      <CalendarDay
+        key={day.getTime()}
+        day={day}
+        calendarSize={calendarSize}
+        hasAvailableSessions={hasAvailableSessions}
+        utils={utils}
+      />
+    );
+  });
+
   return (
     <Box>
       <CalendarHeader
@@ -85,23 +91,8 @@ const Calendar = () => {
         selectedPageLabel={selectedPageLabel}
       />
       <CalendarCellsContainer>
-        {weekDays.map(weekDay => (
-          <CalendarWeekDay key={weekDay} as="div">
-            {weekDay}
-          </CalendarWeekDay>
-        ))}
-        {days.map((day, index) => (
-          <CalendarDay
-            key={day.getTime()}
-            day={day}
-            calendarSize={calendarSize}
-            hasAvailableSessions={Boolean(
-              dateRange === debouncedDateRange &&
-                treatmentSessionAvailabilities?.[index]
-            )}
-            utils={utils}
-          />
-        ))}
+        {calendarWeekDays}
+        {calendarDays}
       </CalendarCellsContainer>
     </Box>
   );

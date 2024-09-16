@@ -109,6 +109,7 @@ export default function CalendarDay({
   return (
     <CalendarDayCell
       key={day.getTime()}
+      data-testid="day"
       calendarSize={calendarSize}
       disabled={isBefore(day, startOfToday()) || isAnotherMonth}
       // comparing object references here because we use same object with debounce

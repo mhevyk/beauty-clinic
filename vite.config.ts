@@ -7,20 +7,25 @@ import codegen from "vite-plugin-graphql-codegen";
 import string from "vite-plugin-string";
 import svgr from "vite-plugin-svgr";
 
+import checkExistingCodegen from "./checkExistingCodegen";
+
 const BUILD_DIR = "dist";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd());
   const isProductionMode = mode === "production";
+  const isBuildInNotProductionMode = command === "build" && !isProductionMode;
 
   const buildAliases = isProductionMode && {
     "@/api/generated": path.resolve(__dirname, `${BUILD_DIR}/temp_api`),
   };
 
+  const { codegenFileExists } = checkExistingCodegen(isProductionMode);
+
   return {
     build: {
-      sourcemap: command === "build" && !isProductionMode,
+      sourcemap: isBuildInNotProductionMode,
       outDir: BUILD_DIR,
       rollupOptions: {
         output: {
@@ -53,7 +58,9 @@ export default defineConfig(({ mode, command }) => {
       string(),
       svgr({ include: "**/*.svg" }),
       codegen({
+        runOnStart: !codegenFileExists,
         throwOnStart: true,
+        runOnBuild: isBuildInNotProductionMode,
         configOverrideOnBuild: {
           hooks: {
             afterAllFileWrite: () => {

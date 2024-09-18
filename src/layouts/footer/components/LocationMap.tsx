@@ -22,8 +22,9 @@ export default function LocationMap() {
 
   return (
     <>
-      <MapContainer ref={mapContainerRef} />
+      <MapContainer data-testid="map-container" ref={mapContainerRef} />
       <MapMarker
+        data-testid="map-marker"
         src={googleMapPinIcon}
         alt="Our beauty clinic location"
         ref={markerIconRef}

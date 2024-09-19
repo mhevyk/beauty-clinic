@@ -4,9 +4,10 @@ import { Outlet } from "react-router-dom";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 
-function AppLoader() {
+export function AppLoader() {
   return (
     <Box
+      data-testid="app-loader"
       sx={{
         height: "100vh",
         display: "flex",
@@ -19,10 +20,12 @@ function AppLoader() {
   );
 }
 
-type AppSuspenseProps = {
+type AppSuspenseWithOutletProps = {
   children?: ReactNode;
 };
 
-export default function AppSuspense({ children }: AppSuspenseProps) {
+export default function AppSuspenseWithOutlet({
+  children,
+}: AppSuspenseWithOutletProps) {
   return <Suspense fallback={<AppLoader />}>{children ?? <Outlet />}</Suspense>;
 }

@@ -1,8 +1,9 @@
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { ScrollRestoration } from "react-router-dom";
 
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 
+import AppSuspenseWithOutlet from "@/components/app-suspense-with-outlet/AppSuspenseWithOutlet";
 import Footer from "@/layouts/footer/Footer";
 import Navbar from "@/layouts/navbar/Navbar";
 import Sidebar from "@/layouts/sidebar/Sidebar";
@@ -22,7 +23,7 @@ export default function RootLayout() {
       <Sidebar />
       <Navbar />
       <SidebarOmitWrapper>
-        <Outlet />
+        <AppSuspenseWithOutlet />
         <Footer />
       </SidebarOmitWrapper>
     </>

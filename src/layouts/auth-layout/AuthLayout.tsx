@@ -1,5 +1,3 @@
-import { Outlet } from "react-router-dom";
-
 import { alpha } from "@mui/material";
 import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -7,6 +5,8 @@ import Typography from "@mui/material/Typography";
 
 import backgroundImage from "@/assets/backgrounds/flower-background.png?url";
 import HelloDecorationSvg from "@/assets/decorations/hello.svg";
+
+import AppSuspenseWithOutlet from "@/components/app-suspense-with-outlet/AppSuspenseWithOutlet";
 
 const PageWrapper = styled(Box)(({ theme }) => {
   const overlayColor = alpha(theme.palette.secondary.main, 0.25);
@@ -123,7 +123,7 @@ export default function AuthLayout() {
             Organic Beutician
           </Description>
         </Header>
-        <Outlet />
+        <AppSuspenseWithOutlet />
       </Main>
     </PageWrapper>
   );

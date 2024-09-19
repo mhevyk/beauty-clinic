@@ -5,6 +5,7 @@ Website for beauty clinic that offers hand crafted natural treatments for their 
 ## Table of Contents
 
 - [Demo](#demo)
+- [Scripts](#scripts)
 - [Project structure](#project-structure)
 - [Code conventions](#code-conventions)
 - [Installation](#installation)
@@ -19,145 +20,277 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
     <a href='#beauty-clinic-project'>Back To The Top</a>
 </p>
 
+## Scripts
+
+| Name                    | Description                                                                |
+| ----------------------- | -------------------------------------------------------------------------- |
+| `npm run start`         | Start the project in development mode                                      |
+| `npm run start:prod`    | Start the project in development mode with production envs                 |
+| `npm run build`         | Build the project for production                                           |
+| `npm run build:dev`     | Build the project with development envs                                    |
+| `npm run build:analyze` | Build and visualize chunks of vite bundle                                  |
+| `npm run preview`       | Start already built project with build-like command                        |
+| `npm run pretest`       | Helper script to ensure all required modules exists by the time of testing |
+| `npm run test`          | Run unit tests                                                             |
+| `npm run test:coverage` | Run unit tests with collecting coverage                                    |
+| `npm run test:mutation` | Run mutation tests                                                         |
+| `npm run test:e2e:open` | Run e2e tests with opening separate cypress application                    |
+| `npm run test:e2e:run`  | Run e2e tests to run just in terminal                                      |
+| `npm run lint:check`    | Check for linter errors                                                    |
+| `npm run lint:fix`      | Fix linter errors                                                          |
+| `npm run format:check`  | Check for formatting issues                                                |
+| `npm run format:fix`    | Reformat all files with formatting issues                                  |
+| `npm run prepare`       | Helper script for husky. Try not to use it directly                        |
+| `npm run pre-commit`    | Helper script for husky. Try not to use it directly                        |
+
 ## Project structure
 
-<ul>
-    <li>
-        Project root
-        <ul>
-            <li>
-                <code>/docs</code> - project docs folder
+<details open>
+    <summary>Project Root</summary>
+    <ul>
+        <li>
+            <details>
+                <summary><code>/.github</code> - GitHub-specific configuration</summary>
                 <ul>
                     <li>
-                        <code>/assets</code> - for screenshots of app or other related assets to docs
+                        <details>
+                            <summary><code>/workflows</code> - CI/CD actions</summary>
+                            <ul>
+                                <li><code>preview.yml</code> - "preview" actions flow</li>
+                            </ul>
+                        </details>
                     </li>
                 </ul>
-            </li>
-            <li>
-             <code>/src</code> - project source code folder
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/.husky</code> - Husky configuration (GitHub hooks)</summary>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/.vscode</code> - Optional folder for local VSCode editor configuration</summary>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/dist</code> - Folder for production build</summary>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/docs</code> - Project documentation folder</summary>
                 <ul>
                     <li>
-                        <code>/api</code> - for graphql server intergation
-                        <ul>
-                            <li>
-                                <code>/generated</code> - for generated hooks, documents from server graphql schema, created using codegen
-                            </li>
-                            <li>
-                                <code>/graphql</code> - for graphql queries to backend
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <code>/assets</code> - for assets ('.png', '.svg', '.jpg', 'webp', ...)
-                    </li>
-                    <li>
-                        <code>/components</code> - for shared components
-                    </li>
-                    <li>
-                        <code>/config</code> - for general configurations (integrations with apollo client etc)
-                    </li>
-                    <li>
-                        <code>/constants</code> - for general constants
-                    </li>
-                    <li>
-                        <code>/containers</code> - for bigger than components and smaller than pages component excluding layouts
-                    </li>
-                    <li>
-                        <code>/hooks</code> - for reusable hooks
-                    </li>
-                    <li>
-                        <code>/layouts</code> - for reusable relatively large page parts (headers, footers, sidebars, navbars, containers etc)
-                    </li>
-                    <li>
-                        <code>/pages</code> - for project pages
-                    </li>
-                    <li>
-                        <code>/routes</code> - for <code>react-router-dom</code> routes
-                    </li>
-                    <li>
-                        <code>/store</code> - for globally managed application state
-                    </li>
-                    <li>
-                        <code>/theme</code> - for global styling
-                    </li>
-                    <li>
-                        <code>/types</code> - for global types
-                    </li>
-                    <li>
-                        <code>/utils</code> - for reusable functions
-                    </li>
-                    <li>
-                        <code>/validations</code> - for validation schemas generally used inside forms
+                        <details>
+                            <summary><code>/assets</code> - Screenshots and related assets for docs</summary>
+                        </details>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <code>/tests</code> - project tests folder
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/node_modules</code> - External packages, created after <code>npm install</code></summary>
+            </details>
+        </li>
+        <li>
+            <details open>
+                <summary><code>/src</code> - Project source code folder</summary>
                 <ul>
                     <li>
-                        <code>/e2e</code> - for integration (e2e) tests
-                        <ul>
-                            <li>
-                                <code>/features</code> - for feature files (user stories)
-                            </li>
-                            <li>
-                                <code>/fixtures</code> - for e2e testing constants
-                            </li>
-                            <li>
-                                <code>/plugins</code> - for plugins
-                            </li>
-                            <li>
-                                <code>/support</code> - main integration tests folder
-                                <ul>
-                                    <li>
-                                        <code>/step-definitions</code> - implementations for feature files (user stories)
-                                    </li>
-                                    <li>
-                                        <code>commands.ts</code> - for custom e2e commands
-                                    </li>
-                                    <li>
-                                        <code>index.ts</code> - main file, searched by cypress package
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <details>
+                            <summary><code>/api</code> - GraphQL server integration</summary>
+                            <ul>
+                                <li>
+                                    <details>
+                                        <summary><code>/generated</code> - Generated hooks and documents from GraphQL schema</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/graphql</code> - GraphQL queries to backend</summary>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
                     </li>
                     <li>
-                        <code>/mutation</code> - for mutation tests
-                        <ul>
-                            <li>
-                                <code>/reports</code> - for mutation test reports
-                            </li>
-                            <li>
-                                <code>stryker-incremental.json</code> - incremental file
-                            </li>
-                        </ul>
+                        <details>
+                            <summary><code>/assets</code> - Assets (e.g., '.png', '.svg', '.jpg', '.webp')</summary>
+                        </details>
                     </li>
                     <li>
-                        <code>/unit</code> - for unit tests
-                        <ul>
-                            <li>
-                                <code>/coverage</code> - for unit tests coverage
-                            </li>
-                            <li>
-                                <code>/mocks</code> - for reusable mock data
-                            </li>
-                            <li>
-                                <code>/src</code> - for tests. Folder structure from global src folder should be reflected
-                            </li>
-                            <li>
-                                <code>/utils</code> - for test utils
-                            </li>
-                            <li>
-                                <code>setupTests.ts</code> - for global test setup
-                            </li>
-                        </ul>
+                        <details>
+                            <summary><code>/components</code> - Shared components</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/config</code> - General configurations (e.g., Apollo client)</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/constants</code> - General constants</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/containers</code> - Larger components excluding layouts</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/hooks</code> - Reusable hooks</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/layouts</code> - Reusable large page parts (e.g., headers, footers)</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/pages</code> - Project pages</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/routes</code> - <code>react-router-dom</code> routes</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/store</code> - Globally managed application state</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/theme</code> - Global styling</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/types</code> - Global types</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/utils</code> - Reusable functions</summary>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/validations</code> - Validation schemas for forms</summary>
+                        </details>
                     </li>
                 </ul>
-            </li>
-        </ul>
-    </li>
-</ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/tests</code> - Project tests folder</summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary><code>/e2e</code> - Integration (e2e) tests</summary>
+                            <ul>
+                                <li>
+                                    <details>
+                                        <summary><code>/features</code> - Feature files (user stories)</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/fixtures</code> - E2e testing constants</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/plugins</code> - Plugins</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/support</code> - Main integration tests folder</summary>
+                                        <ul>
+                                            <li>
+                                                <details>
+                                                    <summary><code>/step-definitions</code> - Implementations for feature files</summary>
+                                                </details>
+                                            </li>
+                                            <li>
+                                                <details>
+                                                    <summary><code>commands.ts</code> - Custom e2e commands</summary>
+                                                </details>
+                                            </li>
+                                            <li>
+                                                <details>
+                                                    <summary><code>index.ts</code> - Main file searched by Cypress package</summary>
+                                                </details>
+                                            </li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/mutation</code> - Mutation tests</summary>
+                            <ul>
+                                <li>
+                                    <details>
+                                        <summary><code>/reports</code> - Mutation test reports</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>stryker-incremental.json</code> - Incremental file</summary>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><code>/unit</code> - Unit tests</summary>
+                            <ul>
+                                <li>
+                                    <details>
+                                        <summary><code>/coverage</code> - Unit test coverage</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/mocks</code> - Reusable mock data</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/src</code> - Tests reflecting global src folder structure</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>/utils</code> - Test utilities</summary>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary><code>setupTests.ts</code> - Global test setup</summary>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
 
 <p>
     <a href='#beauty-clinic-project'>Back To The Top</a>

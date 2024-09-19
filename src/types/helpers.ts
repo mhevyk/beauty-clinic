@@ -2,6 +2,7 @@ import { USER_ROLES } from "@/constants";
 
 export type Interval = ReturnType<typeof setInterval>;
 export type Timer = ReturnType<typeof setInterval>;
+export type NonEmptyArray<T> = [T, ...T[]];
 
 type SerializablePrimitive = string | number | boolean | null | undefined;
 

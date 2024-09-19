@@ -2,7 +2,7 @@ import createFullRoutePaths from "@/utils/create-full-route-paths/createFullRout
 
 type RouteNode = {
   path: string;
-  [key: string]: RouteNode | string | undefined;
+  [key: string]: RouteNode | string;
 };
 
 export type RoutePaths = Omit<RouteNode, "path">;
@@ -53,7 +53,10 @@ const pathsTree = {
       path: "reset-password",
     },
   },
+  any: {
+    path: "*",
+  },
 } as const satisfies RoutePaths;
 
-const routePaths: RoutePaths = createFullRoutePaths(pathsTree);
+const routePaths = createFullRoutePaths(pathsTree) as typeof pathsTree;
 export { routePaths };

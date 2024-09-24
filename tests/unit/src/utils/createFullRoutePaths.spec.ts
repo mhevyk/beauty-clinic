@@ -31,7 +31,7 @@ const pathsTree = {
   },
 };
 
-describe("createFullRoutePaths", () => {
+describe("createFullRoutePaths()", () => {
   let routePaths: typeof pathsTree;
 
   beforeEach(() => {

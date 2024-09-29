@@ -16,7 +16,5 @@ query GetPostById($postId: Int!) {
     }
     viewsCount
     commentsCount
-    isLiked
-    likesCount
   }
 }

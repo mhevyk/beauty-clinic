@@ -1,0 +1,6 @@
+query GetLikeDetails($input: LikeDetailsInput!) {
+  likeDetails(input: $input) {
+    isLiked
+    likesCount
+  }
+}

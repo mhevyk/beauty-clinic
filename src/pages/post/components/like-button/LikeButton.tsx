@@ -10,80 +10,104 @@ import {
   LikeIcon,
   LikesCount,
 } from "@/pages/post/components/like-button/LikeButton.styles";
+import { useUserStore } from "@/store/user/userStore";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 type LikeButtonProps = {
   postId: number;
-  initialLikesCount: number;
-  initialIsLiked: boolean;
+  isLiked: boolean;
+  likesCount: number;
 };
 
 export default function LikeButton({
   postId,
-  initialLikesCount,
-  initialIsLiked,
+  isLiked: initialIsLiked,
+  likesCount: initialLikesCount,
 }: LikeButtonProps) {
-  const abortControllerRef = useRef<AbortController | null>(null);
-  const previousLikeStatusRef = useRef(initialIsLiked);
-
-  const [likeInfo, setLikeInfo] = useState({
-    likesCount: initialLikesCount,
+  const [likeState, setLikeState] = useState({
     isLiked: initialIsLiked,
+    likesCount: initialLikesCount,
+  });
+  const prevLikeStateRef = useRef(likeState);
+
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
+
+  const { isLiked, likesCount } = likeState;
+
+  const debouncedIsLiked = useDebouncedValue(isLiked);
+
+  const [saveLike] = useSetLikeMutation({
+    ignoreResults: true, // skips extra rerender because return value here is not important
+    onError: () => {
+      showSnackbar({
+        message: `Failed to ${prevLikeStateRef.current.isLiked ? "unlike" : "like"} post, please try again later`,
+        autohide: true,
+      });
+
+      // if error happened - revert back to previous like state
+      setLikeState(prevLikeStateRef.current);
+    },
   });
 
-  const [saveLike] = useSetLikeMutation();
-  const debouncedLikeInfo = useDebouncedValue(likeInfo);
-
   const handlePostLike = () => {
-    const isLiked = likeInfo.isLiked;
+    if (!isAuthenticated) {
+      showSnackbar({
+        message: "Please sign in to like the post",
+        autohide: true,
+      });
 
-    setLikeInfo({
-      likesCount: isLiked ? likeInfo.likesCount - 1 : likeInfo.likesCount + 1,
-      isLiked: !isLiked,
-    });
-  };
-
-  useUpdateEffect(() => {
-    if (debouncedLikeInfo.isLiked === previousLikeStatusRef.current) {
       return;
     }
 
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
+    const newIsLiked = !isLiked;
+
+    const newLikeState = {
+      isLiked: newIsLiked,
+      likesCount: likesCount + (newIsLiked ? 1 : -1),
+    };
+
+    setLikeState(newLikeState);
+    prevLikeStateRef.current = likeState;
+  };
+
+  const handleRequestAbort = () => {
+    abortControllerRef.current?.abort();
+  };
+
+  useUpdateEffect(() => {
+    handleRequestAbort();
 
     abortControllerRef.current = new AbortController();
 
-    const isLiked = debouncedLikeInfo.isLiked;
-    previousLikeStatusRef.current = isLiked;
-
     saveLike({
-      variables: { input: { postId, isLiked } },
+      variables: {
+        input: {
+          postId,
+          isLiked: debouncedIsLiked,
+        },
+      },
       context: {
         fetchOptions: {
           signal: abortControllerRef.current.signal,
         },
       },
-      onError: () => {
-        // TODO: handle like rollback
-      },
     });
 
-    return () => {
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort();
-      }
-    };
-  }, [debouncedLikeInfo.isLiked]);
-
-  // TODO: add animation to like icon
+    return handleRequestAbort;
+  }, [debouncedIsLiked]);
 
   return (
     <LikeButtonContainer>
-      {likeInfo.likesCount > 0 && (
-        <LikesCount>{likeInfo.likesCount}</LikesCount>
+      {likesCount > 0 && (
+        <LikesCount data-testid="like-count">{likesCount}</LikesCount>
       )}
-      <IconButton disableRipple onClick={handlePostLike}>
-        <LikeIcon isLiked={likeInfo.isLiked} />
+      <IconButton
+        disableRipple
+        onClick={handlePostLike}
+        data-testid="heart-button"
+      >
+        <LikeIcon isLiked={isLiked} />
       </IconButton>
     </LikeButtonContainer>
   );

@@ -30,6 +30,7 @@
     "@mui/material": "^5.15.10",
     "@tinymce/tinymce-react": "^5.1.1",
     "apollo-link-token-refresh": "^0.7.0",
+    "cross-fetch": "^4.0.0",
     "date-fns": "^3.6.0",
     "dompurify": "^3.1.6",
     "eventemitter3": "^5.0.1",

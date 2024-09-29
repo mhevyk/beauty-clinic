@@ -1,0 +1,3 @@
+mutation SetLike($input: SetLikeInput!) {
+  setLike(input: $input)
+}

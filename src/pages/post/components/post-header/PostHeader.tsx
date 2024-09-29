@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 import DotSeparatorIcon from "@/assets/icons/testimonial-button-close-icon.svg";
 
-import { Post } from "@/api/generated";
+import { Post, User } from "@/api/generated";
 import AuthorRoleButton from "@/pages/post/components/author-role-button/AuthorRoleButton";
 import {
   AuthorDetailsLink,
@@ -15,17 +15,18 @@ import {
 } from "@/pages/post/components/post-header/PostHeader.styles";
 import { UserRole } from "@/types/helpers";
 
-type PostSubheaderProps = {
-  post: Post;
+type PostHeaderProps = Pick<Post, "createdAt" | "estimatedReadTime"> & {
+  author: Pick<User, "role" | "id" | "username">;
 };
 
-export default function PostSubheader({ post }: PostSubheaderProps) {
-  const authorRole = post.author.role as UserRole;
+export default function PostHeader({
+  author,
+  createdAt,
+  estimatedReadTime,
+}: PostHeaderProps) {
+  const authorRole = author.role as UserRole;
 
-  const formattedCreatedAtDate = format(
-    new Date(post.createdAt),
-    "MMM dd, yyyy"
-  );
+  const formattedCreatedAtDate = format(new Date(createdAt), "MMM dd, yyyy");
 
   const separator = (
     <ListItemStyled aria-hidden={true}>
@@ -37,10 +38,10 @@ export default function PostSubheader({ post }: PostSubheaderProps) {
     <PostSubheaderWrapper>
       <ListStyled>
         <ListItemStyled>
-          <AuthorDetailsLink to={`/members/${post.author.id}`}>
+          <AuthorDetailsLink to={`/members/${author.id}`}>
             <UserAvatar />
             <Typography variant="paragraph" fontSize="14px">
-              {post.author.username}
+              {author.username}
             </Typography>
           </AuthorDetailsLink>
           <AuthorRoleButton authorRole={authorRole} />
@@ -54,7 +55,7 @@ export default function PostSubheader({ post }: PostSubheaderProps) {
         {separator}
         <ListItemStyled>
           <Typography variant="paragraph" fontSize="14px">
-            {post.estimatedReadTime} min read
+            {estimatedReadTime} min read
           </Typography>
         </ListItemStyled>
       </ListStyled>

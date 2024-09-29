@@ -1,32 +1,31 @@
 import { Fragment } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Divider } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 
 import ShareLinkIcon from "@/assets/icons/share-link.svg";
 
-import { Post } from "@/api/generated";
-import LikeButton from "@/pages/post/components/like-button/LikeButton";
+import { Post, PostCategory } from "@/api/generated";
+import ActivitySection from "@/pages/post/components/activity-section/ActivitySection";
 import { socialIcons } from "@/pages/post/components/post-footer/PostFooter.constants";
 import {
-  ActivitySection,
   CategoriesList,
   CategoryItem,
-  PostStats,
   ShareSocialsList,
   SocialsAndCategoriesSection,
   SocialsItem,
 } from "@/pages/post/components/post-footer/PostFooter.styles";
 
-type PostFooterProps = {
-  post: Post;
+type PostFooterProps = Pick<Post, "commentsCount" | "viewsCount"> & {
+  categories: Omit<PostCategory, "id">[];
 };
 
-export default function PostFooter({ post }: PostFooterProps) {
-  const params = useParams();
-
+export default function PostFooter({
+  categories,
+  commentsCount,
+  viewsCount,
+}: PostFooterProps) {
   return (
     <>
       <SocialsAndCategoriesSection>
@@ -46,35 +45,21 @@ export default function PostFooter({ post }: PostFooterProps) {
         </ShareSocialsList>
         {/* TODO: reuse blog tab here */}
         <CategoriesList>
-          {post.categories.map((category, index) => (
-            <Fragment key={category.id}>
+          {categories.map((category, index) => (
+            <Fragment key={category.slug}>
               <CategoryItem>
                 <Link to={`/posts?category=${category.slug}`}>
                   {category.name}
                 </Link>
               </CategoryItem>
-              {index !== post.categories.length - 1 && (
+              {index !== categories.length - 1 && (
                 <Divider orientation="vertical" flexItem />
               )}
             </Fragment>
           ))}
         </CategoriesList>
       </SocialsAndCategoriesSection>
-      <ActivitySection>
-        <PostStats>
-          <Typography variant="paragraph" fontSize="14px">
-            {post.viewsCount} views
-          </Typography>
-          <Typography variant="paragraph" fontSize="14px">
-            {post.commentsCount} comments
-          </Typography>
-        </PostStats>
-        <LikeButton
-          postId={Number(params.postId)}
-          initialIsLiked={post.isLiked}
-          initialLikesCount={post.likesCount}
-        />
-      </ActivitySection>
+      <ActivitySection commentsCount={commentsCount} viewsCount={viewsCount} />
     </>
   );
 }

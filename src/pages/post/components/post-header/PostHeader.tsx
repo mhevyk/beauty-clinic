@@ -15,15 +15,15 @@ import {
 } from "@/pages/post/components/post-header/PostHeader.styles";
 import { UserRole } from "@/types/helpers";
 
-type PostSubheaderProps = Pick<Post, "createdAt" | "estimatedReadTime"> & {
+type PostHeaderProps = Pick<Post, "createdAt" | "estimatedReadTime"> & {
   author: Pick<User, "role" | "id" | "username">;
 };
 
-export default function PostSubheader({
+export default function PostHeader({
   author,
   createdAt,
   estimatedReadTime,
-}: PostSubheaderProps) {
+}: PostHeaderProps) {
   const authorRole = author.role as UserRole;
 
   const formattedCreatedAtDate = format(new Date(createdAt), "MMM dd, yyyy");

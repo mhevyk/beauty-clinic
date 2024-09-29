@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import DOMPurify from "dompurify";
 
 import { useGetPostByIdQuery } from "@/api/generated";
-import "@/containers/post-editor/PostEditor.content.css";
 import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
 import { BlogHeader, PostWrapper, Title } from "@/pages/post/PostPage.styled";
@@ -21,12 +20,10 @@ export default function PostPage() {
   });
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   const post = data?.post;
-
-  console.log(Number(params.postId), data);
 
   if (!post) {
     return <Navigate to="/not-found" />;
@@ -40,10 +37,18 @@ export default function PostPage() {
         <BlogTabLayout />
       </BlogHeader>
       <PostWrapper>
-        <PostHeader post={post} />
+        <PostHeader
+          author={post.author}
+          createdAt={post.createdAt}
+          estimatedReadTime={post.estimatedReadTime}
+        />
         <Title>{post.title}</Title>
         <Box dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
-        <PostFooter post={post} />
+        <PostFooter
+          categories={post.categories}
+          commentsCount={post.commentsCount}
+          viewsCount={post.viewsCount}
+        />
       </PostWrapper>
     </PageWrapper>
   );

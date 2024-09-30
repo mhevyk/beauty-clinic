@@ -95,7 +95,7 @@ export default function BookingFormPage() {
   }
 
   return (
-    <AppHelmet title="Book session">
+    <AppHelmet title="Book session" description="Confirm session order">
       <SectionStyled>
         <ContainerStyled>
           <BackButton

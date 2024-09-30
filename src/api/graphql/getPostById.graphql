@@ -9,6 +9,7 @@ query GetPostById($postId: Int!) {
     createdAt
     estimatedReadTime
     title
+    summary
     content
     categories {
       name

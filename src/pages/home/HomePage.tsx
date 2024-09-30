@@ -7,7 +7,7 @@ import Testimonials from "@/pages/home/components/testimonials/Testimonials";
 // TODO: change UI
 export default function HomePage() {
   return (
-    <AppHelmet title="Home">
+    <AppHelmet title="Home" description="Main page of application">
       <HeroSection />
       <MyTreatments />
       <EmployeeShowcaseSection />

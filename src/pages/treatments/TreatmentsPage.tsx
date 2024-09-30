@@ -18,7 +18,10 @@ import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 export default function TreatmentsPage() {
   return (
-    <AppHelmet title="Treatments">
+    <AppHelmet
+      title="Treatments"
+      description="List of available treatments that is offered by our clinic"
+    >
       <Section>
         <TreatmentDecoration />
         <TreatmentsWrapper>

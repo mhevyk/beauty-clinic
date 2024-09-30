@@ -11,7 +11,10 @@ export default function BlogPage() {
 
   /* TODO: Replace with layout */
   return (
-    <AppHelmet title="Blog">
+    <AppHelmet
+      title="Blog"
+      description="Blog with posts from experts in our field"
+    >
       <Box sx={{ marginTop: "100px" }}>
         <BlogTabLayout>
           <Typography>Hello {searchParams.get("category")}</Typography>

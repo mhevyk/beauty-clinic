@@ -33,7 +33,7 @@ export default function PostPage() {
   const sanitizedContent = DOMPurify.sanitize(post.content);
 
   return (
-    <AppHelmet title={post.title}>
+    <AppHelmet title={post.title} description={post.summary}>
       <PageWrapper wrapperBackgroundColor={theme.palette.PinkMarbleSky.main}>
         <BlogHeader>
           <BlogTabLayout />

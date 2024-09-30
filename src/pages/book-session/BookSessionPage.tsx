@@ -32,7 +32,10 @@ export default function BookSessionPage() {
   const params = useParams<BookSessionPageParams>();
 
   return (
-    <AppHelmet title="Booking details">
+    <AppHelmet
+      title="Booking details"
+      description="Select date, time and employee for session"
+    >
       <SectionStyled>
         <ContainerStyled>
           <ErrorBoundary

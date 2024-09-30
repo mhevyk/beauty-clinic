@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import { useCreatePostMutation } from "@/api/generated";
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import PostForm from "@/containers/forms/post-form/PostForm";
 import { PostFormValues } from "@/containers/forms/post-form/PostForm.types";
 import useCurrentUser from "@/hooks/use-current-user/useCurrentUser";
@@ -34,16 +35,18 @@ export default function CreatePostPage() {
 
   return (
     // TODO: create reusable wrapper for all pages
-    <Box
-      sx={{
-        padding: "100px 15px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-      }}
-    >
-      <Typography variant="heading">Create Post</Typography>
-      <PostForm isFormSubmitting={loading} handleSubmit={handleSubmit} />
-    </Box>
+    <AppHelmet title="Create post">
+      <Box
+        sx={{
+          padding: "100px 15px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+        }}
+      >
+        <Typography variant="heading">Create Post</Typography>
+        <PostForm isFormSubmitting={loading} handleSubmit={handleSubmit} />
+      </Box>
+    </AppHelmet>
   );
 }

@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import { Formik } from "formik";
 
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import { useMultistepForm } from "@/hooks/use-multistep-form/useMultistepForm";
 import useSignUp from "@/hooks/use-sign-up/useSignUp";
@@ -31,37 +32,39 @@ export default function SignUpPage() {
     : repeatPasswordFormSchema;
 
   return (
-    <Formik
-      initialValues={initialFormValues}
-      onSubmit={handleSubmit}
-      validationSchema={validationSchema}
-    >
-      <>
-        {page}
-        <ButtonGroup>
-          {hasPreviousPage && (
-            <Button
-              size="small"
-              variant="primary-outlined"
-              fullWidth
-              onClick={controls.previousPage}
-            >
-              Back
-            </Button>
-          )}
-          <NextPageButton
-            hasNextPage={hasNextPage}
-            openNextPage={controls.nextPage}
-            loading={isSigningUp}
+    <AppHelmet title="Sign up">
+      <Formik
+        initialValues={initialFormValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        <>
+          {page}
+          <ButtonGroup>
+            {hasPreviousPage && (
+              <Button
+                size="small"
+                variant="primary-outlined"
+                fullWidth
+                onClick={controls.previousPage}
+              >
+                Back
+              </Button>
+            )}
+            <NextPageButton
+              hasNextPage={hasNextPage}
+              openNextPage={controls.nextPage}
+              loading={isSigningUp}
+            />
+          </ButtonGroup>
+          <AuthAlternativeLink
+            linkProps={{
+              to: "/auth/signin",
+              label: "Have an account",
+            }}
           />
-        </ButtonGroup>
-        <AuthAlternativeLink
-          linkProps={{
-            to: "/auth/signin",
-            label: "Have an account",
-          }}
-        />
-      </>
-    </Formik>
+        </>
+      </Formik>
+    </AppHelmet>
   );
 }

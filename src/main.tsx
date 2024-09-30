@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 
 import { ApolloProvider } from "@apollo/client";
 import { ThemeProvider } from "@mui/material";
@@ -17,7 +18,9 @@ root.render(
     <ThemeProvider theme={theme}>
       <CSSInit />
       <ApolloProvider client={client}>
-        <App />
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
       </ApolloProvider>
     </ThemeProvider>
   </StrictMode>

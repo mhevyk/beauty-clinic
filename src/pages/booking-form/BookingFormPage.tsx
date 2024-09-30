@@ -8,6 +8,7 @@ import { Formik } from "formik";
 
 import CaretLeft from "@/assets/icons/caret-left.svg";
 
+import AppHelmet from "@/components/app-helmet/AppHelmet.tsx";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder.ts";
 import ClientDetails from "@/pages/booking-form/components/client-details/ClientDetails.tsx";
 import OrderInformation from "@/pages/booking-form/components/order-information/OrderInformation";
@@ -94,40 +95,46 @@ export default function BookingFormPage() {
   }
 
   return (
-    <SectionStyled>
-      <ContainerStyled>
-        <BackButton
-          component={Link}
-          to={
-            params.treatmentId ? `/book-session/${params.treatmentId}` : "/cart"
-          }
-          startIcon={<CaretLeft width={16} height={16} />}
-        >
-          Back
-        </BackButton>
-        <BoxStyled>
-          <Formik
-            initialValues={initialFormValues}
-            onSubmit={handleSubmit}
-            validationSchema={bookingFormSchema}
-            validateOnChange={false}
-            validateOnBlur={false}
+    <AppHelmet title="Book session">
+      <SectionStyled>
+        <ContainerStyled>
+          <BackButton
+            component={Link}
+            to={
+              params.treatmentId
+                ? `/book-session/${params.treatmentId}`
+                : "/cart"
+            }
+            startIcon={<CaretLeft width={16} height={16} />}
           >
-            <>
-              <ClientDetailsBox>
-                <ClientDetailsTitle>Client Details</ClientDetailsTitle>
-                <Divider color="black" />
-                <ClientDetails />
-              </ClientDetailsBox>
-              <BookingDetailsBox>
-                <OrderInformation sessionsFromLocation={cartState?.sessions} />
-                <AddToCartButton />
-                <CreateOrderButton isOrderProcessing={isOrderProcessing} />
-              </BookingDetailsBox>
-            </>
-          </Formik>
-        </BoxStyled>
-      </ContainerStyled>
-    </SectionStyled>
+            Back
+          </BackButton>
+          <BoxStyled>
+            <Formik
+              initialValues={initialFormValues}
+              onSubmit={handleSubmit}
+              validationSchema={bookingFormSchema}
+              validateOnChange={false}
+              validateOnBlur={false}
+            >
+              <>
+                <ClientDetailsBox>
+                  <ClientDetailsTitle>Client Details</ClientDetailsTitle>
+                  <Divider color="black" />
+                  <ClientDetails />
+                </ClientDetailsBox>
+                <BookingDetailsBox>
+                  <OrderInformation
+                    sessionsFromLocation={cartState?.sessions}
+                  />
+                  <AddToCartButton />
+                  <CreateOrderButton isOrderProcessing={isOrderProcessing} />
+                </BookingDetailsBox>
+              </>
+            </Formik>
+          </BoxStyled>
+        </ContainerStyled>
+      </SectionStyled>
+    </AppHelmet>
   );
 }

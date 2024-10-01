@@ -1,4 +1,10 @@
+import AppHelmet from "@/components/app-helmet/AppHelmet";
+
 // TODO: change UI
 export default function NotFoundPage() {
-  return <div>404 Not Found</div>;
+  return (
+    <AppHelmet title="Not found">
+      <div>404 Not Found</div>
+    </AppHelmet>
+  );
 }

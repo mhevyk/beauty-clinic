@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import { PasswordFormValues } from "@/containers/forms/password-form/PasswordForm";
@@ -26,34 +27,36 @@ export default function SignInPage() {
   }
 
   return (
-    <Formik
-      initialValues={initialFormValues}
-      onSubmit={handleSubmit}
-      validationSchema={signInFormSchema}
-    >
-      {({ handleSubmit }) => (
-        <>
-          <Box sx={{ mb: "25px" }}>
-            <SignInForm />
-            <ResetPasswordLink />
-          </Box>
-          <ButtonWithSpinner
-            loading={isSigningIn}
-            size="small"
-            variant="primary"
-            fullWidth
-            onClick={handleSubmit as () => void}
-          >
-            Sign In
-          </ButtonWithSpinner>
-          <AuthAlternativeLink
-            linkProps={{
-              label: "Create account",
-              to: "/auth/signup",
-            }}
-          />
-        </>
-      )}
-    </Formik>
+    <AppHelmet title="Sign in">
+      <Formik
+        initialValues={initialFormValues}
+        onSubmit={handleSubmit}
+        validationSchema={signInFormSchema}
+      >
+        {({ handleSubmit }) => (
+          <>
+            <Box sx={{ mb: "25px" }}>
+              <SignInForm />
+              <ResetPasswordLink />
+            </Box>
+            <ButtonWithSpinner
+              loading={isSigningIn}
+              size="small"
+              variant="primary"
+              fullWidth
+              onClick={handleSubmit as () => void}
+            >
+              Sign In
+            </ButtonWithSpinner>
+            <AuthAlternativeLink
+              linkProps={{
+                label: "Create account",
+                to: "/auth/signup",
+              }}
+            />
+          </>
+        )}
+      </Formik>
+    </AppHelmet>
   );
 }

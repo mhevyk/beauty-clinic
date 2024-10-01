@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
 
 export default function BlogPage() {
@@ -10,10 +11,15 @@ export default function BlogPage() {
 
   /* TODO: Replace with layout */
   return (
-    <Box sx={{ marginTop: "100px" }}>
-      <BlogTabLayout>
-        <Typography>Hello {searchParams.get("category")}</Typography>
-      </BlogTabLayout>
-    </Box>
+    <AppHelmet
+      title="Blog"
+      description="Blog with posts from experts in our field"
+    >
+      <Box sx={{ marginTop: "100px" }}>
+        <BlogTabLayout>
+          <Typography>Hello {searchParams.get("category")}</Typography>
+        </BlogTabLayout>
+      </Box>
+    </AppHelmet>
   );
 }

@@ -2,7 +2,7 @@ import type { Config } from "jest";
 
 const config: Config = {
   testEnvironment: "jest-environment-jsdom",
-  setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.ts"],
+  setupFilesAfterEnv: ["<rootDir>/tests/unit/setupTests.tsx"],
   testMatch: ["<rootDir>/tests/unit/**/*.spec.ts?(x)"], // directories to find tests
   verbose: true,
   bail: true, // exit after first test failure

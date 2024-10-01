@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { Formik } from "formik";
 
 import { useResetPasswordMutation } from "@/api/generated";
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import AuthAlternativeLink from "@/containers/auth-alternative-link/AuthAlternativeLink";
 import PasswordForm, {
@@ -53,30 +54,32 @@ export default function ResetPasswordpage() {
   }
 
   return (
-    <Formik
-      initialValues={initialFormValues}
-      onSubmit={handleSubmit}
-      validationSchema={repeatPasswordFormSchema}
-    >
-      {({ handleSubmit }) => (
-        <>
-          <Box sx={{ mb: "48px" }}>
-            <PasswordForm />
-          </Box>
-          <ButtonWithSpinner
-            variant="primary"
-            size="small"
-            fullWidth
-            onClick={handleSubmit as () => void}
-            loading={isResettingPassword}
-          >
-            Reset password
-          </ButtonWithSpinner>
-          <AuthAlternativeLink
-            linkProps={{ label: "Create account", to: "/auth/signup" }}
-          />
-        </>
-      )}
-    </Formik>
+    <AppHelmet title="Reset password">
+      <Formik
+        initialValues={initialFormValues}
+        onSubmit={handleSubmit}
+        validationSchema={repeatPasswordFormSchema}
+      >
+        {({ handleSubmit }) => (
+          <>
+            <Box sx={{ mb: "48px" }}>
+              <PasswordForm />
+            </Box>
+            <ButtonWithSpinner
+              variant="primary"
+              size="small"
+              fullWidth
+              onClick={handleSubmit as () => void}
+              loading={isResettingPassword}
+            >
+              Reset password
+            </ButtonWithSpinner>
+            <AuthAlternativeLink
+              linkProps={{ label: "Create account", to: "/auth/signup" }}
+            />
+          </>
+        )}
+      </Formik>
+    </AppHelmet>
   );
 }

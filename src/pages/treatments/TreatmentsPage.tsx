@@ -2,6 +2,7 @@ import { Suspense } from "react";
 
 import Grid from "@mui/material/Grid";
 
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import ErrorBoundary from "@/components/error-boundary/ErrorBoundary";
 import ErrorAlertLayout from "@/layouts/error-layout/ErrorLayout";
 import {
@@ -17,28 +18,35 @@ import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 export default function TreatmentsPage() {
   return (
-    <Section>
-      <TreatmentDecoration />
-      <TreatmentsWrapper>
-        <ErrorBoundary
-          fallback={error => (
-            <ErrorAlertLayout
-              errorMessage={error?.message}
-              backButtonPath="/"
-              buttonLabel="Back to home"
-            />
-          )}
-        >
-          <TreatmentsGrid container spacing={3.5} columns={12}>
-            <Grid item xs={12} sm={12} md={10} lg={12} xl={12}>
-              <Title>My Hand Crafted Treatments Menu</Title>
-            </Grid>
-            <Suspense fallback={repeatComponent(<SkeletonTreatmentsCard />, 6)}>
-              <TreatmentsCardList />
-            </Suspense>
-          </TreatmentsGrid>
-        </ErrorBoundary>
-      </TreatmentsWrapper>
-    </Section>
+    <AppHelmet
+      title="Treatments"
+      description="List of available treatments that is offered by our clinic"
+    >
+      <Section>
+        <TreatmentDecoration />
+        <TreatmentsWrapper>
+          <ErrorBoundary
+            fallback={error => (
+              <ErrorAlertLayout
+                errorMessage={error?.message}
+                backButtonPath="/"
+                buttonLabel="Back to home"
+              />
+            )}
+          >
+            <TreatmentsGrid container spacing={3.5} columns={12}>
+              <Grid item xs={12} sm={12} md={10} lg={12} xl={12}>
+                <Title>My Hand Crafted Treatments Menu</Title>
+              </Grid>
+              <Suspense
+                fallback={repeatComponent(<SkeletonTreatmentsCard />, 6)}
+              >
+                <TreatmentsCardList />
+              </Suspense>
+            </TreatmentsGrid>
+          </ErrorBoundary>
+        </TreatmentsWrapper>
+      </Section>
+    </AppHelmet>
   );
 }

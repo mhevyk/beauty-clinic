@@ -15,7 +15,6 @@ const BUILD_DIR = "dist";
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd());
   const isProductionMode = mode === "production";
-  const isBuildInNotProductionMode = command === "build" && !isProductionMode;
 
   const buildAliases = isProductionMode && {
     "@/api/generated": path.resolve(__dirname, `${BUILD_DIR}/temp_api`),
@@ -25,7 +24,7 @@ export default defineConfig(({ mode, command }) => {
 
   return {
     build: {
-      sourcemap: isBuildInNotProductionMode,
+      sourcemap: command === "build" && !isProductionMode,
       outDir: BUILD_DIR,
       rollupOptions: {
         output: {
@@ -40,11 +39,9 @@ export default defineConfig(({ mode, command }) => {
     },
     server: {
       port: Number(env.VITE_PORT),
-      open: true,
     },
     preview: {
       port: Number(env.VITE_PREVIEW_PORT),
-      open: true,
     },
     resolve: {
       alias: {
@@ -60,7 +57,7 @@ export default defineConfig(({ mode, command }) => {
       codegen({
         runOnStart: !codegenFileExists,
         throwOnStart: true,
-        runOnBuild: isBuildInNotProductionMode,
+        runOnBuild: isProductionMode,
         configOverrideOnBuild: {
           hooks: {
             afterAllFileWrite: () => {

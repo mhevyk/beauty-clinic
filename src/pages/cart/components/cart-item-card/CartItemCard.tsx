@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 
 import imagePlaceholder from "@/assets/icons/image-placeholder.svg?url";
 
-import { useLazyImage } from "@/hooks/use-lazy-mage/useLazyImage";
+import useLazyImage from "@/hooks/use-lazy-mage/useLazyImage";
 import useToggle from "@/hooks/use-toggle/useToggle";
 import CartSessionList from "@/pages/cart/components/cart-session-list/CartSessionList";
 import TreatmentGeneralInfo from "@/pages/cart/components/treatment-general-info/TreatmentGeneralInfo";
@@ -71,7 +71,10 @@ export default function CartItemCard({ item }: ItemCardProps) {
   const { treatment, sessions } = item;
 
   const [src, { hasError, isLoading }] = useLazyImage({
-    src: concatUrls(import.meta.env.VITE_API_BASE_IMAGE_URL, treatment.imageUrl!),
+    src: concatUrls(
+      import.meta.env.VITE_API_BASE_IMAGE_URL,
+      treatment.imageUrl!
+    ),
     placeholderSrc: imagePlaceholder,
   });
 

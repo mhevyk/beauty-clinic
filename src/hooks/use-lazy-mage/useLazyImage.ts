@@ -5,7 +5,7 @@ type UseLazyImage = {
   placeholderSrc: string;
 };
 
-export function useLazyImage({ src, placeholderSrc }: UseLazyImage) {
+export default function useLazyImage({ src, placeholderSrc }: UseLazyImage) {
   const [source, setSource] = useState(placeholderSrc);
   const [hasError, setHasError] = useState(false);
 

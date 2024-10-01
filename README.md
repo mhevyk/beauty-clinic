@@ -30,6 +30,7 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
 | `npm run build:dev`     | Build the project with development envs                                    |
 | `npm run build:analyze` | Build and visualize chunks of vite bundle                                  |
 | `npm run preview`       | Start already built project with build-like command                        |
+| `npm run codegen`       | Run graphql codegen                                                        |
 | `npm run pretest`       | Helper script to ensure all required modules exists by the time of testing |
 | `npm run test`          | Run unit tests                                                             |
 | `npm run test:coverage` | Run unit tests with collecting coverage                                    |

@@ -2,7 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 
 import renderWithProviders from "@tests/unit/utils/renderWithProviders.tsx";
 
-import MenuLinks from "@/layouts/sidebar/components/MenuLinks.tsx";
+import MenuLinks from "@/layouts/sidebar/components/MenuLinks/MenuLinks.tsx";
 import { menuItems } from "@/layouts/sidebar/data/menuItems";
 
 jest.mock("@/layouts/sidebar/data/menuItems", () => ({

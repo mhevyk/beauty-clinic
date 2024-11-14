@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 
 import renderWithProviders from "@tests/unit/utils/renderWithProviders";
 
-import ContactDetails from "@/layouts/footer/components/ContactDetails";
+import ContactDetails from "@/layouts/footer/components/ContactDetails/ContactDetails";
 
 jest.mock("@/containers/forms/contact-form/ContactForm", () => ({
   __esModule: true,

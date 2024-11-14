@@ -75,16 +75,21 @@ export default function BookingFormPage() {
               validateOnChange={false}
               validateOnBlur={false}
             >
-              <ClientDetailsBox>
-                <ClientDetailsTitle>Client Details</ClientDetailsTitle>
-                <Divider color="black" />
-                <ClientDetails />
-              </ClientDetailsBox>
-              <BookingDetailsBox>
-                <OrderInformation sessionsFromLocation={cartState?.sessions} />
-                <AddToCartButton />
-                <CreateOrderButton isOrderProcessing={isOrderProcessing} />
-              </BookingDetailsBox>
+              {/* formik requires the single child to work correctly */}
+              <>
+                <ClientDetailsBox>
+                  <ClientDetailsTitle>Client Details</ClientDetailsTitle>
+                  <Divider color="black" />
+                  <ClientDetails />
+                </ClientDetailsBox>
+                <BookingDetailsBox>
+                  <OrderInformation
+                    sessionsFromLocation={cartState?.sessions}
+                  />
+                  <AddToCartButton />
+                  <CreateOrderButton isOrderProcessing={isOrderProcessing} />
+                </BookingDetailsBox>
+              </>
             </Formik>
           </BoxStyled>
         </ContainerStyled>

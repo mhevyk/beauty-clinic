@@ -1,22 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import { styled } from "@mui/material";
-import Button from "@mui/material/Button";
-
 import { Employee } from "@/api/generated";
+import { NextStepButtonStyled } from "@/pages/book-session/components/submit-session-datetime-button/SubmitSessionDatetimeButton.styled";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import { useOrderStore } from "@/store/order/orderStore.ts";
-
-//TODO: add color to palette
-const NextStepButtonStyled = styled(Button)(({ theme }) => ({
-  marginTop: "32px",
-  fontWeight: 800,
-  "&:disabled": {
-    backgroundColor: "#b5b4b1",
-    borderColor: "#b5b4b1",
-    color: theme.palette.primary.main,
-  },
-}));
 
 export default function SubmitSessionDatetimeButton() {
   const setSessionStartsAt = useOrderStore(store => store.setSessionStartsAt);

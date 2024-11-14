@@ -1,24 +1,13 @@
 import { useId } from "react";
 
-import { styled } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
-
-const Form = styled("form")({
-  display: "flex",
-  flexDirection: "column",
-  gap: "19px",
-});
-
-const LabelStyled = styled(InputLabel)(({ theme }) => ({
-  color: theme.palette.secondary.main,
-  fontSize: "15px",
-  marginBottom: "2px",
-  fontWeight: 400,
-}));
+import {
+  Form,
+  LabelStyled,
+} from "@/containers/forms/password-form/PasswordForm.styled";
 
 export type PasswordFormValues = {
   password: string;

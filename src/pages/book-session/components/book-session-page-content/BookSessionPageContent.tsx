@@ -1,9 +1,7 @@
 import { Suspense } from "react";
 import { Link } from "react-router-dom";
 
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -11,22 +9,15 @@ import { format } from "date-fns";
 
 import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
 
+import {
+  ButtonStyled,
+  DateNow,
+} from "@/pages/book-session/components/book-session-page-content/BookSessioPageContent.styled";
 import Calendar from "@/pages/book-session/components/calendar/Calendar";
 import ServiceDetails from "@/pages/book-session/components/service-details/ServiceDetails";
 import SubmitSessionDatetimeButton from "@/pages/book-session/components/submit-session-datetime-button/SubmitSessionDatetimeButton";
 import TimePicker from "@/pages/book-session/components/time-picker/TimePicker";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider.tsx";
-
-const ButtonStyled = styled(Button)({
-  textAlign: "left",
-  paddingBottom: "42px",
-  fontWeight: 330,
-}) as typeof Button;
-
-const DateNow = styled("p")(({ theme }) => ({
-  ...theme.typography.paragraph,
-  margin: "0",
-}));
 
 export default function BookSessionPageContent() {
   const { selectedTime, selectedDate } = useDatetimePickerContext();

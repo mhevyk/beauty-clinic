@@ -1,7 +1,7 @@
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 
 import { postAuthorIconsByRole } from "@/pages/post/components/author-role-button/AuthorRoleButton.constants";
-import { IconButtonStyled } from "@/pages/post/components/author-role-button/AuthorRoleButton.styles";
+import { IconButtonStyled } from "@/pages/post/components/author-role-button/AuthorRoleButton.styled";
 import theme from "@/theme/theme";
 import { UserRole } from "@/types/helpers";
 

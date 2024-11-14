@@ -1,15 +1,9 @@
 import { PropsWithChildren } from "react";
 
 import { SxProps } from "@mui/material";
-import { styled } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
-import FormHelperText from "@mui/material/FormHelperText";
 
-const Feedback = styled(FormHelperText)(({ theme }) => ({
-  ...theme.typography.paragraph,
-  fontSize: "12px",
-  lineHeight: "1rem",
-}));
+import { Feedback } from "@/components/form-group-with-error/FormGroupWithError.styled";
 
 type FormGroupWithErrorProps = PropsWithChildren & {
   errorMessage?: string;

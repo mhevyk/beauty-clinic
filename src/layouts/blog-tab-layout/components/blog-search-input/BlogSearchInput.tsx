@@ -9,8 +9,8 @@ import useUpdateEffect from "@/hooks/use-update-effect/useUpdateEffect";
 import {
   CloseIconThinStyled,
   SearchInput,
-} from "@/layouts/blog-tab-layout/components/blog-search-input/BlogSearchInput.styles";
-import { SearchIconStyled } from "@/layouts/blog-tab-layout/components/blog-search/BlogSearch.styles";
+} from "@/layouts/blog-tab-layout/components/blog-search-input/BlogSearchInput.styled";
+import { SearchIconStyled } from "@/layouts/blog-tab-layout/components/blog-search/BlogSearch.styled";
 
 type BlogSearchInputProps = {
   exitSearchMode: () => void;

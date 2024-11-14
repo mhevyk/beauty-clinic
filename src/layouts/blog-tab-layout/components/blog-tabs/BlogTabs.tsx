@@ -8,7 +8,7 @@ import {
   BlogTabsStack,
   BlogTabsToolbar,
   CategorySkeleton,
-} from "@/layouts/blog-tab-layout/components/blog-tabs/BlogTabs.styles";
+} from "@/layouts/blog-tab-layout/components/blog-tabs/BlogTabs.styled";
 
 export default function BlogTabs() {
   return (

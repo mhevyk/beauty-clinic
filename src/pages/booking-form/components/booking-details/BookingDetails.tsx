@@ -1,40 +1,19 @@
 import { useLocation } from "react-router-dom";
 
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Collapse from "@mui/material/Collapse";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import { keyframes } from "@mui/material/styles";
-
-import caretIcon from "@/assets/icons/caret-left.svg";
 
 import useToggle from "@/hooks/use-toggle/useToggle.ts";
 import BookingDetailsItem from "@/pages/booking-form/components/booking-details-item/BookingDetailsItem";
+import {
+  ButtonStyled,
+  IconStyled,
+} from "@/pages/booking-form/components/booking-details/BookingDetails.styled";
 import useItemsToOrder from "@/pages/booking-form/hooks/use-items-to-order/useItemsToOrder";
 import { useUserStore } from "@/store/user/userStore.ts";
 import { OrderItem } from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart.ts";
-
-const ANIMATION_DURATION_MS = 550;
-
-const ButtonStyled = styled(Button)({
-  padding: "7px 0",
-  flexDirection: "column",
-  alignItems: "baseline",
-});
-
-type CaretIconProps = {
-  pointsToRight: boolean;
-};
-
-//TODO: make this animation global
-const IconStyled = styled(caretIcon, {
-  shouldForwardProp: prop => prop !== "pointsToRight",
-})<CaretIconProps>(({ pointsToRight, theme }) => ({
-  stroke: theme.palette.secondary.main,
-  animation: `${pointsToRight ? rotateForward : rotateBackward} ${ANIMATION_DURATION_MS}ms forwards`,
-}));
 
 export default function BookingDetails() {
   const { isOpen, toggle } = useToggle();
@@ -73,21 +52,3 @@ export default function BookingDetails() {
     </>
   );
 }
-
-const rotateForward = keyframes`
-  from {
-    transform: rotate(270deg);
-  }
-  to {
-    transform: rotate(90deg);
-  }
-`;
-
-const rotateBackward = keyframes`
-  from {
-    transform: rotate(90deg);
-  }
-  to {
-    transform: rotate(270deg);
-  }
-`;

@@ -1,7 +1,5 @@
-import { styled } from "@mui/material";
 import Button from "@mui/material/Button";
 import Fade from "@mui/material/Fade";
-import InputBase from "@mui/material/InputBase";
 import Stack from "@mui/material/Stack";
 
 import {
@@ -10,6 +8,10 @@ import {
   useVerifyRecaptchaMutation,
 } from "@/api/generated";
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
+import {
+  SuccessFeedback,
+  TextInput,
+} from "@/containers/forms/contact-form/ContactForm.styled";
 import HumanVerificationModal from "@/containers/modals/human-verication-modal/HumanVerificationModal";
 import useToggle from "@/hooks/use-toggle/useToggle";
 import { useContactFormValues } from "@/layouts/footer/hooks/useContactFormValues";
@@ -19,31 +21,6 @@ import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessa
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 const SUCCESS_FEEDBACK_DISPLAY_DURATION = 5000;
-
-const TextInput = styled(InputBase)(() => {
-  const placeholderStyles = {
-    "&::placeholder": {
-      opacity: 0.6,
-    },
-  };
-
-  return {
-    padding: "3px 3px 3px 12px",
-    fontSize: "16px",
-    flexGrow: 1,
-    borderBottom: "1px solid rgb(3, 3, 3)",
-    color: "rgb(3, 3, 3)",
-    input: placeholderStyles,
-    textarea: placeholderStyles,
-  };
-});
-
-const SuccessFeedback = styled("p")({
-  textAlign: "center",
-  color: "#9bcb84",
-  fontSize: 16,
-  fontWeight: 200,
-});
 
 function validateRecaptcha(data?: VerifyRecaptchaMutation | null) {
   const isRecaptchaValid = Boolean(data?.verifyRecaptcha);

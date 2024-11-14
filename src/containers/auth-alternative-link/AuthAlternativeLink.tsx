@@ -1,37 +1,11 @@
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 
-import AppLink from "../../components/app-link/AppLink";
-
-const DividerStyled = styled(Divider)({
-  "&::before, &::after": {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-});
-
-const HorizontalDividerStyled = styled(DividerStyled)(({ theme }) => ({
-  margin: "41px auto 32px",
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    maxWidth: "198px",
-  },
-}));
-
-const VerticalDividerWrapper = styled(Box)({
-  display: "flex",
-  justifyContent: "center",
-});
-
-const VerticalDividerStyled = styled(DividerStyled)({
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
-});
-
-const LinkStyled = styled(AppLink)({
-  flex: 1,
-  display: "flex",
-  justifyContent: "center",
-});
+import {
+  HorizontalDividerStyled,
+  LinkStyled,
+  VerticalDividerStyled,
+  VerticalDividerWrapper,
+} from "@/containers/auth-alternative-link/AuthAlternativeLink.styled";
 
 type AuthFooterProps = {
   linkProps: {

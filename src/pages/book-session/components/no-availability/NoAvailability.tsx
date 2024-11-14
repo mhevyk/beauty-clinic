@@ -1,14 +1,9 @@
-import { styled } from "@mui/material";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 import useEventEmitter from "@/hooks/use-event-emitter/useEventEmitter";
+import { ButtonStyled } from "@/pages/book-session/components/no-availability/NoAvailability.styled";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import getNextWorkingDay from "@/pages/book-session/utils/get-next-working-day/getNextWorkingDay";
-
-const ButtonStyled = styled(Button)({
-  marginTop: "30px",
-});
 
 // TODO: add logic to handle next availability
 export default function NoAvailability() {

@@ -1,26 +1,10 @@
-import { styled } from "@mui/material";
-import Box from "@mui/material/Box";
-
 import { Treatment } from "@/api/generated";
+import {
+  BoxStyled,
+  InformationBox,
+  TreatmentInfo,
+} from "@/pages/cart/components/treatment-general-info/TreatmentGeneralInfo.styled";
 import { CartSession as CartSessionType } from "@/store/cart/cartStore.ts";
-
-const TreatmentInfo = styled("p")(({ theme }) => ({
-  ...theme.typography.paragraph,
-  paddingBottom: "16px",
-  fontSize: "18px",
-  margin: 0,
-}));
-
-const BoxStyled = styled(Box)({
-  minWidth: "170px",
-  paddingTop: "16px",
-  marginRight: "22px",
-});
-
-const InformationBox = styled(Box)({
-  display: "flex",
-  justifyContent: "space-between",
-});
 
 type TreatmentGeneralInfoProps = {
   sessions: CartSessionType[];

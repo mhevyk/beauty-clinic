@@ -15,7 +15,7 @@ import {
   ShareSocialsList,
   SocialsAndCategoriesSection,
   SocialsItem,
-} from "@/pages/post/components/post-footer/PostFooter.styles";
+} from "@/pages/post/components/post-footer/PostFooter.styled";
 
 type PostFooterProps = Pick<Post, "commentsCount" | "viewsCount"> & {
   categories: Omit<PostCategory, "id">[];

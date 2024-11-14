@@ -4,7 +4,7 @@ import TreatmentsCard from "@/pages/treatments/components/treatment-card/Treatme
 export default function TreatmentCardList() {
   const { data } = useGetTreatmentsSuspenseQuery();
 
-  return data.treatments.map(treatment => {
+  return data?.treatments.map(treatment => {
     return <TreatmentsCard key={treatment.id} treatment={treatment} />;
   });
 }

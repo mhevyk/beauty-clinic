@@ -1,54 +1,16 @@
 import { ComponentType, SVGProps } from "react";
 
-import { styled } from "@mui/material";
 import { SxProps } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import { Treatment } from "@/api/generated";
-import theme from "@/theme/theme.ts";
-
-const BoxStyled = styled(Box)({
-  [theme.breakpoints.up("xs")]: {
-    height: 460,
-  },
-  [theme.breakpoints.up("lg")]: {
-    height: 560,
-  },
-  width: "100%",
-  position: "relative",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-});
-
-const ImgStyled = styled("img")({
-  position: "relative",
-  zIndex: 5,
-  top: "15%",
-  objectFit: "cover",
-  width: "auto",
-  height: "40%",
-  [theme.breakpoints.down("md")]: {
-    height: "50%",
-    top: "12%",
-  },
-});
-
-const TitleStyled = styled("h4")({
-  [theme.breakpoints.up("sm")]: {
-    fontSize: "28px",
-  },
-  [theme.breakpoints.up("md")]: {
-    width: 210,
-  },
-  marginBottom: "30px",
-  ...theme.typography.heading,
-  marginTop: "100px",
-  fontSize: "20px",
-  textAlign: "center",
-});
+import {
+  BoxStyled,
+  ImgStyled,
+  TitleStyled,
+} from "@/pages/home/components/testimonials-card/TreatmentCard.styled";
 
 type TreatmentCardProps = {
   treatment: Treatment;

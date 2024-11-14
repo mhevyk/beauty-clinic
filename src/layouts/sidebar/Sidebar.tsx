@@ -1,21 +1,12 @@
-import { AppBar, styled, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 import SidebarDrawer from "@/containers/drawers/sidebar-drawer/SidebarDrawer";
 import useToggle from "@/hooks/use-toggle/useToggle";
-import BurgerButton from "@/layouts/sidebar/components/BurgerButton";
-import Logo from "@/layouts/sidebar/components/Logo";
-import SocialLinks from "@/layouts/sidebar/components/SocialLinks";
+import { SidebarStyled } from "@/layouts/sidebar/Sidebar.styled";
+import BurgerButton from "@/layouts/sidebar/components/BurgerButton/BurgerButton";
+import Logo from "@/layouts/sidebar/components/Logo/Logo";
+import SocialLinks from "@/layouts/sidebar/components/SocialLinks/SocialLinks";
 import theme from "@/theme/theme";
-
-const SidebarStyled = styled(AppBar)({
-  width: "78px",
-  height: "100vh",
-  left: 0,
-  display: "flex",
-  flexDirection: "column",
-  position: "fixed",
-  zIndex: 30,
-}) as typeof AppBar;
 
 export default function Sidebar() {
   const { isOpen, open, close } = useToggle();

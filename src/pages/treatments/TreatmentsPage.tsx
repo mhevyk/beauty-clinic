@@ -11,7 +11,7 @@ import {
   TreatmentDecoration,
   TreatmentsGrid,
   TreatmentsWrapper,
-} from "@/pages/treatments/TreatmentsPage.styles";
+} from "@/pages/treatments/TreatmentsPage.styled";
 import SkeletonTreatmentsCard from "@/pages/treatments/components/skeleton-treatment-card/SkeletonTreatmentCard";
 import TreatmentsCardList from "@/pages/treatments/components/treatment-cart-list/TreatmentCardList";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";

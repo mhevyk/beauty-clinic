@@ -9,7 +9,7 @@ import {
   initialFormValues,
   multistepFormConfig,
 } from "@/pages/sign-up/SignUpPage.constants";
-import { ButtonGroup } from "@/pages/sign-up/SignUpPage.styles";
+import { ButtonGroup } from "@/pages/sign-up/SignUpPage.styled";
 import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.types";
 import NextPageButton from "@/pages/sign-up/components/next-page-button/NextPageButton";
 import {

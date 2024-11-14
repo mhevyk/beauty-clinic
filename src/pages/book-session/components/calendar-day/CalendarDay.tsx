@@ -1,6 +1,6 @@
 import { format, isBefore, isToday, startOfToday } from "date-fns";
 
-import { CalendarDayCell } from "@/pages/book-session/components/calendar-day/CalendarDay.styles";
+import { CalendarDayCell } from "@/pages/book-session/components/calendar-day/CalendarDay.styled";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import {
   CalendarSize,

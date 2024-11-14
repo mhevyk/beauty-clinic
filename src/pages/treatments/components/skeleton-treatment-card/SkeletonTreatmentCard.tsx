@@ -6,7 +6,7 @@ import {
   SkeletonDurationStyled,
   SkeletonPriceStyled,
   SkeletonTitleStyled,
-} from "@/pages/treatments/components/skeleton-treatment-card/SkeletonTreatmentCard.styles";
+} from "@/pages/treatments/components/skeleton-treatment-card/SkeletonTreatmentCard.styled";
 
 export default function SkeletonTreatmentCard() {
   return (

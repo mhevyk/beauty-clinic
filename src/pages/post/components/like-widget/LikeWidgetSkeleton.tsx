@@ -4,7 +4,7 @@ import {
   LikeButtonContainer,
   LikeIcon,
   SkeletonLikesCount,
-} from "@/pages/post/components/like-button/LikeButton.styles";
+} from "@/pages/post/components/like-button/LikeButton.styled";
 
 export default function LikeWidgetSkeleton() {
   return (

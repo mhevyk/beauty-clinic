@@ -1,22 +1,29 @@
 import { useRef } from "react";
 
 import { useMediaQuery } from "@mui/material";
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import { Formik } from "formik";
 
-import CloseIconSvg from "@/assets/icons/close-icon-thin.svg";
 import OpenLockIconSvg from "@/assets/icons/open-lock.svg";
 
 import { useForgotPasswordMutation } from "@/api/generated";
 import AppLink from "@/components/app-link/AppLink";
-import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import ResetPasswordForm from "@/containers/forms/forgot-password-form/ForgotPasswordForm.tsx";
+import {
+  BoxStyled,
+  CircleWrapper,
+  CloseIcon,
+  CloseIconButton,
+  Description,
+  DialogContentStyled,
+  Digit,
+  DividerStyled,
+  Information,
+  ResetPasswordFormWrapper,
+  SubmitButton,
+  Title,
+} from "@/containers/modals/forgot-password-modal/ForgotPasswordModal.styled";
 import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";
 import { RESEND_EMAIL_MIN_SECONDS } from "@/pages/sign-in/constants";
 import useCountdown from "@/pages/sign-in/hooks/use-countdown/useCountdown";
@@ -25,96 +32,6 @@ import theme from "@/theme/theme.ts";
 import extractErrorMessage from "@/utils/extract-error-message/extractErrorMessage";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 import { emailFormSchema } from "@/validation/emailFormSchema.ts";
-
-const CircleWrapper = styled(Box)(({ theme }) => ({
-  width: "115px",
-  height: "115px",
-  border: `6px solid ${theme.palette.secondary.main}`,
-  borderRadius: "50%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const BoxStyled = styled(Box)(({ theme }) => ({
-  display: "flex",
-  marginBottom: "25px",
-  [theme.breakpoints.down("sm")]: {
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "30px",
-  },
-}));
-
-const Information = styled(Box)({
-  maxWidth: "244px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  marginLeft: "21px",
-});
-
-const Digit = styled(Typography)({
-  fontSize: "55px",
-  fontWeight: "bold",
-});
-
-const DialogContentStyled = styled(DialogContent)({
-  padding: "62px 32px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-});
-
-const Title = styled(Typography)({
-  letterSpacing: "1px",
-  fontSize: "19px",
-  fontWeight: "bold",
-  textAlign: "center",
-});
-
-const Description = styled(Typography)({
-  fontSize: "11px",
-  letterSpacing: "1.28px",
-  lineHeight: "26px",
-  textAlign: "center",
-});
-
-const SubmitButton = styled(ButtonWithSpinner)(({ theme }) => ({
-  "&.Mui-disabled": {
-    color: theme.palette.primary.main,
-    opacity: 0.5,
-  },
-}));
-
-const CloseIconButton = styled(IconButton)({
-  position: "absolute",
-  right: 16,
-  top: 16,
-});
-
-const CloseIcon = styled(CloseIconSvg)(({ theme }) => ({
-  width: 30,
-  aspectRatio: "1 / 1",
-  [theme.breakpoints.up("md")]: {
-    width: 20,
-  },
-}));
-
-const DividerStyled = styled(Divider)({
-  "&::before, &::after": {
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  margin: "25px auto",
-  width: "100%",
-  maxWidth: "198px",
-});
-
-const ResetPasswordFormWrapper = styled(Box)({
-  width: "100%",
-  marginBottom: "25px",
-});
 
 type ForgotPasswordModalProps = {
   isOpen: boolean;

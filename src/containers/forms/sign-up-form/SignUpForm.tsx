@@ -7,7 +7,7 @@ import FormGroupWithError from "@/components/form-group-with-error/FormGroupWith
 import {
   Form,
   LabelStyled,
-} from "@/containers/forms/sign-up-form/SignUpForm.styles";
+} from "@/containers/forms/sign-up-form/SignUpForm.styled";
 import PhoneNumberFormGroup from "@/containers/phone-number-form-group/PhoneNumberFormGroup";
 import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.types";
 

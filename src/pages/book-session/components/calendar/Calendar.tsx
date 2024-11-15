@@ -10,7 +10,7 @@ import CalendarHeader from "@/pages/book-session/components/calendar-header/Cale
 import {
   CalendarCellsContainer,
   CalendarWeekDay,
-} from "@/pages/book-session/components/calendar/Calendar.styles";
+} from "@/pages/book-session/components/calendar/Calendar.styled";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import { useCalendar } from "@/pages/book-session/hooks/use-calendar/useCalendar";
 import useNextPageListener from "@/pages/book-session/hooks/use-next-page-listener/useNextPageListener";

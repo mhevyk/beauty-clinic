@@ -1,42 +1,20 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 
 import { useMediaQuery } from "@mui/material";
-import { styled } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 
 import UserToolbar from "@/containers/user-toolbar/UserToolbar";
 import useToggle from "@/hooks/use-toggle/useToggle";
+import {
+  AppBarStyled,
+  LogoLink,
+  ToolbarStyled,
+} from "@/layouts/navbar/Navbar.styled";
 import theme from "@/theme/theme";
 
-import CartDrawerButton from "../../containers/drawers/cart-drawer/components/CartDrawerButton";
-import BurgerButton from "./components/BurgerButton";
-import MobileMenu from "./components/MobileMenu";
-
-const AppBarStyled = styled(AppBar)(({ theme }) => ({
-  padding: "16px 0 8px",
-  zIndex: "auto",
-  [theme.breakpoints.down("md")]: {
-    backgroundColor: "white",
-  },
-}));
-
-const LinkStyled = styled(Link)({
-  transition: "color 400ms",
-});
-
-const LogoLink = styled(LinkStyled)({
-  ...theme.typography.heading,
-  fontSize: "22px",
-});
-
-const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
-  [theme.breakpoints.up("md")]: {
-    marginRight: "35px",
-  },
-}));
+import CartDrawerButton from "../../containers/drawers/cart-drawer/components/CartDriwerButton/CartDrawerButton";
+import BurgerButton from "./components/BurgerButton/BurgerButton";
+import MobileMenu from "./components/MobileMenu/MobileMenu";
 
 export default function BurgerMenu() {
   const { isOpen, toggle, close } = useToggle();

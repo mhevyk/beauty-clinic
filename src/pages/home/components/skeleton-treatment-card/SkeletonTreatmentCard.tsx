@@ -1,11 +1,5 @@
-import { styled } from "@mui/material";
-import Grid from "@mui/material/Grid";
-
 import SkeletonTreatmentBox from "@/pages/home/components/skeleton-treatment-box/SkeletonTreatmentBox";
-
-const GridStyled = styled(Grid)({
-  marginBottom: 30,
-});
+import { GridStyled } from "@/pages/home/components/skeleton-treatment-card/SkeletonTratmentCard.styled";
 
 export default function SkeletonTreatmentCard() {
   return (

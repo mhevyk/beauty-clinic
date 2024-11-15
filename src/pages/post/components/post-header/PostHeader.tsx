@@ -12,7 +12,7 @@ import {
   PostSubheaderWrapper,
   ThreeDotsVerticalIconStyled,
   UserAvatar,
-} from "@/pages/post/components/post-header/PostHeader.styles";
+} from "@/pages/post/components/post-header/PostHeader.styled";
 import { UserRole } from "@/types/helpers";
 
 type PostHeaderProps = Pick<Post, "createdAt" | "estimatedReadTime"> & {

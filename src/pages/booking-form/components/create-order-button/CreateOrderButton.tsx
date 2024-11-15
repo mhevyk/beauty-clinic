@@ -1,11 +1,6 @@
-import { styled } from "@mui/material";
 import { useFormikContext } from "formik";
 
-import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
-
-const ActionButton = styled(ButtonWithSpinner)({
-  marginTop: "12px",
-});
+import { ActionButton } from "@/pages/booking-form/components/create-order-button/CreateOrderButton.styled";
 
 type CreateOrderButtonProps = {
   isOrderProcessing: boolean;

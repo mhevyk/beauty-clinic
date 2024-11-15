@@ -12,7 +12,7 @@ import { useGetPostCategoriesQuery } from "@/api/generated";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner.tsx";
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
 import { defaultPostFormValues } from "@/containers/forms/post-form/PostForm.constants";
-import { Form } from "@/containers/forms/post-form/PostForm.styles";
+import { Form } from "@/containers/forms/post-form/PostForm.styled";
 import { PostFormValues } from "@/containers/forms/post-form/PostForm.types";
 import PostEditor from "@/containers/post-editor/PostEditor";
 import postFormValidationSchema from "@/validation/postFormValidationSchema";

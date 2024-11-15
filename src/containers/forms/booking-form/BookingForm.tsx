@@ -1,13 +1,17 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";
 
 import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
+import {
+  BoxStyled,
+  Counter,
+  Form,
+  InputLabelStyled,
+  TextFieldStyled,
+} from "@/containers/forms/booking-form/BookingForm.styled";
 import PhoneNumberFormGroup from "@/containers/phone-number-form-group/PhoneNumberFormGroup";
 import { useUserStore } from "@/store/user/userStore.ts";
 import theme from "@/theme/theme.ts";
@@ -18,37 +22,6 @@ type ForgotPasswordFormValues = {
   phoneNumber: string;
   message: string;
 };
-
-const BoxStyled = styled(Box)({
-  display: "flex",
-  gap: "24px",
-});
-
-const TextFieldStyled = styled(TextField)(({ theme, disabled }) => ({
-  backgroundColor: theme.palette.CreamyDawn.main,
-  ...(disabled && { pointerEvents: "none" }),
-}));
-
-const InputLabelStyled = styled(InputLabel)(({ theme }) => ({
-  color: theme.palette.secondary.main,
-}));
-
-const Form = styled("form")({
-  display: "flex",
-  flexDirection: "column",
-  gap: "24px",
-  marginTop: "32px",
-});
-
-const Counter = styled("p")(({ theme }) => ({
-  ...theme.typography.paragraph,
-  display: "flex",
-  justifyContent: "end",
-  margin: "8px 0 0 0",
-  position: "absolute",
-  right: 0,
-  top: "58px",
-}));
 
 export default function BookingForm() {
   const [length, setLength] = useState(0);

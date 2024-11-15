@@ -1,39 +1,13 @@
-import { styled } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
-import CaretLeftIconSvg from "@/assets/icons/caret-left.svg";
-
+import {
+  CaretLeftIcon,
+  CaretRightIcon,
+  NextMonthButton,
+  PrevMonthButton,
+  SelectedMonth,
+} from "@/pages/book-session/components/calendar-header/CalendarHeader.styled";
 import { CalendarControls } from "@/pages/book-session/hooks/use-calendar/useCalendar.types";
-
-const CaretLeftIcon = styled(CaretLeftIconSvg)(({ theme }) => ({
-  color: theme.palette.secondary.main,
-}));
-
-const PrevMonthButton = styled(IconButton)(({ theme }) => ({
-  [theme.breakpoints.down("sm")]: {
-    marginRight: "auto",
-  },
-}));
-
-const CaretRightIcon = styled(CaretLeftIcon)({
-  transform: "rotate(180deg)",
-});
-
-const NextMonthButton = styled(IconButton)(({ theme }) => ({
-  [theme.breakpoints.down("sm")]: {
-    marginLeft: "auto",
-  },
-}));
-
-const SelectedMonth = styled(Typography)(({ theme }) => ({
-  textAlign: "center",
-  fontSize: "16px",
-  [theme.breakpoints.up("sm")]: {
-    width: "180px",
-  },
-}));
 
 type CalendarHeaderProps = {
   controls: CalendarControls;

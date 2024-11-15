@@ -1,34 +1,19 @@
-import { styled } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { format } from "date-fns";
 
-import BinIcon from "@/assets/icons/bin-icon.svg";
-
 import { Treatment } from "@/api/generated";
+import {
+  BinButton,
+  SessionDescription,
+  TableCellStyled,
+} from "@/pages/cart/components/cart-session/CartSession.styled";
 import {
   CartSession as CartSessionType,
   useCartStore,
 } from "@/store/cart/cartStore.ts";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
-
-const BinButton = styled(BinIcon)({
-  width: "25px",
-  height: "27px",
-});
-
-const TableCellStyled = styled(TableCell)({
-  border: "none",
-  padding: "6px 0",
-});
-
-const SessionDescription = styled("p")(({ theme }) => ({
-  ...theme.typography.paragraph,
-  fontSize: "18px",
-  padding: "0 6px",
-  margin: 0,
-}));
 
 type CartSessionProps = {
   session: CartSessionType;

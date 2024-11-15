@@ -1,35 +1,15 @@
 import { useId } from "react";
-import MaskedInput from "react-text-mask";
 
-import { styled } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
 import { useFormikContext } from "formik";
 
 import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
 import { PHONE_NUMBER_PATTERN } from "@/constants/index.ts";
+import {
+  LabelStyled,
+  MaskedInputStyled,
+} from "@/containers/phone-number-form-group/PhoneNumberFormGroup.styled";
 import { SignUpFormValues } from "@/pages/sign-up/SignUpPage.types";
-
-const LabelStyled = styled(InputLabel)(({ theme }) => ({
-  color: theme.palette.secondary.main,
-  fontSize: "15px",
-  marginBottom: "2px",
-  fontWeight: 400,
-}));
-
-type MaskedInputStyledProps = {
-  backgroundColor: string;
-  disabled: boolean;
-};
-
-const MaskedInputStyled = styled(MaskedInput, {
-  shouldForwardProp: prop => prop !== "backgroundColor",
-})<MaskedInputStyledProps>(
-  ({ backgroundColor, disabled }: MaskedInputStyledProps) => ({
-    backgroundColor,
-    ...(disabled && { pointerEvents: "none" }),
-  })
-);
 
 type PhoneNumberFormGroupProps = {
   isDisabled: boolean;

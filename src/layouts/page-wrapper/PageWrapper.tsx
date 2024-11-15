@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import {
   ColoredWrapper,
   ContentWrapper,
-} from "@/layouts/page-wrapper/PageWrapper.styles";
+} from "@/layouts/page-wrapper/PageWrapper.styled";
 import theme from "@/theme/theme";
 
 type PageWrapperProps = PropsWithChildren<{

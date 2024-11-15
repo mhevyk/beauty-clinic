@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import { styled } from "@mui/material";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -10,37 +8,15 @@ import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
+import {
+  ButtonGroup,
+  CartBar,
+  ContentBox,
+  TotalPriceInformation,
+} from "@/pages/cart/components/cart-checkout-bar/CartCheckoutBar.styled";
 import { useCartStore } from "@/store/cart/cartStore.ts";
 import { useUserStore } from "@/store/user/userStore.ts";
 import getSessionsToOrderFromCart from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
-
-const CartBar = styled(Box)(({ theme }) => ({
-  width: "100%",
-  backgroundColor: theme.palette.PinkMarbleSky.main,
-  position: "sticky",
-  bottom: 0,
-  borderTop: `6px solid ${theme.palette.PinkMarbleSky.main}`,
-}));
-
-const ButtonGroup = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "20px",
-});
-
-const TotalPriceInformation = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "80px",
-});
-
-const ContentBox = styled(Box)({
-  display: "flex",
-  padding: "16px",
-  justifyContent: "space-between",
-  flexWrap: "wrap",
-  gap: "20px",
-});
 
 export default function CartCheckoutBar() {
   const sessionsToOrderFromCart = getSessionsToOrderFromCart();

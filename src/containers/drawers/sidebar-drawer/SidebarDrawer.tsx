@@ -1,25 +1,12 @@
-import { Box, Drawer, IconButton, styled } from "@mui/material";
+import { Drawer } from "@mui/material";
 
-import CloseIconSvg from "@/assets/icons/close-icon.svg";
-
+import {
+  CloseIcon,
+  IconButtonStyled,
+  MenuWrapper,
+} from "@/containers/drawers/sidebar-drawer/SidebarDrawer.styled";
 import useLockPageScroll from "@/hooks/use-lock-page-scroll/useLockPageScroll";
-import MenuLinks from "@/layouts/sidebar/components/MenuLinks";
-
-const CloseIcon = styled(CloseIconSvg)({
-  position: "relative",
-  cursor: "pointer",
-  width: 25,
-  height: 28,
-});
-
-const IconButtonStyled = styled(IconButton)({
-  left: 360,
-  top: 50,
-});
-
-const MenuWrapper = styled(Box)({
-  width: 430,
-});
+import MenuLinks from "@/layouts/sidebar/components/MenuLinks/MenuLinks";
 
 type SidebarDrawerProps = {
   isSidebarOpen: boolean;

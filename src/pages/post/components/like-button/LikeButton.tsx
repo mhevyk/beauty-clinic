@@ -9,7 +9,7 @@ import {
   LikeButtonContainer,
   LikeIcon,
   LikesCount,
-} from "@/pages/post/components/like-button/LikeButton.styles";
+} from "@/pages/post/components/like-button/LikeButton.styled";
 import { useUserStore } from "@/store/user/userStore";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 

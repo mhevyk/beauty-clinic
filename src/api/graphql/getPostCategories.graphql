@@ -1,7 +1,7 @@
 query GetPostCategories {
   categories {
     id
-    name,
+    name
     slug
   }
 }

@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import {
   ActivitySectionWrapper,
   PostStats,
-} from "@/pages/post/components/activity-section/ActivitySection.styles";
+} from "@/pages/post/components/activity-section/ActivitySection.styled";
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
 
 type ActivitySectionProps = {

@@ -1,19 +1,13 @@
 import { Navigate } from "react-router-dom";
 
-import { styled } from "@mui/material";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 
 import BookingDetails from "@/pages/booking-form/components/booking-details/BookingDetails";
+import { TotalPriceBox } from "@/pages/booking-form/components/order-information/OrderInformation.styled";
 import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
 import { useCartStore } from "@/store/cart/cartStore";
-
-const TotalPriceBox = styled(Box)({
-  marginBottom: "20px",
-  display: "flex",
-  justifyContent: "space-between",
-});
 
 export type SessionFromLocation = ReturnType<
   typeof useSelectedTreatmentSession

@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 
 import useToggle from "@/hooks/use-toggle/useToggle";
 import BlogSearchInput from "@/layouts/blog-tab-layout/components/blog-search-input/BlogSearchInput";
-import { SearchIconStyled } from "@/layouts/blog-tab-layout/components/blog-search/BlogSearch.styles";
+import { SearchIconStyled } from "@/layouts/blog-tab-layout/components/blog-search/BlogSearch.styled";
 
 export default function BlogSearch() {
   const { isOpen, open, close } = useToggle();

@@ -7,7 +7,7 @@ import { postEditorConfig } from "@/containers/post-editor/PostEditor.constants"
 import {
   EditorSkeleton,
   EditorWrapper,
-} from "@/containers/post-editor/PostEditor.styles";
+} from "@/containers/post-editor/PostEditor.styled";
 import useRealPostPreview, {
   PostEditorPreviewData,
 } from "@/containers/post-editor/hooks/use-real-post-preview/useRealPostPreview";

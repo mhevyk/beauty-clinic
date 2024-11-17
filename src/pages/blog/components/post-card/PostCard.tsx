@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
 import { format } from "date-fns";
 
+import imagePlaceholder from "@/assets/icons/image-placeholder.svg?url";
 import ShareIcon from "@/assets/icons/three-dots-vertical.svg";
 
 import { routePaths } from "@/constants/routePaths";
+import useLazyImage from "@/hooks/use-lazy-mage/useLazyImage";
+import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 import {
+  BoxImageStyled,
   BoxStyled,
   ContentBox,
   ImgStyled,
@@ -16,8 +20,27 @@ import {
 } from "@/pages/blog/components/post-card/PostCard.styled";
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
 
+type Post =
+  | {
+      id: number;
+      author: {
+        id: number;
+        username: string;
+        role: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+      estimatedReadTime: number;
+      image: string;
+      title: string;
+      summary: string;
+      viewsCount: number;
+      commentsCount: number;
+    }
+  | undefined;
+
 // temporary post for ui
-const post = {
+const post: Post = {
   id: 1,
   author: {
     id: 1,
@@ -35,12 +58,25 @@ const post = {
   viewsCount: 0,
   commentsCount: 0,
 };
+// let post: Post = undefined;
 
 export default function PostCard() {
+  if (post === undefined) return <PostCardSkeleton />;
+
+  const [image, { hasError }] = useLazyImage({
+    src: post.image,
+    placeholderSrc: imagePlaceholder,
+  });
+
   return (
-    <Link to={`${routePaths.posts.path}/${post.id}`}>
-      <BoxStyled>
-        <ImgStyled src={post.image} alt={`'${post.title}' post image`} />
+    <BoxStyled>
+      <Link to={`${routePaths.posts.path}/${post.id}`}>
+        <BoxImageStyled
+          isLoading={false}
+          shouldShowImagePlaceholder={hasError}
+        >
+          <ImgStyled src={image} alt={`'${post?.title}' post image`} />
+        </BoxImageStyled>
         <ContentBox>
           <PostInfoBox>
             <Box display="flex" gap={1}>
@@ -68,7 +104,11 @@ export default function PostCard() {
             <Typography variant="h2" fontSize={26} fontWeight={800}>
               {post.title}
             </Typography>
-            <Typography component={"p"} variant={"paragraph"} marginTop={"1rem"}>
+            <Typography
+              component={"p"}
+              variant={"paragraph"}
+              marginTop={"1rem"}
+            >
               {post.summary}
             </Typography>
           </PostContentBox>
@@ -82,7 +122,7 @@ export default function PostCard() {
             <LikeWidget postId={post.id} />
           </StatsBox>
         </ContentBox>
-      </BoxStyled>
-    </Link>
+      </Link>
+    </BoxStyled>
   );
 }

@@ -1,8 +1,13 @@
 import { Box, styled } from "@mui/material";
 
+type BoxImageStyledProps = {
+  isLoading: boolean;
+  shouldShowImagePlaceholder: boolean;
+};
+
 export const BoxStyled = styled("li")({
   backgroundColor: "#fff",
-  maxWidth: "27rem",
+  width: "27rem",
   listStyleType: "none",
 });
 export const ImgStyled = styled("img")({
@@ -26,3 +31,19 @@ export const StatsBox = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
 });
+export const BoxImageStyled = styled(Box, {
+  shouldForwardProp: prop =>
+    prop !== "isLoading" && prop !== "shouldShowImagePlaceholder",
+})<BoxImageStyledProps>(({ theme, isLoading, shouldShowImagePlaceholder }) => ({
+  minWidth: "170px",
+  minHeight: "170px",
+  backgroundColor: theme.palette.primary.main,
+  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  opacity: isLoading ? 0.3 : 1,
+  ...(shouldShowImagePlaceholder
+    ? { "& img": { width: "100px" } }
+    : { "& img": { width: "100%" } }),
+}));

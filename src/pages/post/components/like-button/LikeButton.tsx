@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
 import IconButton from "@mui/material/IconButton";
 
@@ -50,7 +50,8 @@ export default function LikeButton({
     },
   });
 
-  const handlePostLike = () => {
+  const handlePostLike = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     if (!isAuthenticated) {
       showSnackbar({
         message: "Please sign in to like the post",

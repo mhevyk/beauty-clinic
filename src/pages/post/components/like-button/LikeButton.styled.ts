@@ -50,10 +50,12 @@ export const likeCircleAnimation = keyframes`
 type LikeIconProps = {
   isLiked?: boolean;
   isDisabled?: boolean;
+  isSmallScreen?: boolean;
 };
 
 export const LikeIcon = styled(HeartIcon, {
-  shouldForwardProp: prop => prop !== "isLiked" && prop !== "isDisabled",
+  shouldForwardProp: prop =>
+    prop !== "isLiked" && prop !== "isDisabled" && prop !== "isSmallScreen",
 })<LikeIconProps>(props => {
   let fillColor = "none";
   let strokeColor = theme.palette.error.light;
@@ -71,6 +73,10 @@ export const LikeIcon = styled(HeartIcon, {
     stroke: strokeColor,
     ...(props.isLiked && {
       animation: `${likeAnimation} .5s;`,
+    }),
+    ...(props.isSmallScreen && {
+      width: "26px",
+      height: "26px",
     }),
   };
 });

@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 
 import { Avatar, Box, IconButton, Typography } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import { Icon } from "@mui/material";
 import { format } from "date-fns";
 
+import CommentIcon from "@/assets/icons/comment.svg";
+import EyeIcon from "@/assets/icons/eye.svg";
 import imagePlaceholder from "@/assets/icons/image-placeholder.svg?url";
 import ShareIcon from "@/assets/icons/three-dots-vertical.svg";
 
@@ -19,6 +23,7 @@ import {
   StatsBox,
 } from "@/pages/blog/components/post-card/PostCard.styled";
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
+import theme from "@/theme/theme";
 
 type Post =
   | {
@@ -61,6 +66,8 @@ const post: Post = {
 // let post: Post = undefined;
 
 export default function PostCard() {
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   if (post === undefined) return <PostCardSkeleton />;
 
   const [image, { hasError }] = useLazyImage({
@@ -71,10 +78,7 @@ export default function PostCard() {
   return (
     <BoxStyled>
       <Link to={`${routePaths.posts.path}/${post.id}`}>
-        <BoxImageStyled
-          isLoading={false}
-          shouldShowImagePlaceholder={hasError}
-        >
+        <BoxImageStyled isLoading={false} shouldShowImagePlaceholder={hasError}>
           <ImgStyled src={image} alt={`'${post?.title}' post image`} />
         </BoxImageStyled>
         <ContentBox>
@@ -114,10 +118,21 @@ export default function PostCard() {
           </PostContentBox>
           <StatsBox>
             <Box display="flex" alignItems="center" gap={2}>
-              <Typography fontSize={12}>{post.viewsCount} views</Typography>
-              <Typography fontSize={12}>
-                {post.commentsCount} comments
-              </Typography>
+              {isSmallScreen ? (
+                <>
+                  <Icon component={EyeIcon} />
+                  <Typography fontSize={20}>{post.viewsCount}</Typography>
+                  <Icon component={CommentIcon} />
+                  <Typography fontSize={20}>{post.commentsCount}</Typography>
+                </>
+              ) : (
+                <>
+                  <Typography fontSize={12}>{post.viewsCount} views</Typography>
+                  <Typography fontSize={12}>
+                    {post.commentsCount} comments
+                  </Typography>
+                </>
+              )}
             </Box>
             <LikeWidget postId={post.id} />
           </StatsBox>

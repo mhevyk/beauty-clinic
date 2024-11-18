@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
@@ -80,6 +81,11 @@ export default function PostCard() {
     placeholderSrc: imagePlaceholder,
   });
 
+  function handleSharePost(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    // TODO: add share functionality
+  }
+
   return (
     <BoxStyled>
       <Link to={`${routePaths.posts.path}/${post.id}`}>
@@ -102,7 +108,11 @@ export default function PostCard() {
                 </Typography>
               </Box>
             </Box>
-            <ShareButtonStyled disableRipple area-label="share">
+            <ShareButtonStyled
+              onClick={handleSharePost}
+              disableRipple
+              area-label="share"
+            >
               <ShareIcon />
             </ShareButtonStyled>
           </PostInfoBox>

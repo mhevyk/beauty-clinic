@@ -1,6 +1,4 @@
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
+import { Box, IconButton, styled } from "@mui/material";
 
 type BoxImageStyledProps = {
   isLoading: boolean;
@@ -9,10 +7,10 @@ type BoxImageStyledProps = {
 
 export const BoxStyled = styled("li")({
   backgroundColor: "#fff",
-  width: "27rem",
+  maxWidth: "27rem",
   listStyleType: "none",
   "& a:active": {
-    color: '#000'
+    color: "#000",
   },
 });
 export const ImgStyled = styled("img")({
@@ -52,7 +50,7 @@ export const BoxImageStyled = styled(Box, {
   justifyContent: "center",
   alignItems: "center",
   opacity: isLoading ? 0.3 : 1,
-"& img": {
-    width: shouldShowImagePlaceholder ? "100px" : "100%"
-}
+  "& img": {
+    width: shouldShowImagePlaceholder ? "100px" : "100%",
+  },
 }));

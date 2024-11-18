@@ -43,7 +43,7 @@ export const BoxImageStyled = styled(Box, {
   justifyContent: "center",
   alignItems: "center",
   opacity: isLoading ? 0.3 : 1,
-  ...(shouldShowImagePlaceholder
-    ? { "& img": { width: "100px" } }
-    : { "& img": { width: "100%" } }),
+"& img": {
+    width: shouldShowImagePlaceholder ? "100px" : "100%"
+}
 }));

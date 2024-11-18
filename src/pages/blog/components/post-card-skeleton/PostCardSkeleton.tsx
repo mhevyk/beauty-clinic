@@ -1,5 +1,5 @@
-import { Skeleton } from "@mui/material";
-import { Box, IconButton } from "@mui/material";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 
 import imagePlaceholder from "@/assets/icons/image-placeholder.svg?url";
 import ShareIcon from "@/assets/icons/three-dots-vertical.svg";
@@ -11,6 +11,7 @@ import {
   ImgStyled,
   PostContentBox,
   PostInfoBox,
+  ShareButtonStyled,
   StatsBox,
 } from "@/pages/blog/components/post-card/PostCard.styled";
 import LikeWidgetSkeleton from "@/pages/post/components/like-widget/LikeWidgetSkeleton";
@@ -30,20 +31,12 @@ export default function PostCardSkeleton() {
               <Skeleton width={250} />
             </Box>
           </Box>
-          <IconButton
-            disableRipple
-            sx={{
-              "&:hover": { backgroundColor: "transparent" },
-              "&:active": { backgroundColor: "transparent" },
-            }}
-            area-label="share"
-          >
+          <ShareButtonStyled disableRipple area-label="share">
             <ShareIcon />
-          </IconButton>
+          </ShareButtonStyled>
         </PostInfoBox>
         <PostContentBox>
-          <Skeleton width="100%" height={100} />
-          <Skeleton width="100%" height={150} />
+          <Skeleton width="100%" height={200} />
         </PostContentBox>
         <StatsBox>
           <Box display="flex" alignItems="center" gap={2}>

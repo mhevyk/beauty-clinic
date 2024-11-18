@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
-import { Avatar, Box, IconButton, Typography } from "@mui/material";
-import { useMediaQuery } from "@mui/material";
-import { Icon } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Icon from "@mui/material/Icon";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { format } from "date-fns";
 
 import CommentIcon from "@/assets/icons/comment.svg";
@@ -20,6 +22,7 @@ import {
   ImgStyled,
   PostContentBox,
   PostInfoBox,
+  ShareButtonStyled,
   StatsBox,
 } from "@/pages/blog/components/post-card/PostCard.styled";
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
@@ -84,25 +87,22 @@ export default function PostCard() {
         <ContentBox>
           <PostInfoBox>
             <Box display="flex" gap={1}>
-              <Avatar />
+              <Link to={`/members/${post.author.id}`}>
+                <Avatar />
+              </Link>
               <Box>
-                <Typography>{post.author.username}</Typography>
+                <Link to={`/members/${post.author.id}`}>
+                  <Typography>{post.author.username}</Typography>
+                </Link>
                 <Typography>
                   {format(post.createdAt, "MMM d, yyyy")} &middot;{" "}
                   {post.estimatedReadTime} min read
                 </Typography>
               </Box>
             </Box>
-            <IconButton
-              disableRipple
-              sx={{
-                "&:hover": { backgroundColor: "transparent" },
-                "&:active": { backgroundColor: "transparent" },
-              }}
-              area-label="share"
-            >
+            <ShareButtonStyled disableRipple area-label="share">
               <ShareIcon />
-            </IconButton>
+            </ShareButtonStyled>
           </PostInfoBox>
           <PostContentBox>
             <Typography variant="h2" fontSize={26} fontWeight={800}>

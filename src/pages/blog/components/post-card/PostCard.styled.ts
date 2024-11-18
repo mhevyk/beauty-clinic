@@ -1,4 +1,6 @@
-import { Box, styled } from "@mui/material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import { styled } from "@mui/material/styles";
 
 type BoxImageStyledProps = {
   isLoading: boolean;
@@ -9,6 +11,9 @@ export const BoxStyled = styled("li")({
   backgroundColor: "#fff",
   width: "27rem",
   listStyleType: "none",
+  "& a:active": {
+    color: '#000'
+  },
 });
 export const ImgStyled = styled("img")({
   width: "100%",
@@ -30,6 +35,10 @@ export const PostContentBox = styled(Box)({
 export const StatsBox = styled(Box)({
   display: "flex",
   justifyContent: "space-between",
+});
+export const ShareButtonStyled = styled(IconButton)({
+  "&:hover": { backgroundColor: "transparent" },
+  "&:active": { backgroundColor: "transparent" },
 });
 export const BoxImageStyled = styled(Box, {
   shouldForwardProp: prop =>

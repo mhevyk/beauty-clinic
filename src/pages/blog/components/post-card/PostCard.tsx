@@ -71,7 +71,9 @@ const post: Post = {
 export default function PostCard() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  if (post === undefined) return <PostCardSkeleton />;
+  if (post === undefined) {
+    return <PostCardSkeleton />;
+  }
 
   const [image, { hasError }] = useLazyImage({
     src: post.image,

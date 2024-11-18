@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
 import IconButton from "@mui/material/IconButton";
 
@@ -12,6 +12,8 @@ import {
 } from "@/pages/post/components/like-button/LikeButton.styled";
 import { useUserStore } from "@/store/user/userStore";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
+import { useMediaQuery } from "@mui/material";
+import theme from "@/theme/theme";
 
 type LikeButtonProps = {
   postId: number;
@@ -50,7 +52,8 @@ export default function LikeButton({
     },
   });
 
-  const handlePostLike = () => {
+  const handlePostLike = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     if (!isAuthenticated) {
       showSnackbar({
         message: "Please sign in to like the post",
@@ -97,6 +100,8 @@ export default function LikeButton({
     return handleRequestAbort;
   }, [debouncedIsLiked]);
 
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <LikeButtonContainer>
       {likesCount > 0 && (
@@ -107,7 +112,7 @@ export default function LikeButton({
         onClick={handlePostLike}
         data-testid="heart-button"
       >
-        <LikeIcon isLiked={isLiked} />
+        <LikeIcon isSmallScreen={isSmallScreen} isLiked={isLiked} />
       </IconButton>
     </LikeButtonContainer>
   );

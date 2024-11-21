@@ -108,10 +108,5 @@
     "stepDefinitions": [
       "tests/e2e/support/step-definitions/**/*.{js,ts}"
     ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:storybook/recommended"
-    ]
   }
 }

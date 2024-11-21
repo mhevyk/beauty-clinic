@@ -1,10 +1,11 @@
 import { useSearchParams } from "react-router-dom";
 
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import AppHelmet from "@/components/app-helmet/AppHelmet";
 import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
+import { BoxStyled } from "@/pages/blog/BlogPage.styled";
+import PostCard from "@/pages/blog/components/post-card/PostCard";
 
 export default function BlogPage() {
   const [searchParams] = useSearchParams();
@@ -15,11 +16,12 @@ export default function BlogPage() {
       title="Blog"
       description="Blog with posts from experts in our field"
     >
-      <Box sx={{ marginTop: "100px" }}>
+      <BoxStyled>
         <BlogTabLayout>
           <Typography>Hello {searchParams.get("category")}</Typography>
         </BlogTabLayout>
-      </Box>
+        <PostCard />
+      </BoxStyled>
     </AppHelmet>
   );
 }

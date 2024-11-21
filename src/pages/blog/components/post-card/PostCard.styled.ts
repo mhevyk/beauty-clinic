@@ -40,6 +40,8 @@ export const ShareButtonStyled = styled(IconButton)({
 });
 export const TransparentButton = styled(Button)({
   padding: 0,
+  display: "block",
+  minWidth: 0
 })
 export const BoxImageStyled = styled(Box, {
   shouldForwardProp: prop =>

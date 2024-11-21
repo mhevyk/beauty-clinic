@@ -92,9 +92,9 @@ export default function PostCard({ post }: PostCardProps) {
               </TransparentButton>
               <Box>
                 <TransparentButton onClick={handleRedirectToUser} role="link">
-                  <Typography>{post.author.username}</Typography>
+                  <Typography fontSize={14}>{post.author.username}</Typography>
                 </TransparentButton>
-                <Typography>
+                <Typography fontSize={14}>
                   {format(post.createdAt, "MMM d, yyyy")} &middot;{" "}
                   {post.estimatedReadTime} min read
                 </Typography>

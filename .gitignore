@@ -41,3 +41,6 @@ tests/mutation/reports/*
 tests/mutation/tmp/*
 tests/mutation/stryker-incremental.json
 
+
+*storybook.log
+storybook-static

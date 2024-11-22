@@ -86,7 +86,7 @@ export default function PostCard({ post }: PostCardProps) {
         </BoxImageStyled>
         <ContentBox>
           <PostInfoBox>
-            <Box display="flex" gap={1}>
+            <Box display="flex" gap={2}>
               <TransparentButton onClick={handleRedirectToUser} role="link">
                 <Avatar />
               </TransparentButton>

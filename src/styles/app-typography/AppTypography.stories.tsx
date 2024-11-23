@@ -122,11 +122,11 @@ export const MultipleFormats: Story = {
 
 export const MultipleBlocks: Story = {
   render: args => (
-    <div>
+    <>
       <AppTypography {...args} />
       <AppTypography {...args} />
       <AppTypography {...args} />
-    </div>
+    </>
   ),
 };
 
@@ -135,11 +135,23 @@ export const MultipleInline: Story = {
     inline: true,
   },
   render: args => (
-    <div>
+    <>
       <AppTypography {...args} />
       <AppTypography {...args} />
       <AppTypography {...args} />
-    </div>
+    </>
+  ),
+};
+
+export const CombineTypography: Story = {
+  render: () => (
+    <>
+      <AppTypography variant="h5">Heading</AppTypography>
+      <AppTypography>
+        This is my text and this is{" "}
+        <AppTypography fontWeight="bold">bold</AppTypography>
+      </AppTypography>
+    </>
   ),
 };
 

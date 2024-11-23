@@ -1,5 +1,6 @@
+import { ComponentPropsWithoutRef, ElementType } from "react";
+
 import { PropsWithAs } from "@/styles/types";
-import { ComponentPropsWithoutRef } from "react";
 
 export type AppTypographyHeadingVariant =
   | "h1"
@@ -23,20 +24,11 @@ export type AppTypographyVariant =
 
 export type AppTypographyFontWeight = "regular" | "bold";
 
-export type AppTypographyTag =
-  | AppTypographyHeadingVariant
-  | "strong"
-  | "em"
-  | "u"
-  | "span"
-  | "p";
-
-export type AppTypographyProps<T extends AppTypographyTag = AppTypographyTag> =
+export type AppTypographyProps<T extends ElementType = ElementType> =
   PropsWithAs<T> & {
-    children?: string;
     variant?: AppTypographyVariant;
     fontWeight?: AppTypographyFontWeight;
     oblique?: boolean;
     underline?: boolean;
     inline?: boolean;
-  } & Omit<ComponentPropsWithoutRef<T>, "children" | "className">;
+  } & Omit<ComponentPropsWithoutRef<T>, "className">;

@@ -1,74 +1,75 @@
+@mixin setup-font($font-size, $coef: 1.42857) { // use golden ratio
+  font-size: $font-size;
+  line-height: $font-size * $coef;
+}
+
 .app-typography {
   margin: 0;
   padding: 0;
   font-family: Nunito, sans-serif;
   text-align: justify;
+  letter-spacing: normal;
 
   @for $i from 1 through 6 {
     &--h#{$i} {
       font-family: "Arial Black", sans-serif;
-      line-height: 1;
     }
   }
 
   &--concept {
     font-family: "Arial Black", sans-serif;
-    font-size: 80px;
+    @include setup-font(80px, 1.7);
   }
 
   &--h1 {
-    font-size: 48px;
+    @include setup-font(48px, 1.7);
   }
 
   &--h2 {
-    font-size: 40px;
+    @include setup-font(40px, 1.7);
   }
 
   &--h3 {
-    font-size: 36px;
+    @include setup-font(36px, 1.7);
   }
 
   &--h4 {
-    font-size: 32px;
+    @include setup-font(32px, 1.7);
   }
 
   &--h5 {
-    font-size: 24px;
+    @include setup-font(24px, 1.7);
   }
 
   &--h6 {
-    font-size: 20px;
+    @include setup-font(20px, 1.7);
   }
 
   &--body {
-    font-size: 16px;
-    line-height: 36px;
+    @include setup-font(16px);
   }
 
   &--subtitle,
   &--subtitle-small {
     text-transform: uppercase;
-    line-height: 24px;
   }
 
   &--subtitle {
-    font-size: 16px;
-    letter-spacing: 7.68px; // 16px * 48%
+    @include setup-font(16px);
+    letter-spacing: 7.68px; // 48% from 16px
   }
 
   &--subtitle-small {
-    font-size: 12px;
-    letter-spacing: 5.76px; // 12px * 48%
+    @include setup-font(12px);
+    letter-spacing: 5.76px; // 48% from 12px
   }
 
   &--accent {
-    font-size: 20px;
-    line-height: 40px;
+    @include setup-font(20px);
   }
 
   &--caption {
-    font-size: 12px;
-    line-height: 24px;
+    @include setup-font(12px);
   }
 
   &--bold {

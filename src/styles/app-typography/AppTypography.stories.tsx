@@ -70,21 +70,27 @@ export const Concept: Story = {
   },
 };
 
+export const Accent: Story = {
+  args: {
+    children:
+      "Accent paragraph - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    variant: "accent",
+  },
+};
+
 export const Body: Story = {
   args: {
+    children:
+      "Body paragraph - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     variant: "body",
   },
 };
 
 export const Caption: Story = {
   args: {
+    children:
+      "Caption paragraph - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     variant: "caption",
-  },
-};
-
-export const Accent: Story = {
-  args: {
-    variant: "accent",
   },
 };
 
@@ -102,7 +108,7 @@ export const Oblique: Story = {
 
 export const Underlined: Story = {
   args: {
-    underlined: true,
+    underline: true,
   },
 };
 
@@ -110,14 +116,31 @@ export const MultipleFormats: Story = {
   args: {
     fontWeight: "bold",
     oblique: true,
-    underlined: true,
+    underline: true,
   },
 };
 
-export const Inline: Story = {
+export const MultipleBlocks: Story = {
+  render: args => (
+    <div>
+      <AppTypography {...args} />
+      <AppTypography {...args} />
+      <AppTypography {...args} />
+    </div>
+  ),
+};
+
+export const MultipleInline: Story = {
   args: {
     inline: true,
   },
+  render: args => (
+    <div>
+      <AppTypography {...args} />
+      <AppTypography {...args} />
+      <AppTypography {...args} />
+    </div>
+  ),
 };
 
 export const DifferentTag: Story = {

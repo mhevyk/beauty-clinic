@@ -37,6 +37,6 @@ export type AppTypographyProps<T extends AppTypographyTag = AppTypographyTag> =
     variant?: AppTypographyVariant;
     fontWeight?: AppTypographyFontWeight;
     oblique?: boolean;
-    underlined?: boolean;
+    underline?: boolean;
     inline?: boolean;
   } & Omit<ComponentPropsWithoutRef<T>, "children" | "className">;

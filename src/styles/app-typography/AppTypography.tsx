@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-// import "@/styles/app-typography/AppTypography.scss";
+import "@/styles/app-typography/AppTypography.scss";
 import {
   AppTypographyFontWeight,
   AppTypographyHeadingVariant,
@@ -45,19 +45,19 @@ export default function AppTypography<T extends AppTypographyTag>({
   variant = "body",
   fontWeight = "regular",
   oblique = false,
-  underlined = false,
+  underline = false,
   inline = false,
   as,
   ...props
 }: AppTypographyProps<T>) {
   const TextComponent =
-    as ?? getDefaultTag(variant, inline, fontWeight, oblique, underlined);
+    as ?? getDefaultTag(variant, inline, fontWeight, oblique, underline);
 
   return (
     <TextComponent
       className={classnames("app-typography", `app-typography--${variant}`, {
         "app-typography--bold": fontWeight === "bold",
-        "app-typography--underline": underlined,
+        "app-typography--underline": underline,
         "app-typography--oblique": oblique,
         "app-typography--inline": inline,
       })}

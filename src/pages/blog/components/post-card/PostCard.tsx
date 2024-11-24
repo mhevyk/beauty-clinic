@@ -30,6 +30,8 @@ import {
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
 import theme from "@/theme/theme";
 
+// import { Post } from "@/api/generated";
+
 type Post =
   | {
       id: number;
@@ -41,7 +43,7 @@ type Post =
       createdAt: string;
       updatedAt: string;
       estimatedReadTime: number;
-      image: string;
+      image?: string | null;
       title: string;
       summary: string;
       viewsCount: number;
@@ -61,8 +63,8 @@ export default function PostCard({ post }: PostCardProps) {
     return <PostCardSkeleton />;
   }
 
-  const [image, { hasError }] = useLazyImage({
-    src: post.image,
+  const [image, { hasError, isLoading }] = useLazyImage({
+    src: post.image!,
     placeholderSrc: imagePlaceholder,
   });
 
@@ -81,7 +83,10 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <BoxStyled>
       <Link to={`${routePaths.posts.path}/${post.id}`}>
-        <BoxImageStyled isLoading={false} shouldShowImagePlaceholder={hasError}>
+        <BoxImageStyled
+          isLoading={false}
+          shouldShowImagePlaceholder={hasError || isLoading}
+        >
           <ImgStyled src={image} alt={`'${post?.title}' post image`} />
         </BoxImageStyled>
         <ContentBox>

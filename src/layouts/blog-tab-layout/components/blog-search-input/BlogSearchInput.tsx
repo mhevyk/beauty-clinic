@@ -19,8 +19,7 @@ type BlogSearchInputProps = {
 export default function BlogSearchInput({
   exitSearchMode,
 }: BlogSearchInputProps) {
-  const { getSearchParam, toggleSearchParam } =
-    useSearchParamsActions();
+  const { getSearchParam, toggleSearchParam } = useSearchParamsActions();
 
   const initialSearchValue = getSearchParam("search") ?? "";
 

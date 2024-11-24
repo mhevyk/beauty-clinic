@@ -1,75 +1,23 @@
 import { useSearchParams } from "react-router-dom";
 
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-
+import { useGetPostsQuery } from "@/api/generated";
 import AppHelmet from "@/components/app-helmet/AppHelmet";
 import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
 import Masonry from "@/layouts/masonry/Masonry";
-import { BoxStyled } from "@/pages/blog/BlogPage.styled";
+import { BoxStyled, PostBox } from "@/pages/blog/BlogPage.styled";
+import NoResults from "@/pages/blog/components/no-results/NoResults";
 import PostCard from "@/pages/blog/components/post-card/PostCard";
 
-// Temporary data
-const posts = [
-  {
-    id: 23565,
-    author: {
-      id: 1,
-      username: "Admin",
-      role: "ADMIN",
-    },
-    createdAt: "2024-11-16T07:11:14.724Z",
-    updatedAt: "2024-11-16T07:11:14.724Z",
-    estimatedReadTime: 2,
-    image:
-      "https://static.wixstatic.com/media/84770f_7ea6a0f695394f43a695366a07b4dc8a~mv2_d_3388_4150_s_4_2.jpg/v1/fill/w_925,h_1133,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/84770f_7ea6a0f695394f43a695366a07b4dc8a~mv2_d_3388_4150_s_4_2.jpg",
-    title: "Breaking Skin Care Myths",
-    summary:
-      "Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your audience to continue reading...",
-    viewsCount: 0,
-    commentsCount: 0,
-  },
-  {
-    id: 537486,
-    author: {
-      id: 1,
-      username: "Admin",
-      role: "ADMIN",
-    },
-    createdAt: "2024-11-14T07:35:34.842Z",
-    updatedAt: "2024-11-14T07:35:34.842Z",
-    estimatedReadTime: 1,
-    image:
-      "https://static.wixstatic.com/media/84770f_170242c7269d4ba2ba8ad50591e1a1e8~mv2_d_4500_2992_s_4_2.jpg/v1/fill/w_925,h_615,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/84770f_170242c7269d4ba2ba8ad50591e1a1e8~mv2_d_4500_2992_s_4_2.jpg",
-    title: "Why are Facials a Must for the Modern Woman",
-    summary:
-      "Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your audience to continue reading...",
-    viewsCount: 0,
-    commentsCount: 0,
-  },
-  undefined,
-  {
-    id: 667095,
-    author: {
-      id: 1,
-      username: "Admin",
-      role: "ADMIN",
-    },
-    createdAt: "2024-11-16T07:11:14.724Z",
-    updatedAt: "2024-11-16T07:11:14.724Z",
-    estimatedReadTime: 2,
-    image:
-      "https://static.wixstatic.com/media/84770f_7ea6a0f695394f43a695366a07b4dc8a~mv2_d_3388_4150_s_4_2.jpg/v1/fill/w_925,h_1133,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/84770f_7ea6a0f695394f43a695366a07b4dc8a~mv2_d_3388_4150_s_4_2.jpg",
-    title: "Breaking Skin Care Myths",
-    summary:
-      "Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your audience to continue reading...",
-    viewsCount: 0,
-    commentsCount: 0,
-  },
-];
+const postSkeletonCount = 4;
 
 export default function BlogPage() {
   const [searchParams] = useSearchParams();
+  const { data, loading } = useGetPostsQuery({
+    variables: {
+      categorySlug: searchParams.get("category"),
+      search: searchParams.get("search"),
+    },
+  });
 
   /* TODO: Replace with layout */
   return (
@@ -78,22 +26,38 @@ export default function BlogPage() {
       description="Blog with posts from experts in our field"
     >
       <BoxStyled>
-        <BlogTabLayout>
-          <Typography>Hello {searchParams.get("category")}</Typography>
-        </BlogTabLayout>
-        <Box display="flex" justifyContent="center">
-          <Masonry
-            gap="2rem"
-            columnsByBreakpoint={{
-              "0": 1,
-              "1000px": 2,
-            }}
-          >
-            {posts.map(post => (
-              <PostCard key={Math.random()} post={post} />
-            ))}
-          </Masonry>
-        </Box>
+        <BlogTabLayout />
+        <PostBox>
+          {loading ? (
+            <Masonry
+              gap="2rem"
+              columnsByBreakpoint={{
+                "0": 1,
+                "1000px": 2,
+              }}
+            >
+              {Array(postSkeletonCount)
+                .fill(undefined)
+                .map((_, index) => (
+                  <PostCard key={`skeleton-${index}`} post={undefined} />
+                ))}
+            </Masonry>
+          ) : data?.posts.length ? (
+            <Masonry
+              gap="2rem"
+              columnsByBreakpoint={{
+                "0": 1,
+                "1000px": data.posts.length > 1 ? 2 : 1,
+              }}
+            >
+              {data.posts.map(post => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </Masonry>
+          ) : (
+            <NoResults />
+          )}
+        </PostBox>
       </BoxStyled>
     </AppHelmet>
   );

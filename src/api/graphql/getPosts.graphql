@@ -1,0 +1,18 @@
+query GetPosts($categorySlug: String, $search: String) {
+  posts(categorySlug: $categorySlug, search: $search) {
+    id,
+    author {
+      id,
+      username,
+      role,
+    }
+    createdAt,
+    updatedAt,
+    estimatedReadTime,
+    image,
+    title,
+    summary,
+    viewsCount,
+    commentsCount,
+  }
+}

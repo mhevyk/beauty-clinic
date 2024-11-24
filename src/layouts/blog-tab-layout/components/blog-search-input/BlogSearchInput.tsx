@@ -19,7 +19,8 @@ type BlogSearchInputProps = {
 export default function BlogSearchInput({
   exitSearchMode,
 }: BlogSearchInputProps) {
-  const { getSearchParam, toggleSearchParam } = useSearchParamsActions();
+  const { getSearchParam, toggleSearchParam } =
+    useSearchParamsActions();
 
   const initialSearchValue = getSearchParam("search") ?? "";
 
@@ -35,7 +36,7 @@ export default function BlogSearchInput({
 
   const handleSearch = (value: string) => {
     // TODO: Add search logic
-    console.log(value);
+    toggleSearchParam("search", value);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

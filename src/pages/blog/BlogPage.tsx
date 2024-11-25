@@ -7,6 +7,8 @@ import Masonry from "@/layouts/masonry/Masonry";
 import { BoxStyled, PostBox } from "@/pages/blog/BlogPage.styled";
 import NoResults from "@/pages/blog/components/no-results/NoResults";
 import PostCard from "@/pages/blog/components/post-card/PostCard";
+import repeatComponent from "@/utils/repeat-component/repeatComponent";
+import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 
 const postSkeletonCount = 4;
 
@@ -36,11 +38,7 @@ export default function BlogPage() {
                 "1000px": 2,
               }}
             >
-              {Array(postSkeletonCount)
-                .fill(undefined)
-                .map((_, index) => (
-                  <PostCard key={`skeleton-${index}`} post={undefined} />
-                ))}
+              {repeatComponent(<PostCardSkeleton />, postSkeletonCount)}
             </Masonry>
           ) : data?.posts.length ? (
             <Masonry

@@ -30,8 +30,6 @@ import {
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
 import theme from "@/theme/theme";
 
-// import { Post } from "@/api/generated";
-
 type Post =
   | {
       id: number;

@@ -16,6 +16,8 @@ export default meta;
 
 type Story = StoryObj<AppTypographyProps>;
 
+export const Default: Story = {};
+
 export const Heading1: Story = {
   args: {
     variant: "h1",

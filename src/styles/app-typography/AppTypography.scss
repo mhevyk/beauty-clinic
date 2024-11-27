@@ -1,52 +1,57 @@
-@mixin setup-font($font-size, $coef: 1.42857) { // use golden ratio
-  font-size: $font-size;
-  line-height: $font-size * $coef;
-}
+$nunito: "Nunito", sans-serif;
+$arial-black: "Arial Black", sans-serif;
 
 .app-typography {
   margin: 0;
   padding: 0;
-  font-family: Nunito, sans-serif;
+  font-family: $nunito;
   text-align: justify;
-  letter-spacing: normal;
 
   @for $i from 1 through 6 {
     &--h#{$i} {
-      font-family: "Arial Black", sans-serif;
+      font-family: $arial-black;
     }
   }
 
   &--concept {
-    font-family: "Arial Black", sans-serif;
-    @include setup-font(80px, 1.7);
+    font-family: $arial-black;
+    font-size: 80px;
+    line-height: 129px;
   }
 
   &--h1 {
-    @include setup-font(48px, 1.7);
+    font-size: 48px;
+    line-height: 78px;
   }
 
   &--h2 {
-    @include setup-font(40px, 1.7);
+    font-size: 40px;
+    line-height: 65px;
   }
 
   &--h3 {
-    @include setup-font(36px, 1.7);
+    font-size: 36px;
+    line-height: 58px;
   }
 
   &--h4 {
-    @include setup-font(32px, 1.7);
+    font-size: 32px;
+    line-height: 52px;
   }
 
   &--h5 {
-    @include setup-font(24px, 1.7);
+    font-size: 24px;
+    line-height: 39px;
   }
 
   &--h6 {
-    @include setup-font(20px, 1.7);
+    font-size: 20px;
+    line-height: 32px;
   }
 
   &--body {
-    @include setup-font(16px);
+    font-size: 16px;
+    line-height: 26px;
   }
 
   &--subtitle,
@@ -55,21 +60,25 @@
   }
 
   &--subtitle {
-    @include setup-font(16px);
-    letter-spacing: 7.68px; // 48% from 16px
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 8px;
   }
 
   &--subtitle-small {
-    @include setup-font(12px);
-    letter-spacing: 5.76px; // 48% from 12px
+    font-size: 12px;
+    line-height: 19px;
+    letter-spacing: 6px;
   }
 
   &--accent {
-    @include setup-font(20px);
+    font-size: 20px;
+    line-height: 32px;
   }
 
   &--caption {
-    @include setup-font(12px);
+    font-size: 12px;
+    line-height: 19px;
   }
 
   &--bold {

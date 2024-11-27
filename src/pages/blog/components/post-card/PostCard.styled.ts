@@ -1,4 +1,4 @@
-import { Box, IconButton, styled } from "@mui/material";
+import { Box, Button, IconButton, styled } from "@mui/material";
 
 type BoxImageStyledProps = {
   isLoading: boolean;
@@ -38,6 +38,11 @@ export const ShareButtonStyled = styled(IconButton)({
   "&:hover": { backgroundColor: "transparent" },
   "&:active": { backgroundColor: "transparent" },
 });
+export const TransparentButton = styled(Button)({
+  padding: 0,
+  display: "block",
+  minWidth: 0
+})
 export const BoxImageStyled = styled(Box, {
   shouldForwardProp: prop =>
     prop !== "isLoading" && prop !== "shouldShowImagePlaceholder",

@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -25,6 +25,7 @@ import {
   PostInfoBox,
   ShareButtonStyled,
   StatsBox,
+  TransparentButton,
 } from "@/pages/blog/components/post-card/PostCard.styled";
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
 import theme from "@/theme/theme";
@@ -48,29 +49,13 @@ type Post =
     }
   | undefined;
 
-// temporary post for ui
-const post: Post = {
-  id: 1,
-  author: {
-    id: 1,
-    username: "Admin",
-    role: "ADMIN",
-  },
-  createdAt: "2024-11-14T07:35:34.842Z",
-  updatedAt: "2024-11-14T07:35:34.842Z",
-  estimatedReadTime: 1,
-  image:
-    "https://static.wixstatic.com/media/84770f_170242c7269d4ba2ba8ad50591e1a1e8~mv2_d_4500_2992_s_4_2.jpg/v1/fill/w_925,h_615,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/84770f_170242c7269d4ba2ba8ad50591e1a1e8~mv2_d_4500_2992_s_4_2.jpg",
-  title: "Why are Facials a Must for the Modern Woman",
-  summary:
-    "Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your audience to continue reading...",
-  viewsCount: 0,
-  commentsCount: 0,
+type PostCardProps = {
+  post: Post;
 };
-// let post: Post = undefined;
 
-export default function PostCard() {
+export default function PostCard({ post }: PostCardProps) {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const navigate = useNavigate();
 
   if (post === undefined) {
     return <PostCardSkeleton />;
@@ -86,6 +71,13 @@ export default function PostCard() {
     // TODO: add share functionality
   }
 
+  function handleRedirectToUser(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (post) {
+      navigate(`/members/${post.author.id}`);
+    }
+  }
+
   return (
     <BoxStyled>
       <Link to={`${routePaths.posts.path}/${post.id}`}>
@@ -94,15 +86,15 @@ export default function PostCard() {
         </BoxImageStyled>
         <ContentBox>
           <PostInfoBox>
-            <Box display="flex" gap={1}>
-              <Link to={`/members/${post.author.id}`}>
+            <Box display="flex" gap={2}>
+              <TransparentButton onClick={handleRedirectToUser} role="link">
                 <Avatar />
-              </Link>
+              </TransparentButton>
               <Box>
-                <Link to={`/members/${post.author.id}`}>
-                  <Typography>{post.author.username}</Typography>
-                </Link>
-                <Typography>
+                <TransparentButton onClick={handleRedirectToUser} role="link">
+                  <Typography fontSize={14}>{post.author.username}</Typography>
+                </TransparentButton>
+                <Typography fontSize={14}>
                   {format(post.createdAt, "MMM d, yyyy")} &middot;{" "}
                   {post.estimatedReadTime} min read
                 </Typography>

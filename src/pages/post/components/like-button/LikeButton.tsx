@@ -79,24 +79,25 @@ export default function LikeButton({
   };
 
   useUpdateEffect(() => {
-    handleRequestAbort();
-
-    abortControllerRef.current = new AbortController();
-
-    saveLike({
-      variables: {
-        input: {
-          postId,
-          isLiked: debouncedIsLiked,
+    if (prevLikeStateRef.current.isLiked !== debouncedIsLiked) {
+      handleRequestAbort();
+  
+      abortControllerRef.current = new AbortController();
+  
+      saveLike({
+        variables: {
+          input: {
+            postId,
+            isLiked: debouncedIsLiked,
+          },
         },
-      },
-      context: {
-        fetchOptions: {
-          signal: abortControllerRef.current.signal,
+        context: {
+          fetchOptions: {
+            signal: abortControllerRef.current.signal,
+          },
         },
-      },
-    });
-
+      });
+    }
     return handleRequestAbort;
   }, [debouncedIsLiked]);
 

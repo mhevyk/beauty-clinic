@@ -6,9 +6,9 @@ import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
 import Masonry from "@/layouts/masonry/Masonry";
 import { BoxStyled, PostBox } from "@/pages/blog/BlogPage.styled";
 import NoResults from "@/pages/blog/components/no-results/NoResults";
+import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 import PostCard from "@/pages/blog/components/post-card/PostCard";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
-import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 
 const postSkeletonCount = 4;
 
@@ -30,7 +30,7 @@ export default function BlogPage() {
       <BoxStyled>
         <BlogTabLayout />
         <PostBox>
-          {loading ? (
+          {loading && (
             <Masonry
               gap="2rem"
               columnsByBreakpoint={{
@@ -40,7 +40,8 @@ export default function BlogPage() {
             >
               {repeatComponent(<PostCardSkeleton />, postSkeletonCount)}
             </Masonry>
-          ) : data?.posts.length ? (
+          )}
+          {!loading && data?.posts.length && data.posts.length > 0 && (
             <Masonry
               gap="2rem"
               columnsByBreakpoint={{
@@ -52,9 +53,8 @@ export default function BlogPage() {
                 <PostCard key={post.id} post={post} />
               ))}
             </Masonry>
-          ) : (
-            <NoResults />
           )}
+          {!loading && !data?.posts.length && <NoResults />}
         </PostBox>
       </BoxStyled>
     </AppHelmet>

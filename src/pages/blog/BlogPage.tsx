@@ -14,12 +14,17 @@ const postSkeletonCount = 4;
 
 export default function BlogPage() {
   const [searchParams] = useSearchParams();
-  const { data, loading } = useGetPostsQuery({
+  const { data, loading, error } = useGetPostsQuery({
     variables: {
       categorySlug: searchParams.get("category"),
       search: searchParams.get("search"),
     },
   });
+
+  const isNoPostsFound = (!loading && !data?.posts.length) || error;
+  const isLoadingPosts = loading
+    ? repeatComponent(<PostCardSkeleton />, postSkeletonCount)
+    : data && data.posts.map(post => <PostCard key={post.id} post={post} />);
 
   /* TODO: Replace with layout */
   return (
@@ -30,31 +35,16 @@ export default function BlogPage() {
       <BoxStyled>
         <BlogTabLayout />
         <PostBox>
-          {loading && (
-            <Masonry
-              gap="2rem"
-              columnsByBreakpoint={{
-                "0": 1,
-                "1000px": 2,
-              }}
-            >
-              {repeatComponent(<PostCardSkeleton />, postSkeletonCount)}
-            </Masonry>
-          )}
-          {!loading && data?.posts.length && data.posts.length > 0 && (
-            <Masonry
-              gap="2rem"
-              columnsByBreakpoint={{
-                "0": 1,
-                "1000px": data.posts.length > 1 ? 2 : 1,
-              }}
-            >
-              {data.posts.map(post => (
-                <PostCard key={post.id} post={post} />
-              ))}
-            </Masonry>
-          )}
-          {!loading && !data?.posts.length && <NoResults />}
+          <Masonry
+            gap="2rem"
+            columnsByBreakpoint={{
+              "0": 1,
+              "1000px": data && data.posts.length > 1 ? 2 : 1,
+            }}
+          >
+            {isLoadingPosts}
+          </Masonry>
+          {isNoPostsFound && <NoResults />}
         </PostBox>
       </BoxStyled>
     </AppHelmet>

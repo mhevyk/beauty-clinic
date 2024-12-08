@@ -1,17 +1,13 @@
-import Typography from "@mui/material/Typography";
-
 import { BoxStyled } from "@/pages/blog/components/no-results/NoResults.styled";
+import AppTypography from "@/styles/app-typography/AppTypography";
 
 export default function NoResults() {
   return (
     <BoxStyled>
-      {/* TODO: replace Typography with AppTypography and fix ui */}
-      <Typography variant="h2" fontWeight={800} lineHeight={2}>
-        No Results
-      </Typography>
-      <Typography variant="paragraph">
+      <AppTypography variant="h1">No Results</AppTypography>
+      <AppTypography>
         Looks like we couldn’t find what you’re looking for. Try another search.
-      </Typography>
+      </AppTypography>
     </BoxStyled>
   );
 }

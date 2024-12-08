@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
 import Icon from "@mui/material/Icon";
-import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { format } from "date-fns";
 
@@ -23,11 +22,13 @@ import {
   ImgStyled,
   PostContentBox,
   PostInfoBox,
+  PostTitle,
   ShareButtonStyled,
   StatsBox,
   TransparentButton,
 } from "@/pages/blog/components/post-card/PostCard.styled";
 import LikeWidget from "@/pages/post/components/like-widget/LikeWidget";
+import AppTypography from "@/styles/app-typography/AppTypography";
 import theme from "@/theme/theme";
 
 type Post =
@@ -95,12 +96,12 @@ export default function PostCard({ post }: PostCardProps) {
               </TransparentButton>
               <Box>
                 <TransparentButton onClick={handleRedirectToUser} role="link">
-                  <Typography fontSize={14}>{post.author.username}</Typography>
+                  <AppTypography>{post.author.username}</AppTypography>
                 </TransparentButton>
-                <Typography fontSize={14}>
+                <AppTypography>
                   {format(post.createdAt, "MMM d, yyyy")} &middot;{" "}
                   {post.estimatedReadTime} min read
-                </Typography>
+                </AppTypography>
               </Box>
             </Box>
             <ShareButtonStyled
@@ -112,32 +113,30 @@ export default function PostCard({ post }: PostCardProps) {
             </ShareButtonStyled>
           </PostInfoBox>
           <PostContentBox>
-            <Typography variant="h2" fontSize={26} fontWeight={800}>
-              {post.title}
-            </Typography>
-            <Typography
-              component={"p"}
-              variant={"paragraph"}
-              marginTop={"1rem"}
-            >
-              {post.summary}
-            </Typography>
+            <PostTitle variant="h2">{post.title}</PostTitle>
+            <AppTypography>{post.summary}</AppTypography>
           </PostContentBox>
           <StatsBox>
             <Box display="flex" alignItems="center" gap={2}>
               {isSmallScreen ? (
                 <>
                   <Icon component={EyeIcon} />
-                  <Typography fontSize={20}>{post.viewsCount}</Typography>
+                  <AppTypography variant="accent">
+                    {post.viewsCount}
+                  </AppTypography>
                   <Icon component={CommentIcon} />
-                  <Typography fontSize={20}>{post.commentsCount}</Typography>
+                  <AppTypography variant="Accent">
+                    {post.commentsCount}
+                  </AppTypography>
                 </>
               ) : (
                 <>
-                  <Typography fontSize={12}>{post.viewsCount} views</Typography>
-                  <Typography fontSize={12}>
+                  <AppTypography fontSize={12}>
+                    {post.viewsCount} views
+                  </AppTypography>
+                  <AppTypography fontSize={12}>
                     {post.commentsCount} comments
-                  </Typography>
+                  </AppTypography>
                 </>
               )}
             </Box>

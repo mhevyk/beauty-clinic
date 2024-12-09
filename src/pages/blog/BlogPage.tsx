@@ -21,6 +21,7 @@ export default function BlogPage() {
     },
   });
 
+  const postCardMasonryColumns = data && data.posts.length > 1 ? 2 : 1
   const isNoPostsFound = (!loading && !data?.posts.length) || error;
   const isLoadingPosts = loading
     ? repeatComponent(<PostCardSkeleton />, postSkeletonCount)
@@ -39,7 +40,7 @@ export default function BlogPage() {
             gap="2rem"
             columnsByBreakpoint={{
               "0": 1,
-              "1000px": data && data.posts.length > 1 ? 2 : 1,
+              "1000px": postCardMasonryColumns,
             }}
           >
             {isLoadingPosts}

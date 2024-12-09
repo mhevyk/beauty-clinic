@@ -1,5 +1,8 @@
 import { Box, Button, IconButton, styled } from "@mui/material";
 
+import AppTypography from "@/styles/app-typography/AppTypography";
+import { AppTypographyProps } from "@/styles/app-typography/AppTypography.types";
+
 type BoxImageStyledProps = {
   isLoading: boolean;
   shouldShowImagePlaceholder: boolean;
@@ -41,8 +44,8 @@ export const ShareButtonStyled = styled(IconButton)({
 export const TransparentButton = styled(Button)({
   padding: 0,
   display: "block",
-  minWidth: 0
-})
+  minWidth: 0,
+});
 export const BoxImageStyled = styled(Box, {
   shouldForwardProp: prop =>
     prop !== "isLoading" && prop !== "shouldShowImagePlaceholder",
@@ -59,3 +62,8 @@ export const BoxImageStyled = styled(Box, {
     width: shouldShowImagePlaceholder ? "100px" : "100%",
   },
 }));
+
+export const PostTitle = styled(AppTypography)<AppTypographyProps>({
+  margin: "0 0 1rem 0",
+  fontWeight: 800,
+});

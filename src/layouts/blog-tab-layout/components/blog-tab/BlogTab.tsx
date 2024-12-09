@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 
@@ -10,7 +10,16 @@ type BlogTabProps = {
 };
 
 export default function BlogTab({ categoryLabel, categorySlug }: BlogTabProps) {
-  const to = categorySlug ? `/posts?category=${categorySlug}` : "/posts";
+  const [searchParams] = useSearchParams();
+  const newSearchParams = new URLSearchParams(searchParams);
+
+  if (categorySlug) {
+    newSearchParams.set("category", categorySlug);
+  } else {
+    newSearchParams.delete("category");
+  }
+
+  const to = `/posts?${newSearchParams.toString()}`;
 
   return (
     <Box component="li">

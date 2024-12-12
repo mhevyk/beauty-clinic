@@ -1,28 +1,33 @@
 import { useButton } from "@react-aria/button";
+import { useObjectRef } from "@react-aria/utils";
 import { ForwardedRef, forwardRef } from "react";
 
 import classnames from "classnames";
 
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
-import { useObjectRef } from "@react-aria/utils";
 
-const AppButton = forwardRef(function ({
-  variant = "primary",
-  size = "md",
-  full = false,
-  loading = false,
-  disabled = false,
-  inline = false,
-  children,
-  ...props
-}: AppButtonProps,
-ref: ForwardedRef<HTMLButtonElement>) {
+const AppButton = forwardRef(function (
+  {
+    variant = "primary",
+    size = "md",
+    full = false,
+    loading = false,
+    disabled = false,
+    inline = false,
+    children,
+    as,
+    ...props
+  }: AppButtonProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   const buttonRef = useObjectRef(ref);
   const { buttonProps } = useButton(props, buttonRef);
+  
+  const ButtonComponent = as ?? "button";
 
   return (
-    <button
+    <ButtonComponent
       ref={buttonRef}
       className={classnames(
         "app-button",
@@ -38,10 +43,9 @@ ref: ForwardedRef<HTMLButtonElement>) {
       {...buttonProps}
     >
       {loading ? <div className="mini-spinner" /> : children}
-    </button>
+    </ButtonComponent>
   );
-}
-)
+});
 
 AppButton.displayName = "AppButton";
 

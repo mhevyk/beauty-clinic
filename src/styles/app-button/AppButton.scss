@@ -5,6 +5,7 @@ $spinning-animation: spinning 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   display: flex;
   justify-content: center;
   transition: all 0.3s ease;
+  width: fit-content;
 
   &--primary {
     background: #000;

@@ -117,6 +117,7 @@ export const Inline: Story = {
 };
 export const DifferentTag: Story = {
   args: {
+    as: "span",
     size: "lg",
     full: true,
     loading: true,

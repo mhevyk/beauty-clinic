@@ -1,0 +1,15 @@
+$spinner-size: 1.5rem;
+$spinning-animation: spinning 1.2s cubic-bezier(0.5, 0, 0.5, 0) infinite;
+
+$primary-bg: #000;
+$secondary-bg: transparent;
+$secondary-hover: rgba(153, 146, 134, 0.2);
+$secondary-focus: rgba(140, 126, 98, 0.3);
+$secondary-press: rgba(153, 146, 134, 0.2);
+$secondary-press-border: rgba(0, 0, 0, 0.75);
+$primary-text: #fff;
+$secondary-text: #000;
+$primary-spinner-ring: #fff;
+$secondary-spinner-ring: #000;
+$primary-spinner-part: rgba(255, 255, 255, 0.5);
+$secondary-spinner-part: rgba(0, 0, 0, 0.5);

@@ -7,6 +7,7 @@ import classnames from "classnames";
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 
+// TODO: add link variant
 const AppButton = forwardRef(function (
   {
     variant = "primary",

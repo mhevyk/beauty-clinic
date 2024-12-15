@@ -9,6 +9,7 @@ import NoResults from "@/pages/blog/components/no-results/NoResults";
 import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 import PostCard from "@/pages/blog/components/post-card/PostCard";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
+import AppButton from "@/styles/app-button/AppButton";
 
 const postSkeletonCount = 4;
 
@@ -43,6 +44,7 @@ export default function BlogPage() {
               "1000px": postCardMasonryColumns,
             }}
           >
+            <AppButton variant="secondary">Click</AppButton>
             {isLoadingPosts}
           </Masonry>
           {isNoPostsFound && <NoResults />}

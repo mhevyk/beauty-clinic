@@ -1,38 +1,38 @@
-$spinner-size: 1.5rem;
-$spinning-animation: spinning 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+@import "AppButton.variables";
 
 .app-button {
   display: flex;
   justify-content: center;
   transition: all 0.3s ease;
   width: fit-content;
+  cursor: pointer;
 
   &--primary {
-    background: #000;
-    border: 1px solid #000;
-    color: #fff;
+    background: $primary-bg;
+    border: 1px solid $primary-bg;
+    color: $primary-text;
 
     &:hover {
       opacity: 0.8;
     }
 
-    &:focus,
+    &:focus-visible,
     &:active {
       opacity: 0.7;
     }
 
     &.app-button--loading {
       &:hover,
-      &:focus,
+      &:focus-visible,
       &:active {
         opacity: 1;
       }
 
       .mini-spinner {
-        border-left: 3px solid #fff;
-        border-bottom: 3px solid #fff;
-        border-right: 3px solid #fff;
-        border-top: 3px solid rgba(255, 255, 255, 0.5);
+        border-left: 3px solid $primary-spinner-ring;
+        border-bottom: 3px solid $primary-spinner-ring;
+        border-right: 3px solid $primary-spinner-ring;
+        border-top: 3px solid $primary-spinner-part;
         border-radius: calc($spinner-size / 2);
         width: $spinner-size;
         height: $spinner-size;
@@ -42,11 +42,9 @@ $spinning-animation: spinning 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     }
 
     &.app-button--disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-
+      &,
       &:hover,
-      &:focus,
+      &:focus-visible,
       &:active {
         opacity: 0.45;
         cursor: not-allowed;
@@ -55,36 +53,36 @@ $spinning-animation: spinning 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   }
 
   &--secondary {
-    background: transparent;
-    border: 1px solid #000;
-    color: #000;
+    background-color: $secondary-bg;
+    border: 1px solid $secondary-text;
+    color: $secondary-text;
 
     &:hover {
-      background-color: rgba(153, 146, 134, 0.2);
-    }
-
-    &:focus {
-      background-color: rgba(140, 126, 98, 0.3);
+      background-color: $secondary-hover;
     }
 
     &:active {
-      background-color: rgba(140, 126, 98, 0.3);
-      border-color: rgba(0, 0, 0, 0.75);
+      background-color: $secondary-press;
+      border: 1px solid $secondary-press-border;
+    }
+
+    &:focus-visible {
+      background-color: $secondary-focus;
     }
 
     &.app-button--loading {
       &:hover,
-      &:focus,
+      &:focus-visible,
       &:active {
         background: transparent;
-        border: 1px solid #000;
+        border: 1px solid $secondary-spinner-ring;
       }
 
       .mini-spinner {
-        border-left: 3px solid #000;
-        border-bottom: 3px solid #000;
-        border-right: 3px solid #000;
-        border-top: 3px solid rgba(0, 0, 0, 0.5);
+        border-left: 3px solid $secondary-spinner-ring;
+        border-bottom: 3px solid $secondary-spinner-ring;
+        border-right: 3px solid $secondary-spinner-ring;
+        border-top: 3px solid $secondary-spinner-part;
         border-radius: calc($spinner-size / 2);
         width: $spinner-size;
         height: $spinner-size;
@@ -98,10 +96,11 @@ $spinning-animation: spinning 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
       cursor: not-allowed;
 
       &:hover,
-      &:focus,
+      &:focus-visible,
       &:active {
         opacity: 0.3;
         cursor: not-allowed;
+        background-color: $secondary-bg;
       }
     }
   }

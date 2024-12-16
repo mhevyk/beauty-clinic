@@ -2,8 +2,11 @@ import { ForwardedRef, forwardRef } from "react";
 
 import classnames from "classnames";
 
+import Spinner from "@/assets/icons/spinner.svg";
+
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
+import AppTypography from "@/styles/app-typography/AppTypography";
 
 // TODO: add link variant
 const AppButton = forwardRef(function (
@@ -15,16 +18,15 @@ const AppButton = forwardRef(function (
     disabled = false,
     inline = false,
     children,
-    as,
+    type = "button",
     ...props
   }: AppButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  const ButtonComponent = as ?? "button";
-
   return (
-    <ButtonComponent
+    <button
       ref={ref}
+      type={type}
       className={classnames(
         "app-button",
         `app-button--${variant}`,
@@ -38,8 +40,8 @@ const AppButton = forwardRef(function (
       )}
       {...props}
     >
-      {loading ? <div className="mini-spinner" /> : children}
-    </ButtonComponent>
+      {loading ? <Spinner /> : <AppTypography>{children}</AppTypography>}
+    </button>
   );
 });
 

@@ -9,7 +9,6 @@ import NoResults from "@/pages/blog/components/no-results/NoResults";
 import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 import PostCard from "@/pages/blog/components/post-card/PostCard";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
-import AppButton from "@/styles/app-button/AppButton";
 
 const postSkeletonCount = 4;
 
@@ -22,7 +21,7 @@ export default function BlogPage() {
     },
   });
 
-  const postCardMasonryColumns = data && data.posts.length > 1 ? 2 : 1
+  const postCardMasonryColumns = data && data.posts.length > 1 ? 2 : 1;
   const isNoPostsFound = (!loading && !data?.posts.length) || error;
   const isLoadingPosts = loading
     ? repeatComponent(<PostCardSkeleton />, postSkeletonCount)
@@ -44,7 +43,6 @@ export default function BlogPage() {
               "1000px": postCardMasonryColumns,
             }}
           >
-            <AppButton variant="secondary">Click</AppButton>
             {isLoadingPosts}
           </Masonry>
           {isNoPostsFound && <NoResults />}

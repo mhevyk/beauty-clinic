@@ -1,5 +1,3 @@
-import { useButton } from "@react-aria/button";
-import { useObjectRef } from "@react-aria/utils";
 import { ForwardedRef, forwardRef } from "react";
 
 import classnames from "classnames";
@@ -22,14 +20,11 @@ const AppButton = forwardRef(function (
   }: AppButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
 ) {
-  const buttonRef = useObjectRef(ref);
-  const { buttonProps } = useButton(props, buttonRef);
-  
   const ButtonComponent = as ?? "button";
 
   return (
     <ButtonComponent
-      ref={buttonRef}
+      ref={ref}
       className={classnames(
         "app-button",
         `app-button--${variant}`,
@@ -41,7 +36,7 @@ const AppButton = forwardRef(function (
           "app-button--inline": inline,
         }
       )}
-      {...buttonProps}
+      {...props}
     >
       {loading ? <div className="mini-spinner" /> : children}
     </ButtonComponent>

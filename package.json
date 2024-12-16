@@ -31,8 +31,6 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
-    "@react-aria/button": "^3.11.0",
-    "@react-aria/utils": "^3.26.0",
     "@tinymce/tinymce-react": "^5.1.1",
     "apollo-link-token-refresh": "^0.7.0",
     "classnames": "^2.5.1",

@@ -42,12 +42,12 @@ const AppButton = forwardRef(function (
       {...props}
     >
       {isLoading ? (
-        <AppSpinner />
+        <AppSpinner theme={variant === "primary" ? "#fff" : "#000"} />
       ) : (
         <>
-          {PrefixIcon && <PrefixIcon theme="#fff" />}
+          {PrefixIcon && <PrefixIcon />}
           <AppTypography>{children}</AppTypography>
-          {PostfixIcon && <PostfixIcon theme="#000" />}
+          {PostfixIcon && <PostfixIcon />}
         </>
       )}
     </button>

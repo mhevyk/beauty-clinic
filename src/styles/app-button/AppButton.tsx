@@ -2,23 +2,24 @@ import { ForwardedRef, forwardRef } from "react";
 
 import classnames from "classnames";
 
-import Spinner from "@/assets/icons/spinner.svg";
-
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 import AppTypography from "@/styles/app-typography/AppTypography";
+import AppSpinner from "@/styles/app-spinner/AppSpinner";
 
 // TODO: add link variant
 const AppButton = forwardRef(function (
   {
     variant = "primary",
     size = "md",
-    full = false,
-    loading = false,
+    fullWidth = false,
+    isLoading = false,
     disabled = false,
     inline = false,
-    children,
     type = "button",
+    children,
+    prefixIcon: PrefixIcon,
+    postfixIcon: PostfixIcon,
     ...props
   }: AppButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
@@ -32,15 +33,23 @@ const AppButton = forwardRef(function (
         `app-button--${variant}`,
         `app-button--${size}`,
         {
-          "app-button--full": full,
+          "app-button--full": fullWidth,
           "app-button--disabled": disabled,
-          "app-button--loading": loading,
+          "app-button--loading": isLoading,
           "app-button--inline": inline,
         }
       )}
       {...props}
     >
-      {loading ? <Spinner /> : <AppTypography>{children}</AppTypography>}
+      {isLoading ? (
+        <AppSpinner />
+      ) : (
+        <>
+          {PrefixIcon && <PrefixIcon theme="#fff" />}
+          <AppTypography>{children}</AppTypography>
+          {PostfixIcon && <PostfixIcon theme="#000" />}
+        </>
+      )}
     </button>
   );
 });

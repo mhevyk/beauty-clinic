@@ -2,6 +2,8 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import AppButton from "@/styles/app-button/AppButton";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
+import Heart from "@/assets/icons/heart.svg"
+import MapPin from "@/assets/icons/map-pin.svg"
 
 const meta: Meta<AppButtonProps> = {
   title: "AppButton",
@@ -66,7 +68,7 @@ export const Large: Story = {
 };
 export const Full: Story = {
   args: {
-    full: true,
+    fullWidth: true,
   },
 
   render: args => (
@@ -79,7 +81,7 @@ export const Full: Story = {
 };
 export const Loading: Story = {
   args: {
-    loading: true,
+    isLoading: true,
   },
 
   render: args => (
@@ -115,11 +117,27 @@ export const Inline: Story = {
     </>
   ),
 };
+export const WithPrefixIcon: Story = {
+  render: args => (
+    <>
+      <AppButton {...args} prefixIcon={MapPin} variant="primary" />
+      <AppButton {...args} prefixIcon={Heart} variant="secondary" />
+    </>
+  ),
+};
+export const WithSufixIcon: Story = {
+  render: args => (
+    <>
+      <AppButton {...args} postfixIcon={MapPin} variant="primary" />
+      <AppButton {...args} postfixIcon={Heart} variant="secondary" />
+    </>
+  ),
+};
 export const DifferentTag: Story = {
   args: {
     size: "lg",
-    full: true,
-    loading: true,
+    fullWidth: true,
+    isLoading: true,
     disabled: true,
   },
 };

@@ -3,7 +3,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import AppButton from "@/styles/app-button/AppButton";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 import Heart from "@/assets/icons/heart.svg"
-import MapPin from "@/assets/icons/map-pin.svg"
 
 const meta: Meta<AppButtonProps> = {
   title: "AppButton",
@@ -35,7 +34,6 @@ export const Small: Story = {
   render: args => (
     <>
       <AppButton {...args} variant="primary" />
-      <br />
       <AppButton {...args} variant="secondary" />
     </>
   ),
@@ -48,7 +46,6 @@ export const Medium: Story = {
   render: args => (
     <>
       <AppButton {...args} variant="primary" />
-      <br />
       <AppButton {...args} variant="secondary" />
     </>
   ),
@@ -61,12 +58,11 @@ export const Large: Story = {
   render: args => (
     <>
       <AppButton {...args} variant="primary" />
-      <br />
       <AppButton {...args} variant="secondary" />
     </>
   ),
 };
-export const Full: Story = {
+export const FullWidth: Story = {
   args: {
     fullWidth: true,
   },
@@ -74,12 +70,11 @@ export const Full: Story = {
   render: args => (
     <>
       <AppButton {...args} variant="primary" />
-      <br />
       <AppButton {...args} variant="secondary" />
     </>
   ),
 };
-export const Loading: Story = {
+export const WithLoadingState: Story = {
   args: {
     isLoading: true,
   },
@@ -87,7 +82,6 @@ export const Loading: Story = {
   render: args => (
     <>
       <AppButton {...args} variant="primary" />
-      <br />
       <AppButton {...args} variant="secondary" />
     </>
   ),
@@ -100,14 +94,13 @@ export const Disabled: Story = {
   render: args => (
     <>
       <AppButton {...args} variant="primary" />
-      <br />
       <AppButton {...args} variant="secondary" />
     </>
   ),
 };
-export const Inline: Story = {
+export const Flex: Story = {
   args: {
-    inline: true,
+    inline: false,
   },
 
   render: args => (
@@ -120,16 +113,16 @@ export const Inline: Story = {
 export const WithPrefixIcon: Story = {
   render: args => (
     <>
-      <AppButton {...args} prefixIcon={MapPin} variant="primary" />
-      <AppButton {...args} prefixIcon={Heart} variant="secondary" />
+      <AppButton {...args} prefixIcon={<Heart fill="#fff" />} variant="primary" />
+      <AppButton {...args} prefixIcon={<Heart />} variant="secondary" />
     </>
   ),
 };
-export const WithSufixIcon: Story = {
+export const WithIcon: Story = {
   render: args => (
     <>
-      <AppButton {...args} postfixIcon={MapPin} variant="primary" />
-      <AppButton {...args} postfixIcon={Heart} variant="secondary" />
+      <AppButton {...args} icon={<Heart fill="#fff" />} variant="primary" />
+      <AppButton {...args} icon={<Heart />} variant="secondary" />
     </>
   ),
 };

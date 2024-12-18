@@ -4,8 +4,8 @@ import classnames from "classnames";
 
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
-import AppTypography from "@/styles/app-typography/AppTypography";
 import AppSpinner from "@/styles/app-spinner/AppSpinner";
+import AppTypography from "@/styles/app-typography/AppTypography";
 
 // TODO: add link variant
 const AppButton = forwardRef(function (
@@ -15,11 +15,11 @@ const AppButton = forwardRef(function (
     fullWidth = false,
     isLoading = false,
     disabled = false,
-    inline = false,
+    inline = true,
     type = "button",
     children,
-    prefixIcon: PrefixIcon,
-    postfixIcon: PostfixIcon,
+    prefixIcon,
+    icon,
     ...props
   }: AppButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
@@ -42,12 +42,12 @@ const AppButton = forwardRef(function (
       {...props}
     >
       {isLoading ? (
-        <AppSpinner theme={variant === "primary" ? "#fff" : "#000"} />
+        <AppSpinner variant={variant === "primary" ? "#fff" : "#000"} />
       ) : (
         <>
-          {PrefixIcon && <PrefixIcon />}
-          <AppTypography>{children}</AppTypography>
-          {PostfixIcon && <PostfixIcon />}
+          {prefixIcon}
+          <AppTypography as="span">{children}</AppTypography>
+          {icon}
         </>
       )}
     </button>

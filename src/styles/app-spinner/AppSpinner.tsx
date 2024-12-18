@@ -1,11 +1,11 @@
 import Spinner from "@/assets/icons/spinner.svg";
 
-type AppButtonProps = {
-  theme: string;
+type AppSpinnerProps = {
+  variant: string;
 };
 
-function AppSpinner({ theme }: AppButtonProps) {
-  return <Spinner stroke={theme} />;
+function AppSpinner({ variant }: AppSpinnerProps) {
+  return <Spinner stroke={variant} />;
 }
 
 export default AppSpinner;

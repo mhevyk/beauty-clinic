@@ -1,4 +1,4 @@
-import { ElementType, HTMLAttributes } from "react";
+import { HTMLAttributes, ReactElement } from "react";
 
 type AppButtonVariant = "primary" | "secondary";
 type AppButtonSize = "sm" | "md" | "lg";
@@ -12,7 +12,7 @@ export type AppButtonProps = {
   disabled?: boolean;
   inline?: boolean;
   type?: ButtonType;
-  prefixIcon?: ElementType;
-  postfixIcon?: ElementType;
+  prefixIcon?: ReactElement;
+  icon?: ReactElement;
   children?: string;
 } & HTMLAttributes<HTMLButtonElement>;

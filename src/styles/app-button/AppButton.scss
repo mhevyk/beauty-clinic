@@ -1,0 +1,122 @@
+@use "AppButton.variables" as *;
+
+.app-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem; 
+  transition: all 0.3s ease;
+  width: fit-content;
+  cursor: pointer;
+
+  &--primary {
+    background: $primary-bg;
+    border: 1px solid $primary-bg;
+    color: $primary-text;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus-visible {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 0.7;
+      transform: scale(0.97);
+    }
+
+    &.app-button--loading {
+      &:hover,
+      &:focus-visible,
+      &:active {
+        opacity: 1;
+      }
+    }
+
+    &.app-button--disabled {
+      &,
+      &:hover,
+      &:focus-visible,
+      &:active {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary-bg;
+    border: 1px solid $secondary-text;
+    color: $secondary-text;
+
+    &:hover {
+      background-color: $secondary-hover;
+    }
+
+    &:active {
+      background-color: $secondary-press;
+      border: 1px solid $secondary-press-border;
+      transform: scale(0.97);
+    }
+
+    &:focus-visible {
+      background-color: $secondary-focus;
+    }
+
+    &.app-button--loading {
+      &:hover,
+      &:focus-visible,
+      &:active {
+        background: transparent;
+        border: 1px solid $secondary-spinner-ring;
+      }
+    }
+
+    &.app-button--disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+
+      &:hover,
+      &:focus-visible,
+      &:active {
+        opacity: 0.3;
+        cursor: not-allowed;
+        background-color: $secondary-bg;
+      }
+    }
+  }
+
+  &--sm {
+    padding: 0.5rem 4rem;
+    font-size: 0.875rem;
+  }
+
+  &--md {
+    padding: 0.75rem 4.625rem;
+    font-size: 1rem;
+  }
+
+  &--lg {
+    padding: 0.875rem 8rem;
+    font-size: 1.25rem;
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &--inline {
+    display: inline-flex;
+  }
+}
+
+@keyframes spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

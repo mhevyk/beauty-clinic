@@ -46,10 +46,10 @@ const AppTextInput = forwardRef<HTMLDivElement, AppTextInputProps>(function (
     startAdornment,
     endAdornment,
     minWidth = "400px",
-    innerRef,
+    innerRef, // should be used to access input ref
     ...props
   },
-  ref
+  ref // should be used to access input wrapper ref
 ) {
   const inputId = useId();
   const errorId = `${inputId}-error`;

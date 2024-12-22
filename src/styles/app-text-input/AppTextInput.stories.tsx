@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import CloseIconThin from "@/assets/icons/close-icon-thin.svg";
 import Heart from "@/assets/icons/heart.svg";
@@ -142,7 +142,6 @@ export const Search: Story = {
   },
   render: args => {
     const [value, setValue] = useState("");
-    const ref = useRef<HTMLInputElement | null>(null);
 
     const endAdornment =
       value.length > 0 ? (
@@ -151,13 +150,8 @@ export const Search: Story = {
         <SearchIcon />
       );
 
-    useEffect(() => {
-      ref.current?.focus();
-    }, []);
-
     return (
       <AppTextInput
-        innerRef={ref}
         value={value}
         onChange={event => setValue(event.target.value)}
         endAdornment={endAdornment}

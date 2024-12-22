@@ -140,7 +140,7 @@ export const Search: Story = {
     placeholder: "Search phone number...",
     mask: PHONE_MASK,
   },
-  render: props => {
+  render: args => {
     const [value, setValue] = useState("");
     const ref = useRef<HTMLInputElement | null>(null);
 
@@ -161,7 +161,7 @@ export const Search: Story = {
         value={value}
         onChange={event => setValue(event.target.value)}
         endAdornment={endAdornment}
-        {...props}
+        {...args}
       />
     );
   },

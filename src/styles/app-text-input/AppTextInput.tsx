@@ -105,7 +105,6 @@ const AppTextInput = forwardRef<HTMLDivElement, AppTextInputProps>(function (
           className={classnames("app-input__control", `app-input__${variant}`)}
           aria-invalid={isInvalid}
           aria-describedby={getAriaDescribedBy()}
-          // render={(ref, props) => <input ref={ref} {...props} />}
         />
         {endAdornment && renderAdornment(endAdornment, "end")}
       </div>

@@ -64,7 +64,7 @@ export const Large: Story = {
 };
 export const FullWidth: Story = {
   args: {
-    fullWidth: true,
+    width: "full",
   },
 
   render: args => (
@@ -98,18 +98,6 @@ export const Disabled: Story = {
     </>
   ),
 };
-export const Flex: Story = {
-  args: {
-    inline: false,
-  },
-
-  render: args => (
-    <>
-      <AppButton {...args} variant="primary" />
-      <AppButton {...args} variant="secondary" />
-    </>
-  ),
-};
 export const WithPrefixIcon: Story = {
   render: args => (
     <>
@@ -129,7 +117,7 @@ export const WithIcon: Story = {
 export const DifferentTag: Story = {
   args: {
     size: "lg",
-    fullWidth: true,
+    width: "full",
     isLoading: true,
     disabled: true,
   },

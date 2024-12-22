@@ -4,7 +4,6 @@ import {
   ReactElement,
   Ref,
 } from "react";
-import MaskedInput from "react-text-mask";
 
 type AppInputVariant = "filled" | "underlined";
 
@@ -20,5 +19,5 @@ export type AppTextInputProps = {
   label?: string;
   helperText?: string;
   minWidth?: string;
-  innerRef?: Ref<MaskedInput>;
+  innerRef?: Ref<HTMLInputElement | null>;
 } & Omit<ComponentPropsWithoutRef<"input">, "type" | "id">;

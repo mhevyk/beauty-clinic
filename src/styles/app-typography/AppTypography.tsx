@@ -42,7 +42,7 @@ const getDefaultTag = (
   return "p";
 };
 
-const AppTypography = forwardRef(function AppTypography<T extends ElementType>(
+const AppTypography = forwardRef(function <T extends ElementType>(
   {
     variant = "body",
     fontWeight = "regular",
@@ -50,6 +50,7 @@ const AppTypography = forwardRef(function AppTypography<T extends ElementType>(
     underline = false,
     inline = false,
     as,
+    className,
     ...props
   }: AppTypographyProps<T>,
   ref: ElementRef<T>
@@ -60,12 +61,17 @@ const AppTypography = forwardRef(function AppTypography<T extends ElementType>(
   return (
     <TextComponent
       ref={ref}
-      className={classnames("app-typography", `app-typography--${variant}`, {
-        "app-typography--bold": fontWeight === "bold",
-        "app-typography--underline": underline,
-        "app-typography--oblique": oblique,
-        "app-typography--inline": inline,
-      })}
+      className={classnames(
+        "app-typography",
+        `app-typography--${variant}`,
+        {
+          "app-typography--bold": fontWeight === "bold",
+          "app-typography--underline": underline,
+          "app-typography--oblique": oblique,
+          "app-typography--inline": inline,
+        },
+        className
+      )}
       {...props}
     />
   );

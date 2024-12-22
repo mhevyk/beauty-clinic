@@ -31,4 +31,4 @@ export type AppTypographyProps<T extends ElementType = ElementType> =
     oblique?: boolean;
     underline?: boolean;
     inline?: boolean;
-  } & Omit<ComponentPropsWithoutRef<T>, "className">;
+  } & ComponentPropsWithoutRef<T>;

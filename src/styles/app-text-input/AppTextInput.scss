@@ -1,0 +1,84 @@
+$icon-size: 20px;
+
+.app-input {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__control-container {
+    position: relative;
+    align-self: flex-start;
+    min-width: var(--min-width); // from react props
+
+    &:has(.app-input__start-adornment) {
+      input {
+        padding-left: 48px;
+      }
+    }
+
+    &:has(.app-input__end-adornment) {
+      input {
+        padding-right: 48px;
+      }
+    }
+  }
+
+  &__adornment {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $icon-size;
+    height: $icon-size;
+  }
+
+  &__start-adornment {
+    left: 16px;
+  }
+
+  &__end-adornment {
+    right: 16px;
+  }
+
+  &--full-width {
+    display: flex;
+
+    .app-input__control-container {
+      align-self: stretch;
+    }
+  }
+
+  &__filled {
+    border: 1px solid black;
+  }
+
+  &__underlined {
+    border: none;
+    border-bottom: 1px solid black;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__helper-text {
+    color: #aaa;
+  }
+
+  &__error {
+    color: #ed4646;
+  }
+
+  input {
+    padding: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    height: 48px;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}

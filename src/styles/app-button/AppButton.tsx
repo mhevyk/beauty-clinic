@@ -14,9 +14,7 @@ const AppButton = forwardRef(function (
     variant = "primary",
     size = "md",
     width = "fit",
-    type = "button",
     isLoading = false,
-    disabled = false,
     children,
     prefixIcon,
     icon,
@@ -27,14 +25,12 @@ const AppButton = forwardRef(function (
   return (
     <button
       ref={ref}
-      type={type}
       className={classnames(
         "app-button",
         `app-button--${variant}`,
         `app-button--${size}`,
         {
           "app-button--full": width === "full",
-          "app-button--disabled": disabled,
           "app-button--loading": isLoading,
         }
       )}

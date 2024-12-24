@@ -22,27 +22,22 @@
       opacity: 0.7;
     }
 
-    &:active {
+    &:active:not(:disabled) {
       opacity: 0.7;
       transform: scale(0.97);
     }
 
-    &.app-button--loading {
-      &:hover,
-      &:focus-visible,
-      &:active {
-        opacity: 1;
-      }
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: scale(1);
     }
 
-    &.app-button--disabled {
-      &,
-      &:hover,
-      &:focus-visible,
-      &:active {
-        opacity: 0.45;
-        cursor: not-allowed;
-        transform: scale(1);
+    &.app-button--loading {
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled),
+      &:active:not(:disabled) {
+        opacity: 1;
       }
     }
   }
@@ -56,7 +51,7 @@
       background-color: $bg-secondary-hover;
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: $bg-secondary-press;
       border: 1px solid $border-secondary-press;
       transform: scale(0.97);
@@ -66,26 +61,19 @@
       background-color: $bg-secondary-focus;
     }
 
-    &.app-button--loading {
-      &:hover,
-      &:focus-visible,
-      &:active {
-        background: transparent;
-        border: 1px solid $border-secondary-loading;
-      }
-    }
-
-    &.app-button--disabled {
+    &:disabled {
       opacity: 0.3;
       cursor: not-allowed;
+      background-color: $bg-secondary;
+      transform: scale(1);
+    }
 
-      &:hover,
-      &:focus-visible,
-      &:active {
-        opacity: 0.3;
-        transform: scale(1);
-        cursor: not-allowed;
-        background-color: $bg-secondary;
+    &.app-button--loading {
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled),
+      &:active:not(:disabled) {
+        background: transparent;
+        border: 1px solid $border-secondary-loading;
       }
     }
   }

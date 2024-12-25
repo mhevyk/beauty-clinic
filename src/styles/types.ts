@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { APP_BREAKPOINTS, APP_COLORS } from "@/styles/foundation";
+import { APP_BREAKPOINTS, APP_COLORS } from "@/styles";
 
 export type PropsWithAs<T extends ElementType> = {
   as?: T;

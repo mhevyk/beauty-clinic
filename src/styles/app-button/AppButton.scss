@@ -1,0 +1,99 @@
+@use "../variables" as *;
+
+.app-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+  width: fit-content;
+  cursor: pointer;
+
+  &--primary {
+    background: $bg-primary;
+    border: 1px solid $bg-primary;
+    color: $text-primary;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus-visible {
+      opacity: 0.7;
+    }
+
+    &:active:not(:disabled) {
+      opacity: 0.7;
+      transform: scale(0.97);
+    }
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: scale(1);
+    }
+
+    &.app-button--loading {
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled),
+      &:active:not(:disabled) {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--secondary {
+    background-color: $bg-secondary;
+    border: 1px solid $text-secondary;
+    color: $text-secondary;
+
+    &:hover {
+      background-color: $bg-secondary-hover;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-secondary-press;
+      border: 1px solid $border-secondary-press;
+      transform: scale(0.97);
+    }
+
+    &:focus-visible {
+      background-color: $bg-secondary-focus;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      background-color: $bg-secondary;
+      transform: scale(1);
+    }
+
+    &.app-button--loading {
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled),
+      &:active:not(:disabled) {
+        background: transparent;
+        border: 1px solid $border-secondary-loading;
+      }
+    }
+  }
+
+  &--sm {
+    padding: 0.5rem 4rem;
+    font-size: 0.875rem;
+  }
+
+  &--md {
+    padding: 0.75rem 4.625rem;
+    font-size: 1rem;
+  }
+
+  &--lg {
+    padding: 0.875rem 8rem;
+    font-size: 1.25rem;
+  }
+
+  &--full {
+    width: 100%;
+  }
+}

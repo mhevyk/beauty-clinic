@@ -21,7 +21,7 @@ export default function BlogPage() {
     },
   });
 
-  const postCardMasonryColumns = data && data.posts.length > 1 ? 2 : 1
+  const postCardMasonryColumns = data && data.posts.length > 1 ? 2 : 1;
   const isNoPostsFound = (!loading && !data?.posts.length) || error;
   const isLoadingPosts = loading
     ? repeatComponent(<PostCardSkeleton />, postSkeletonCount)

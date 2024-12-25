@@ -10,7 +10,7 @@
     "build:dev": "vite build --mode development",
     "build:analyze": "vite-bundle-visualizer",
     "preview": "vite preview",
-    "codegen": "graphql-codegen --config codegen.ts",
+    "codegen": "graphql-codegen --config scripts/codegen.ts",
     "pretest": "npm run codegen -- --ignoreIfAlreadyExists",
     "test": "jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",

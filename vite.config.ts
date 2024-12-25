@@ -23,6 +23,14 @@ export default defineConfig(({ mode, command }) => {
   const { codegenFileExists } = checkExistingCodegen(isProductionMode);
 
   return {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/styles/_variables.scss" as *;`,
+          api: "modern",
+        },
+      },
+    },
     build: {
       sourcemap: command === "build" && !isProductionMode,
       outDir: BUILD_DIR,

@@ -1,4 +1,5 @@
-@use "../variables" as *;
+// TODO: replace with alias 
+@use "../colors/variables" as *;
 
 .app-button {
   display: flex;
@@ -68,6 +69,7 @@
       transform: scale(1);
     }
 
+    // TODO: fix layout shifts on swithing isLoading from true to false and visa versa
     &.app-button--loading {
       &:hover:not(:disabled),
       &:focus-visible:not(:disabled),

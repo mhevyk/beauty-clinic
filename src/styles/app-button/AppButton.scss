@@ -1,5 +1,4 @@
-// TODO: replace with alias 
-@use "../colors/variables" as *;
+@use "design-system/colors" as *;
 
 .app-button {
   display: flex;

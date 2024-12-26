@@ -25,7 +25,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@tests/*": ["tests/*"]
+      "@tests/*": ["tests/*"],
+      "design-system/*": ["src/styles/*"]
     }
   },
   "include": ["src"],

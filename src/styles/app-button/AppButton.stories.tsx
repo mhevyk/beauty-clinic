@@ -98,19 +98,19 @@ export const Disabled: Story = {
     </>
   ),
 };
-export const WithPrefixIcon: Story = {
+export const WithStartAdornment: Story = {
   render: args => (
     <>
-      <AppButton {...args} prefixIcon={<Heart fill="#fff" />} variant="primary" />
-      <AppButton {...args} prefixIcon={<Heart />} variant="secondary" />
+      <AppButton {...args} startAdornment={<Heart fill="#fff" />} variant="primary" />
+      <AppButton {...args} startAdornment={<Heart />} variant="secondary" />
     </>
   ),
 };
-export const WithIcon: Story = {
+export const WithEndAdornment: Story = {
   render: args => (
     <>
-      <AppButton {...args} icon={<Heart fill="#fff" />} variant="primary" />
-      <AppButton {...args} icon={<Heart />} variant="secondary" />
+      <AppButton {...args} endAdornment={<Heart fill="#fff" />} variant="primary" />
+      <AppButton {...args} endAdornment={<Heart />} variant="secondary" />
     </>
   ),
 };

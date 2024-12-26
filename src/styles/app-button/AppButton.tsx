@@ -2,11 +2,11 @@ import { ForwardedRef, forwardRef } from "react";
 
 import classnames from "classnames";
 
+import { APP_COLORS } from "@/styles";
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 import AppSpinner from "@/styles/app-spinner/AppSpinner";
 import AppTypography from "@/styles/app-typography/AppTypography";
-import { APP_COLORS } from "@/styles/foundation";
 
 // TODO: add link variant
 const AppButton = forwardRef(function (
@@ -16,8 +16,8 @@ const AppButton = forwardRef(function (
     width = "fit",
     isLoading = false,
     children,
-    prefixIcon,
-    icon,
+    startAdornment,
+    endAdornment,
     ...props
   }: AppButtonProps,
   ref: ForwardedRef<HTMLButtonElement>
@@ -40,15 +40,15 @@ const AppButton = forwardRef(function (
         <AppSpinner
           variant={
             variant === "primary"
-              ? APP_COLORS.primary.light
-              : APP_COLORS.primary.dark
+              ? APP_COLORS.textPrimary
+              : APP_COLORS.bgPrimary
           }
         />
       ) : (
         <>
-          {prefixIcon}
+          {startAdornment}
           <AppTypography as="span">{children}</AppTypography>
-          {icon}
+          {endAdornment}
         </>
       )}
     </button>

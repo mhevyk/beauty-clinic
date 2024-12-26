@@ -56,6 +56,7 @@ export default defineConfig(({ mode, command }) => {
         ...buildAliases, // should be placed exactly there
         "@": path.resolve(__dirname, "src"),
         "@tests": path.resolve(__dirname, "tests"),
+        "design-system": path.resolve(__dirname, "src/styles"),
       },
     },
     plugins: [

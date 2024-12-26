@@ -1,3 +1,5 @@
+@use "design-system/colors" as *;
+
 $icon-size: 20px;
 
 .app-input {
@@ -49,12 +51,12 @@ $icon-size: 20px;
   }
 
   &__filled {
-    border: 1px solid black;
+    border: 1px solid $bg-primary;
   }
 
   &__underlined {
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $bg-primary;
 
     &:focus-visible {
       outline: none;
@@ -62,11 +64,11 @@ $icon-size: 20px;
   }
 
   &__helper-text {
-    color: #aaa;
+    color: $helper-text-color;
   }
 
   &__error {
-    color: #ed4646;
+    color: $error-color;
   }
 
   input {

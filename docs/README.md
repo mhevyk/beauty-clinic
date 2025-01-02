@@ -9,6 +9,7 @@ Website for beauty clinic that offers hand crafted natural treatments for their 
 - [Project structure](#project-structure)
 - [Code conventions](#code-conventions)
 - [Installation](#installation)
+- [References](#references)
 
 ## Demo
 
@@ -391,3 +392,9 @@ npm start
 <p>
     <a href='#beauty-clinic-project'>Back To The Top</a>
 </p>
+
+## References
+
+- [Figma](https://www.figma.com/design/LP3lkH1appZ5IEpCIzpiBB/Untitled?node-id=0-1&p=f&t=rkHRRrbJ6TgXpVG7-0)
+- [Diagrams](https://app.diagrams.net/#G1cZqnK6xVhwIReldDNYB6Gxj1dWOK4Sue#%7B%22pageId%22%3A%22_8Qr5bBKNUSIrBjIGSZs%22%7D)
+- [Database schema](https://dbdiagram.io/d/Beauty-clinic-66e549bf6dde7f414917a6e0)

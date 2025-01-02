@@ -14,7 +14,7 @@ Website for beauty clinic that offers hand crafted natural treatments for their 
 
 Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link</a>
 
-![Project Image](docs/assets/home-page.png)
+![Project Image](assets/home-page.png)
 
 <p>
     <a href='#beauty-clinic-project'>Back To The Top</a>

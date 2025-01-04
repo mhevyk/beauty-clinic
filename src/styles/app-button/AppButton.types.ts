@@ -1,6 +1,7 @@
 import { ButtonHTMLAttributes } from "react";
 
 import { WithEndAdornment, WithStartAdornment } from "@/styles/types";
+import { To } from "react-router-dom";
 
 type AppButtonVariant = "primary" | "secondary";
 type AppButtonSize = "sm" | "md" | "lg";
@@ -12,6 +13,7 @@ export type AppButtonProps = {
   width?: AppButtonWidth;
   isLoading?: boolean;
   children?: string;
+  to?: To
 } & WithStartAdornment &
   WithEndAdornment &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">;

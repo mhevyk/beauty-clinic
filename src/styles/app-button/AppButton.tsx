@@ -1,4 +1,5 @@
-import { ForwardedRef, forwardRef } from "react";
+import { ElementType, Ref, forwardRef } from "react";
+import { Link } from "react-router-dom";
 
 import classnames from "classnames";
 
@@ -8,8 +9,9 @@ import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 import AppSpinner from "@/styles/app-spinner/AppSpinner";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
-// TODO: add link variant
-const AppButton = forwardRef(function (
+type AllowedElementType = HTMLButtonElement | HTMLAnchorElement;
+
+const AppButton = forwardRef<AllowedElementType, AppButtonProps>(function (
   {
     variant = "primary",
     size = "md",
@@ -18,12 +20,17 @@ const AppButton = forwardRef(function (
     children,
     startAdornment,
     endAdornment,
+    to,
+    className,
     ...props
   }: AppButtonProps,
-  ref: ForwardedRef<HTMLButtonElement>
+  ref: Ref<AllowedElementType>
 ) {
+  const ButtonComponent = (to ? Link : "button") as ElementType;
+  const additionalButtonProps = to ? { to } : {};
+
   return (
-    <button
+    <ButtonComponent
       ref={ref}
       className={classnames(
         "app-button",
@@ -32,8 +39,10 @@ const AppButton = forwardRef(function (
         {
           "app-button--full": width === "full",
           "app-button--loading": isLoading,
-        }
+        },
+        className
       )}
+      {...additionalButtonProps}
       {...props}
     >
       {isLoading ? (
@@ -51,7 +60,7 @@ const AppButton = forwardRef(function (
           {endAdornment}
         </>
       )}
-    </button>
+    </ButtonComponent>
   );
 });
 

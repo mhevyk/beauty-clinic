@@ -5,7 +5,6 @@ import { PluginOption } from "vite";
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
-    "@chromatic-com/storybook",
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
     "@storybook/addon-interactions",
@@ -18,10 +17,8 @@ const config: StorybookConfig = {
     if (viteConfig.plugins) {
       viteConfig.plugins = viteConfig.plugins.filter(
         (plugin: PluginOption | undefined | null) => {
-          if (plugin && 'name' in plugin) {
-            return !(
-              plugin.name.includes('graphql') || plugin.name.includes('codegen')
-            );
+          if (plugin && "name" in plugin) {
+            return !plugin.name.includes("codegen");
           }
           return true;
         }

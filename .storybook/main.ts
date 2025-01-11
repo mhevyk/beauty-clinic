@@ -15,14 +15,12 @@ const config: StorybookConfig = {
   },
   viteFinal: viteConfig => {
     if (viteConfig.plugins) {
-      viteConfig.plugins = viteConfig.plugins.filter(
-        (plugin: PluginOption | undefined | null) => {
-          if (plugin && "name" in plugin) {
-            return !plugin.name.includes("codegen");
-          }
-          return true;
+      viteConfig.plugins = viteConfig.plugins.filter((plugin: PluginOption) => {
+        if (plugin && "name" in plugin) {
+          return !plugin.name.includes("codegen");
         }
-      );
+        return true;
+      });
     }
     return viteConfig;
   },

@@ -64,7 +64,6 @@
     "@storybook/addon-interactions": "^8.4.5",
     "@storybook/addon-onboarding": "^8.4.5",
     "@storybook/blocks": "^8.4.5",
-    "@storybook/jest": "^0.2.2",
     "@storybook/react": "^8.4.5",
     "@storybook/react-vite": "^8.4.5",
     "@storybook/test": "^8.4.5",

@@ -9,6 +9,9 @@
   width: fit-content;
   cursor: pointer;
 
+  /* For link variant */
+  text-decoration: none;
+
   &--primary {
     background: $bg-primary;
     border: 1px solid $bg-primary;

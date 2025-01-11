@@ -1,0 +1,59 @@
+$collapsible-padding: 12px;
+$animation-duration: 300ms;
+
+@keyframes reduce-padding-top {
+  0% {
+    padding-top: calc($collapsible-padding * 2 / 3);
+  }
+
+  100% {
+    padding-top: 0;
+  }
+}
+
+.app-collapsible {
+  &__header {
+    padding-inline: $collapsible-padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+      background-color: rgba(#000, 0.05);
+
+      & + .app-collapsible__body--expanded {
+        padding-top: 8px;
+      }
+
+      & + .app-collapsible__body--collapsing {
+        animation: reduce-padding-top $animation-duration;
+      }
+    }
+  }
+
+  &__title {
+    padding-block: 8px;
+  }
+
+  &__content {
+    overflow: hidden;
+  }
+
+  &__body {
+    padding-inline: $collapsible-padding;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows $animation-duration ease-in-out,
+      padding $animation-duration ease-in-out;
+
+    &--expanded {
+      grid-template-rows: 1fr;
+      padding-bottom: $collapsible-padding;
+    }
+  }
+}

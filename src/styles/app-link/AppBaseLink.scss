@@ -1,0 +1,45 @@
+@mixin animatedLine($color) {
+  position: relative;
+
+  ::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -3px;
+    left: 0;
+    background-color: $color;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 200ms ease-in-out;
+  }
+
+  &:hover {
+    ::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.app-link {
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+
+  &__faded {
+    transition: opacity 300ms;
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__plain {
+    color: black;
+    @include animatedLine(black);
+  }
+
+  &__accent {
+    color: #f8852d;
+    @include animatedLine(#f8852d);
+  }
+}

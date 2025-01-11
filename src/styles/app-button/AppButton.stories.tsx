@@ -1,14 +1,21 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { MemoryRouter } from "react-router-dom";
+
+import Heart from "@/assets/icons/heart.svg";
 
 import AppButton from "@/styles/app-button/AppButton";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
-import Heart from "@/assets/icons/heart.svg"
 
 const meta: Meta<AppButtonProps> = {
   title: "AppButton",
   component: AppButton,
   tags: ["autodocs"],
   args: { children: "Button" },
+  decorators: Story => (
+    <MemoryRouter>
+      <Story />
+    </MemoryRouter>
+  ),
 };
 
 export default meta;
@@ -16,16 +23,25 @@ export default meta;
 type Story = StoryObj<AppButtonProps>;
 
 export const Default: Story = {};
+
 export const Primary: Story = {
   args: {
     variant: "primary",
   },
 };
+
 export const Secondary: Story = {
   args: {
     variant: "secondary",
   },
 };
+
+export const AsLink: Story = {
+  args: {
+    to: "/page1",
+  },
+};
+
 export const Small: Story = {
   args: {
     size: "sm",
@@ -38,6 +54,7 @@ export const Small: Story = {
     </>
   ),
 };
+
 export const Medium: Story = {
   args: {
     size: "md",
@@ -50,6 +67,7 @@ export const Medium: Story = {
     </>
   ),
 };
+
 export const Large: Story = {
   args: {
     size: "lg",
@@ -62,6 +80,7 @@ export const Large: Story = {
     </>
   ),
 };
+
 export const FullWidth: Story = {
   args: {
     width: "full",
@@ -74,6 +93,7 @@ export const FullWidth: Story = {
     </>
   ),
 };
+
 export const WithLoadingState: Story = {
   args: {
     isLoading: true,
@@ -86,6 +106,7 @@ export const WithLoadingState: Story = {
     </>
   ),
 };
+
 export const Disabled: Story = {
   args: {
     disabled: true,
@@ -98,22 +119,33 @@ export const Disabled: Story = {
     </>
   ),
 };
+
 export const WithStartAdornment: Story = {
   render: args => (
     <>
-      <AppButton {...args} startAdornment={<Heart fill="#fff" />} variant="primary" />
+      <AppButton
+        {...args}
+        startAdornment={<Heart fill="#fff" />}
+        variant="primary"
+      />
       <AppButton {...args} startAdornment={<Heart />} variant="secondary" />
     </>
   ),
 };
+
 export const WithEndAdornment: Story = {
   render: args => (
     <>
-      <AppButton {...args} endAdornment={<Heart fill="#fff" />} variant="primary" />
+      <AppButton
+        {...args}
+        endAdornment={<Heart fill="#fff" />}
+        variant="primary"
+      />
       <AppButton {...args} endAdornment={<Heart />} variant="secondary" />
     </>
   ),
 };
+
 export const DifferentTag: Story = {
   args: {
     size: "lg",

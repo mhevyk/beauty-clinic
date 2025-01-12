@@ -1,5 +1,5 @@
 $collapsible-padding: 12px;
-$animation-duration: 1000ms;
+$animation-duration: 300ms;
 
 .app-collapsible {
   &__header {
@@ -16,10 +16,6 @@ $animation-duration: 1000ms;
 
       & + .app-collapsible__body--expanded {
         padding-top: 8px;
-      }
-
-      & + .app-collapsible__body--collapsing {
-        transition: ease all $animation-duration;
       }
     }
   }

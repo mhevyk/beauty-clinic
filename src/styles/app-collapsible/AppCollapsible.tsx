@@ -20,15 +20,10 @@ const AppCollapsible = forwardRef<HTMLDivElement, AppCollapsibleProps>(
   ) {
     const controlId = useId();
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
-    const [isCollapsing, setIsCollapsing] = useState(false);
 
     const isExpanded = expanded || internalExpanded;
 
     const handleToggle = () => {
-      if (isExpanded) {
-        setIsCollapsing(true);
-      }
-
       if (onExpandedChange) {
         onExpandedChange(!isExpanded);
       } else {
@@ -39,12 +34,6 @@ const AppCollapsible = forwardRef<HTMLDivElement, AppCollapsibleProps>(
     const handleToggleWithKeyboard = (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "Enter" || event.key === " ") {
         handleToggle();
-      }
-    };
-
-    const handleTransitionEnd = () => {
-      if (!isExpanded) {
-        setIsCollapsing(false);
       }
     };
 
@@ -76,9 +65,7 @@ const AppCollapsible = forwardRef<HTMLDivElement, AppCollapsibleProps>(
           id={controlId}
           className={classnames("app-collapsible__body", {
             "app-collapsible__body--expanded": isExpanded,
-            "app-collapsible__body--collapsing": isCollapsing,
           })}
-          onTransitionEnd={handleTransitionEnd}
         >
           <div className="app-collapsible__content">{children}</div>
         </div>

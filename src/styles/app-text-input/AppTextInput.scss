@@ -8,10 +8,31 @@ $icon-size: 20px;
   flex-direction: column;
   gap: 4px;
 
-  &__control-container {
+  &__filled input {
+    border: 1px solid $bg-primary;
+  }
+
+  // TODO: add visible styles for focus state
+  &__underlined input {
+    border: none;
+    border-bottom: 1px solid $bg-primary;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+
+    .app-input__adornments-wrapper {
+      align-self: stretch;
+    }
+  }
+
+  &__adornments-wrapper {
     position: relative;
     align-self: flex-start;
-    min-width: var(--min-width); // from react props
 
     &:has(.app-input__start-adornment) {
       input {
@@ -40,36 +61,6 @@ $icon-size: 20px;
 
   &__end-adornment {
     right: 16px;
-  }
-
-  &--full-width {
-    display: flex;
-
-    .app-input__control-container {
-      align-self: stretch;
-    }
-  }
-
-  &__filled {
-    border: 1px solid $bg-primary;
-  }
-
-  // TODO: add visible styles for focus state
-  &__underlined {
-    border: none;
-    border-bottom: 1px solid $bg-primary;
-
-    &:focus-visible {
-      outline: none;
-    }
-  }
-
-  &__helper-text {
-    color: $helper-text-color;
-  }
-
-  &__error {
-    color: $error-color;
   }
 
   input {

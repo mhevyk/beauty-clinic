@@ -1,15 +1,5 @@
 $collapsible-padding: 12px;
-$animation-duration: 300ms;
-
-@keyframes reduce-padding-top {
-  0% {
-    padding-top: calc($collapsible-padding * 2 / 3);
-  }
-
-  100% {
-    padding-top: 0;
-  }
-}
+$animation-duration: 1000ms;
 
 .app-collapsible {
   &__header {
@@ -29,7 +19,7 @@ $animation-duration: 300ms;
       }
 
       & + .app-collapsible__body--collapsing {
-        animation: reduce-padding-top $animation-duration;
+        transition: ease all $animation-duration;
       }
     }
   }

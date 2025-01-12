@@ -19,6 +19,24 @@ type Story = StoryObj<AppTextareaProps>;
 
 export const Default: Story = {};
 
+export const Filled: Story = {
+  args: {
+    variant: "filled",
+  },
+};
+
+export const Underlined: Story = {
+  args: {
+    variant: "underlined",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
 export const Uncontrolled: Story = {
   args: {
     defaultValue:

@@ -20,7 +20,7 @@ const AppTextarea = forwardRef<HTMLTextAreaElement, AppTextareaProps>(function (
     value: valueFromProps,
     onChange,
     defaultValue,
-    variant,
+    variant = "filled",
     label,
     helperText,
     errorMessage,

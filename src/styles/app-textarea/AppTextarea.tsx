@@ -1,4 +1,5 @@
 import {
+  ChangeEvent,
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -35,7 +36,7 @@ const AppTextarea = forwardRef<HTMLTextAreaElement, AppTextareaProps>(function (
 
   const value = valueFromProps?.toString() ?? internalValue;
 
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) {
       onChange(event);
     } else {

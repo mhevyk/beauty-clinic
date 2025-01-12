@@ -1,0 +1,45 @@
+$collapsible-padding: 12px;
+$animation-duration: 300ms;
+
+.app-collapsible {
+  &__header {
+    padding-inline: $collapsible-padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: none;
+      background-color: rgba(#000, 0.05);
+
+      & + .app-collapsible__body--expanded {
+        padding-top: 8px;
+      }
+    }
+  }
+
+  &__title {
+    padding-block: 8px;
+  }
+
+  &__content {
+    overflow: hidden;
+  }
+
+  &__body {
+    padding-inline: $collapsible-padding;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows $animation-duration ease-in-out,
+      padding $animation-duration ease-in-out;
+
+    &--expanded {
+      grid-template-rows: 1fr;
+      padding-bottom: $collapsible-padding;
+    }
+  }
+}

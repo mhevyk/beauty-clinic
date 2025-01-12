@@ -1,16 +1,15 @@
-import { ComponentPropsWithoutRef, HTMLAttributes, ReactElement } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
 import { AppFormControlMeta } from "@/styles/app-form-control/AppFormControl.types";
+import { WithEndAdornment, WithStartAdornment } from "@/styles/types";
 
 type AppInputVariant = "filled" | "underlined";
 
-export type AppInputAdornment = ReactElement<HTMLAttributes<HTMLElement>>;
-
-export type AppTextInputProps = AppFormControlMeta & {
-  variant?: AppInputVariant;
-  startAdornment?: AppInputAdornment;
-  endAdornment?: AppInputAdornment;
-  fullWidth?: boolean;
-  mask?: Array<string | RegExp>;
-  minWidth?: string;
-} & Omit<ComponentPropsWithoutRef<"input">, "type" | "id">;
+export type AppTextInputProps = AppFormControlMeta &
+  WithStartAdornment &
+  WithEndAdornment & {
+    variant?: AppInputVariant;
+    fullWidth?: boolean;
+    minWidth?: string;
+    mask?: Array<string | RegExp>;
+  } & Omit<ComponentPropsWithoutRef<"input">, "type" | "id">;

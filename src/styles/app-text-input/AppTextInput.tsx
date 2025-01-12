@@ -5,13 +5,11 @@ import classnames from "classnames";
 
 import AppFormControl from "@/styles/app-form-control/AppFormControl";
 import "@/styles/app-text-input/AppTextInput.scss";
-import {
-  AppInputAdornment,
-  AppTextInputProps,
-} from "@/styles/app-text-input/AppTextInput.types";
+import { AppTextInputProps } from "@/styles/app-text-input/AppTextInput.types";
+import { AppAdornment } from "@/styles/types";
 
 const renderAdornment = (
-  adornment: AppInputAdornment,
+  adornment: AppAdornment,
   position: "start" | "end"
 ) => {
   const { onClick, className } = adornment.props;

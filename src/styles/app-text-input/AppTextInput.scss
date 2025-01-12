@@ -12,13 +12,13 @@ $icon-size: 20px;
     border: 1px solid $bg-primary;
   }
 
-  // TODO: add visible styles for focus state
   &__underlined input {
     border: none;
     border-bottom: 1px solid $bg-primary;
 
     &:focus-visible {
       outline: none;
+      background-color: rgba(#000, 0.05);
     }
   }
 

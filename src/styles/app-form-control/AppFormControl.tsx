@@ -28,9 +28,13 @@ const AppFormControl = forwardRef<HTMLDivElement, AppFormControlProps>(
 
     return (
       <div className={classnames("app-form-control", className)} ref={ref}>
-        <label>
+        <label htmlFor={controlId}>
           {label && (
-            <AppTypography className="app-form-control__label" as="span">
+            <AppTypography
+              as="label"
+              htmlFor={controlId}
+              className="app-form-control__label"
+            >
               {label}
             </AppTypography>
           )}

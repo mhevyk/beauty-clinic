@@ -6,14 +6,14 @@ export type PropsWithAs<T extends ElementType> = {
   as?: T;
 };
 
-type Adornment = ReactElement<HTMLAttributes<HTMLElement>>;
+export type AppAdornment = ReactElement<HTMLAttributes<HTMLElement>>;
 
 export type WithStartAdornment = {
-  startAdornment?: Adornment;
+  startAdornment?: AppAdornment;
 };
 
 export type WithEndAdornment = {
-  endAdornment?: Adornment;
+  endAdornment?: AppAdornment;
 };
 
 export type AppColorVariant = keyof typeof APP_COLORS;

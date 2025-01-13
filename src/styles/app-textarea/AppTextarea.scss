@@ -1,0 +1,36 @@
+@use "design-system/colors" as *;
+
+$nunito: "Nunito", sans-serif;
+
+.app-textarea {
+  textarea {
+    resize: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: $nunito;
+    min-width: 400px;
+    padding: 12px 16px;
+    text-align: justify;
+    border: none;
+
+    &:disabled {
+      border: 1px solid #b5b4b1;
+      cursor: not-allowed;
+    }
+
+    /* TODO: add custom scrollbar support */
+  }
+
+  &__filled textarea {
+    border: 1px solid $bg-primary;
+  }
+
+  &__underlined textarea {
+    border-bottom: 1px solid $bg-primary;
+
+    &:focus-visible {
+      outline: none;
+      background-color: rgba(#000, 0.05);
+    }
+  }
+}

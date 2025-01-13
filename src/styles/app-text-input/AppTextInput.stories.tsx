@@ -1,9 +1,6 @@
+import { Icon } from "@iconify/react";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-
-import CloseIconThin from "@/assets/icons/close-icon-thin.svg";
-import Heart from "@/assets/icons/heart.svg";
-import SearchIcon from "@/assets/icons/search.svg";
 
 import AppTextInput from "@/styles/app-text-input/AppTextInput";
 import { AppTextInputProps } from "@/styles/app-text-input/AppTextInput.types";
@@ -92,20 +89,20 @@ export const WithHelperTextAndErrorMessage: Story = {
 
 export const WithStartAdornment: Story = {
   args: {
-    startAdornment: <Heart />,
+    startAdornment: <Icon icon="fluent:heart-16-filled" />,
   },
 };
 
 export const WithEndAdornement: Story = {
   args: {
-    endAdornment: <Heart />,
+    endAdornment: <Icon icon="fluent:heart-16-filled" />,
   },
 };
 
 export const WithBothAdornments: Story = {
   args: {
-    startAdornment: <Heart />,
-    endAdornment: <SearchIcon />,
+    startAdornment: <Icon icon="fluent:heart-16-filled" />,
+    endAdornment: <Icon icon="ion:search-outline" />,
   },
 };
 
@@ -145,9 +142,9 @@ export const Search: Story = {
 
     const endAdornment =
       value.length > 0 ? (
-        <CloseIconThin onClick={() => setValue("")} />
+        <Icon icon="ic:sharp-close" onClick={() => setValue("")} />
       ) : (
-        <SearchIcon />
+        <Icon icon="ion:search-outline" />
       );
 
     return (

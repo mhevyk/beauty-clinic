@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
+import { renderToString } from "react-dom/server";
 
 import mapboxgl, { LngLatLike, MapOptions } from "mapbox-gl";
+
+import AppTypography from "@/styles/app-typography/AppTypography";
 
 export const MAP_COORDINATES: LngLatLike = {
   lng: -122.41942697025132,
@@ -40,7 +43,14 @@ export default function useMap() {
     map.addControl(navigationControl);
 
     const popup = new mapboxgl.Popup({ offset: 25, closeOnClick: false });
-    popup.setHTML("<strong>Lily Organic Beautician</strong>");
+
+    const popupJSX = (
+      <AppTypography fontWeight="bold" variant="caption">
+        Lily Organic Beautician
+      </AppTypography>
+    );
+
+    popup.setHTML(renderToString(popupJSX));
     popup.addTo(map);
 
     const marker = new mapboxgl.Marker({ element: markerIcon });

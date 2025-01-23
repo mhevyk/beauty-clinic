@@ -1,7 +1,5 @@
 @use "design-system/colors" as *;
 
-$icon-size: 20px;
-
 .app-input {
   display: inline-flex;
   align-items: flex-start;
@@ -51,8 +49,6 @@ $icon-size: 20px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: $icon-size;
-    height: $icon-size;
   }
 
   &__start-adornment {

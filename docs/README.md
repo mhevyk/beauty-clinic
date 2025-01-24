@@ -9,7 +9,6 @@ Website for beauty clinic that offers hand crafted natural treatments for their 
 - [Project structure](#project-structure)
 - [Code conventions](#code-conventions)
 - [Installation](#installation)
-- [References](#references)
 
 ## Demo
 
@@ -23,27 +22,30 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
 
 ## Scripts
 
-| Name                    | Description                                                                |
-| ----------------------- | -------------------------------------------------------------------------- |
-| `npm run start`         | Start the project in development mode                                      |
-| `npm run start:prod`    | Start the project in development mode with production envs                 |
-| `npm run build`         | Build the project for production                                           |
-| `npm run build:dev`     | Build the project with development envs                                    |
-| `npm run build:analyze` | Build and visualize chunks of vite bundle                                  |
-| `npm run preview`       | Start already built project with build-like command                        |
-| `npm run codegen`       | Run graphql codegen                                                        |
-| `npm run pretest`       | Helper script to ensure all required modules exists by the time of testing |
-| `npm run test`          | Run unit tests                                                             |
-| `npm run test:coverage` | Run unit tests with collecting coverage                                    |
-| `npm run test:mutation` | Run mutation tests                                                         |
-| `npm run test:e2e:open` | Run e2e tests with opening separate cypress application                    |
-| `npm run test:e2e:run`  | Run e2e tests to run just in terminal                                      |
-| `npm run lint:check`    | Check for linter errors                                                    |
-| `npm run lint:fix`      | Fix linter errors                                                          |
-| `npm run format:check`  | Check for formatting issues                                                |
-| `npm run format:fix`    | Reformat all files with formatting issues                                  |
-| `npm run prepare`       | Helper script for husky. Try not to use it directly                        |
-| `npm run pre-commit`    | Helper script for husky. Try not to use it directly                        |
+| Name                      | Description                                                                |
+| ------------------------- | -------------------------------------------------------------------------- |
+| `npm run start`           | Start the project in development mode                                      |
+| `npm run start:prod`      | Start the project in development mode with production envs                 |
+| `npm run build`           | Build the project for production                                           |
+| `npm run build:dev`       | Build the project with development envs                                    |
+| `npm run build:analyze`   | Build and visualize chunks of vite bundle                                  |
+| `npm run build:storybook` | Build storybook                                                            |
+| `npm run preview`         | Start already built project with build-like command                        |
+| `npm run codegen`         | Run graphql codegen                                                        |
+| `npm run pretest`         | Helper script to ensure all required modules exists by the time of testing |
+| `npm run test`            | Run unit tests                                                             |
+| `npm run test:coverage`   | Run unit tests with collecting coverage                                    |
+| `npm run test:mutation`   | Run mutation tests                                                         |
+| `npm run test:e2e:open`   | Run e2e tests with opening separate cypress application                    |
+| `npm run test:e2e:run`    | Run e2e tests to run just in terminal                                      |
+| `npm run test:storybook`  | Run storybook accesability tests                                           |
+| `npm run lint:check`      | Check for linter errors                                                    |
+| `npm run lint:fix`        | Fix linter errors                                                          |
+| `npm run format:check`    | Check for formatting issues                                                |
+| `npm run format:fix`      | Reformat all files with formatting issues                                  |
+| `npm run prepare`         | Helper script for husky. Try not to use it directly                        |
+| `npm run pre-commit`      | Helper script for husky. Try not to use it directly                        |
+| `npm run storybook`       | Run storybook locally                                                      |
 
 ## Project structure
 
@@ -95,6 +97,21 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
         <li>
             <details>
                 <summary><code>/node_modules</code> - External packages, created after <code>npm install</code></summary>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/plugins</code> - Different high-level extensions, for example custom vite plugins</summary>
+            </details>
+        </li>
+         <li>
+            <details>
+                <summary><code>/scripts</code> - For shell and node scripts</summary>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><code>/storybook-static</code> - Folder with built storybook</summary>
             </details>
         </li>
         <li>
@@ -168,9 +185,14 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
                             <summary><code>/store</code> - Globally managed application state</summary>
                         </details>
                     </li>
+                     <li>
+                        <details>
+                            <summary><code>/styles</code> - Folder for application's design system</summary>
+                        </details>
+                    </li>
                     <li>
                         <details>
-                            <summary><code>/theme</code> - Global styling</summary>
+                            <summary><code>/theme</code> - Global styling (mui)</summary>
                         </details>
                     </li>
                     <li>
@@ -185,7 +207,7 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
                     </li>
                     <li>
                         <details>
-                            <summary><code>/validations</code> - Validation schemas for forms</summary>
+                            <summary><code>/validation</code> - Validation schemas for forms</summary>
                         </details>
                     </li>
                 </ul>
@@ -363,15 +385,9 @@ npm install
 4. Run project
 
 ```sh
-npm run dev
+npm start
 ```
 
 <p>
     <a href='#beauty-clinic-project'>Back To The Top</a>
 </p>
-
-## References
-
-- [Figma](https://www.figma.com/design/LP3lkH1appZ5IEpCIzpiBB/Untitled?node-id=0-1&p=f&t=rkHRRrbJ6TgXpVG7-0)
-- [Diagrams](https://app.diagrams.net/#G1cZqnK6xVhwIReldDNYB6Gxj1dWOK4Sue#%7B%22pageId%22%3A%22_8Qr5bBKNUSIrBjIGSZs%22%7D)
-- [Database schema](https://dbdiagram.io/d/Beauty-clinic-66e549bf6dde7f414917a6e0)

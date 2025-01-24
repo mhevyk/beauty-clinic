@@ -1,13 +1,12 @@
 @use "design-system/colors" as *;
-
-$nunito: "Nunito", sans-serif;
+@use "design-system/fonts" as *;
 
 .app-textarea {
   textarea {
     resize: none;
     font-size: 16px;
     line-height: 24px;
-    font-family: $nunito;
+    font-family: $body-font;
     min-width: 400px;
     padding: 12px 16px;
     text-align: justify;

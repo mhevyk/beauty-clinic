@@ -32,15 +32,15 @@ const config: Config = {
   },
   moduleNameMapper: {
     // order is important
+
+    // mocks and stubs
+    "\\.(css|scss)$": "<rootDir>/tests/unit/mocks/fileMock.js",
     // import query parameters
     "^@/(.*)\\.css\\?raw$": "<rootDir>/tests/unit/mocks/fileMock.js", // for css imported as string
 
     // import aliases
     "@/(.*)$": "<rootDir>/src/$1",
     "@tests/(.*)$": "<rootDir>/tests/$1",
-
-    // mocks and stubs
-    "\\.(css|scss)$": "identity-obj-proxy",
   },
 
   // coverage

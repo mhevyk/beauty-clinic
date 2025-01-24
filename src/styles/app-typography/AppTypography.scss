@@ -1,20 +1,19 @@
-$nunito: "Nunito", sans-serif;
-$arial-black: "Arial Black", sans-serif;
+@use "design-system/fonts" as *;
 
 .app-typography {
   margin: 0;
   padding: 0;
-  font-family: $nunito;
+  font-family: $body-font;
   text-align: justify;
 
   @for $i from 1 through 6 {
     &--h#{$i} {
-      font-family: $arial-black;
+      font-family: $heading-font;
     }
   }
 
   &--concept {
-    font-family: $arial-black;
+    font-family: $heading-font;
     font-size: 80px;
     line-height: 129px;
   }

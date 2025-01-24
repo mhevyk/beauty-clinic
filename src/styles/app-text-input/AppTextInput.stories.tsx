@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
+import AppIconButton from "@/styles/app-icon-button/AppIconButton";
 import AppTextInput from "@/styles/app-text-input/AppTextInput";
 import { AppTextInputProps } from "@/styles/app-text-input/AppTextInput.types";
 
@@ -142,9 +143,19 @@ export const Search: Story = {
 
     const endAdornment =
       value.length > 0 ? (
-        <Icon icon="ic:sharp-close" onClick={() => setValue("")} />
+        <AppIconButton
+          icon="ic:sharp-close"
+          size={20}
+          onClick={() => setValue("")}
+        />
       ) : (
-        <Icon icon="ion:search-outline" />
+        <Icon
+          icon="ion:search-outline"
+          width={20}
+          height={20}
+          style={{ padding: "8px" }}
+          aria-hidden="true"
+        />
       );
 
     return (

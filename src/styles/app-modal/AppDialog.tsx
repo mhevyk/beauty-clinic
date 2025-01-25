@@ -19,6 +19,71 @@ const getFooterButtonProps = (
   return footerButton;
 };
 
+type AppModalFooterProps = Pick<
+  AppDialogConfig,
+  "cancelButton" | "submitButton"
+> & {
+  closeModal: () => void;
+};
+
+const ModalFooter = ({
+  cancelButton,
+  submitButton,
+  closeModal,
+}: AppModalFooterProps) => {
+  if (!cancelButton && !submitButton) {
+    return null;
+  }
+
+  const {
+    label: cancelButtonLabel = "Cancel",
+    onClick: onCancel,
+    ...restCancelButtonProps
+  } = getFooterButtonProps(cancelButton);
+
+  const {
+    label: submitButtonLabel = "Submit",
+    onClick: onSubmit,
+    ...restSubmitButtonProps
+  } = getFooterButtonProps(submitButton);
+
+  const handleCancelClick = (event: MouseEvent<HTMLButtonElement>) => {
+    onCancel?.(event);
+    closeModal();
+  };
+
+  const handleSubmitClick = (event: MouseEvent<HTMLButtonElement>) => {
+    onSubmit?.(event);
+    closeModal();
+  };
+
+  return (
+    <div className="modal-footer">
+      {cancelButton && (
+        <AppButton
+          variant="secondary"
+          size="sm"
+          onClick={handleCancelClick}
+          width={!submitButton ? "full" : undefined}
+          {...restCancelButtonProps}
+        >
+          {cancelButtonLabel}
+        </AppButton>
+      )}
+      {submitButton && (
+        <AppButton
+          size="sm"
+          onClick={handleSubmitClick}
+          width={!cancelButton ? "full" : undefined}
+          {...restSubmitButtonProps}
+        >
+          {submitButtonLabel}
+        </AppButton>
+      )}
+    </div>
+  );
+};
+
 const AppDialog = ({ modal }: AppDialogProps) => {
   const { closeModal } = useModalStore();
 
@@ -39,28 +104,6 @@ const AppDialog = ({ modal }: AppDialogProps) => {
   // @TODO: handle size
   const { title, renderContent, cancelButton, submitButton } = modal;
 
-  const {
-    label: cancelButtonLabel = "Cancel",
-    onClick: onCancel,
-    ...restCancelButtonProps
-  } = getFooterButtonProps(cancelButton);
-
-  const {
-    label: submitButtonLabel = "Submit",
-    onClick: onSubmit,
-    ...restSubmitButtonProps
-  } = getFooterButtonProps(submitButton);
-
-  const handleCancelClick = (event: MouseEvent<HTMLButtonElement>) => {
-    onCancel?.(event);
-    handleModalClose();
-  };
-
-  const handleSubmitClick = (event: MouseEvent<HTMLButtonElement>) => {
-    onSubmit?.(event);
-    handleModalClose();
-  };
-
   return (
     <dialog
       open
@@ -69,7 +112,7 @@ const AppDialog = ({ modal }: AppDialogProps) => {
       onKeyDown={handleModalKeydown}
       role="dialog"
       aria-modal="true"
-      aria-labelledby={title}
+      aria-label={title}
     >
       <div className="app-modal__header">
         {title && (
@@ -85,29 +128,11 @@ const AppDialog = ({ modal }: AppDialogProps) => {
         />
       </div>
       <div>{renderContent()}</div>
-      <div className="modal-footer">
-        {cancelButton && (
-          <AppButton
-            variant="secondary"
-            size="sm"
-            onClick={handleCancelClick}
-            width={!submitButton ? "full" : undefined}
-            {...restCancelButtonProps}
-          >
-            {cancelButtonLabel}
-          </AppButton>
-        )}
-        {submitButton && (
-          <AppButton
-            size="sm"
-            onClick={handleSubmitClick}
-            width={!cancelButton ? "full" : undefined}
-            {...restSubmitButtonProps}
-          >
-            {submitButtonLabel}
-          </AppButton>
-        )}
-      </div>
+      <ModalFooter
+        submitButton={submitButton}
+        cancelButton={cancelButton}
+        closeModal={handleModalClose}
+      />
     </dialog>
   );
 };

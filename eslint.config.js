@@ -21,6 +21,17 @@ export default [
       curly: "error",
       "no-nested-ternary": "error",
       "no-unneeded-ternary": "error",
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "react",
+              importNames: ["default"],
+            },
+          ],
+        },
+      ],
     },
   },
   {

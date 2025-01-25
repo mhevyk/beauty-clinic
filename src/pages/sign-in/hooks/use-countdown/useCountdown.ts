@@ -29,8 +29,8 @@ export default function useCountdown({
     setIsTimerRunning(true);
 
     timerRef.current = setInterval(() => {
-      setSecondsLeft(secondsLeft => {
-        const decreasedSeconds = secondsLeft - 1;
+      setSecondsLeft(prevSecondsLeft => {
+        const decreasedSeconds = prevSecondsLeft - 1;
 
         if (decreasedSeconds <= 0) {
           onCountdownFinished?.();

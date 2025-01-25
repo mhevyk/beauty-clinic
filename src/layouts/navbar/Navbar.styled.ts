@@ -6,13 +6,13 @@ import Toolbar from "@mui/material/Toolbar";
 
 import theme from "@/theme/theme";
 
-export const AppBarStyled = styled(AppBar)(({ theme }) => ({
+export const AppBarStyled = styled(AppBar)({
   padding: "16px 0 8px",
   zIndex: "auto",
   [theme.breakpoints.down("md")]: {
     backgroundColor: "white",
   },
-}));
+});
 
 export const LinkStyled = styled(Link)({
   transition: "color 400ms",
@@ -23,8 +23,8 @@ export const LogoLink = styled(LinkStyled)({
   fontSize: "22px",
 });
 
-export const ToolbarStyled = styled(Toolbar)(({ theme }) => ({
+export const ToolbarStyled = styled(Toolbar)({
   [theme.breakpoints.up("md")]: {
     marginRight: "35px",
   },
-}));
+});

@@ -70,7 +70,7 @@ export default function ForgotPasswordModal({
 
   useLockPageScroll(isOpen);
 
-  async function handleSubmit(values: ForgotPasswordFormValues) {
+  async function onSubmit(values: ForgotPasswordFormValues) {
     try {
       await sendForgotPasswordVerificationEmail({
         variables: { email: values.email },
@@ -141,7 +141,7 @@ export default function ForgotPasswordModal({
         </BoxStyled>
         <Formik
           initialValues={initialFormValues}
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
           validationSchema={emailFormSchema}
         >
           {({ handleSubmit }) => (

@@ -1,0 +1,121 @@
+.app-select {
+  width: fit-content;
+  position: relative;
+
+  p {
+    margin: 0;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 300px;
+    background: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  &__list {
+    transition: opacity 0.3s ease;
+    margin-top: 5px;
+    scrollbar-width: 5px;
+    opacity: 1;
+    position: absolute !important;
+    z-index: 10;
+    border: #fff 5px solid;
+    background: #fff;
+    border-right: 0;
+    box-sizing: border-box;
+    overflow-y: auto & div {
+      list-style-type: none;
+      gap: 20px;
+      display: flex;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #fff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ddd;
+      border-radius: var(--scrollbar-width);
+      border: calc(var(--scrollbar-width) / 4) solid var(--page-background);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #ccc;
+    }
+  }
+
+  &__list-item {
+    padding: 5px;
+    transition: all ease 0.3s;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    &--disabled {
+      background: #bbb;
+      color: #555;
+      cursor: auto;
+    }
+
+    &--disabled:hover {
+      background: #bbb;
+    }
+  }
+
+  &_arrow-button {
+    transition: all ease 0.3s;
+  }
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__custom-tooltip {
+    top: 50px;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &__list-item:hover &__custom-tooltip {
+    opacity: 1;
+  }
+
+  &:has(.app-select--expanded) &_arrow-button {
+    transform: rotate(180deg);
+  }
+
+  // Need to be at the bottom
+  &--expanded {
+    opacity: 0;
+  }
+}

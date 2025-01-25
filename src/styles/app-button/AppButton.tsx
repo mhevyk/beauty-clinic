@@ -17,6 +17,7 @@ const AppButton = forwardRef<AllowedElementType, AppButtonProps>(function (
     size = "md",
     width = "fit",
     isLoading = false,
+    disabled,
     children,
     startAdornment,
     endAdornment,
@@ -32,6 +33,7 @@ const AppButton = forwardRef<AllowedElementType, AppButtonProps>(function (
   return (
     <ButtonComponent
       ref={ref}
+      disabled={isLoading || disabled}
       className={classnames(
         "app-button",
         `app-button--${variant}`,

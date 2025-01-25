@@ -24,7 +24,7 @@ export default function ResetPasswordpage() {
   const [resetPassword, { loading: isResettingPassword }] =
     useResetPasswordMutation();
 
-  async function handleSubmit(values: PasswordFormValues) {
+  async function onSubmit(values: PasswordFormValues) {
     try {
       const token = searchParams.get("token");
 
@@ -57,7 +57,7 @@ export default function ResetPasswordpage() {
     <AppHelmet title="Reset password">
       <Formik
         initialValues={initialFormValues}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         validationSchema={repeatPasswordFormSchema}
       >
         {({ handleSubmit }) => (

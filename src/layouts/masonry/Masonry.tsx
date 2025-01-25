@@ -2,13 +2,9 @@ import { PropsWithChildren } from "react";
 
 import { MasonryBox } from "@/layouts/masonry/Masonry.styled";
 
-type Breakpoint = {
-  [breakpoint: string]: number;
-};
-
 export type MasonryProps = {
   gap?: string;
-  columnsByBreakpoint?: Breakpoint;
+  columnsByBreakpoint?: Record<string, number>;
   columnCount?: number;
 };
 

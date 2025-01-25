@@ -22,31 +22,31 @@ export const BackButton = styled(Button)({
   fontWeight: 330,
 }) as typeof Button;
 
-export const ClientDetailsTitle = styled("h3")(({ theme }) => ({
+export const ClientDetailsTitle = styled("h3")({
   ...theme.typography.heading,
   fontSize: "20px",
   margin: "0 0 12px",
-}));
+});
 
-export const ClientDetailsBox = styled(Box)(({ theme }) => ({
+export const ClientDetailsBox = styled(Box)({
   width: "100%",
   margin: "0 26px",
   [theme.breakpoints.up("md")]: {
     maxWidth: "608px",
   },
-}));
+});
 
-export const BookingDetailsBox = styled(Box)(({ theme }) => ({
+export const BookingDetailsBox = styled(Box)({
   margin: "0 26px",
   [theme.breakpoints.down("md")]: {
     margin: "32px",
     width: "100%",
   },
-}));
+});
 
-export const BoxStyled = styled(Box)(({ theme }) => ({
+export const BoxStyled = styled(Box)({
   display: "flex",
   [theme.breakpoints.down("md")]: {
     flexWrap: "wrap",
   },
-}));
+});

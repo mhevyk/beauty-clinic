@@ -6,7 +6,9 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default [
-  { languageOptions: { globals: globals.browser } },
+  {
+    languageOptions: { globals: globals.browser },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...storybook.configs["flat/recommended"],
@@ -21,6 +23,11 @@ export default [
       curly: "error",
       "no-nested-ternary": "error",
       "no-unneeded-ternary": "error",
+      "no-array-constructor": "error",
+      "no-shadow": "off",
+      "@typescript-eslint/no-shadow": "error",
+      "@typescript-eslint/prefer-ts-expect-error": "error",
+      "@typescript-eslint/consistent-indexed-object-style": "error",
       "no-restricted-imports": [
         "error",
         {
@@ -30,6 +37,14 @@ export default [
               importNames: ["default"],
             },
           ],
+        },
+      ],
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "TSEnumDeclaration",
+          message:
+            "Usage of enums is not allowed. Use objects with as const instead",
         },
       ],
     },

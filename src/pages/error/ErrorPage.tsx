@@ -1,23 +1,26 @@
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 import AppHelmet from "@/components/app-helmet/AppHelmet";
+import PageContent from "@/pages/error/components/page-content/PageContent.tsx";
 
-// TODO: change UI
 export default function ErrorPage() {
   const error = useRouteError();
 
   let pageContent;
+  let errorMessage;
 
   if (isRouteErrorResponse(error)) {
-    pageContent = (
-      <div>
+    errorMessage = (
+      <span>
         Route error: {error.data}, status: {error.status}
-      </div>
+      </span>
     );
+    pageContent = <PageContent errorInformation={errorMessage} />;
   } else if (error instanceof Error) {
-    pageContent = <div>Error: {error.message}</div>;
+    errorMessage = <span>{error.message}</span>;
+    pageContent = <PageContent errorInformation={errorMessage} />;
   } else {
-    pageContent = <div>Unknown error</div>;
+    pageContent = <PageContent />;
   }
 
   return <AppHelmet title="Error">{pageContent}</AppHelmet>;

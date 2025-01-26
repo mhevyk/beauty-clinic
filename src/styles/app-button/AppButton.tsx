@@ -48,9 +48,7 @@ const AppButton = forwardRef<AllowedElementType, AppButtonProps>(function (
       {isLoading ? (
         <AppSpinner
           variant={
-            variant === "primary"
-              ? APP_COLORS.textPrimary
-              : APP_COLORS.bgPrimary
+            variant === "primary" ? APP_COLORS.secondary : APP_COLORS.primary
           }
         />
       ) : (

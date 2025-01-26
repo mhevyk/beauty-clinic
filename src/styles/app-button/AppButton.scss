@@ -13,9 +13,9 @@
   text-decoration: none;
 
   &--primary {
-    background: $bg-primary;
-    border: 1px solid $bg-primary;
-    color: $text-primary;
+    background: $color-primary;
+    border: 1px solid $color-primary;
+    color: $color-secondary;
 
     &:hover {
       opacity: 0.8;
@@ -46,29 +46,32 @@
   }
 
   &--secondary {
-    background-color: $bg-secondary;
-    border: 1px solid $text-secondary;
-    color: $text-secondary;
+    background-color: $color-transparent;
+    border: 1px solid $color-primary;
+    color: $color-primary;
 
     &:hover {
-      background-color: $bg-secondary-hover;
+      background-color: rgba($color-muted, 0.2);
+    }
+
+    &:active:not(:disabled),
+    &:focus-visible {
+      background-color: rgba($color-secondary-dark, 0.28);
+      border: 1px solid $color-primary;
     }
 
     &:active:not(:disabled) {
-      background-color: $bg-secondary-press;
-      border: 1px solid $border-secondary-press;
       transform: scale(0.97);
     }
 
     &:focus-visible {
-      background-color: $bg-secondary-focus;
+      outline: none;
     }
 
     &:disabled {
       opacity: 0.3;
       cursor: not-allowed;
-      background-color: $bg-secondary;
-      transform: scale(1);
+      background-color: $color-transparent;
     }
 
     // TODO: fix layout shifts on swithing isLoading from true to false and visa versa
@@ -76,8 +79,8 @@
       &:hover:not(:disabled),
       &:focus-visible:not(:disabled),
       &:active:not(:disabled) {
-        background: transparent;
-        border: 1px solid $border-secondary-loading;
+        background: $color-transparent;
+        border: 1px solid $color-primary;
       }
     }
   }

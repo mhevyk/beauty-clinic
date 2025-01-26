@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import { APP_COLORS } from "@/styles";
 import AppIconButton from "@/styles/app-icon-button/AppIconButton";
 import { AppIconButtonProps } from "@/styles/app-icon-button/AppIconButton.types";
 
@@ -40,7 +41,7 @@ export const LargerIcon: Story = {
 export const WithCustomProps: Story = {
   args: {
     iconProps: {
-      color: "red",
+      color: APP_COLORS.error,
     },
   },
 };

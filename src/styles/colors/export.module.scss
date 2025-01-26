@@ -1,13 +1,17 @@
 @use "./variables" as *;
 
 :export {
-  bgPrimary: $bg-primary;
-  bgSecondary: $bg-secondary;
-  bgSecondaryHover: $bg-secondary-hover;
-  bgSecondaryFocus: $bg-secondary-focus;
-  bgSecondaryPress: $bg-secondary-press;
-  borderSecondaryPress: $border-secondary-press;
-  borderSecondaryLoading: $border-secondary-loading;
-  textPrimary: $text-primary;
-  textSecondary: $text-secondary;
+  // Primary colors
+  background: $color-background;
+  primary: $color-primary;
+  secondary: $color-secondary;
+  secondaryDark: $color-secondary-dark;
+  accent: $color-accent;
+  muted: $color-muted;
+  error: $color-error;
+  success: $color-success;
+
+  // Derived colors
+  inputFocus: $color-input-focus;
+  transparent: $color-transparent;
 }

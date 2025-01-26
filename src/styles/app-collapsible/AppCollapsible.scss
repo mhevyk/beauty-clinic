@@ -1,7 +1,9 @@
-$collapsible-padding: 12px;
-$animation-duration: 300ms;
+@use "design-system/colors" as *;
 
 .app-collapsible {
+  $collapsible-padding: 12px;
+  $animation-duration: 300ms;
+
   &__header {
     padding-inline: $collapsible-padding;
     display: flex;
@@ -12,7 +14,7 @@ $animation-duration: 300ms;
 
     &:focus-visible {
       outline: none;
-      background-color: rgba(#000, 0.05);
+      background-color: $color-input-focus;
 
       & + .app-collapsible__body--expanded {
         padding-top: 8px;
@@ -30,7 +32,7 @@ $animation-duration: 300ms;
 
   &__body {
     padding-inline: $collapsible-padding;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $color-primary;
     display: grid;
     grid-template-rows: 0fr;
     transition:

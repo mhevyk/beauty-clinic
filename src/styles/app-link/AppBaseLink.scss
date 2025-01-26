@@ -1,4 +1,7 @@
+@use "design-system/colors" as *;
+
 @mixin animatedLine($color) {
+  color: $color;
   position: relative;
 
   ::after {
@@ -24,7 +27,7 @@
 .app-link {
   text-decoration: none;
   display: inline-block;
-  color: black;
+  color: $color-primary;
 
   &__faded {
     transition: opacity 300ms;
@@ -34,12 +37,10 @@
   }
 
   &__plain {
-    color: black;
-    @include animatedLine(black);
+    @include animatedLine($color-primary);
   }
 
   &__accent {
-    color: #f8852d;
-    @include animatedLine(#f8852d);
+    @include animatedLine($color-accent);
   }
 }

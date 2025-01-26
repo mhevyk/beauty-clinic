@@ -10,10 +10,10 @@
   }
 
   &__helper-text {
-    color: $helper-text-color;
+    color: $color-muted;
   }
 
   &__error {
-    color: $error-color;
+    color: $color-error;
   }
 }

@@ -1,9 +1,11 @@
+@use "design-system/colors" as *;
+
 .app-link {
   &--faded.app-link--active {
     opacity: 0.6;
   }
 
   &--accent.app-link--active {
-    color: #f8852d;
+    color: $color-accent;
   }
 }

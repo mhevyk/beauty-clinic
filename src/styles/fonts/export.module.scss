@@ -1,6 +1,6 @@
 @use "./variables" as *;
 
 :export {
-  headingFont: $heading-font;
-  bodyFont: $body-font;
+  heading: $heading-font;
+  body: $body-font;
 }

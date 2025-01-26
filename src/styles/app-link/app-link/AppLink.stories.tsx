@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { CSSProperties } from "react";
 import { MemoryRouter } from "react-router-dom";
 
+import { APP_COLORS } from "@/styles";
 import AppLink from "@/styles/app-link/app-link/AppLink";
 import { AppLinkProps } from "@/styles/app-link/app-link/AppLink.types";
 import AppTypography from "@/styles/app-typography/AppTypography";
@@ -33,7 +34,7 @@ const cardStyle = {
   maxWidth: "250px",
   minHeight: "100px",
   borderRadius: "20px",
-  border: "1px solid lightgray",
+  border: `1px solid ${APP_COLORS.muted}`,
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",

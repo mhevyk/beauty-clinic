@@ -13,7 +13,7 @@
     border: none;
 
     &:disabled {
-      border: 1px solid #b5b4b1;
+      border: 1px solid $color-muted;
       cursor: not-allowed;
     }
 
@@ -21,15 +21,15 @@
   }
 
   &__filled textarea {
-    border: 1px solid $bg-primary;
+    border: 1px solid $color-primary;
   }
 
   &__underlined textarea {
-    border-bottom: 1px solid $bg-primary;
+    border-bottom: 1px solid $color-primary;
 
     &:focus-visible {
       outline: none;
-      background-color: rgba(#000, 0.05);
+      background-color: $color-input-focus;
     }
   }
 }

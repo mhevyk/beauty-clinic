@@ -8,7 +8,11 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    
+    docs: {
+      story: {
+        height: "30px", // min height of story to avoid flashes
+      },
+    },
   },
 };
 

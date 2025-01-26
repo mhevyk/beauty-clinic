@@ -19,9 +19,11 @@ const config: StorybookConfig = {
         if (plugin && "name" in plugin) {
           return !plugin.name.includes("codegen");
         }
+
         return true;
       });
     }
+
     return viteConfig;
   },
 };

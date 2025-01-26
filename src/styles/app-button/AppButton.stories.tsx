@@ -16,6 +16,13 @@ const meta: Meta<AppButtonProps> = {
       <Story />
     </MemoryRouter>
   ),
+  parameters: {
+    docs: {
+      story: {
+        height: "60px",
+      },
+    },
+  },
 };
 
 export default meta;

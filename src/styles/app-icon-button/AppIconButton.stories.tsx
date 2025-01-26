@@ -10,6 +10,13 @@ const meta: Meta<AppIconButtonProps> = {
   args: {
     icon: "mdi:home",
   },
+  parameters: {
+    docs: {
+      story: {
+        height: "50px",
+      },
+    },
+  },
 };
 
 export default meta;

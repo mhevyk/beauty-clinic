@@ -10,6 +10,13 @@ const meta: Meta<AppTextInputProps> = {
   title: "AppTextInput",
   component: AppTextInput,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      story: {
+        height: "60px",
+      },
+    },
+  },
 };
 
 export default meta;

@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import Heart from "@/assets/icons/heart.svg";
 
+import { APP_COLORS } from "@/styles";
 import AppButton from "@/styles/app-button/AppButton";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 
@@ -19,7 +20,7 @@ const meta: Meta<AppButtonProps> = {
   parameters: {
     docs: {
       story: {
-        height: "60px",
+        height: "70px",
       },
     },
   },
@@ -132,7 +133,7 @@ export const WithStartAdornment: Story = {
     <>
       <AppButton
         {...args}
-        startAdornment={<Heart fill="#fff" />}
+        startAdornment={<Heart fill={APP_COLORS.secondary} />}
         variant="primary"
       />
       <AppButton {...args} startAdornment={<Heart />} variant="secondary" />
@@ -145,7 +146,7 @@ export const WithEndAdornment: Story = {
     <>
       <AppButton
         {...args}
-        endAdornment={<Heart fill="#fff" />}
+        endAdornment={<Heart fill={APP_COLORS.secondary} />}
         variant="primary"
       />
       <AppButton {...args} endAdornment={<Heart />} variant="secondary" />

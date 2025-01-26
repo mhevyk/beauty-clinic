@@ -27,6 +27,13 @@ const meta: Meta<AppCollapsibleProps> = {
       <Story />
     </div>
   ),
+  parameters: {
+    docs: {
+      story: {
+        height: "60px",
+      },
+    },
+  },
 };
 
 export default meta;

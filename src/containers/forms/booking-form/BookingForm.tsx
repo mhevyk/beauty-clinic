@@ -1,22 +1,16 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
-import Box from "@mui/material/Box";
+import classNames from "classnames";
 import { useFormikContext } from "formik";
 
 import { useGetCurrentUserDetailsQuery } from "@/api/generated";
-import FormGroupWithError from "@/components/form-group-with-error/FormGroupWithError";
-import {
-  BoxStyled,
-  Counter,
-  Form,
-  InputLabelStyled,
-  TextFieldStyled,
-} from "@/containers/forms/booking-form/BookingForm.styled";
-import PhoneNumberFormGroup from "@/containers/phone-number-form-group/PhoneNumberFormGroup";
+import { PHONE_NUMBER_PATTERN } from "@/constants";
+import "@/containers/forms/booking-form/BookingForm.scss";
 import { useUserStore } from "@/store/user/userStore.ts";
-import theme from "@/theme/theme.ts";
+import AppTextInput from "@/styles/app-text-input/AppTextInput.tsx";
+import AppTextarea from "@/styles/app-textarea/AppTextarea.tsx";
 
-type ForgotPasswordFormValues = {
+type BookingFormValues = {
   name: string;
   email: string;
   phoneNumber: string;
@@ -26,7 +20,7 @@ type ForgotPasswordFormValues = {
 export default function BookingForm() {
   const [length, setLength] = useState(0);
   const { values, handleChange, errors, setFieldValue, setValues } =
-    useFormikContext<ForgotPasswordFormValues>();
+    useFormikContext<BookingFormValues>();
 
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
@@ -61,56 +55,48 @@ export default function BookingForm() {
 
   return (
     <>
-      <Form>
-        <BoxStyled>
-          <Box position="relative" flexGrow="1">
-            <FormGroupWithError errorMessage={errors?.name}>
-              <InputLabelStyled>Name*</InputLabelStyled>
-              {/*TODO: maybe off focus when disabled is true */}
-              <TextFieldStyled
-                size="small"
-                type="text"
-                name="name"
-                value={values.name}
-                onChange={handleNameChange}
-                fullWidth
-                maxRows={50}
-                disabled={isAuthenticated}
-              />
-            </FormGroupWithError>
-            <Counter>{length}/50</Counter>
-          </Box>
-          <FormGroupWithError errorMessage={errors?.email}>
-            <InputLabelStyled>Email*</InputLabelStyled>
-            <TextFieldStyled
-              size="small"
-              type="text"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-              fullWidth
-              disabled={isAuthenticated}
-            />
-          </FormGroupWithError>
-        </BoxStyled>
-        <PhoneNumberFormGroup
-          backgroundColor={theme.palette.CreamyDawn.main}
-          isDisabled={isAuthenticated}
-        />
-        <FormGroupWithError errorMessage={errors?.message}>
-          <InputLabelStyled>Add Your Message</InputLabelStyled>
-          <TextFieldStyled
-            multiline
-            rows={2.5}
-            size="small"
-            type="text"
-            name="message"
-            value={values.message}
-            onChange={handleChange}
-            fullWidth
+      <div className={classNames("form", classNames)}>
+        <div className="form__box">
+          <AppTextInput
+            label="Name*"
+            placeholder={values.name}
+            errorMessage={errors?.name}
+            disabled={isAuthenticated}
+            onChange={handleNameChange}
+            minWidth="296px"
+            maxLength={50}
+            helperText={`${length}/50`}
+            name="name"
           />
-        </FormGroupWithError>
-      </Form>
+          <AppTextInput
+            label="Email*"
+            placeholder={values.email}
+            errorMessage={errors?.email}
+            onChange={handleChange}
+            disabled={isAuthenticated}
+            minWidth="296px"
+            name="email"
+          />
+        </div>
+        <AppTextInput
+          label="Phone number"
+          errorMessage={errors?.phoneNumber}
+          value={values.phoneNumber}
+          onChange={handleChange}
+          disabled={isAuthenticated}
+          mask={PHONE_NUMBER_PATTERN}
+          placeholder="(___) ___-____"
+          name="phoneNumber"
+          fullWidth={true}
+        />
+        <AppTextarea
+          label="Add Your Message"
+          errorMessage={errors?.message}
+          value={values.message}
+          onChange={handleChange}
+          name="message"
+        />
+      </div>
     </>
   );
 }

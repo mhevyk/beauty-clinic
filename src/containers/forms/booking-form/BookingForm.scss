@@ -1,4 +1,4 @@
-@use '@/styles/colors/variables' as *;
+@use "design-system/colors" as *;
 
 .form {
   display: flex;
@@ -6,17 +6,17 @@
   gap: 24px;
   margin-top: 32px;
 
-  &__box {
+  &__row {
     display: flex;
     justify-content: space-between;
     gap: 16px;
 
-    span{
+    span {
       margin-left: auto;
     }
   }
-  textarea, input{
+  textarea,
+  input {
     background-color: $bg-secondary;
   }
 }
-

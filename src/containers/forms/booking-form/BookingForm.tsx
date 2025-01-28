@@ -1,14 +1,14 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
-import classNames from "classnames";
+import classnames from "classnames";
 import { useFormikContext } from "formik";
 
 import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import { PHONE_NUMBER_PATTERN } from "@/constants";
 import "@/containers/forms/booking-form/BookingForm.scss";
-import { useUserStore } from "@/store/user/userStore.ts";
-import AppTextInput from "@/styles/app-text-input/AppTextInput.tsx";
-import AppTextarea from "@/styles/app-textarea/AppTextarea.tsx";
+import { useUserStore } from "@/store/user/userStore";
+import AppTextInput from "@/styles/app-text-input/AppTextInput";
+import AppTextarea from "@/styles/app-textarea/AppTextarea";
 
 type BookingFormValues = {
   name: string;
@@ -54,49 +54,47 @@ export default function BookingForm() {
   };
 
   return (
-    <>
-      <div className={classNames("form", classNames)}>
-        <div className="form__box">
-          <AppTextInput
-            label="Name*"
-            placeholder={values.name}
-            errorMessage={errors?.name}
-            disabled={isAuthenticated}
-            onChange={handleNameChange}
-            minWidth="296px"
-            maxLength={50}
-            helperText={`${length}/50`}
-            name="name"
-          />
-          <AppTextInput
-            label="Email*"
-            placeholder={values.email}
-            errorMessage={errors?.email}
-            onChange={handleChange}
-            disabled={isAuthenticated}
-            minWidth="296px"
-            name="email"
-          />
-        </div>
+    <div className={classnames("form", classnames)}>
+      <div className="form__row">
         <AppTextInput
-          label="Phone number"
-          errorMessage={errors?.phoneNumber}
-          value={values.phoneNumber}
+          label="Name*"
+          placeholder={values.name}
+          errorMessage={errors?.name}
+          disabled={isAuthenticated}
+          onChange={handleNameChange}
+          minWidth="296px"
+          maxLength={50}
+          helperText={`${length}/50`}
+          name="name"
+        />
+        <AppTextInput
+          label="Email*"
+          placeholder={values.email}
+          errorMessage={errors?.email}
           onChange={handleChange}
           disabled={isAuthenticated}
-          mask={PHONE_NUMBER_PATTERN}
-          placeholder="(___) ___-____"
-          name="phoneNumber"
-          fullWidth={true}
-        />
-        <AppTextarea
-          label="Add Your Message"
-          errorMessage={errors?.message}
-          value={values.message}
-          onChange={handleChange}
-          name="message"
+          minWidth="296px"
+          name="email"
         />
       </div>
-    </>
+      <AppTextInput
+        label="Phone number"
+        errorMessage={errors?.phoneNumber}
+        value={values.phoneNumber}
+        onChange={handleChange}
+        disabled={isAuthenticated}
+        mask={PHONE_NUMBER_PATTERN}
+        placeholder="(___) ___-____"
+        name="phoneNumber"
+        fullWidth
+      />
+      <AppTextarea
+        label="Add Your Message"
+        errorMessage={errors?.message}
+        value={values.message}
+        onChange={handleChange}
+        name="message"
+      />
+    </div>
   );
 }

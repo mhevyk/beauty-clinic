@@ -1,6 +1,8 @@
 import Divider from "@mui/material/Divider";
-import { Formik } from "formik";
+import { useFormik } from "formik";
 
+import BookingForm from "@/containers/forms/booking-form/BookingForm";
+import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
 import {
   BookingDetailsBox,
@@ -15,14 +17,7 @@ import OrderInformation from "@/pages/booking-form/components/order-information/
 import useUnifiedOrderData from "@/pages/booking-form/hooks/use-unified-order-data/useUnifiedOrderData";
 import { bookingFormSchema } from "@/validation/bookingFormSchema";
 
-export type CreateOrderSubmitForm = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  message?: string;
-};
-
-const initialFormValues: CreateOrderSubmitForm = {
+const initialFormValues: ClientDetailsFormValues = {
   name: "",
   email: "",
   phoneNumber: "",
@@ -34,35 +29,36 @@ export default function OrderInformationSection() {
   const [createOrder, { isLoading: isOrderProcessing }] =
     useCreateOrder(itemsToOrder);
 
-  async function handleSubmit(values: CreateOrderSubmitForm) {
+  const formik = useFormik({
+    initialValues: initialFormValues,
+    onSubmit: handleSubmit,
+    validationSchema: bookingFormSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
+  });
+
+  async function handleSubmit(values: ClientDetailsFormValues) {
     await createOrder(values);
   }
 
   return (
-    <>
+    <form onSubmit={formik.handleSubmit}>
       <BoxStyled>
-        <Formik
-          initialValues={initialFormValues}
-          onSubmit={handleSubmit}
-          validationSchema={bookingFormSchema}
-          validateOnChange={false}
-          validateOnBlur={false}
-        >
-          {/* formik requires the single child to work correctly */}
-          <>
-            <ClientDetailsBox>
-              <ClientDetailsTitle>Client Details</ClientDetailsTitle>
-              <Divider color="black" />
-              <ClientDetails />
-            </ClientDetailsBox>
-            <BookingDetailsBox>
-              <OrderInformation sessionsFromLocation={cartState?.sessions} />
-              <AddToCartButton />
-              <CreateOrderButton isOrderProcessing={isOrderProcessing} />
-            </BookingDetailsBox>
-          </>
-        </Formik>
+        <ClientDetailsBox>
+          <ClientDetailsTitle>Client Details</ClientDetailsTitle>
+          <Divider color="black" />
+          <ClientDetails />
+          <BookingForm formik={formik} />
+        </ClientDetailsBox>
+        <BookingDetailsBox>
+          <OrderInformation sessionsFromLocation={cartState?.sessions} />
+          <AddToCartButton />
+          <CreateOrderButton
+            type="submit"
+            isOrderProcessing={isOrderProcessing}
+          />
+        </BookingDetailsBox>
       </BoxStyled>
-    </>
+    </form>
   );
 }

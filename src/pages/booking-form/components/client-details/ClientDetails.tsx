@@ -1,4 +1,3 @@
-import BookingForm from "@/containers/forms/booking-form/BookingForm";
 import {
   LoginPromptBox,
   LoginPromptLink,
@@ -11,18 +10,17 @@ export default function ClientDetails() {
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
   if (isAuthenticated) {
-    return <BookingForm />;
+    return null;
   }
 
   return (
     <>
       <TellAboutYou>Tell us a bit about yourself</TellAboutYou>
       <LoginPromptBox>
-        <LoginPromptTypography>Already have an account?</LoginPromptTypography>{" "}
-        <LoginPromptLink to="/auth/signin">Log In</LoginPromptLink>{" "}
+        <LoginPromptTypography>Already have an account?</LoginPromptTypography>
+        <LoginPromptLink to="/auth/signin">Log In</LoginPromptLink>
         <LoginPromptTypography>for faster booking.</LoginPromptTypography>
       </LoginPromptBox>
-      <BookingForm />
     </>
   );
 }

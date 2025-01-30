@@ -1,19 +1,17 @@
-import { useFormikContext } from "formik";
-
 import { ActionButton } from "@/pages/booking-form/components/create-order-button/CreateOrderButton.styled";
 
 type CreateOrderButtonProps = {
   isOrderProcessing: boolean;
+  type?: "submit" | "button";
 };
 
 export default function CreateOrderButton({
   isOrderProcessing,
+  type = "button",
 }: CreateOrderButtonProps) {
-  const { handleSubmit } = useFormikContext();
-
   return (
     <ActionButton
-      onClick={() => handleSubmit()}
+      type={type}
       loading={isOrderProcessing}
       fullWidth
       size="small"

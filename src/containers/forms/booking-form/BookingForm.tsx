@@ -1,29 +1,26 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import classnames from "classnames";
-import { useFormikContext } from "formik";
+import { useFormik } from "formik";
 
 import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import { PHONE_NUMBER_PATTERN } from "@/constants";
 import "@/containers/forms/booking-form/BookingForm.scss";
+import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import { useUserStore } from "@/store/user/userStore";
 import AppTextInput from "@/styles/app-text-input/AppTextInput";
 import AppTextarea from "@/styles/app-textarea/AppTextarea";
 
-type BookingFormValues = {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  message: string;
+type BookingFormProps = {
+  formik: ReturnType<typeof useFormik<ClientDetailsFormValues>>;
 };
 
-export default function BookingForm() {
+export default function BookingForm({ formik }: BookingFormProps) {
   const [length, setLength] = useState(0);
-  const { values, handleChange, errors, setFieldValue, setValues } =
-    useFormikContext<BookingFormValues>();
 
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
+  const { values, errors, setValues, handleChange, setFieldValue } = formik;
   const { data } = useGetCurrentUserDetailsQuery();
 
   useEffect(() => {
@@ -66,6 +63,7 @@ export default function BookingForm() {
           maxLength={50}
           helperText={`${length}/50`}
           name="name"
+          itemID="name"
         />
         <AppTextInput
           label="Email*"
@@ -75,6 +73,7 @@ export default function BookingForm() {
           disabled={isAuthenticated}
           minWidth="296px"
           name="email"
+          itemID="email"
         />
       </div>
       <AppTextInput
@@ -87,6 +86,7 @@ export default function BookingForm() {
         placeholder="(___) ___-____"
         name="phoneNumber"
         fullWidth
+        itemID="phoneNumber"
       />
       <AppTextarea
         label="Add Your Message"
@@ -94,6 +94,7 @@ export default function BookingForm() {
         value={values.message}
         onChange={handleChange}
         name="message"
+        itemID="message"
       />
     </div>
   );

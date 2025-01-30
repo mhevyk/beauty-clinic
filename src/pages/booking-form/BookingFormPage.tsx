@@ -2,14 +2,14 @@ import { Link, useParams } from "react-router-dom";
 
 import CaretLeft from "@/assets/icons/caret-left.svg";
 
-import AppHelmet from "@/components/app-helmet/AppHelmet.tsx";
+import AppHelmet from "@/components/app-helmet/AppHelmet";
 import {
   BackButton,
   BoxStyled,
   ContainerStyled,
   SectionStyled,
-} from "@/pages/booking-form/BookingFormPage.styled.ts";
-import OrderInformationSection from "@/pages/booking-form/components/order-information-section/OrderInformationSection.tsx";
+} from "@/pages/booking-form/BookingFormPage.styled";
+import OrderInformationSection from "@/pages/booking-form/components/order-information-section/OrderInformationSection";
 
 type BookTreatmentSessionParams = {
   treatmentId: string;

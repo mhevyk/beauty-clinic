@@ -9,7 +9,7 @@ import {
   AppDialogConfig,
   AppDialogProps,
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
-import { useModalStore } from "@/styles/app-modal/useModal";
+import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const getFooterButtonProps = (
@@ -22,7 +22,7 @@ const getFooterButtonProps = (
   return footerButton;
 };
 
-type AppModalFooterProps = Pick<
+type AppDialogFooterProps = Pick<
   AppDialogConfig,
   "cancelButton" | "submitButton"
 > & {
@@ -33,7 +33,7 @@ const ModalFooter = ({
   cancelButton,
   submitButton,
   closeModal,
-}: AppModalFooterProps) => {
+}: AppDialogFooterProps) => {
   if (!cancelButton && !submitButton) {
     return null;
   }
@@ -61,7 +61,7 @@ const ModalFooter = ({
   };
 
   return (
-    <div className="app-dialog__footer">
+    <footer className="app-dialog__footer">
       {cancelButton && (
         <AppButton
           variant="secondary"
@@ -83,12 +83,12 @@ const ModalFooter = ({
           {submitButtonLabel}
         </AppButton>
       )}
-    </div>
+    </footer>
   );
 };
 
-const AppDialog = ({ modal }: AppDialogProps) => {
-  const { closeModal } = useModalStore();
+const AppDialog = ({ config }: AppDialogProps) => {
+  const { closeModalById } = useModalStore();
 
   const {
     id: modalId,
@@ -98,19 +98,19 @@ const AppDialog = ({ modal }: AppDialogProps) => {
     submitButton,
     size = "md",
     isFullscreen,
-  } = modal;
+  } = config;
 
-  const handleModalClose = () => {
-    closeModal(modalId);
+  const handleDialogClose = () => {
+    closeModalById(modalId);
   };
 
-  const handleModalClick = (event: MouseEvent<HTMLDialogElement>) => {
+  const handleDialogClick = (event: MouseEvent<HTMLDialogElement>) => {
     event.stopPropagation();
   };
 
-  const handleModalKeydown = (event: KeyboardEvent<HTMLDialogElement>) => {
+  const handleDialogKeydown = (event: KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === "Escape") {
-      handleModalClose();
+      handleDialogClose();
     }
   };
 
@@ -123,26 +123,26 @@ const AppDialog = ({ modal }: AppDialogProps) => {
         { "app-dialog--fullscreen": isFullscreen },
         "fade-in"
       )}
-      onClick={handleModalClick}
-      onKeyDown={handleModalKeydown}
+      onClick={handleDialogClick}
+      onKeyDown={handleDialogKeydown}
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
-      <div className="app-dialog__header">
+      <header className="app-dialog__header">
         {title && <AppTypography variant="h4">{title}</AppTypography>}
         <AppIconButton
           icon="ic:sharp-close"
-          onClick={handleModalClose}
+          onClick={handleDialogClose}
           aria-label="Close dialog"
           className="app-dialog__close-button"
         />
-      </div>
+      </header>
       <div className="app-dialog__body">{renderContent()}</div>
       <ModalFooter
         submitButton={submitButton}
         cancelButton={cancelButton}
-        closeModal={handleModalClose}
+        closeModal={handleDialogClose}
       />
     </dialog>
   );

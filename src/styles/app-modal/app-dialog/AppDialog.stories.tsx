@@ -149,6 +149,9 @@ export const WithBothButtonsCustomized: Story = {
 
 export const FullScreen: Story = {
   tags: ["!autodocs"],
+  parameters: {
+    layout: "fullscreen",
+  },
   args: createModalArgs<AppDialogConfig>({ isFullscreen: true }),
 };
 

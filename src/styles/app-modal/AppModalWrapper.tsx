@@ -2,9 +2,13 @@ import { FocusTrap } from "focus-trap-react";
 import { createPortal } from "react-dom";
 
 import "@/styles/app-modal/AppModalWrapper.scss";
-import { AppModalConfig } from "@/styles/app-modal/AppModalWrapper.types";
+import {
+  AppModalConfig,
+  AppModalWithType,
+} from "@/styles/app-modal/AppModalWrapper.types";
 import AppModal from "@/styles/app-modal/app-dialog/AppDialog";
-import { useModalStore } from "@/styles/app-modal/useModal";
+import AppDrawer from "@/styles/app-modal/app-drawer";
+import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
 
 const modalRootId = "modal-container";
 
@@ -18,26 +22,37 @@ const modalRoot =
   })();
 
 const AppModalWrapper = () => {
-  const { closeModal, modalStack } = useModalStore();
+  const { closeModalById, modalStack } = useModalStore();
 
   if (modalStack.length === 0) {
     return null;
   }
 
-  const handleOverlayClick = (modal: AppModalConfig) => {
-    if (!modal.shouldDisableOverlayClick) {
-      closeModal(modal.id);
+  const handleOverlayClick = (modalConfig: AppModalConfig) => {
+    if (!modalConfig.shouldDisableOverlayClick) {
+      closeModalById(modalConfig.id);
+    }
+  };
+
+  const getModalByType = <Modal extends AppModalConfig>(
+    modal: AppModalWithType<Modal>
+  ) => {
+    switch (modal.type) {
+      case "dialog":
+        return <AppModal config={modal} />;
+      case "drawer":
+        return <AppDrawer config={modal} />;
     }
   };
 
   return createPortal(
-    modalStack.map(modal => (
-      <FocusTrap key={modal.id}>
+    modalStack.map(modalConfig => (
+      <FocusTrap key={modalConfig.id}>
         <div
           className="app-modal__overlay"
-          onClick={() => handleOverlayClick(modal)}
+          onClick={() => handleOverlayClick(modalConfig)}
         >
-          <AppModal modal={modal} />
+          {getModalByType(modalConfig)}
         </div>
       </FocusTrap>
     )),

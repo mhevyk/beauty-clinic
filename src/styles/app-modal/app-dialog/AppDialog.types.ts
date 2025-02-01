@@ -19,5 +19,5 @@ export type AppDialogConfig = AppModalConfig & {
 };
 
 export type AppDialogProps = {
-  modal: AppDialogConfig;
+  config: AppDialogConfig;
 };

@@ -1,0 +1,25 @@
+@use "design-system/colors" as *;
+
+// @TODO: complete all styles and logic
+
+.app-drawer {
+  background: $color-secondary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
+  padding: 32px;
+  box-sizing: border-box;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .app-drawer__close-button {
+      margin-left: auto;
+    }
+  }
+}

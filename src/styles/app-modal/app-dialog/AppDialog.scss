@@ -1,0 +1,63 @@
+@use "design-system/colors" as *;
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-dialog {
+  position: relative;
+  padding: 32px;
+  margin: 16px;
+  background: $color-secondary;
+  border: none;
+  animation: fade-in 0.3s ease-in-out;
+  box-sizing: border-box;
+
+  min-width: 320px;
+
+  &--sm {
+    max-width: 480px;
+  }
+
+  &--md {
+    max-width: 640px;
+  }
+
+  &--lg {
+    max-width: 720px;
+  }
+
+  &--fullscreen {
+    max-width: none;
+    width: calc(100dvw - 64px);
+    height: calc(100dvh - 64px);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .app-dialog__close-button {
+      margin-left: auto;
+    }
+  }
+
+  &__body:has(+ .app-dialog__footer) {
+    margin-bottom: 36px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+}

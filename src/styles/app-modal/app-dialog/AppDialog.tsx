@@ -1,11 +1,14 @@
 import { KeyboardEvent, MouseEvent } from "react";
 
+import classnames from "classnames";
+
 import AppButton from "@/styles/app-button/AppButton";
 import AppIconButton from "@/styles/app-icon-button/AppIconButton";
+import "@/styles/app-modal/app-dialog/AppDialog.scss";
 import {
   AppDialogConfig,
   AppDialogProps,
-} from "@/styles/app-modal/AppModal.types";
+} from "@/styles/app-modal/app-dialog/AppDialog.types";
 import { useModalStore } from "@/styles/app-modal/useModal";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
@@ -58,7 +61,7 @@ const ModalFooter = ({
   };
 
   return (
-    <div className="modal-footer">
+    <div className="app-dialog__footer">
       {cancelButton && (
         <AppButton
           variant="secondary"
@@ -87,8 +90,18 @@ const ModalFooter = ({
 const AppDialog = ({ modal }: AppDialogProps) => {
   const { closeModal } = useModalStore();
 
+  const {
+    id: modalId,
+    title,
+    renderContent,
+    cancelButton,
+    submitButton,
+    size = "md",
+    isFullscreen,
+  } = modal;
+
   const handleModalClose = () => {
-    closeModal(modal.id);
+    closeModal(modalId);
   };
 
   const handleModalClick = (event: MouseEvent<HTMLDialogElement>) => {
@@ -101,33 +114,31 @@ const AppDialog = ({ modal }: AppDialogProps) => {
     }
   };
 
-  // @TODO: handle size
-  const { title, renderContent, cancelButton, submitButton } = modal;
-
   return (
     <dialog
       open
-      className="modal-content fade-in"
+      className={classnames(
+        "app-dialog",
+        `app-dialog--${size}`,
+        { "app-dialog--fullscreen": isFullscreen },
+        "fade-in"
+      )}
       onClick={handleModalClick}
       onKeyDown={handleModalKeydown}
       role="dialog"
       aria-modal="true"
       aria-label={title}
     >
-      <div className="app-modal__header">
-        {title && (
-          <AppTypography id="dialog-title" variant="h5">
-            {title}
-          </AppTypography>
-        )}
+      <div className="app-dialog__header">
+        {title && <AppTypography variant="h4">{title}</AppTypography>}
         <AppIconButton
           icon="ic:sharp-close"
           onClick={handleModalClose}
-          aria-label="Close modal"
+          aria-label="Close dialog"
           className="app-dialog__close-button"
         />
       </div>
-      <div>{renderContent()}</div>
+      <div className="app-dialog__body">{renderContent()}</div>
       <ModalFooter
         submitButton={submitButton}
         cancelButton={cancelButton}

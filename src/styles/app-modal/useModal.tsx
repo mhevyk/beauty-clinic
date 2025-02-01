@@ -1,17 +1,17 @@
 import { create } from "zustand";
 
-import { AppDialogConfig } from "@/styles/app-modal/AppModal.types";
+import { AppModalConfig } from "@/styles/app-modal/AppModalWrapper.types";
 
 export type ModalStore = {
-  modalStack: AppDialogConfig[];
-  addDialog: (dialog: AppDialogConfig) => void;
+  modalStack: AppModalConfig[];
+  addDialog: (dialog: AppModalConfig) => void;
   closeModal: (id: string) => void;
   closeAllModals: () => void;
 };
 
 export const useModalStore = create<ModalStore>(set => ({
   modalStack: [],
-  addDialog: (dialog: AppDialogConfig) => {
+  addDialog: (dialog: AppModalConfig) => {
     set(state => {
       return { modalStack: [...state.modalStack, dialog] };
     });

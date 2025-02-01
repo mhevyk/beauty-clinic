@@ -1,9 +1,9 @@
 import { FocusTrap } from "focus-trap-react";
 import { createPortal } from "react-dom";
 
-import AppModal from "@/styles/app-modal/AppDialog";
-import "@/styles/app-modal/AppModal.scss";
-import { AppDialogConfig } from "@/styles/app-modal/AppModal.types";
+import "@/styles/app-modal/AppModalWrapper.scss";
+import { AppModalConfig } from "@/styles/app-modal/AppModalWrapper.types";
+import AppModal from "@/styles/app-modal/app-dialog/AppDialog";
 import { useModalStore } from "@/styles/app-modal/useModal";
 
 const modalRootId = "modal-container";
@@ -24,7 +24,7 @@ const AppModalWrapper = () => {
     return null;
   }
 
-  const handleOverlayClick = (modal: AppDialogConfig) => {
+  const handleOverlayClick = (modal: AppModalConfig) => {
     if (!modal.shouldDisableOverlayClick) {
       closeModal(modal.id);
     }
@@ -34,7 +34,7 @@ const AppModalWrapper = () => {
     modalStack.map(modal => (
       <FocusTrap key={modal.id}>
         <div
-          className="modal-overlay"
+          className="app-modal__overlay"
           onClick={() => handleOverlayClick(modal)}
         >
           <AppModal modal={modal} />

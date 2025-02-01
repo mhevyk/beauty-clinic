@@ -1,30 +1,36 @@
 import { Icon } from "@iconify/react";
 import { Meta, StoryObj } from "@storybook/react";
 
+import { APP_COLORS } from "@/styles";
 import AppButton from "@/styles/app-button/AppButton";
-import AppDialog from "@/styles/app-modal/AppDialog";
+import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
+import AppDialog from "@/styles/app-modal/app-dialog/AppDialog";
 import {
   AppDialogConfig,
   AppDialogProps,
-} from "@/styles/app-modal/AppModal.types";
-import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
+} from "@/styles/app-modal/app-dialog/AppDialog.types";
 import { useModalStore } from "@/styles/app-modal/useModal";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const meta: Meta<AppDialogProps> = {
-  title: "AppModal",
+  title: "modals/AppDialog",
   beforeEach: () => useModalStore.getState().closeAllModals(),
   component: AppDialog,
   tags: ["autodocs"],
   parameters: {
+    layout: "centered",
     docs: {
       description: {
-        component: "Demos are not included in the docs, see them separately",
+        component:
+          "Some stories are not included in the docs, see them separately",
       },
       story: {
         height: "300px",
       },
     },
+  },
+  globals: {
+    backgrounds: { value: APP_COLORS.overlay },
   },
 };
 
@@ -52,17 +58,59 @@ const createModalArgs = (
   };
 };
 
+const demoStoryBaseProps: Partial<Story> = {
+  tags: ["!autodocs"],
+  globals: {
+    backgrounds: null,
+  },
+  parameters: {
+    layout: "padded",
+  },
+};
+
 export const Default: Story = {
   args: createModalArgs(),
 };
 
+// @TODO: add AppTooltip for long title
+export const WithLongTitle: Story = {
+  args: createModalArgs({
+    title: "This is a very long title that should be truncated",
+  }),
+};
+
 export const DefaultDemo: Story = {
-  tags: ["!autodocs"],
+  ...demoStoryBaseProps,
   render: () => {
     const { addDialog } = useModalStore();
 
     const handleOpenModal = () => {
       addDialog(createModalArgs().modal);
+    };
+
+    return (
+      <>
+        <AppModalWrapper />
+        <AppButton onClick={handleOpenModal}>Open modal</AppButton>
+      </>
+    );
+  },
+};
+
+export const CustomizedDemo: Story = {
+  ...demoStoryBaseProps,
+  render: () => {
+    const { addDialog } = useModalStore();
+
+    const handleOpenModal = () => {
+      addDialog(
+        createModalArgs({
+          size: "md",
+          shouldDisableOverlayClick: true,
+          submitButton: { label: "Save", disabled: true },
+          cancelButton: true,
+        }).modal
+      );
     };
 
     return (
@@ -114,6 +162,7 @@ export const WithBothButtonsCustomized: Story = {
 };
 
 export const FullScreen: Story = {
+  tags: ["!autodocs"],
   args: createModalArgs({ isFullscreen: true }),
 };
 
@@ -130,7 +179,7 @@ export const Large: Story = {
 };
 
 export const DisabledOverlayClickDemo: Story = {
-  tags: ["!autodocs"],
+  ...demoStoryBaseProps,
   render: () => {
     const { addDialog } = useModalStore();
 
@@ -148,7 +197,7 @@ export const DisabledOverlayClickDemo: Story = {
 };
 
 export const ModalStackingDemo: Story = {
-  tags: ["!autodocs"],
+  ...demoStoryBaseProps,
   render: () => {
     const { addDialog } = useModalStore();
 

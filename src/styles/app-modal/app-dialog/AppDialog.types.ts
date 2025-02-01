@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
-
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
+import { AppModalConfig } from "@/styles/app-modal/AppModalWrapper.types";
 import { AppSize } from "@/styles/types";
 
 export type AppDialogSize = AppSize;
@@ -12,14 +11,10 @@ type FooterButtonProps = Pick<
   label: string;
 };
 
-export type AppDialogConfig = {
-  id: string;
-  renderContent: () => ReactNode;
-  title?: string;
+export type AppDialogConfig = AppModalConfig & {
   size?: AppDialogSize;
   cancelButton?: boolean | Partial<FooterButtonProps>;
   submitButton?: boolean | Partial<FooterButtonProps>;
-  shouldDisableOverlayClick?: boolean;
   isFullscreen?: boolean;
 };
 

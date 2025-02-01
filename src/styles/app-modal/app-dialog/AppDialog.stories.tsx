@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react";
 import { Meta, StoryObj } from "@storybook/react";
 
-import { APP_COLORS } from "@/styles";
 import AppButton from "@/styles/app-button/AppButton";
 import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
 import AppDialog from "@/styles/app-modal/app-dialog/AppDialog";
@@ -29,15 +28,25 @@ const meta: Meta<AppDialogProps> = {
         height: "300px",
       },
     },
-  },
-  globals: {
-    backgrounds: { value: APP_COLORS.overlay },
+    backgrounds: {
+      default: "overlay",
+    },
   },
 };
 
 export default meta;
 
 type Story = StoryObj<AppDialogProps>;
+
+const getDefaultDemoStoryProps = (): Partial<Story> => {
+  return {
+    tags: ["!autodocs"],
+    parameters: {
+      layout: "padded",
+      backgrounds: { default: "light" },
+    },
+  };
+};
 
 export const Default: Story = {
   args: createModalArgs(),
@@ -51,13 +60,7 @@ export const WithLongTitle: Story = {
 };
 
 export const DefaultDemo: Story = {
-  tags: ["!autodocs"],
-  globals: {
-    backgrounds: null,
-  },
-  parameters: {
-    layout: "padded",
-  },
+  ...getDefaultDemoStoryProps(),
   render: () => {
     const { addDialog } = useModalStore();
 
@@ -75,13 +78,7 @@ export const DefaultDemo: Story = {
 };
 
 export const CustomizedDemo: Story = {
-  tags: ["!autodocs"],
-  globals: {
-    backgrounds: null,
-  },
-  parameters: {
-    layout: "padded",
-  },
+  ...getDefaultDemoStoryProps(),
   render: () => {
     const { addDialog } = useModalStore();
 
@@ -168,13 +165,7 @@ export const Large: Story = {
 };
 
 export const DisabledOverlayClickDemo: Story = {
-  tags: ["!autodocs"],
-  globals: {
-    backgrounds: null,
-  },
-  parameters: {
-    layout: "padded",
-  },
+  ...getDefaultDemoStoryProps(),
   render: () => {
     const { addDialog } = useModalStore();
 
@@ -192,13 +183,7 @@ export const DisabledOverlayClickDemo: Story = {
 };
 
 export const ModalStackingDemo: Story = {
-  tags: ["!autodocs"],
-  globals: {
-    backgrounds: null,
-  },
-  parameters: {
-    layout: "padded",
-  },
+  ...getDefaultDemoStoryProps(),
   render: () => {
     const { addDialog } = useModalStore();
 

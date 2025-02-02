@@ -2,10 +2,14 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import AppButton from "@/styles/app-button/AppButton";
 import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
+import OverlayDecorator from "@/styles/app-modal/OverlayDecorator";
 import AppDrawer from "@/styles/app-modal/app-drawer/AppDrawer";
-import { AppDrawerProps } from "@/styles/app-modal/app-drawer/AppDrawer.types";
+import {
+  AppDrawerConfig,
+  AppDrawerProps,
+} from "@/styles/app-modal/app-drawer/AppDrawer.types";
 import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
-import { createModalArgs } from "@/styles/app-modal/utils/create-modal-args/createModalArgs";
+import AppTypography from "@/styles/app-typography/AppTypography";
 
 const meta: Meta<AppDrawerProps> = {
   title: "modals/AppDrawer",
@@ -23,9 +27,6 @@ const meta: Meta<AppDrawerProps> = {
         height: "100dvh",
       },
     },
-    backgrounds: {
-      default: "overlay",
-    },
   },
 };
 
@@ -33,34 +34,56 @@ export default meta;
 
 type Story = StoryObj<AppDrawerProps>;
 
-const getDefaultDemoStoryProps = (): Partial<Story> => {
+const getRequiredDrawerConfig = () => {
   return {
-    tags: ["!autodocs"],
-    parameters: {
-      layout: "padded",
-      backgrounds: { default: "light" },
-    },
+    id: crypto.randomUUID(),
+    title: "Title",
+    renderContent: () => (
+      <AppTypography>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi
+        suscipit accusamus veritatis ullam in doloremque dolor voluptate,
+        facilis, nam voluptatem sapiente repellendus vero culpa nemo officia
+        quia? Non, iste?
+      </AppTypography>
+    ),
   };
 };
 
-export const Default: Story = {
-  args: createModalArgs(),
+const createOverlayStory = (
+  overrideConfig: Partial<AppDrawerConfig> = {}
+): Partial<Story> => {
+  return {
+    args: {
+      config: {
+        ...getRequiredDrawerConfig(),
+        ...overrideConfig,
+      },
+    },
+    decorators: [OverlayDecorator],
+  };
 };
 
-export const DefaultDemo: Story = {
-  ...getDefaultDemoStoryProps(),
-  render: () => {
-    const { addDrawer } = useModalStore();
-
-    const handleOpenDrawer = () => {
-      addDrawer(createModalArgs().config);
-    };
-
-    return (
-      <>
-        <AppModalWrapper />
-        <AppButton onClick={handleOpenDrawer}>Open drawer</AppButton>
-      </>
-    );
-  },
+const createDemoStory = (render: Story["render"]): Partial<Story> => {
+  return {
+    parameters: { layout: "padded" },
+    tags: ["!autodocs"],
+    render,
+  };
 };
+
+export const Default: Story = createOverlayStory();
+
+export const DefaultDemo: Story = createDemoStory(() => {
+  const { addDrawer } = useModalStore();
+
+  const handleOpenDrawer = () => {
+    addDrawer(getRequiredDrawerConfig());
+  };
+
+  return (
+    <>
+      <AppModalWrapper />
+      <AppButton onClick={handleOpenDrawer}>Open drawer</AppButton>
+    </>
+  );
+});

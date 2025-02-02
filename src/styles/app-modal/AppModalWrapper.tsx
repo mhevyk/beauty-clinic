@@ -45,6 +45,8 @@ const AppModalWrapper = () => {
     }
   };
 
+  console.log(modalStack);
+
   return createPortal(
     modalStack.map(modalConfig => (
       <FocusTrap key={modalConfig.id}>

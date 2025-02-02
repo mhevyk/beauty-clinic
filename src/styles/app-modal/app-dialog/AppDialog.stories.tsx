@@ -3,6 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import AppButton from "@/styles/app-button/AppButton";
 import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
+import OverlayDecorator from "@/styles/app-modal/OverlayDecorator";
 import AppDialog from "@/styles/app-modal/app-dialog/AppDialog";
 import {
   AppDialogConfig,
@@ -10,8 +11,6 @@ import {
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
 import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
 import AppTypography from "@/styles/app-typography/AppTypography";
-
-const STORY_HEIGHT = "500px";
 
 const meta: Meta<AppDialogProps> = {
   title: "modals/AppDialog",
@@ -25,7 +24,7 @@ const meta: Meta<AppDialogProps> = {
           "Some stories are not included in the docs, see them separately",
       },
       story: {
-        height: STORY_HEIGHT,
+        height: "500px",
       },
     },
   },
@@ -60,36 +59,13 @@ const createOverlayStory = (
         ...overrideConfig,
       },
     },
-    decorators: (Story, ctx) => {
-      return (
-        <div
-          className="app-modal__overlay"
-          style={
-            ctx.viewMode === "docs"
-              ? {
-                  position: "relative",
-                  height: STORY_HEIGHT,
-                  width: "100%",
-                  padding: "1rem",
-                  boxSizing: "border-box",
-                }
-              : undefined
-          }
-        >
-          <Story />
-        </div>
-      );
-    },
+    decorators: [OverlayDecorator],
   };
 };
 
 const createDemoStory = (render: Story["render"]): Partial<Story> => {
   return {
     tags: ["!autodocs"],
-    parameters: {
-      layout: "padded",
-      backgrounds: { default: "light" },
-    },
     render,
   };
 };

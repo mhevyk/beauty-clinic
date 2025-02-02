@@ -41,7 +41,6 @@ export const useModalStore = create<
   },
   closeModalById: id =>
     set(state => {
-      console.log("close", id);
       return {
         modalStack: state.modalStack.filter(modal => modal.id !== id),
       };

@@ -5,7 +5,7 @@
   inset: 0;
   width: 100dvw;
   height: 100dvh;
-  background-color: $color-overlay;
+  background-color: rgba($color-primary, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;

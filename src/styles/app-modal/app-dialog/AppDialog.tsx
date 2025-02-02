@@ -66,7 +66,7 @@ const ModalFooter = ({
           variant="secondary"
           size="sm"
           onClick={handleCancelClick}
-          width={!submitButton ? "full" : undefined}
+          width="full"
           {...restCancelButtonProps}
         >
           {cancelButtonLabel}
@@ -76,7 +76,7 @@ const ModalFooter = ({
         <AppButton
           size="sm"
           onClick={handleSubmitClick}
-          width={!cancelButton ? "full" : undefined}
+          width="full"
           {...restSubmitButtonProps}
         >
           {submitButtonLabel}

@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 import AppButton from "@/styles/app-button/AppButton";
+import AppIconButton from "@/styles/app-icon-button/AppIconButton";
 import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
 import OverlayDecorator from "@/styles/app-modal/OverlayDecorator";
 import AppDrawer from "@/styles/app-modal/app-drawer/AppDrawer";
@@ -8,7 +10,9 @@ import {
   AppDrawerConfig,
   AppDrawerProps,
 } from "@/styles/app-modal/app-drawer/AppDrawer.types";
+import getRequiredModalConfig from "@/styles/app-modal/getRequiredModalConfig";
 import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
+import AppTextInput from "@/styles/app-text-input/AppTextInput";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const meta: Meta<AppDrawerProps> = {
@@ -34,28 +38,13 @@ export default meta;
 
 type Story = StoryObj<AppDrawerProps>;
 
-const getRequiredDrawerConfig = () => {
-  return {
-    id: crypto.randomUUID(),
-    title: "Title",
-    renderContent: () => (
-      <AppTypography>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi
-        suscipit accusamus veritatis ullam in doloremque dolor voluptate,
-        facilis, nam voluptatem sapiente repellendus vero culpa nemo officia
-        quia? Non, iste?
-      </AppTypography>
-    ),
-  };
-};
-
 const createOverlayStory = (
   overrideConfig: Partial<AppDrawerConfig> = {}
 ): Partial<Story> => {
   return {
     args: {
       config: {
-        ...getRequiredDrawerConfig(),
+        ...getRequiredModalConfig(),
         ...overrideConfig,
       },
     },
@@ -77,7 +66,50 @@ export const DefaultDemo: Story = createDemoStory(() => {
   const { addDrawer } = useModalStore();
 
   const handleOpenDrawer = () => {
-    addDrawer(getRequiredDrawerConfig());
+    addDrawer(getRequiredModalConfig());
+  };
+
+  return (
+    <>
+      <AppModalWrapper />
+      <AppButton onClick={handleOpenDrawer}>Open drawer</AppButton>
+    </>
+  );
+});
+
+export const DifferentModalStackingDemo: Story = createDemoStory(() => {
+  const [postTitle, setPostTitle] = useState("My post 1");
+  const { addDrawer, addDialog } = useModalStore();
+
+  const handleAddDialog = () => {
+    addDialog({
+      id: "edit-post",
+      renderContent: () => (
+        <AppTextInput
+          label="Title*"
+          value={postTitle}
+          onChange={event => setPostTitle(event.target.value)}
+          fullWidth
+        />
+      ),
+      title: `Edit post "${postTitle}"`,
+      submitButton: { label: "Save" },
+      cancelButton: true,
+      shouldDisableOverlayClick: true,
+    });
+  };
+
+  const handleOpenDrawer = () => {
+    addDrawer({
+      id: "post-drawer",
+      title: "Posts",
+      renderContent: () => (
+        <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+          <AppTypography>{postTitle}</AppTypography>
+          <AppIconButton icon="ic:round-edit" onClick={handleAddDialog} />
+        </div>
+      ),
+    });
   };
 
   return (

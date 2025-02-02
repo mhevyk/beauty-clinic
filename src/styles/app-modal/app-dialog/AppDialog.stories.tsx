@@ -9,8 +9,8 @@ import {
   AppDialogConfig,
   AppDialogProps,
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
+import getRequiredModalConfig from "@/styles/app-modal/getRequiredModalConfig";
 import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
-import AppTypography from "@/styles/app-typography/AppTypography";
 
 const meta: Meta<AppDialogProps> = {
   title: "modals/AppDialog",
@@ -34,28 +34,13 @@ export default meta;
 
 type Story = StoryObj<AppDialogProps>;
 
-const getRequiredDialogConfig = () => {
-  return {
-    id: crypto.randomUUID(),
-    title: "Title",
-    renderContent: () => (
-      <AppTypography>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi
-        suscipit accusamus veritatis ullam in doloremque dolor voluptate,
-        facilis, nam voluptatem sapiente repellendus vero culpa nemo officia
-        quia? Non, iste?
-      </AppTypography>
-    ),
-  };
-};
-
 const createOverlayStory = (
   overrideConfig: Partial<AppDialogConfig> = {}
 ): Partial<Story> => {
   return {
     args: {
       config: {
-        ...getRequiredDialogConfig(),
+        ...getRequiredModalConfig(),
         ...overrideConfig,
       },
     },
@@ -81,7 +66,7 @@ export const DefaultDemo: Story = createDemoStory(() => {
   const { addDialog } = useModalStore();
 
   const handleOpenDialog = () => {
-    addDialog(getRequiredDialogConfig());
+    addDialog(getRequiredModalConfig());
   };
 
   return (
@@ -95,7 +80,7 @@ export const DefaultDemo: Story = createDemoStory(() => {
 export const CustomizedDemo: Story = createDemoStory(() => {
   const { addDialog, closeModalById } = useModalStore();
 
-  const requiredDialogConfig = getRequiredDialogConfig();
+  const requiredDialogConfig = getRequiredModalConfig();
 
   const handleOpenDialog = () => {
     addDialog({
@@ -160,16 +145,30 @@ export const FullScreen: Story = {
   },
 };
 
-export const Small: Story = createOverlayStory({ size: "sm" });
-export const Medium: Story = createOverlayStory({ size: "md" });
-export const Large: Story = createOverlayStory({ size: "lg" });
+export const Small: Story = createOverlayStory({
+  size: "sm",
+  submitButton: true,
+  cancelButton: true,
+});
+
+export const Medium: Story = createOverlayStory({
+  size: "md",
+  submitButton: true,
+  cancelButton: true,
+});
+
+export const Large: Story = createOverlayStory({
+  size: "lg",
+  submitButton: true,
+  cancelButton: true,
+});
 
 export const DisabledOverlayClickDemo: Story = createDemoStory(() => {
   const { addDialog } = useModalStore();
 
   const handleOpenDialog = () => {
     addDialog({
-      ...getRequiredDialogConfig(),
+      ...getRequiredModalConfig(),
       shouldDisableOverlayClick: true,
     });
   };
@@ -187,7 +186,7 @@ export const ModalStackingDemo: Story = createDemoStory(() => {
 
   const handleOpenDialog1 = () => {
     addDialog({
-      ...getRequiredDialogConfig(),
+      ...getRequiredModalConfig(),
       title: "Modal lg",
       size: "lg",
       submitButton: {
@@ -199,7 +198,7 @@ export const ModalStackingDemo: Story = createDemoStory(() => {
 
   const handleOpenDialog2 = () => {
     addDialog({
-      ...getRequiredDialogConfig(),
+      ...getRequiredModalConfig(),
       size: "md",
       title: "Modal md",
       submitButton: {
@@ -211,7 +210,7 @@ export const ModalStackingDemo: Story = createDemoStory(() => {
 
   const handleOpenDialog3 = () => {
     addDialog({
-      ...getRequiredDialogConfig(),
+      ...getRequiredModalConfig(),
       title: "Modal sm",
       size: "sm",
     });

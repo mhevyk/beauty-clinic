@@ -63,7 +63,6 @@ export default function BookingForm({ formik }: BookingFormProps) {
           maxLength={50}
           helperText={`${length}/50`}
           name="name"
-          itemID="name"
         />
         <AppTextInput
           label="Email*"
@@ -73,7 +72,6 @@ export default function BookingForm({ formik }: BookingFormProps) {
           disabled={isAuthenticated}
           minWidth="296px"
           name="email"
-          itemID="email"
         />
       </div>
       <AppTextInput
@@ -86,7 +84,6 @@ export default function BookingForm({ formik }: BookingFormProps) {
         placeholder="(___) ___-____"
         name="phoneNumber"
         fullWidth
-        itemID="phoneNumber"
       />
       <AppTextarea
         label="Add Your Message"
@@ -94,7 +91,6 @@ export default function BookingForm({ formik }: BookingFormProps) {
         value={values.message}
         onChange={handleChange}
         name="message"
-        itemID="message"
       />
     </div>
   );

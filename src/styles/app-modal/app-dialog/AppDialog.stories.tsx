@@ -9,8 +9,9 @@ import {
   AppDialogProps,
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
 import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
-import { createModalArgs } from "@/styles/app-modal/utils/create-modal-args/createModalArgs";
 import AppTypography from "@/styles/app-typography/AppTypography";
+
+const STORY_HEIGHT = "500px";
 
 const meta: Meta<AppDialogProps> = {
   title: "modals/AppDialog",
@@ -18,18 +19,14 @@ const meta: Meta<AppDialogProps> = {
   tags: ["autodocs"],
   beforeEach: () => useModalStore.getState().closeAllModals(),
   parameters: {
-    layout: "centered",
     docs: {
       description: {
         component:
           "Some stories are not included in the docs, see them separately",
       },
       story: {
-        height: "300px",
+        height: STORY_HEIGHT,
       },
-    },
-    backgrounds: {
-      default: "overlay",
     },
   },
 };
@@ -38,188 +35,216 @@ export default meta;
 
 type Story = StoryObj<AppDialogProps>;
 
-const getDefaultDemoStoryProps = (): Partial<Story> => {
+const getRequiredDialogConfig = () => {
+  return {
+    id: crypto.randomUUID(),
+    title: "Title",
+    renderContent: () => (
+      <AppTypography>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi
+        suscipit accusamus veritatis ullam in doloremque dolor voluptate,
+        facilis, nam voluptatem sapiente repellendus vero culpa nemo officia
+        quia? Non, iste?
+      </AppTypography>
+    ),
+  };
+};
+
+const createOverlayStory = (
+  overrideConfig: Partial<AppDialogConfig> = {}
+): Partial<Story> => {
+  return {
+    args: {
+      config: {
+        ...getRequiredDialogConfig(),
+        ...overrideConfig,
+      },
+    },
+    decorators: (Story, ctx) => {
+      return (
+        <div
+          className="app-modal__overlay"
+          style={
+            ctx.viewMode === "docs"
+              ? {
+                  position: "relative",
+                  height: STORY_HEIGHT,
+                  width: "100%",
+                  padding: "1rem",
+                  boxSizing: "border-box",
+                }
+              : undefined
+          }
+        >
+          <Story />
+        </div>
+      );
+    },
+  };
+};
+
+const createDemoStory = (render: Story["render"]): Partial<Story> => {
   return {
     tags: ["!autodocs"],
     parameters: {
       layout: "padded",
       backgrounds: { default: "light" },
     },
+    render,
   };
 };
 
-export const Default: Story = {
-  args: createModalArgs(),
-};
+export const Default: Story = createOverlayStory();
 
 // @TODO: add AppTooltip for long title
-export const WithLongTitle: Story = {
-  args: createModalArgs({
-    title: "This is a very long title that should be truncated",
-  }),
-};
+export const WithLongTitle: Story = createOverlayStory({
+  title: "This is a very long title that should be truncated",
+});
 
-export const DefaultDemo: Story = {
-  ...getDefaultDemoStoryProps(),
-  render: () => {
-    const { addDialog } = useModalStore();
+export const DefaultDemo: Story = createDemoStory(() => {
+  const { addDialog } = useModalStore();
 
-    const handleOpenDialog = () => {
-      addDialog(createModalArgs().config);
-    };
+  const handleOpenDialog = () => {
+    addDialog(getRequiredDialogConfig());
+  };
 
-    return (
-      <>
-        <AppModalWrapper />
-        <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
-      </>
-    );
-  },
-};
+  return (
+    <>
+      <AppModalWrapper />
+      <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
+    </>
+  );
+});
 
-export const CustomizedDemo: Story = {
-  ...getDefaultDemoStoryProps(),
-  render: () => {
-    const { addDialog } = useModalStore();
+export const CustomizedDemo: Story = createDemoStory(() => {
+  const { addDialog, closeModalById } = useModalStore();
 
-    const handleOpenDialog = () => {
-      addDialog(
-        createModalArgs<AppDialogConfig>({
-          size: "md",
-          shouldDisableOverlayClick: true,
-          submitButton: { label: "Save" },
-          cancelButton: true,
-        }).config
-      );
-    };
+  const requiredDialogConfig = getRequiredDialogConfig();
 
-    return (
-      <>
-        <AppModalWrapper />
-        <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
-      </>
-    );
-  },
-};
+  const handleOpenDialog = () => {
+    addDialog({
+      ...requiredDialogConfig,
+      size: "md",
+      shouldDisableOverlayClick: true,
+      submitButton: {
+        label: "Save",
+        onClick: () => closeModalById(requiredDialogConfig.id),
+      },
+      cancelButton: true,
+    });
+  };
 
-export const WithDefaultSubmitButton: Story = {
-  args: createModalArgs<AppDialogConfig>({ submitButton: true }),
-};
+  return (
+    <>
+      <AppModalWrapper />
+      <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
+    </>
+  );
+});
 
-export const WithDefaultCancelButton: Story = {
-  args: createModalArgs<AppDialogConfig>({ cancelButton: true }),
-};
+export const WithDefaultSubmitButton: Story = createOverlayStory({
+  submitButton: true,
+});
 
-export const WithBothDefaultButtons: Story = {
-  args: createModalArgs<AppDialogConfig>({
-    submitButton: true,
-    cancelButton: true,
-  }),
-};
+export const WithDefaultCancelButton: Story = createOverlayStory({
+  cancelButton: true,
+});
 
-export const WithCustomisedCancelButton: Story = {
-  args: createModalArgs<AppDialogConfig>({
-    cancelButton: { label: "Custom cancel", disabled: true },
-  }),
-};
+export const WithBothDefaultButtons: Story = createOverlayStory({
+  submitButton: true,
+  cancelButton: true,
+});
+
+export const WithCustomisedCancelButton: Story = createOverlayStory({
+  cancelButton: { label: "Custom cancel", disabled: true },
+});
 
 // @TODO: add danger variant for button
-export const WithCustomizedSubmitButton: Story = {
-  args: createModalArgs<AppDialogConfig>({
-    submitButton: {
-      label: "Delete",
-      endAdornment: <Icon icon="mdi:trash" width="24" height="24" />,
-    },
-  }),
-};
+export const WithCustomizedSubmitButton: Story = createOverlayStory({
+  submitButton: {
+    label: "Delete",
+    endAdornment: <Icon icon="mdi:trash" width="24" height="24" />,
+  },
+});
 
-export const WithBothButtonsCustomized: Story = {
-  args: createModalArgs<AppDialogConfig>({
-    cancelButton: {
-      label: "Reset",
-    },
-    submitButton: {
-      isLoading: true,
-    },
-  }),
-};
+export const WithBothButtonsCustomized: Story = createOverlayStory({
+  cancelButton: {
+    label: "Reset",
+  },
+  submitButton: {
+    isLoading: true,
+  },
+});
 
 export const FullScreen: Story = {
+  ...createOverlayStory({ isFullscreen: true }),
   tags: ["!autodocs"],
   parameters: {
     layout: "fullscreen",
   },
-  args: createModalArgs<AppDialogConfig>({ isFullscreen: true }),
 };
 
-export const Small: Story = {
-  args: createModalArgs<AppDialogConfig>({ size: "sm" }),
-};
+export const Small: Story = createOverlayStory({ size: "sm" });
+export const Medium: Story = createOverlayStory({ size: "md" });
+export const Large: Story = createOverlayStory({ size: "lg" });
 
-export const Medium: Story = {
-  args: createModalArgs<AppDialogConfig>({ size: "md" }),
-};
+export const DisabledOverlayClickDemo: Story = createDemoStory(() => {
+  const { addDialog } = useModalStore();
 
-export const Large: Story = {
-  args: createModalArgs<AppDialogConfig>({ size: "lg" }),
-};
+  const handleOpenDialog = () => {
+    addDialog({
+      ...getRequiredDialogConfig(),
+      shouldDisableOverlayClick: true,
+    });
+  };
 
-export const DisabledOverlayClickDemo: Story = {
-  ...getDefaultDemoStoryProps(),
-  render: () => {
-    const { addDialog } = useModalStore();
+  return (
+    <>
+      <AppModalWrapper />
+      <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
+    </>
+  );
+});
 
-    const handleOpenDialog = () => {
-      addDialog(createModalArgs({ shouldDisableOverlayClick: true }).config);
-    };
+export const ModalStackingDemo: Story = createDemoStory(() => {
+  const { addDialog } = useModalStore();
 
-    return (
-      <>
-        <AppModalWrapper />
-        <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
-      </>
-    );
-  },
-};
+  const handleOpenDialog1 = () => {
+    addDialog({
+      ...getRequiredDialogConfig(),
+      title: "Modal lg",
+      size: "lg",
+      submitButton: {
+        label: "Open next modal",
+        onClick: handleOpenDialog2,
+      },
+    });
+  };
 
-export const ModalStackingDemo: Story = {
-  ...getDefaultDemoStoryProps(),
-  render: () => {
-    const { addDialog } = useModalStore();
+  const handleOpenDialog2 = () => {
+    addDialog({
+      ...getRequiredDialogConfig(),
+      size: "md",
+      title: "Modal md",
+      submitButton: {
+        label: "Open next modal",
+        onClick: handleOpenDialog3,
+      },
+    });
+  };
 
-    const handleOpenDialog1 = () => {
-      addDialog({
-        id: "1",
-        title: "Title 1",
-        renderContent: () => (
-          <AppButton onClick={handleOpenDialog2}>Open modal 2</AppButton>
-        ),
-      });
-    };
+  const handleOpenDialog3 = () => {
+    addDialog({
+      ...getRequiredDialogConfig(),
+      title: "Modal sm",
+      size: "sm",
+    });
+  };
 
-    const handleOpenDialog2 = () => {
-      addDialog({
-        id: "2",
-        title: "Title 2",
-        renderContent: () => (
-          <AppButton onClick={handleOpenDialog3}>Open modal 3</AppButton>
-        ),
-      });
-    };
-
-    const handleOpenDialog3 = () => {
-      addDialog({
-        id: "3",
-        title: "Title 3",
-        renderContent: () => <AppTypography>Content 3</AppTypography>,
-      });
-    };
-
-    return (
-      <>
-        <AppModalWrapper />
-        <AppButton onClick={handleOpenDialog1}>Open modal</AppButton>
-      </>
-    );
-  },
-};
+  return (
+    <>
+      <AppModalWrapper />
+      <AppButton onClick={handleOpenDialog1}>Open modal</AppButton>
+    </>
+  );
+});

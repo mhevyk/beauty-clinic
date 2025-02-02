@@ -57,7 +57,6 @@ const ModalFooter = ({
 
   const handleSubmitClick = (event: MouseEvent<HTMLButtonElement>) => {
     onSubmit?.(event);
-    closeModal();
   };
 
   return (

@@ -12,14 +12,17 @@
 }
 
 .app-dialog {
+  $dialog-margin: 32px;
+
   position: relative;
   padding: 32px;
-  margin: 16px;
+  margin: $dialog-margin;
   background: $color-secondary;
   border: none;
   animation: fade-in 0.3s ease-in-out;
   box-sizing: border-box;
 
+  width: 100%;
   min-width: 320px;
 
   &--sm {
@@ -36,8 +39,8 @@
 
   &--fullscreen {
     max-width: none;
-    width: calc(100dvw - 64px);
-    height: calc(100dvh - 64px);
+    width: calc(100dvw - $dialog-margin * 2);
+    height: calc(100dvh - $dialog-margin * 2);
   }
 
   &__header {

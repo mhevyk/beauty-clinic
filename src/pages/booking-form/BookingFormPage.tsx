@@ -1,14 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 
+import classnames from "classnames";
+
 import CaretLeft from "@/assets/icons/caret-left.svg";
 
 import AppHelmet from "@/components/app-helmet/AppHelmet";
-import {
-  BackButton,
-  BoxStyled,
-  ContainerStyled,
-  SectionStyled,
-} from "@/pages/booking-form/BookingFormPage.styled";
+import "@/pages/booking-form/BookingFormPage.scss";
+import { BackButton } from "@/pages/booking-form/BookingFormPage.styled";
 import OrderInformationSection from "@/pages/booking-form/components/order-information-section/OrderInformationSection";
 
 type BookTreatmentSessionParams = {
@@ -20,8 +18,8 @@ export default function BookingFormPage() {
 
   return (
     <AppHelmet title="Book session" description="Confirm session order">
-      <SectionStyled>
-        <ContainerStyled>
+      <div className={classnames("booking-page", classnames)}>
+        <div className="booking-page__section">
           <BackButton
             component={Link}
             to={
@@ -33,11 +31,9 @@ export default function BookingFormPage() {
           >
             Back
           </BackButton>
-          <BoxStyled>
-            <OrderInformationSection />
-          </BoxStyled>
-        </ContainerStyled>
-      </SectionStyled>
+          <OrderInformationSection />
+        </div>
+      </div>
     </AppHelmet>
   );
 }

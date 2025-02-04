@@ -1,0 +1,12 @@
+@use "design-system/colors" as *;
+.booking-page {
+  display: flex;
+  justify-content: center;
+  background-color: $bg-page-main;
+
+  &__section {
+    max-width: 1000px;
+    width: 100%;
+    margin: 140px 10px 48px;
+  }
+}

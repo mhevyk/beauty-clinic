@@ -1,0 +1,9 @@
+@use "design-system/colors" as *;
+.login-prompt-container {
+  padding: 12px;
+  margin: 16px 0;
+  background-color: fade-out($text-secondary, 0.97);
+}
+.login-prompt-title {
+  margin: 20px 0 12px;
+}

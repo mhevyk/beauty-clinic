@@ -1,0 +1,30 @@
+@use "design-system/media-query" as *;
+
+.order-information {
+  display: flex;
+
+  @include media-query(md, down) {
+    flex-wrap: wrap;
+  }
+
+  &__client-details {
+    width: 100%;
+    margin: 0 26px;
+    @include media-query(md, up) {
+      max-width: 608px;
+    }
+    &__heading {
+      margin: 0 0 12px;
+    }
+  }
+  &__booking-details {
+    margin: 0 26px;
+    width: 100%;
+    @include media-query(md, down) {
+      margin: 32px;
+    }
+    &__submit-button {
+      margin-top: 12px;
+    }
+  }
+}

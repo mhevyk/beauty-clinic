@@ -1,18 +1,15 @@
 import Divider from "@mui/material/Divider";
+import classnames from "classnames";
+import AppButton from "design-system/app-button/AppButton";
+import AppTypography from "design-system/app-typography/AppTypography";
 import { useFormik } from "formik";
 
 import BookingForm from "@/containers/forms/booking-form/BookingForm";
 import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
-import {
-  BookingDetailsBox,
-  BoxStyled,
-  ClientDetailsBox,
-  ClientDetailsTitle,
-} from "@/pages/booking-form/BookingFormPage.styled";
 import AddToCartButton from "@/pages/booking-form/components/add-to-cart-button/AddToCartButton";
 import ClientDetails from "@/pages/booking-form/components/client-details/ClientDetails";
-import CreateOrderButton from "@/pages/booking-form/components/create-order-button/CreateOrderButton";
+import "@/pages/booking-form/components/order-information-section/OrderInformationSection.scss";
 import OrderInformation from "@/pages/booking-form/components/order-information/OrderInformation";
 import useUnifiedOrderData from "@/pages/booking-form/hooks/use-unified-order-data/useUnifiedOrderData";
 import { bookingFormSchema } from "@/validation/bookingFormSchema";
@@ -43,22 +40,39 @@ export default function OrderInformationSection() {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <BoxStyled>
-        <ClientDetailsBox>
-          <ClientDetailsTitle>Client Details</ClientDetailsTitle>
+      <div className={classnames("order-information", classnames)}>
+        <div className="order-information__client-details">
+          <AppTypography
+            className="order-information__client-details__heading"
+            variant="h6"
+          >
+            Client Details
+          </AppTypography>
           <Divider color="black" />
           <ClientDetails />
-          <BookingForm formik={formik} />
-        </ClientDetailsBox>
-        <BookingDetailsBox>
+          <BookingForm
+            values={formik.values}
+            errors={formik.errors}
+            handleChange={formik.handleChange}
+            setFieldValue={formik.setFieldValue}
+            setValues={formik.setValues}
+          />
+        </div>
+        <div className="order-information__booking-details">
           <OrderInformation sessionsFromLocation={cartState?.sessions} />
           <AddToCartButton />
-          <CreateOrderButton
+          <AppButton
+            className="order-information__booking-details__submit-button"
+            disabled={isOrderProcessing}
+            isLoading={isOrderProcessing}
             type="submit"
-            isOrderProcessing={isOrderProcessing}
-          />
-        </BookingDetailsBox>
-      </BoxStyled>
+            size="sm"
+            width="full"
+          >
+            Book Now
+          </AppButton>
+        </div>
+      </div>
     </form>
   );
 }

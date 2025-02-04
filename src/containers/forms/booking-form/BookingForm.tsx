@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import classnames from "classnames";
-import { useFormik } from "formik";
 
 import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import { PHONE_NUMBER_PATTERN } from "@/constants";
@@ -12,15 +11,26 @@ import AppTextInput from "@/styles/app-text-input/AppTextInput";
 import AppTextarea from "@/styles/app-textarea/AppTextarea";
 
 type BookingFormProps = {
-  formik: ReturnType<typeof useFormik<ClientDetailsFormValues>>;
+  values: ClientDetailsFormValues;
+  handleChange: (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  errors: Partial<Record<keyof ClientDetailsFormValues, string>>;
+  setFieldValue: (field: string, value: unknown) => void;
+  setValues: (values: ClientDetailsFormValues) => void;
 };
 
-export default function BookingForm({ formik }: BookingFormProps) {
+export default function BookingForm({
+  values,
+  handleChange,
+  errors,
+  setFieldValue,
+  setValues,
+}: BookingFormProps) {
   const [length, setLength] = useState(0);
 
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
 
-  const { values, errors, setValues, handleChange, setFieldValue } = formik;
   const { data } = useGetCurrentUserDetailsQuery();
 
   useEffect(() => {

@@ -1,10 +1,9 @@
-import {
-  LoginPromptBox,
-  LoginPromptLink,
-  LoginPromptTypography,
-  TellAboutYou,
-} from "@/pages/booking-form/components/client-details/ClientDetails.styled";
-import { useUserStore } from "@/store/user/userStore.ts";
+import AppLink from "design-system/app-link/app-link";
+import AppTypography from "design-system/app-typography/AppTypography";
+
+import { useUserStore } from "@/store/user/userStore";
+
+import "./ClientDetails.scss";
 
 export default function ClientDetails() {
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
@@ -15,12 +14,18 @@ export default function ClientDetails() {
 
   return (
     <>
-      <TellAboutYou>Tell us a bit about yourself</TellAboutYou>
-      <LoginPromptBox>
-        <LoginPromptTypography>Already have an account?</LoginPromptTypography>
-        <LoginPromptLink to="/auth/signin">Log In</LoginPromptLink>
-        <LoginPromptTypography>for faster booking.</LoginPromptTypography>
-      </LoginPromptBox>
+      <AppTypography className="login-prompt-title">
+        Tell us a bit about yourself
+      </AppTypography>
+      <div className="login-prompt-container">
+        <AppTypography inline>Already have an account?</AppTypography>{" "}
+        <AppLink to="/auth/signin">
+          <AppTypography inline underline>
+            Log In
+          </AppTypography>
+        </AppLink>{" "}
+        <AppTypography inline>for faster booking.</AppTypography>
+      </div>
     </>
   );
 }

@@ -1,12 +1,11 @@
 import { useState } from "react";
 
 import { useMediaQuery } from "@mui/material";
-import Box from "@mui/material/Box";
 import Tooltip from "@mui/material/Tooltip";
+import AppButton from "design-system/app-button/AppButton";
 
-import { ActionButton } from "@/pages/booking-form/components/add-to-cart-button/AddToCartButton.styled";
 import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
-import { useCartStore } from "@/store/cart/cartStore.ts";
+import { useCartStore } from "@/store/cart/cartStore";
 import theme from "@/theme/theme.ts";
 
 export default function AddToCartButton() {
@@ -48,18 +47,16 @@ export default function AddToCartButton() {
       arrow
       placement={isMediumScreen ? "left" : "top"}
     >
-      <Box component="span" sx={{ marginTop: "12px" }}>
-        <ActionButton
-          type="button"
-          disabled={isButtonDisabled}
-          fullWidth
-          size="small"
-          variant="primary-outlined"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </ActionButton>
-      </Box>
+      <AppButton
+        type="button"
+        variant="secondary"
+        onClick={handleAddToCart}
+        disabled={isButtonDisabled}
+        width="full"
+        size="sm"
+      >
+        Add to Cart
+      </AppButton>
     </Tooltip>
   );
 }

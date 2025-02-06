@@ -1,0 +1,13 @@
+@use "design-system/colors" as *;
+
+.login-prompt {
+  &__container {
+    padding: 12px;
+    margin: 16px 0;
+    background-color: rgba($color-secondary-dark, 0.06);
+  }
+
+  &__title {
+    margin: 20px 0 12px;
+  }
+}

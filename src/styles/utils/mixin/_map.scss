@@ -1,4 +1,4 @@
-@use "../breakpoints" as *;
+@use "../../breakpoints" as *;
 
 $breakpoints: (
   "xs": $breakpoint-xs,

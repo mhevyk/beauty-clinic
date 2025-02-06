@@ -1,18 +1,19 @@
-@use "design-system/media-query" as *;
 @use "design-system/colors" as *;
+@use "design-system/utils/mixin" as *;
 
 .order-information {
   display: flex;
+  flex-wrap: wrap;
 
-  @include media-query(md, down) {
-    flex-wrap: wrap;
+  @include breakpoint(md) {
+    flex-wrap: nowrap;
   }
 
   &__client-details {
     width: 100%;
     margin: 0 26px;
 
-    @include media-query(md, up) {
+    @include breakpoint(md) {
       max-width: 608px;
     }
 
@@ -30,11 +31,11 @@
   }
 
   &__booking-details {
-    margin: 0 26px;
+    margin: 32px;
     width: 100%;
 
-    @include media-query(md, down) {
-      margin: 32px;
+    @include breakpoint(md) {
+      margin: 0 26px;
     }
 
     &__submit-button {

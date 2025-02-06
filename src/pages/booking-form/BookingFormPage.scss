@@ -1,12 +1,27 @@
 @use "design-system/colors" as *;
+
 .booking-page {
   display: flex;
   justify-content: center;
-  background-color: $color-background-secondary;
+  background-color: $color-background;
 
   &__section {
     max-width: 1000px;
     width: 100%;
     margin: 140px 10px 48px;
+
+    &__link {
+      margin-bottom: 42px;
+      margin-left: 26px;
+
+      &__icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &__box {
+        display: flex;
+      }
+    }
   }
 }

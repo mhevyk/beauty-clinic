@@ -1,11 +1,10 @@
+import { Icon } from "@iconify/react";
 import { Navigate } from "react-router-dom";
 
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
+import AppTypography from "design-system/app-typography/AppTypography";
 
 import BookingDetails from "@/pages/booking-form/components/booking-details/BookingDetails";
-import { TotalPriceBox } from "@/pages/booking-form/components/order-information/OrderInformation.styled";
+import "@/pages/booking-form/components/order-information/OrderInformation.scss";
 import useSelectedTreatmentSession from "@/pages/booking-form/hooks/use-selected-treatment-session/useSelectedTreatmentSession";
 import { useCartStore } from "@/store/cart/cartStore";
 
@@ -45,9 +44,12 @@ export default function OrderInformation({
 
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center" marginBottom="46px">
-        <CircularProgress color="secondary" />
-      </Box>
+      <div className="order-information__loading-box">
+        <Icon
+          icon="line-md:loading-loop"
+          className="order-information__loading-box__icon"
+        />
+      </div>
     );
   }
 
@@ -63,11 +65,13 @@ export default function OrderInformation({
   return (
     <>
       <BookingDetails />
-      <Typography margin="20px 0 12px">Payment Details</Typography>
-      <TotalPriceBox>
-        <Typography>Total</Typography>
-        <Typography>${totalPrice}</Typography>
-      </TotalPriceBox>
+      <AppTypography className="order-information__heading">
+        Payment Details
+      </AppTypography>
+      <div className="order-information__price-box">
+        <AppTypography>Total</AppTypography>
+        <AppTypography>${totalPrice}</AppTypography>
+      </div>
     </>
   );
 }

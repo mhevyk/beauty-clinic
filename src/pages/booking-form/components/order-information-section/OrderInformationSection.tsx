@@ -1,4 +1,3 @@
-import Divider from "@mui/material/Divider";
 import classnames from "classnames";
 import AppButton from "design-system/app-button/AppButton";
 import AppTypography from "design-system/app-typography/AppTypography";
@@ -26,7 +25,14 @@ export default function OrderInformationSection() {
   const [createOrder, { isLoading: isOrderProcessing }] =
     useCreateOrder(itemsToOrder);
 
-  const formik = useFormik({
+  const {
+    values: formValues,
+    errors,
+    handleChange,
+    setFieldValue,
+    setValues,
+    handleSubmit: submitForm,
+  } = useFormik({
     initialValues: initialFormValues,
     onSubmit: handleSubmit,
     validationSchema: bookingFormSchema,
@@ -39,7 +45,7 @@ export default function OrderInformationSection() {
   }
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={submitForm}>
       <div className={classnames("order-information", classnames)}>
         <div className="order-information__client-details">
           <AppTypography
@@ -48,14 +54,14 @@ export default function OrderInformationSection() {
           >
             Client Details
           </AppTypography>
-          <Divider color="black" />
+          <hr className="order-information__client-details__divider" />
           <ClientDetails />
           <BookingForm
-            values={formik.values}
-            errors={formik.errors}
-            handleChange={formik.handleChange}
-            setFieldValue={formik.setFieldValue}
-            setValues={formik.setValues}
+            values={formValues}
+            errors={errors}
+            handleChange={handleChange}
+            setFieldValue={setFieldValue}
+            setValues={setValues}
           />
         </div>
         <div className="order-information__booking-details">

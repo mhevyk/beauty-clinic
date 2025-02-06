@@ -14,10 +14,10 @@ export default function ClientDetails() {
 
   return (
     <>
-      <AppTypography className="login-prompt-title">
+      <AppTypography className="login-prompt__title">
         Tell us a bit about yourself
       </AppTypography>
-      <div className="login-prompt-container">
+      <div className="login-prompt__container">
         <AppTypography inline>Already have an account?</AppTypography>{" "}
         <AppLink to="/auth/signin">
           <AppTypography inline underline>

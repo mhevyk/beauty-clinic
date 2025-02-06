@@ -1,4 +1,5 @@
 @use "design-system/media-query" as *;
+@use "design-system/colors" as *;
 
 .order-information {
   display: flex;
@@ -10,19 +11,32 @@
   &__client-details {
     width: 100%;
     margin: 0 26px;
+
     @include media-query(md, up) {
       max-width: 608px;
     }
+
     &__heading {
-      margin: 0 0 12px;
+      margin: 0 0 16px;
+    }
+
+    &__divider {
+      margin: 0;
+      border-width: 0;
+      border-style: solid;
+      border-color: $color-primary;
+      border-bottom-width: thin;
     }
   }
+
   &__booking-details {
     margin: 0 26px;
     width: 100%;
+
     @include media-query(md, down) {
       margin: 32px;
     }
+
     &__submit-button {
       margin-top: 12px;
     }

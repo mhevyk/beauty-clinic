@@ -1,7 +1,7 @@
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
+import AppTypography from "design-system/app-typography/AppTypography";
 
+import "@/pages/booking-form/components/booking-details-item/BookingDetailsItem.scss";
 import { OrderItem } from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
 
@@ -15,17 +15,23 @@ export default function BookingDetailsItem({
   const { treatment, employee, sessionStartsAt } = orderItem;
 
   return (
-    <Box minHeight="116px" paddingBottom="12px">
-      <Typography fontSize="16px">{treatment.name}</Typography>
-      <Typography fontSize="16px">
+    <div className="booking-details-item">
+      <AppTypography>{treatment.name}</AppTypography>
+      <AppTypography>
         {format(sessionStartsAt, `MMMM d, yyyy h:mm aaa `)}
-      </Typography>
-      <Typography color="#605f5d" fontSize="14px">
+      </AppTypography>
+      <AppTypography
+        className="booking-details-item__subitems"
+        variant="caption"
+      >
         {employee.name}
-      </Typography>
-      <Typography color="#605f5d" fontSize="14px">
+      </AppTypography>
+      <AppTypography
+        className="booking-details-item__subitems"
+        variant="caption"
+      >
         {minutesToHourAndMinutes(treatment.duration)}
-      </Typography>
-    </Box>
+      </AppTypography>
+    </div>
   );
 }

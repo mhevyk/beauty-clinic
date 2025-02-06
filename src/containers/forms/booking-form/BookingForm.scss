@@ -1,0 +1,23 @@
+@use "design-system/colors" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    span {
+      margin-left: auto;
+    }
+  }
+
+  textarea,
+  input {
+    background-color: $color-transparent;
+  }
+}

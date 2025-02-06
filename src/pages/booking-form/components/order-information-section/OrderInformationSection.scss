@@ -1,0 +1,45 @@
+@use "design-system/colors" as *;
+@use "design-system/utils/mixin" as *;
+
+.order-information {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include breakpoint(md) {
+    flex-wrap: nowrap;
+  }
+
+  &__client-details {
+    width: 100%;
+    margin: 0 26px;
+
+    @include breakpoint(md) {
+      max-width: 608px;
+    }
+
+    &__heading {
+      margin: 0 0 16px;
+    }
+
+    &__divider {
+      margin: 0;
+      border-width: 0;
+      border-style: solid;
+      border-color: $color-primary;
+      border-bottom-width: thin;
+    }
+  }
+
+  &__booking-details {
+    margin: 32px;
+    width: 100%;
+
+    @include breakpoint(md) {
+      margin: 0 26px;
+    }
+
+    &__submit-button {
+      margin-top: 12px;
+    }
+  }
+}

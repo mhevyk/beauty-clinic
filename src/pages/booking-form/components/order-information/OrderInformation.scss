@@ -1,0 +1,22 @@
+.order-information {
+  &__heading {
+    margin: 20px 0 12px;
+  }
+
+  &__price-box {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__loading-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 46px;
+
+    &__icon {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}

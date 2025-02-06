@@ -1,0 +1,10 @@
+@use "design-system/colors" as *;
+
+.booking-details-item {
+  min-height: 116px;
+  padding-bottom: 12px;
+
+  &__subitems {
+    color: rgba($color-primary, 0.5);
+  }
+}

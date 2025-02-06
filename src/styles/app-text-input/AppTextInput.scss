@@ -67,6 +67,11 @@
     box-sizing: border-box;
     width: 100%;
 
+    &:focus-visible {
+      outline: none;
+      border: 2px solid $color-primary;
+    }
+
     &:disabled {
       cursor: not-allowed;
       border: 1px solid $color-muted;

@@ -8,10 +8,25 @@ $bg-color: rgba($color-primary, 0.7);
   color: $color-secondary;
   padding: 12px 16px;
   border-radius: 4px;
-  white-space: nowrap;
   z-index: 1000;
   opacity: 0;
   animation: fadeIn 0.2s forwards;
+
+  &--nowrap {
+    white-space: nowrap;
+  }
+
+  &--medium {
+    width: 250px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  &--large {
+    width: 500px;
+    white-space: normal;
+    word-break: break-word;
+  }
 
   &__wrapper {
     position: relative;

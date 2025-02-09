@@ -1,3 +1,7 @@
+@use "design-system/mixins/scrollbar.module.scss" as *;
+
+$transition: all ease 0.3s;
+
 .app-select {
   width: fit-content;
   position: relative;
@@ -15,48 +19,35 @@
     background: #fff;
     box-sizing: border-box;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   &__list {
-    transition: opacity 0.3s ease;
+    transition: $transition;
     margin-top: 5px;
     scrollbar-width: 5px;
-    opacity: 1;
+    opacity: 0;
     position: absolute !important;
     z-index: 10;
     border: #fff 5px solid;
     background: #fff;
     border-right: 0;
     box-sizing: border-box;
-    overflow-y: auto & div {
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    div {
       list-style-type: none;
       gap: 20px;
       display: flex;
     }
 
-    &::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #fff;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #ddd;
-      border-radius: var(--scrollbar-width);
-      border: calc(var(--scrollbar-width) / 4) solid var(--page-background);
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: #ccc;
-    }
+    @include scrollbar();
   }
 
   &__list-item {
     padding: 5px;
-    transition: all ease 0.3s;
+    transition: $transition;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -64,10 +55,16 @@
     background: #fff;
     cursor: pointer;
 
+    .app-select__selected-adorment {
+      opacity: 0;
+      scale: 0.9;
+      transition: all ease 0.15s;
+    }
+
     &:hover {
       background-color: #eee;
     }
-
+    
     &--disabled {
       background: #bbb;
       color: #555;
@@ -77,10 +74,19 @@
     &--disabled:hover {
       background: #bbb;
     }
-  }
 
-  &_arrow-button {
-    transition: all ease 0.3s;
+    &--selected {
+      background: #eee;
+
+      .app-select__selected-adorment {
+        scale: 1;
+        opacity: 1;
+      }
+    }
+
+    &--selected:hover {
+      background: #ddd;
+    }
   }
 
   &__spinner {
@@ -107,15 +113,12 @@
   }
 
   &__list-item:hover &__custom-tooltip {
+    transition: $transition 1.5s;
     opacity: 1;
-  }
-
-  &:has(.app-select--expanded) &_arrow-button {
-    transform: rotate(180deg);
   }
 
   // Need to be at the bottom
   &--expanded {
-    opacity: 0;
+    opacity: 1;
   }
 }

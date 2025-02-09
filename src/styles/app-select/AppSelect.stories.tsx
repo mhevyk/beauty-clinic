@@ -1,9 +1,8 @@
-import { Icon } from "@iconify/react/dist/iconify.js";
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import AppSelect from "@/styles/app-select/AppSelect";
-import { AppSelectProps, Option } from "@/styles/app-select/AppSelect.types";
+import { AppSelectProps, AppOption } from "@/styles/app-select/AppSelect.types";
 
 const meta: Meta = {
   title: "AppSelect",
@@ -18,8 +17,8 @@ type Story = StoryObj<AppSelectProps>;
 const generateOptions = (start: number, count: number) =>
   Array.from(
     { length: count },
-    (_, index): Option => ({
-      value: `Option ${start + index + 1}`,
+    (_, index): AppOption => ({
+      value: `AppOption ${start + index + 1}`,
     })
   );
 
@@ -62,7 +61,7 @@ export const MultipleSelect: Story = {
     return (
       <AppSelect
         label="Select"
-        type="multiple"
+        multiple
         options={options}
         height={200}
         width={300}
@@ -79,12 +78,12 @@ export const CustomOptionComponent: Story = {
     return (
       <AppSelect
         label="Select"
-        type="multiple"
+        multiple
         options={options}
         height={200}
         width={300}
         itemSize={40}
-        renderOptions={({ item, isSelected, onSelect, style }) => {
+        renderOption={({ item, isSelected, onSelect, style }) => {
           if (!item) {
             return null;
           }
@@ -97,7 +96,7 @@ export const CustomOptionComponent: Story = {
                 alignItems: "center",
                 backgroundColor: isSelected ? "#d3f9d8" : "#fff",
               }}
-              onClick={() => onSelect(item as Option)}
+              onClick={() => onSelect(item as AppOption)}
             >
               <p style={{ margin: 0 }}>{item.value}</p>
             </div>
@@ -110,7 +109,7 @@ export const CustomOptionComponent: Story = {
 
 export const WithOptionFetching: Story = {
   render: () => {
-    const [options, setOptions] = useState<Option[]>(generateOptions(0, 20));
+    const [options, setOptions] = useState<AppOption[]>(generateOptions(0, 20));
     const [hasMore, setHasMore] = useState(true);
 
     const fetchMoreOptions = async () => {
@@ -134,13 +133,13 @@ export const WithOptionFetching: Story = {
         width={300}
         options={options}
         loadMoreOptions={fetchMoreOptions}
-        hasMore={hasMore}
+        isFetchingOptions={hasMore}
       />
     );
   },
 };
 
-export const WithCustomAdornment: Story = {
+export const WithErrorMessage: Story = {
   render: () => {
     const options = generateOptions(0, 100);
 
@@ -151,9 +150,8 @@ export const WithCustomAdornment: Story = {
         height={200}
         width={300}
         itemSize={40}
-        selectedAdornment={
-          <Icon icon="tabler:circle-check" width="24" height="24" />
-        }
+        helperText="Please, select an item"
+        errorMessage="Error occured"
       />
     );
   },
@@ -173,9 +171,6 @@ export const WithDisabledOptions: Story = {
         height={200}
         width={300}
         itemSize={40}
-        selectedAdornment={
-          <Icon icon="tabler:circle-check" width="24" height="24" />
-        }
       />
     );
   },

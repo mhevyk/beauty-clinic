@@ -36,6 +36,11 @@ export default [
               name: "react",
               importNames: ["default"],
             },
+            {
+              name: "@iconify/react/dist/iconify.js",
+              message:
+                'Please import from "@iconify/react" instead of "@iconify/react/dist/iconify.js".',
+            },
           ],
         },
       ],

@@ -1,43 +1,61 @@
-import { CSSProperties } from "react";
+import { CSSProperties, KeyboardEvent } from "react";
 
-import { AppAdornment } from "@/styles/types";
+import { AppFormControlMeta } from "@/styles/app-form-control/AppFormControl.types";
 
-export type Option = {
+export type AppOption = {
   value: string;
   disabled?: boolean;
 };
 
+type AppSelectSingleProps = {
+  type: "single"
+  onChange: (selected: AppOption | null) => void;
+}
+
+type AppSelectMultipleProps = {
+  type: "multiple";
+  onChange: (selected: AppOption[]) => void;
+}
+
+type AppSelectUnionProps = AppSelectSingleProps | AppSelectMultipleProps;
+
+export type SelectedState = AppOption["value"][] | AppOption["value"] | null;
+
 export type AppSelectProps = {
-  options: Option[];
+  options: AppOption[];
   height: number | string;
   width: number | string;
   label: string;
-  overscanCount?: number;
   itemSize?: number;
-  type?: "single" | "multiple";
-  onChange?: (selected: string[]) => void;
-  renderOptions?: (props: RenderItemProps) => JSX.Element | null;
+  renderOption?: (props: AppSelectRenderItemProps) => JSX.Element | null;
   loadMoreOptions?: () => Promise<void>;
-  hasMore?: boolean;
-  selectedAdornment?: AppAdornment;
-};
+  isFetchingOptions?: boolean;
+} & AppFormControlMeta & AppSelectUnionProps;
 
-export type ItemProps = {
+export type AppSelectItemProps = {
   index: number;
   style: CSSProperties;
   data: {
-    options: Option[];
-    isSelected: (item: Option) => boolean;
-    onSelect: (item: Option) => void;
-    renderOptions?: (props: RenderItemProps) => JSX.Element | null;
-    loading?: boolean;
-    selectedAdornment?: AppAdornment;
+    options: AppOption[];
+    isItemSelected: (item: AppOption) => boolean;
+    onSelect: (item: AppOption) => void;
+    onSelectWithKeyboard: (
+      event: KeyboardEvent<HTMLDivElement>,
+      item: AppOption
+    ) => void;
+    renderOption?: (props: AppSelectRenderItemProps) => JSX.Element | null;
+    isLoading?: boolean;
   };
 };
 
-export type RenderItemProps = {
-  item?: Option;
+export type AppSelectRenderItemProps = {
+  item?: AppOption;
   isSelected: boolean;
-  onSelect: (item: Option) => void;
+  onSelect: (item: AppOption) => void;
   style: CSSProperties;
+};
+
+export type HandleScroll = {
+  scrollOffset: number;
+  scrollHeight: number;
 };

@@ -34,3 +34,8 @@ export const USER_ROLES = {
   USER: "USER",
   ADMIN: "ADMIN",
 } as const;
+
+export const KEYBOARD_KEYS = {
+  Enter: "Enter",
+  Space: " ",
+} as const

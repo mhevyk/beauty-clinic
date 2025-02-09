@@ -1,32 +1,30 @@
 import { Icon } from "@iconify/react";
 import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+
+import { fn } from "@storybook/test";
 
 import AppButton from "@/styles/app-button/AppButton";
-import AppModalWrapper from "@/styles/app-modal/AppModalWrapper";
-import OverlayDecorator from "@/styles/app-modal/OverlayDecorator";
 import AppDialog from "@/styles/app-modal/app-dialog/AppDialog";
-import {
-  AppDialogConfig,
-  AppDialogProps,
-} from "@/styles/app-modal/app-dialog/AppDialog.types";
-import getRequiredModalConfig from "@/styles/app-modal/getRequiredModalConfig";
-import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
+import { AppDialogProps } from "@/styles/app-modal/app-dialog/AppDialog.types";
+import AppTypography from "@/styles/app-typography/AppTypography";
+
+const defaultContent = (
+  <AppTypography>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi
+    suscipit accusamus veritatis ullam in doloremque dolor voluptate, facilis,
+    nam voluptatem sapiente repellendus vero culpa nemo officia quia? Non, iste?
+  </AppTypography>
+);
 
 const meta: Meta<AppDialogProps> = {
   title: "modals/AppDialog",
   component: AppDialog,
-  tags: ["autodocs"],
-  beforeEach: () => useModalStore.getState().closeAllModals(),
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "Some stories are not included in the docs, see them separately",
-      },
-      story: {
-        height: "500px",
-      },
-    },
+  args: {
+    title: "Title",
+    children: defaultContent,
+    isOpen: true,
+    onClose: fn(),
   },
 };
 
@@ -34,192 +32,220 @@ export default meta;
 
 type Story = StoryObj<AppDialogProps>;
 
-const createOverlayStory = (
-  overrideConfig: Partial<AppDialogConfig> = {}
-): Partial<Story> => {
+const getDefaultArgs = () => {
   return {
-    args: {
-      config: {
-        ...getRequiredModalConfig(),
-        ...overrideConfig,
-      },
-    },
-    decorators: [OverlayDecorator],
+    title: "Title",
+    children: defaultContent,
+    isOpen: true,
+    onClose: fn(),
   };
 };
 
-const createDemoStory = (render: Story["render"]): Partial<Story> => {
-  return {
-    tags: ["!autodocs"],
-    render,
-  };
+export const Default: Story = {
+  args: getDefaultArgs(),
 };
-
-export const Default: Story = createOverlayStory();
 
 // @TODO: add AppTooltip for long title
-export const WithLongTitle: Story = createOverlayStory({
-  title: "This is a very long title that should be truncated",
-});
-
-export const DefaultDemo: Story = createDemoStory(() => {
-  const { addDialog } = useModalStore();
-
-  const handleOpenDialog = () => {
-    addDialog(getRequiredModalConfig());
-  };
-
-  return (
-    <>
-      <AppModalWrapper />
-      <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
-    </>
-  );
-});
-
-export const CustomizedDemo: Story = createDemoStory(() => {
-  const { addDialog, closeModalById } = useModalStore();
-
-  const requiredDialogConfig = getRequiredModalConfig();
-
-  const handleOpenDialog = () => {
-    addDialog({
-      ...requiredDialogConfig,
-      size: "md",
-      shouldDisableOverlayClick: true,
-      submitButton: {
-        label: "Save",
-        onClick: () => closeModalById(requiredDialogConfig.id),
-      },
-      cancelButton: true,
-    });
-  };
-
-  return (
-    <>
-      <AppModalWrapper />
-      <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
-    </>
-  );
-});
-
-export const WithDefaultSubmitButton: Story = createOverlayStory({
-  submitButton: true,
-});
-
-export const WithDefaultCancelButton: Story = createOverlayStory({
-  cancelButton: true,
-});
-
-export const WithBothDefaultButtons: Story = createOverlayStory({
-  submitButton: true,
-  cancelButton: true,
-});
-
-export const WithCustomisedCancelButton: Story = createOverlayStory({
-  cancelButton: { label: "Custom cancel", disabled: true },
-});
-
-// @TODO: add danger variant for button
-export const WithCustomizedSubmitButton: Story = createOverlayStory({
-  submitButton: {
-    label: "Delete",
-    endAdornment: <Icon icon="mdi:trash" width="24" height="24" />,
+export const WithLongTitle: Story = {
+  args: {
+    title: "This is a very long title that should be truncated",
   },
-});
+};
 
-export const WithBothButtonsCustomized: Story = createOverlayStory({
-  cancelButton: {
-    label: "Reset",
+export const DefaultDemo: Story = {
+  render: () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <AppButton onClick={() => setIsOpen(true)}>Open dialog</AppButton>
+        <AppDialog
+          title="Title"
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          {defaultContent}
+        </AppDialog>
+      </>
+    );
   },
-  submitButton: {
-    isLoading: true,
+};
+
+export const FullyCustomizedDemo: Story = {
+  render: () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+      <>
+        <AppButton onClick={() => setIsOpen(true)}>Open dialog</AppButton>
+        <AppDialog
+          title="Title"
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          size="sm"
+          shouldDisableOverlayClick
+          submitButton={{
+            label: "Save",
+            disabled: true,
+            onClick: fn(),
+          }}
+          cancelButton={{
+            label: "Discard",
+            onClick: fn(),
+          }}
+        >
+          {defaultContent}
+        </AppDialog>
+      </>
+    );
   },
-});
+};
+
+export const WithDefaultSubmitButton: Story = {
+  args: {
+    submitButton: true,
+  },
+};
+
+export const WithDefaultCancelButton: Story = {
+  args: {
+    cancelButton: true,
+  },
+};
+
+export const WithBothDefaultButtons: Story = {
+  args: {
+    submitButton: true,
+    cancelButton: true,
+  },
+};
+
+export const WithCustomisedCancelButton: Story = {
+  args: {
+    cancelButton: {
+      label: "Custom cancel",
+      disabled: true,
+    },
+  },
+};
+
+export const WithCustomizedSubmitButton: Story = {
+  args: {
+    submitButton: {
+      label: "Delete",
+      endAdornment: <Icon icon="mdi:trash" width="24" height="24" />,
+    },
+  },
+};
+
+export const WithBothButtonsCustomized: Story = {
+  args: {
+    cancelButton: {
+      label: "Reset",
+    },
+    submitButton: {
+      isLoading: true,
+    },
+  },
+};
 
 export const FullScreen: Story = {
-  ...createOverlayStory({ isFullscreen: true }),
-  tags: ["!autodocs"],
   parameters: {
     layout: "fullscreen",
   },
+  args: {
+    isFullscreen: true,
+  },
 };
 
-export const Small: Story = createOverlayStory({
-  size: "sm",
-  submitButton: true,
-  cancelButton: true,
-});
+export const Small: Story = {
+  args: {
+    size: "sm",
+    submitButton: true,
+    cancelButton: true,
+  },
+};
 
-export const Medium: Story = createOverlayStory({
-  size: "md",
-  submitButton: true,
-  cancelButton: true,
-});
+export const Medium: Story = {
+  args: {
+    size: "md",
+    submitButton: true,
+    cancelButton: true,
+  },
+};
 
-export const Large: Story = createOverlayStory({
-  size: "lg",
-  submitButton: true,
-  cancelButton: true,
-});
+export const Large: Story = {
+  args: {
+    size: "lg",
+    submitButton: true,
+    cancelButton: true,
+  },
+};
 
-export const DisabledOverlayClickDemo: Story = createDemoStory(() => {
-  const { addDialog } = useModalStore();
+export const DisabledOverlayClickDemo: Story = {
+  render: () => {
+    const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpenDialog = () => {
-    addDialog({
-      ...getRequiredModalConfig(),
-      shouldDisableOverlayClick: true,
-    });
-  };
+    return (
+      <>
+        <AppButton onClick={() => setIsOpen(true)}>Open dialog</AppButton>
+        <AppDialog
+          title="Title"
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          shouldDisableOverlayClick
+        >
+          {defaultContent}
+        </AppDialog>
+      </>
+    );
+  },
+};
 
-  return (
-    <>
-      <AppModalWrapper />
-      <AppButton onClick={handleOpenDialog}>Open modal</AppButton>
-    </>
-  );
-});
+export const DialogStackingDemo: Story = {
+  render: () => {
+    const [isLargeDialogOpen, setIsLargeDialogOpen] = useState(false);
+    const [isMediumDialogOpen, setIsMediumDialogOpen] = useState(false);
+    const [isSmallDialogOpen, setIsSmallDialogOpen] = useState(false);
 
-export const ModalStackingDemo: Story = createDemoStory(() => {
-  const { addDialog } = useModalStore();
-
-  const handleOpenDialog1 = () => {
-    addDialog({
-      ...getRequiredModalConfig(),
-      title: "Modal lg",
-      size: "lg",
-      submitButton: {
-        label: "Open next modal",
-        onClick: handleOpenDialog2,
-      },
-    });
-  };
-
-  const handleOpenDialog2 = () => {
-    addDialog({
-      ...getRequiredModalConfig(),
-      size: "md",
-      title: "Modal md",
-      submitButton: {
-        label: "Open next modal",
-        onClick: handleOpenDialog3,
-      },
-    });
-  };
-
-  const handleOpenDialog3 = () => {
-    addDialog({
-      ...getRequiredModalConfig(),
-      title: "Modal sm",
-      size: "sm",
-    });
-  };
-
-  return (
-    <>
-      <AppModalWrapper />
-      <AppButton onClick={handleOpenDialog1}>Open modal</AppButton>
-    </>
-  );
-});
+    return (
+      <>
+        <AppButton onClick={() => setIsLargeDialogOpen(true)}>
+          Open dialog 1
+        </AppButton>
+        <AppDialog
+          title="Dialog 1"
+          size="lg"
+          isOpen={isLargeDialogOpen}
+          onClose={() => setIsLargeDialogOpen(false)}
+          submitButton={{
+            label: "Open dialog 2",
+            onClick: () => setIsMediumDialogOpen(true),
+          }}
+        >
+          {defaultContent}
+        </AppDialog>
+        <AppDialog
+          title="Dialog 2"
+          size="md"
+          isOpen={isMediumDialogOpen}
+          onClose={() => setIsMediumDialogOpen(false)}
+          submitButton={{
+            label: "Open dialog 3",
+            onClick: () => setIsSmallDialogOpen(true),
+          }}
+        >
+          {defaultContent}
+        </AppDialog>
+        <AppDialog
+          title="Dialog 3"
+          size="sm"
+          isOpen={isSmallDialogOpen}
+          onClose={() => setIsSmallDialogOpen(false)}
+        >
+          {defaultContent}
+        </AppDialog>
+      </>
+    );
+  },
+};

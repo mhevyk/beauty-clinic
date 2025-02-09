@@ -39,7 +39,6 @@
     "date-fns": "^3.6.0",
     "dompurify": "^3.1.6",
     "eventemitter3": "^5.0.1",
-    "focus-trap-react": "^11.0.3",
     "formik": "^2.4.5",
     "graphql": "^16.9.0",
     "jwt-decode": "^4.0.0",

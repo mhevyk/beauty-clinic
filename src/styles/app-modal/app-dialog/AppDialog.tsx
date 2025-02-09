@@ -1,149 +1,157 @@
-import { KeyboardEvent, MouseEvent } from "react";
+import { MouseEvent, useId, useLayoutEffect, useRef, useState } from "react";
 
 import classnames from "classnames";
 
 import AppButton from "@/styles/app-button/AppButton";
+import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 import AppIconButton from "@/styles/app-icon-button/AppIconButton";
 import "@/styles/app-modal/app-dialog/AppDialog.scss";
 import {
-  AppDialogConfig,
+  AppDialogButtonConfig,
   AppDialogProps,
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
-import { useModalStore } from "@/styles/app-modal/hooks/use-modal/useModal";
+import AppModalWrapper from "@/styles/app-modal/app-modal-wrapper/AppModalWrapper";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
-const getFooterButtonProps = (
-  footerButton: AppDialogConfig["submitButton" | "cancelButton"]
-) => {
-  if (!footerButton || footerButton === true) {
-    return {};
-  }
-
-  return footerButton;
+type FooterButtonProps = {
+  defaultLabel: string;
+  button: true | AppDialogButtonConfig;
+  variant: AppButtonProps["variant"];
 };
 
-type AppDialogFooterProps = Pick<
-  AppDialogConfig,
-  "cancelButton" | "submitButton"
-> & {
-  closeModal: () => void;
-};
-
-const ModalFooter = ({
-  cancelButton,
-  submitButton,
-  closeModal,
-}: AppDialogFooterProps) => {
-  if (!cancelButton && !submitButton) {
-    return null;
-  }
-
-  const {
-    label: cancelButtonLabel = "Cancel",
-    onClick: onCancel,
-    ...restCancelButtonProps
-  } = getFooterButtonProps(cancelButton);
-
-  const {
-    label: submitButtonLabel = "Submit",
-    onClick: onSubmit,
-    ...restSubmitButtonProps
-  } = getFooterButtonProps(submitButton);
-
-  const handleCancelClick = (event: MouseEvent<HTMLButtonElement>) => {
-    onCancel?.(event);
-    closeModal();
-  };
-
-  const handleSubmitClick = (event: MouseEvent<HTMLButtonElement>) => {
-    onSubmit?.(event);
-  };
+const FooterButton = ({ button, defaultLabel, variant }: FooterButtonProps) => {
+  const { label, ...buttonProps } = button === true ? {} : button;
 
   return (
-    <footer className="app-dialog__footer">
-      {cancelButton && (
-        <AppButton
-          variant="secondary"
-          size="sm"
-          onClick={handleCancelClick}
-          width="full"
-          {...restCancelButtonProps}
-        >
-          {cancelButtonLabel}
-        </AppButton>
-      )}
-      {submitButton && (
-        <AppButton
-          size="sm"
-          onClick={handleSubmitClick}
-          width="full"
-          {...restSubmitButtonProps}
-        >
-          {submitButtonLabel}
-        </AppButton>
-      )}
-    </footer>
+    <AppButton variant={variant} size="sm" width="full" {...buttonProps}>
+      {label || defaultLabel}
+    </AppButton>
   );
 };
 
-const AppDialog = ({ config }: AppDialogProps) => {
-  const { closeModalById } = useModalStore();
+const AppDialog = ({
+  isOpen = false,
+  onClose,
+  children,
+  size = "md",
+  title,
+  cancelButton,
+  submitButton,
+  shouldDisableOverlayClick,
+  isFullscreen,
+}: AppDialogProps) => {
+  const [isClosing, setIsClosing] = useState(false);
+  const previousIsOpen = useRef<boolean>();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const dialogId = useId();
 
-  const {
-    id: modalId,
-    title,
-    renderContent,
-    cancelButton,
-    submitButton,
-    size = "md",
-    isFullscreen,
-  } = config;
+  useLayoutEffect(() => {
+    if (isOpen && dialogRef.current) {
+      dialogRef.current.focus();
+    } else if (previousIsOpen.current) {
+      setIsClosing(true);
+    }
 
-  const handleDialogClose = () => {
-    closeModalById(modalId);
-  };
+    // lock scroll when dialog is open
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
-  const handleDialogClick = (event: MouseEvent<HTMLDialogElement>) => {
+    previousIsOpen.current = isOpen;
+  }, [isOpen]);
+
+  const handleDialogClick = (event: MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
   };
 
-  const handleDialogKeydown = (event: KeyboardEvent<HTMLDialogElement>) => {
+  const handleDialogKeydown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === "Escape") {
-      handleDialogClose();
+      onClose();
+    }
+
+    if (event.key === "Tab") {
+      const dialog = dialogRef.current;
+
+      if (!dialog) {
+        return;
+      }
+
+      const focusableElements = dialog.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement?.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement?.focus();
+      }
     }
   };
 
+  const handleDialogAnimationEnd = () => {
+    setIsClosing(false);
+  };
+
+  if (!isOpen && !isClosing) {
+    return null;
+  }
+
   return (
-    <dialog
-      open
-      className={classnames(
-        "app-dialog",
-        `app-dialog--${size}`,
-        { "app-dialog--fullscreen": isFullscreen },
-        "fade-in"
-      )}
-      onClick={handleDialogClick}
-      onKeyDown={handleDialogKeydown}
-      role="dialog"
-      aria-modal="true"
-      aria-label={title}
+    <AppModalWrapper
+      onOverlayClick={!shouldDisableOverlayClick ? onClose : undefined}
     >
-      <header className="app-dialog__header">
-        {title && <AppTypography variant="h4">{title}</AppTypography>}
-        <AppIconButton
-          icon="ic:sharp-close"
-          onClick={handleDialogClose}
-          aria-label="Close dialog"
-          className="app-dialog__close-button"
-        />
-      </header>
-      <div className="app-dialog__body">{renderContent()}</div>
-      <ModalFooter
-        submitButton={submitButton}
-        cancelButton={cancelButton}
-        closeModal={handleDialogClose}
-      />
-    </dialog>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${dialogId}-title`}
+        aria-describedby={`${dialogId}-body`}
+        ref={dialogRef}
+        tabIndex={-1}
+        className={classnames("app-dialog", `app-dialog--${size}`, {
+          "app-dialog--closing": isClosing,
+          "app-dialog--fullscreen": isFullscreen,
+        })}
+        onClick={handleDialogClick}
+        onKeyDown={handleDialogKeydown}
+        onAnimationEnd={handleDialogAnimationEnd}
+      >
+        <header className="app-dialog__header">
+          {title && (
+            <AppTypography variant="h4" id={`${dialogId}-title`}>
+              {title}
+            </AppTypography>
+          )}
+          <AppIconButton
+            icon="ic:sharp-close"
+            onClick={onClose}
+            aria-label="Close dialog"
+            className="app-dialog__close-button"
+          />
+        </header>
+        <div className="app-dialog__body" id={`${dialogId}-body`}>
+          {children}
+        </div>
+        <footer className="app-dialog__footer">
+          {cancelButton && (
+            <FooterButton
+              defaultLabel="Cancel"
+              button={cancelButton}
+              variant="secondary"
+            />
+          )}
+          {submitButton && (
+            <FooterButton
+              defaultLabel="Submit"
+              button={submitButton}
+              variant="primary"
+            />
+          )}
+        </footer>
+      </div>
+    </AppModalWrapper>
   );
 };
 

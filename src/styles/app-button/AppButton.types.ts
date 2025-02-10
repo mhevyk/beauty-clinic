@@ -1,10 +1,10 @@
 import { ButtonHTMLAttributes } from "react";
-
-import { WithEndAdornment, WithStartAdornment } from "@/styles/types";
 import { To } from "react-router-dom";
 
+import { AppSize, WithEndAdornment, WithStartAdornment } from "@/styles/types";
+
 type AppButtonVariant = "primary" | "secondary";
-type AppButtonSize = "sm" | "md" | "lg";
+type AppButtonSize = AppSize;
 type AppButtonWidth = "fit" | "full";
 
 export type AppButtonProps = {
@@ -13,7 +13,7 @@ export type AppButtonProps = {
   width?: AppButtonWidth;
   isLoading?: boolean;
   children?: string;
-  to?: To
+  to?: To;
 } & WithStartAdornment &
   WithEndAdornment &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">;

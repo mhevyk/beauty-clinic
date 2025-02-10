@@ -1,5 +1,5 @@
 import { ReactNode, RefObject, useEffect, useRef } from "react";
-import ReactDOMServer from "react-dom/server";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import { EditorEvent, Editor as TinyMCEEditor } from "tinymce";
 
@@ -31,12 +31,12 @@ export default function useEditorPreview({
   const prevContentRef = useRef(value);
 
   const handleOpenPreview = (editor: TinyMCEEditor) => {
-    const content = editor.getContent({ format: "html" });
+    const content = editor.getContent();
     prevContentRef.current = content;
 
     if (renderPreview) {
       const previewJSX = renderPreview(content);
-      editor.setContent(ReactDOMServer.renderToStaticMarkup(previewJSX));
+      editor.setContent(renderToStaticMarkup(previewJSX));
     }
   };
 

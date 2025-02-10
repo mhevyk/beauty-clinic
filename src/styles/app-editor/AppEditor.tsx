@@ -1,11 +1,17 @@
 import { Editor } from "@tinymce/tinymce-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import classNames from "classnames";
 import { Editor as TinyMCEEditor } from "tinymce";
 
+import {
+  formats,
+  styleFormats,
+  toolbar,
+} from "@/styles/app-editor/AppEditor.contants";
 import "@/styles/app-editor/AppEditor.scss";
 import { AppEditorProps } from "@/styles/app-editor/AppEditor.types";
+import { getEditorPlugins } from "@/styles/app-editor/AppEditor.utils";
 import rawStyles from "@/styles/app-editor/style.css?raw";
 import useEditorPreview from "@/styles/app-editor/useEditorPreview";
 import AppFormControl from "@/styles/app-form-control/AppFormControl";
@@ -17,33 +23,28 @@ const AppEditor = ({
   errorMessage,
   helperText,
   label,
-  init,
   fullWidth,
   renderPreview,
-  ...editorProps
 }: AppEditorProps) => {
-  const [isEditorLoading, setIsEditorLoading] = useState(true);
-  const [isEditorError, setIsEditorError] = useState(false);
-
   const editorRef = useRef<TinyMCEEditor | null>(null);
 
-  const { setup, ...restInitOptions } = init ?? {};
-
   const handleEditorSetup = (editor: TinyMCEEditor) => {
-    setup?.(editor);
-
     editorRef.current = editor;
-    editor.on("init", handleEditorInit);
-    editor.on("error", handleEditorError);
-  };
 
-  const handleEditorInit = () => {
-    setIsEditorLoading(false);
-  };
+    editor.on("init", () => {
+      editor.formatter.apply(styleFormats[0].format);
+    });
 
-  const handleEditorError = () => {
-    setIsEditorLoading(false);
-    setIsEditorError(true);
+    editor.on("NodeChange", event => {
+      const element = event.element;
+
+      if (
+        element.nodeName === "P" &&
+        !element.classList.contains("app-typography")
+      ) {
+        element.className = "app-typography app-typography--body";
+      }
+    });
   };
 
   useEditorPreview({
@@ -51,10 +52,6 @@ const AppEditor = ({
     value,
     renderPreview,
   });
-
-  //   console.log(rawStyles);
-
-  // TODO: fix switching formats behaviour
 
   return (
     <AppFormControl
@@ -70,39 +67,16 @@ const AppEditor = ({
           init={{
             setup: handleEditorSetup,
             content_style: rawStyles,
-            forced_root_block: "p", // Default block is <p>
-            formats: {
-              defaultText: {
-                block: "p",
-                classes: "app-typography app-typography--body", // Default paragraph format
-              },
-              heading2: {
-                block: "h2",
-                classes: "app-typography app-typography--h2",
-              },
-              heading3: {
-                block: "h3",
-                classes: "app-typography app-typography--h3",
-              },
-            },
-            style_formats: [
-              {
-                title: "Paragraph",
-                format: "defaultText", // Maps to the formats.defaultText configuration
-              },
-              {
-                title: "Paragraph",
-                format: "paragraph",
-              },
-              {
-                title: "Heading 2",
-                format: "heading2",
-              },
-              { title: "Heading 3", format: "heading3" },
-            ],
-            ...restInitOptions,
+            forced_root_block: "p",
+            plugins: getEditorPlugins({ renderPreview }),
+            toolbar,
+            formats,
+            style_formats: styleFormats,
+            menubar: false,
+            statusbar: true,
+            branding: false,
+            elementpath: false,
           }}
-          {...editorProps}
         />
       }
       errorMessage={errorMessage}

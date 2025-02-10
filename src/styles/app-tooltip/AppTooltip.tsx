@@ -1,27 +1,22 @@
-import { KeyboardEvent, forwardRef, useRef, useState } from "react";
+import { KeyboardEvent, forwardRef, useId, useRef, useState } from "react";
 
 import classNames from "classnames";
 import "design-system/app-tooltip/AppTooltip.scss";
 
 import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types.ts";
 import AppTypography from "@/styles/app-typography/AppTypography.tsx";
+import { Timer } from "@/types/helpers.ts";
 
 const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
-  {
-    position = "top",
-    width = "nowrap",
-    content,
-    children,
-    className,
-    ...props
-  },
+  { position = "top", width, content, children, className, ...props },
   ref
 ) {
   const [isVisible, setIsVisible] = useState(false);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<Timer | null>(null);
+  const id = useId();
 
   const showTooltip = () => {
-    timeoutRef.current = window.setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setIsVisible(true);
     }, 400);
   };
@@ -42,9 +37,9 @@ const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
 
   return (
     <div
+      onKeyDown={handleKeyDown}
       onTouchStart={showTooltip}
       onTouchEnd={hideTooltip}
-      onKeyDown={handleKeyDown}
       onMouseEnter={showTooltip}
       onMouseLeave={hideTooltip}
       onFocus={showTooltip}
@@ -52,14 +47,14 @@ const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
       tabIndex={-1}
       {...props}
       ref={ref}
-      aria-describedby={isVisible && content ? `tooltip-content` : undefined}
+      aria-describedby={isVisible && content ? `tooltip-${id}` : undefined}
       className="app-tooltip__wrapper"
     >
       {children}
       {isVisible && (
         <div
           role="tooltip"
-          id="tooltip-content"
+          id={`tooltip-${id}`}
           aria-live="polite"
           className={classNames(
             "app-tooltip",

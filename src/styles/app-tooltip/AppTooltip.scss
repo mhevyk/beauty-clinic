@@ -1,6 +1,8 @@
 @use "design-system/colors" as *;
+@use "design-system/utils/animations" as *;
 
 $bg-color: rgba($color-primary, 0.7);
+$animation-duration: 200ms;
 
 .app-tooltip {
   position: absolute;
@@ -10,22 +12,21 @@ $bg-color: rgba($color-primary, 0.7);
   border-radius: 4px;
   z-index: 1000;
   opacity: 0;
-  animation: fadeIn 0.2s forwards;
+  animation: fade-in $animation-duration forwards;
+  white-space: nowrap;
 
-  &--nowrap {
-    white-space: nowrap;
+  &--medium,
+  &--large {
+    white-space: normal;
+    word-break: break-word;
   }
 
   &--medium {
     width: 250px;
-    white-space: normal;
-    word-break: break-word;
   }
 
   &--large {
     width: 500px;
-    white-space: normal;
-    word-break: break-word;
   }
 
   &__wrapper {
@@ -66,7 +67,7 @@ $bg-color: rgba($color-primary, 0.7);
     width: 0;
     height: 0;
 
-    $tooltip-arrow-base: 12px solid transparent;
+    $tooltip-arrow-base: 12px solid $color-transparent;
     $tooltip-arrow-height: 14px solid $bg-color;
 
     &--top {
@@ -104,11 +105,5 @@ $bg-color: rgba($color-primary, 0.7);
       border-bottom: $tooltip-arrow-base;
       border-right: $tooltip-arrow-height;
     }
-  }
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
   }
 }

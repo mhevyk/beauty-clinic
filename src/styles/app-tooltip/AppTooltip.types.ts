@@ -4,5 +4,5 @@ export type AppTooltipProps = {
   children: ReactElement;
   content: string;
   position?: "top" | "bottom" | "left" | "right";
-  width?: "nowrap" | "medium" | "large";
+  width?: "medium" | "large";
 } & ComponentPropsWithoutRef<"div">;

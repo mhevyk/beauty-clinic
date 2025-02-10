@@ -8,11 +8,6 @@ const meta: Meta<AppTooltipProps> = {
   title: "AppTooltip",
   component: AppTooltip,
   tags: ["autodocs"],
-  decorators: Story => (
-    <div style={{ padding: "150px 200px" }}>
-      <Story />
-    </div>
-  ),
 };
 
 export default meta;
@@ -23,6 +18,11 @@ export const Default: Story = {
   args: {
     content: "Click me",
   },
+  decorators: Story => (
+    <div style={{ paddingTop: "80px" }}>
+      <Story />
+    </div>
+  ),
 
   render: args => (
     <AppTooltip {...args}>
@@ -35,6 +35,13 @@ export const Bottom: Story = {
   args: {
     position: "bottom",
     content: "Click me",
+  },
+  parameters: {
+    docs: {
+      story: {
+        height: "130px",
+      },
+    },
   },
 
   render: args => (
@@ -49,6 +56,11 @@ export const Left: Story = {
     position: "left",
     content: "Click me",
   },
+  decorators: Story => (
+    <div style={{ paddingLeft: "120px" }}>
+      <Story />
+    </div>
+  ),
 
   render: args => (
     <AppTooltip {...args}>
@@ -77,6 +89,18 @@ export const Medium: Story = {
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
   },
+  parameters: {
+    docs: {
+      story: {
+        height: "180px",
+      },
+    },
+  },
+  decorators: Story => (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Story />
+    </div>
+  ),
 
   render: args => (
     <AppTooltip {...args}>
@@ -92,6 +116,18 @@ export const Large: Story = {
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   },
+  parameters: {
+    docs: {
+      story: {
+        height: "200px",
+      },
+    },
+  },
+  decorators: Story => (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Story />
+    </div>
+  ),
 
   render: args => (
     <AppTooltip {...args}>

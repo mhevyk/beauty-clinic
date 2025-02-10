@@ -2,6 +2,8 @@ import { ElementType, HTMLAttributes, ReactElement } from "react";
 
 import { APP_BREAKPOINTS, APP_COLORS } from "@/styles";
 
+export type AppSize = "sm" | "md" | "lg";
+
 export type PropsWithAs<T extends ElementType> = {
   as?: T;
 };

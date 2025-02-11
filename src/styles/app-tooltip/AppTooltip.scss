@@ -1,7 +1,7 @@
 @use "design-system/colors" as *;
 @use "design-system/utils/animations" as *;
 
-$bg-color: rgba($color-primary, 0.7);
+$bg-color: mix($color-primary, $color-secondary, 72%);
 $animation-duration: 200ms;
 
 .app-tooltip {
@@ -89,7 +89,7 @@ $animation-duration: 200ms;
     }
 
     &--left {
-      right: -14px;
+      right: -13px;
       top: 50%;
       transform: translateY(-50%);
       border-top: $tooltip-arrow-base;
@@ -98,7 +98,7 @@ $animation-duration: 200ms;
     }
 
     &--right {
-      left: -14px;
+      left: -13px;
       top: 50%;
       transform: translateY(-50%);
       border-top: $tooltip-arrow-base;

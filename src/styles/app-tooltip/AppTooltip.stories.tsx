@@ -1,13 +1,18 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AppButton from "@/styles/app-button/AppButton.tsx";
-import AppTooltip from "@/styles/app-tooltip/AppTooltip.tsx";
-import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types.ts";
+import AppButton from "@/styles/app-button/AppButton";
+import AppTooltip from "@/styles/app-tooltip/AppTooltip";
+import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types";
 
 const meta: Meta<AppTooltipProps> = {
   title: "AppTooltip",
   component: AppTooltip,
   tags: ["autodocs"],
+  decorators: Story => (
+    <div style={{ padding: "80px", display: "flex", justifyContent: "center" }}>
+      <Story />
+    </div>
+  ),
 };
 
 export default meta;
@@ -18,11 +23,6 @@ export const Default: Story = {
   args: {
     content: "Click me",
   },
-  decorators: Story => (
-    <div style={{ paddingTop: "80px" }}>
-      <Story />
-    </div>
-  ),
 
   render: args => (
     <AppTooltip {...args}>
@@ -35,13 +35,6 @@ export const Bottom: Story = {
   args: {
     position: "bottom",
     content: "Click me",
-  },
-  parameters: {
-    docs: {
-      story: {
-        height: "130px",
-      },
-    },
   },
 
   render: args => (
@@ -56,11 +49,6 @@ export const Left: Story = {
     position: "left",
     content: "Click me",
   },
-  decorators: Story => (
-    <div style={{ paddingLeft: "120px" }}>
-      <Story />
-    </div>
-  ),
 
   render: args => (
     <AppTooltip {...args}>
@@ -92,15 +80,10 @@ export const Medium: Story = {
   parameters: {
     docs: {
       story: {
-        height: "180px",
+        height: "300px",
       },
     },
   },
-  decorators: Story => (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Story />
-    </div>
-  ),
 
   render: args => (
     <AppTooltip {...args}>
@@ -119,15 +102,10 @@ export const Large: Story = {
   parameters: {
     docs: {
       story: {
-        height: "200px",
+        height: "300px",
       },
     },
   },
-  decorators: Story => (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Story />
-    </div>
-  ),
 
   render: args => (
     <AppTooltip {...args}>

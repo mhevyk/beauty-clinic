@@ -3,9 +3,9 @@ import { KeyboardEvent, forwardRef, useId, useRef, useState } from "react";
 import classNames from "classnames";
 import "design-system/app-tooltip/AppTooltip.scss";
 
-import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types.ts";
-import AppTypography from "@/styles/app-typography/AppTypography.tsx";
-import { Timer } from "@/types/helpers.ts";
+import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types";
+import AppTypography from "@/styles/app-typography/AppTypography";
+import { Timer } from "@/types/helpers";
 
 const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
   { position = "top", width, content, children, className, ...props },

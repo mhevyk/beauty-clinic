@@ -1,8 +1,14 @@
 import { ComponentPropsWithoutRef, ReactElement } from "react";
 
+import { AppSize } from "@/styles/types.ts";
+
+type AppTooltipPosition = "top" | "bottom" | "left" | "right";
+
+type AppTooltipSize = Extract<AppSize, "md" | "lg">;
+
 export type AppTooltipProps = {
   children: ReactElement;
   content: string;
-  position?: "top" | "bottom" | "left" | "right";
-  width?: "medium" | "large";
+  position?: AppTooltipPosition;
+  width?: AppTooltipSize;
 } & ComponentPropsWithoutRef<"div">;

@@ -15,17 +15,17 @@ $animation-duration: 200ms;
   animation: fade-in $animation-duration forwards;
   white-space: nowrap;
 
-  &--medium,
-  &--large {
+  &--md,
+  &--lg {
     white-space: normal;
     word-break: break-word;
   }
 
-  &--medium {
+  &--md {
     width: 250px;
   }
 
-  &--large {
+  &--lg {
     width: 500px;
   }
 

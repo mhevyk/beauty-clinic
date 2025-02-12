@@ -1,6 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { MemoryRouter } from "react-router-dom";
 
 import AppButton from "@/styles/app-button/AppButton";
+import AppIconButton from "@/styles/app-icon-button/AppIconButton.tsx";
+import AppLink from "@/styles/app-link/app-link";
+import AppNavLink from "@/styles/app-link/app-nav-link";
+import AppTextInput from "@/styles/app-text-input/AppTextInput.tsx";
 import AppTooltip from "@/styles/app-tooltip/AppTooltip";
 import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types";
 
@@ -8,10 +13,22 @@ const meta: Meta<AppTooltipProps> = {
   title: "AppTooltip",
   component: AppTooltip,
   tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+  },
   decorators: Story => (
-    <div style={{ padding: "80px", display: "flex", justifyContent: "center" }}>
-      <Story />
-    </div>
+    <MemoryRouter>
+      <div
+        style={{
+          padding: "80px",
+          display: "flex",
+          justifyContent: "center",
+          width: "70vh",
+        }}
+      >
+        <Story />
+      </div>
+    </MemoryRouter>
   ),
 };
 
@@ -39,7 +56,9 @@ export const Bottom: Story = {
 
   render: args => (
     <AppTooltip {...args}>
-      <AppButton>Hover me</AppButton>
+      <AppButton variant="secondary" disabled>
+        Hover me
+      </AppButton>
     </AppTooltip>
   ),
 };
@@ -52,7 +71,7 @@ export const Left: Story = {
 
   render: args => (
     <AppTooltip {...args}>
-      <AppButton>Hover me</AppButton>
+      <AppTextInput />
     </AppTooltip>
   ),
 };
@@ -65,14 +84,14 @@ export const Right: Story = {
 
   render: args => (
     <AppTooltip {...args}>
-      <AppButton>Hover me</AppButton>
+      <AppIconButton icon="mdi:home" />
     </AppTooltip>
   ),
 };
 
 export const Medium: Story = {
   args: {
-    width: "medium",
+    width: "md",
     position: "bottom",
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has",
@@ -84,17 +103,16 @@ export const Medium: Story = {
       },
     },
   },
-
   render: args => (
     <AppTooltip {...args}>
-      <AppButton>Hover me</AppButton>
+      <AppNavLink to="/">Link</AppNavLink>
     </AppTooltip>
   ),
 };
 
 export const Large: Story = {
   args: {
-    width: "large",
+    width: "lg",
     position: "bottom",
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
@@ -109,7 +127,9 @@ export const Large: Story = {
 
   render: args => (
     <AppTooltip {...args}>
-      <AppButton>Hover me</AppButton>
+      <AppLink to="/" variant="plain">
+        Link
+      </AppLink>
     </AppTooltip>
   ),
 };

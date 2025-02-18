@@ -1,13 +1,16 @@
 import { useSearchParams } from "react-router-dom";
 
+import SharpLeafSvg from "@/assets/decorations/sharp-leaf.svg";
+
 import { useGetPostsQuery } from "@/api/generated";
 import AppHelmet from "@/components/app-helmet/AppHelmet";
 import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
 import Masonry from "@/layouts/masonry/Masonry";
-import { BoxStyled, PostBox } from "@/pages/blog/BlogPage.styled";
+import "@/pages/blog/BlogPage.scss";
 import NoResults from "@/pages/blog/components/no-results/NoResults";
 import PostCardSkeleton from "@/pages/blog/components/post-card-skeleton/PostCardSkeleton";
 import PostCard from "@/pages/blog/components/post-card/PostCard";
+import AppTypography from "@/styles/app-typography/AppTypography.tsx";
 import repeatComponent from "@/utils/repeat-component/repeatComponent";
 
 const postSkeletonCount = 4;
@@ -33,9 +36,16 @@ export default function BlogPage() {
       title="Blog"
       description="Blog with posts from experts in our field"
     >
-      <BoxStyled>
-        <BlogTabLayout />
-        <PostBox>
+      <div className="blog-page">
+        <div className="blog-page__header">
+          <SharpLeafSvg width={443} className="blog-page__header-icon" />
+          <AppTypography variant="h2">Your Ultimate Natural</AppTypography>
+          <AppTypography className="blog-page__header-title" variant="h2">
+            Skin Care Guide
+          </AppTypography>
+          <BlogTabLayout />
+        </div>
+        <div className="blog-page__posts">
           <Masonry
             gap="2rem"
             columnsByBreakpoint={{
@@ -46,8 +56,8 @@ export default function BlogPage() {
             {isLoadingPosts}
           </Masonry>
           {isNoPostsFound && <NoResults />}
-        </PostBox>
-      </BoxStyled>
+        </div>
+      </div>
     </AppHelmet>
   );
 }

@@ -1,0 +1,17 @@
+.app-overflow-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &--sm {
+    max-width: 375px;
+  }
+
+  &--md {
+    max-width: 516px;
+  }
+
+  &--lg {
+    max-width: 615px;
+  }
+}

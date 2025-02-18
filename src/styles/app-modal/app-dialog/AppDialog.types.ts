@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
+import { AppTooltipProps } from "@/styles/app-tooltip/AppTooltip.types.ts";
 import { AppSize } from "@/styles/types";
 
 export type AppDialogSize = AppSize;
@@ -12,6 +13,11 @@ export type AppDialogButtonConfig = Pick<
   label?: string;
 };
 
+export type AppDialogTooltipConfig = Pick<
+  AppTooltipProps,
+  "position" | "width"
+>;
+
 export type AppDialogProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -22,4 +28,5 @@ export type AppDialogProps = {
   cancelButton?: boolean | AppDialogButtonConfig;
   shouldDisableOverlayClick?: boolean;
   isFullscreen?: boolean;
+  tooltipOverflowText?: AppDialogTooltipConfig;
 };

@@ -11,7 +11,7 @@ import {
   AppDialogProps,
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
 import AppModalWrapper from "@/styles/app-modal/app-modal-wrapper/AppModalWrapper";
-import AppTypography from "@/styles/app-typography/AppTypography";
+import AppOverflowText from "@/styles/app-modal/app-overflow-text/AppOverflowText.tsx";
 
 type FooterButtonProps = {
   defaultLabel: string;
@@ -39,6 +39,7 @@ const AppDialog = ({
   submitButton,
   shouldDisableOverlayClick,
   isFullscreen,
+  tooltipOverflowText,
 }: AppDialogProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const previousIsOpen = useRef<boolean>();
@@ -120,9 +121,14 @@ const AppDialog = ({
       >
         <header className="app-dialog__header">
           {title && (
-            <AppTypography variant="h4" id={`${dialogId}-title`}>
+            <AppOverflowText
+              tooltip={tooltipOverflowText}
+              variant="h4"
+              id={dialogId}
+              textSize={size}
+            >
               {title}
-            </AppTypography>
+            </AppOverflowText>
           )}
           <AppIconButton
             icon="ic:sharp-close"
@@ -131,6 +137,7 @@ const AppDialog = ({
             className="app-dialog__close-button"
           />
         </header>
+
         <div className="app-dialog__body" id={`${dialogId}-body`}>
           {children}
         </div>

@@ -1,15 +1,8 @@
 @use "design-system/colors" as *;
 @use "design-system/breakpoints" as *;
+@use "design-system/utils/animations" as *;
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
+$animation-duration: 300ms;
 
 .app-dialog {
   background: $color-secondary;
@@ -19,10 +12,10 @@
   width: 100%;
   min-width: 320px;
   opacity: 0;
-  animation: fade-in 300ms ease-in-out forwards;
+  animation: fade-in-dialog $animation-duration ease-in-out forwards;
 
   &--closing {
-    animation: fade-in 300ms ease-in-out reverse;
+    animation: fade-in-dialog $animation-duration ease-in-out reverse;
   }
 
   &--sm {

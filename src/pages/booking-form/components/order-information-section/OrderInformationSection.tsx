@@ -3,6 +3,7 @@ import AppButton from "design-system/app-button/AppButton";
 import AppTypography from "design-system/app-typography/AppTypography";
 import { useFormik } from "formik";
 
+import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import BookingForm from "@/containers/forms/booking-form/BookingForm";
 import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
@@ -11,19 +12,25 @@ import ClientDetails from "@/pages/booking-form/components/client-details/Client
 import "@/pages/booking-form/components/order-information-section/OrderInformationSection.scss";
 import OrderInformation from "@/pages/booking-form/components/order-information/OrderInformation";
 import useUnifiedOrderData from "@/pages/booking-form/hooks/use-unified-order-data/useUnifiedOrderData";
+import { useUserStore } from "@/store/user/userStore.ts";
 import { bookingFormSchema } from "@/validation/bookingFormSchema";
-
-const initialFormValues: ClientDetailsFormValues = {
-  name: "",
-  email: "",
-  phoneNumber: "",
-  message: "",
-};
 
 export default function OrderInformationSection() {
   const { itemsToOrder, cartState } = useUnifiedOrderData();
   const [createOrder, { isLoading: isOrderProcessing }] =
     useCreateOrder(itemsToOrder);
+
+  const { data } = useGetCurrentUserDetailsQuery();
+  const isAuthenticated = useUserStore(store => store.checkAuthenticated());
+
+  const userDetails = data?.getCurrentUserDetails;
+
+  const initialFormValues: ClientDetailsFormValues = {
+    name: isAuthenticated && userDetails ? userDetails.username : "",
+    email: isAuthenticated && userDetails ? userDetails.email : "",
+    phoneNumber: isAuthenticated ? (userDetails?.phoneNumber ?? "") : "",
+    message: "",
+  };
 
   const {
     values: formValues,
@@ -36,8 +43,8 @@ export default function OrderInformationSection() {
     initialValues: initialFormValues,
     onSubmit: handleSubmit,
     validationSchema: bookingFormSchema,
-    validateOnBlur: false,
-    validateOnChange: false,
+    validateOnMount: false,
+    enableReinitialize: true,
   });
 
   async function handleSubmit(values: ClientDetailsFormValues) {

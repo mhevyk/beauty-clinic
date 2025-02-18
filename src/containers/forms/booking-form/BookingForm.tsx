@@ -1,9 +1,8 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import classnames from "classnames";
 import { FormikProps } from "formik";
 
-import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import { PHONE_NUMBER_PATTERN } from "@/constants";
 import "@/containers/forms/booking-form/BookingForm.scss";
 import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
@@ -20,33 +19,10 @@ export default function BookingForm({
   values,
   handleChange,
   errors,
-  setFieldValue,
-  setValues,
 }: BookingFormProps) {
-  const [length, setLength] = useState(0);
+  const [length, setLength] = useState(values.name.length ?? 0);
 
   const isAuthenticated = useUserStore(store => store.checkAuthenticated());
-
-  const { data } = useGetCurrentUserDetailsQuery();
-
-  useEffect(() => {
-    const userDetails = data?.getCurrentUserDetails;
-
-    if (userDetails && isAuthenticated) {
-      setLength(userDetails.username.length);
-
-      setFieldValue("name", userDetails.username ?? "");
-      setFieldValue("email", userDetails.email ?? "");
-      setFieldValue("phoneNumber", userDetails.phoneNumber ?? "");
-    } else {
-      setValues({
-        name: "",
-        email: "",
-        phoneNumber: "",
-        message: values.message,
-      });
-    }
-  }, [isAuthenticated, data]);
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newName = event.target.value;

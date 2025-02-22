@@ -13,6 +13,7 @@ import { FixedSizeList, areEqual } from "react-window";
 import classNames from "classnames";
 
 import { KEYBOARD_KEYS } from "@/constants";
+import useLoadOptions from "@/hooks/use-load-options/useLoadOptions";
 import useThrottle from "@/hooks/use-throttle/useThrottle";
 import AppFormControl from "@/styles/app-form-control/AppFormControl";
 import "@/styles/app-select/AppSelect.scss";
@@ -20,22 +21,18 @@ import {
   AppOption,
   AppSelectItemProps,
   AppSelectProps,
-  HandleScroll,
-  SelectedState,
 } from "@/styles/app-select/AppSelect.types";
 import AppSpinner from "@/styles/app-spinner/AppSpinner";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const OVERSCAN_COUNT = 10;
 
-const AppSelect = (
+const AppSelect = <Option extends AppOption>(
   {
     options,
-    onChange,
     height,
     width,
     label,
-    type = "single",
     renderOption,
     itemSize = 50,
     loadMoreOptions,
@@ -43,14 +40,12 @@ const AppSelect = (
     controlRef,
     errorMessage,
     helperText,
-  }: AppSelectProps,
+    ...restProps
+  }: AppSelectProps<Option>,
   ref: Ref<HTMLDivElement>
 ) => {
-  const initialState = type === "multiple" ? [] : null;
-
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<SelectedState>(initialState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [selected, setSelected] = useState<Option[]>(restProps.value);
   const listRef = useRef<FixedSizeList>(null);
 
   const handleToggleList = useThrottle(() => setIsOpen(prev => !prev), 300);
@@ -64,56 +59,117 @@ const AppSelect = (
     }
   };
 
-  const handleSelect = useCallback((item: AppOption) => {
-    if (item.disabled) {
-      return;
-    }
+  const isAlreadySelected = (options: Option[], item: Option) => {
+    return options.some(option => option.value === item.value);
+  };
 
-    if (type === "multiple") {
-      setSelected(prevSelected => {
-        const updatedSelected = prevSelected.includes(item.value)
-          ? prevSelected.filter(option => option !== item.value)
-          : [...prevSelected, item.value];
+  const handleSelect = useCallback(
+    (item: Option) => {
+      if (item.disabled) {
+        return;
+      }
 
-        onChange?.(updatedSelected);
+      let updatedSelected: Option[];
 
-        return updatedSelected;
-      });
-    } else {
-      setSelected(prevSelected => {
-        const updatedSelected: AppOption["value"] | null =
-          prevSelected === item.value ? null : item.value;
+      if (restProps.type === "multiple") {
+        updatedSelected = isAlreadySelected(selected, item)
+          ? selected.filter(option => option.value !== item.value)
+          : [...selected, item];
 
-        onChange?.(updatedSelected);
+        restProps.onChange?.(updatedSelected);
+      } else {
+        updatedSelected = isAlreadySelected(selected, item) ? [] : [item];
 
-        return updatedSelected;
-      });
-    }
-  }, []);
+        restProps.onChange?.(updatedSelected[0] ?? null);
+      }
+
+      setSelected(updatedSelected);
+    },
+    [selected, restProps.onChange]
+  );
 
   const handleSelectWithKeyboard = (
     event: KeyboardEvent<HTMLDivElement>,
-    item: AppOption
+    item: Option
   ) => {
     if (event.key === KEYBOARD_KEYS.Enter) {
       handleSelect(item);
     }
   };
 
-  const isItemSelected = (item: { value: string }) =>
-    selected.includes(item.value);
+  const isItemSelected = (item: Option) => selected.includes(item);
 
-  const handleScroll = async ({ scrollOffset, scrollHeight }: HandleScroll) => {
-    if (
-      scrollOffset + Number(height) >= scrollHeight &&
-      isFetchingOptions &&
-      !isLoading
-    ) {
-      setIsLoading(true);
-      await loadMoreOptions?.();
-      setIsLoading(false);
+  const { isLoading, handleScroll } = useLoadOptions(
+    loadMoreOptions,
+    isFetchingOptions,
+    String(height)
+  );
+
+  const Item = memo(({ index, style, data }: AppSelectItemProps<Option>) => {
+    const {
+      options,
+      isItemSelected,
+      onSelect,
+      onSelectWithKeyboard,
+      renderOption,
+      isLoading,
+    } = data;
+
+    if (index === options.length) {
+      return (
+        isLoading && (
+          <div className="app-select__spinner" style={style}>
+            <AppSpinner />
+          </div>
+        )
+      );
     }
-  };
+
+    const item = options[index];
+
+    if (!item) {
+      return null;
+    }
+
+    const isSelected = isItemSelected(item);
+    const isDisabled = item.disabled;
+
+    if (renderOption) {
+      return renderOption({
+        item,
+        isSelected,
+        onSelect,
+        style,
+      });
+    }
+
+    return (
+      <div
+        className={classNames("app-select__list-item", {
+          "app-select__list-item--disabled": isDisabled,
+          "app-select__list-item--selected": isSelected,
+        })}
+        style={style}
+        onClick={() => onSelect(item)}
+        onKeyUp={event => onSelectWithKeyboard(event, item)}
+        tabIndex={isDisabled ? -1 : 0}
+        aria-disabled={isDisabled}
+        aria-selected={isSelected}
+      >
+        <AppTypography>{item.label}</AppTypography>
+
+        <Icon
+          icon="si:check-duotone"
+          width="20"
+          height="20"
+          className="app-select__selected-adorment"
+          aria-hidden={!isSelected}
+        />
+      </div>
+    );
+  }, areEqual);
+
+  Item.displayName = "Item";
 
   return (
     <AppFormControl
@@ -182,73 +238,5 @@ const AppSelect = (
 };
 
 AppSelect.displayName = "AppSelect";
-
-const Item = memo(({ index, style, data }: AppSelectItemProps) => {
-  const {
-    options,
-    isItemSelected,
-    onSelect,
-    onSelectWithKeyboard,
-    renderOption,
-    isLoading,
-  } = data;
-
-  if (index === options.length) {
-    return (
-      isLoading && (
-        <div className="app-select__spinner" style={style}>
-          <AppSpinner />
-        </div>
-      )
-    );
-  }
-
-  const item = options[index];
-
-  if (!item) {
-    return null;
-  }
-
-  const isSelected = isItemSelected(item as { value: string });
-  const isDisabled = item.disabled;
-
-  if (renderOption) {
-    return renderOption({
-      item,
-      isSelected,
-      onSelect,
-      style,
-    });
-  }
-
-  return (
-    <div
-      className={classNames("app-select__list-item", {
-        "app-select__list-item--disabled": isDisabled,
-        "app-select__list-item--selected": isSelected,
-      })}
-      style={style}
-      onClick={() => onSelect(item)}
-      onKeyUp={event => onSelectWithKeyboard(event, item)}
-      tabIndex={isDisabled ? -1 : 0}
-      aria-disabled={isDisabled}
-      aria-selected={isSelected}
-    >
-      <AppTypography>{item.value}</AppTypography>
-
-      <Icon
-        icon="si:check-duotone"
-        width="20"
-        height="20"
-        className="app-select__selected-adorment"
-        aria-hidden={!isSelected}
-      />
-
-      {/*TODO: Add tooltip*/}
-    </div>
-  );
-}, areEqual);
-
-Item.displayName = "Item";
 
 export default forwardRef(AppSelect);

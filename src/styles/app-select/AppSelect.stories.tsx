@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 import AppSelect from "@/styles/app-select/AppSelect";
-import { AppSelectProps, AppOption } from "@/styles/app-select/AppSelect.types";
+import { AppOption, AppSelectProps } from "@/styles/app-select/AppSelect.types";
 
 const meta: Meta = {
   title: "AppSelect",
@@ -12,13 +12,14 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj<AppSelectProps>;
+type Story = StoryObj<AppSelectProps<AppOption>>;
 
 const generateOptions = (start: number, count: number) =>
   Array.from(
     { length: count },
     (_, index): AppOption => ({
-      value: `AppOption ${start + index + 1}`,
+      label: `AppOption ${start + index + 1}`,
+      value: String(index),
     })
   );
 
@@ -61,7 +62,7 @@ export const MultipleSelect: Story = {
     return (
       <AppSelect
         label="Select"
-        multiple
+        type="multiple"
         options={options}
         height={200}
         width={300}
@@ -78,7 +79,7 @@ export const CustomOptionComponent: Story = {
     return (
       <AppSelect
         label="Select"
-        multiple
+        type="multiple"
         options={options}
         height={200}
         width={300}
@@ -171,6 +172,68 @@ export const WithDisabledOptions: Story = {
         height={200}
         width={300}
         itemSize={40}
+      />
+    );
+  },
+};
+
+export const WithSelectedOptionsList: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [selected, setSelected] = useState<AppOption[]>([]);
+
+    return (
+      <div>
+        <AppSelect
+          label="Select with Selected Options"
+          options={options}
+          height={200}
+          width={300}
+          itemSize={40}
+          type="multiple"
+          onChange={setSelected}
+        />
+        <div style={{ marginTop: "20px" }}>
+          <h3>Selected Options:</h3>
+          <ul>
+            {selected.map(option => (
+              <li key={option.value}>{option.label}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  },
+};
+
+export const WithCustomItemSize: Story = {
+  render: () => {
+    const options = generateOptions(0, 50);
+
+    return (
+      <AppSelect
+        label="Custom Item Size"
+        options={options}
+        height={200}
+        width={300}
+        itemSize={60}
+      />
+    );
+  },
+};
+
+export const WithNoResults: Story = {
+  render: () => {
+    const options: AppOption[] = [];
+
+    return (
+      <AppSelect
+        label="No Results"
+        options={options}
+        height={200}
+        width={300}
+        itemSize={40}
+        isFetchingOptions={false}
       />
     );
   },

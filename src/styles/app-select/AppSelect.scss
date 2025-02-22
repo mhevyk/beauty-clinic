@@ -96,27 +96,6 @@ $transition: all ease 0.3s;
     height: 100%;
   }
 
-  &__custom-tooltip {
-    top: 50px;
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    white-space: nowrap;
-    z-index: 10;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  &__list-item:hover &__custom-tooltip {
-    transition: $transition 1.5s;
-    opacity: 1;
-  }
-
   // Need to be at the bottom
   &--expanded {
     opacity: 1;

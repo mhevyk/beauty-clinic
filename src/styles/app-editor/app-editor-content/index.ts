@@ -1,1 +1,1 @@
-export { default } from "./AppEditorContent";
+export { default } from "@/styles/app-editor/app-editor-content/AppEditorContent";

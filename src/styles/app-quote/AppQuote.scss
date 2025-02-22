@@ -1,0 +1,6 @@
+@use "design-system/colors" as *;
+
+.app-quote {
+  border-left: 3px solid $color-primary;
+  padding: 6px 6px 6px 18px;
+}

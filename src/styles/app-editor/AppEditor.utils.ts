@@ -4,7 +4,6 @@ import {
   toolbar,
 } from "@/styles/app-editor/AppEditor.contants";
 import { AppEditorProps } from "@/styles/app-editor/AppEditor.types";
-import rawStyles from "@/styles/app-editor/style.css?raw";
 
 type GetEditorPlugins = Pick<AppEditorProps, "renderPreview">;
 
@@ -14,7 +13,8 @@ export const getEditorPlugins = ({ renderPreview }: GetEditorPlugins) => {
     "textcolor",
     "lists",
     "style",
-    // "link",
+    "link",
+    // TODO: configure styles for preview
     ...(renderPreview ? ["preview"] : []),
   ];
 };
@@ -26,10 +26,7 @@ export const getAppEditorOptions = ({
   renderPreview,
 }: GetAppEditorOptions) => {
   return {
-    content_style: rawStyles,
-    forced_root_block: "p",
     formats,
-    extended_valid_elements: "[*]",
     style_formats: styleFormats,
     menubar: false,
     statusbar: true,

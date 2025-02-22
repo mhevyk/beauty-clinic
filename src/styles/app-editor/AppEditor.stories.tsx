@@ -57,24 +57,16 @@ export const WithPreviewMode: Story = {
     };
 
     const renderPreview = (content: string) => {
-      console.log(content);
       return <AppEditorContent value={content} />;
     };
 
-    console.log(value);
-
     return (
-      <>
-        <AppEditor
-          fullWidth
-          value={value}
-          onChange={handleValueChange}
-          renderPreview={renderPreview}
-        />
-        <div style={{ marginTop: "1rem" }}>
-          <AppEditorContent value={value} />
-        </div>
-      </>
+      <AppEditor
+        fullWidth
+        value={value}
+        onChange={handleValueChange}
+        renderPreview={renderPreview}
+      />
     );
   },
 };

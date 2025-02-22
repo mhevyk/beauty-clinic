@@ -1,7 +1,7 @@
 @use "design-system/colors" as *;
 @use "design-system/utils/animations" as *;
 
-$bg-color: mix($color-primary, $color-secondary, 72%);
+$bg-color: #000;
 $animation-duration: 200ms;
 
 .app-tooltip {

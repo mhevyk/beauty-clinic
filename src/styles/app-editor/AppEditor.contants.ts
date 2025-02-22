@@ -43,7 +43,6 @@ export const toolbar = [
   "undo redo",
   "styles",
   "bold italic underline",
-  "link",
-  "blockquote",
+  "link blockquote",
   "preview",
 ].join(" | ");

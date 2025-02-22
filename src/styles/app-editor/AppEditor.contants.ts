@@ -6,12 +6,8 @@ export const styleFormats = [
     format: "defaultText",
   },
   {
-    title: "Heading 2",
-    format: "heading2",
-  },
-  {
-    title: "Heading 3",
-    format: "heading3",
+    title: "Heading",
+    format: "heading",
   },
 ] as const satisfies InitOptions["style_formats"];
 
@@ -19,27 +15,27 @@ export const styleFormats = [
 export const formats: InitOptions["formats"] = {
   defaultText: {
     block: "p",
-    attributes: { class: "app-typography app-typography--body" },
+    attributes: { "data-element": "paragraph" },
   },
-  heading2: {
+  heading: {
     block: "h2",
-    attributes: { class: "app-typography app-typography--h2" },
+    attributes: { "data-element": "heading" },
   },
-  heading3: {
-    block: "h3",
-    attributes: { class: "app-typography app-typography--h3" },
+  blockquote: {
+    block: "blockquote",
+    attributes: { "data-element": "blockquote" },
   },
   bold: {
-    inline: "strong",
-    attributes: { class: "app-typography app-typography--bold" },
+    block: "p",
+    attributes: { "data-bold": "true" },
   },
   italic: {
-    inline: "em",
-    attributes: { class: "app-typography app-typography--oblique" },
+    block: "p",
+    attributes: { "data-oblique": "true" },
   },
   underline: {
-    inline: "u",
-    attributes: { class: "app-typography app-typography--underline" },
+    block: "p",
+    attributes: { "data-underline": "true" },
   },
 } as const satisfies InitOptions["formats"];
 

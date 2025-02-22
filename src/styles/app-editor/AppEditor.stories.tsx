@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import AppEditor from "@/styles/app-editor/AppEditor";
 import { AppEditorProps } from "@/styles/app-editor/AppEditor.types";
+import AppEditorContent from "@/styles/app-editor/app-editor-content";
 
 const meta: Meta<AppEditorProps> = {
   title: "AppEditor",
@@ -56,16 +57,24 @@ export const WithPreviewMode: Story = {
     };
 
     const renderPreview = (content: string) => {
-      return <div dangerouslySetInnerHTML={{ __html: content }} />;
+      console.log(content);
+      return <AppEditorContent value={content} />;
     };
 
+    console.log(value);
+
     return (
-      <AppEditor
-        fullWidth
-        value={value}
-        onChange={handleValueChange}
-        renderPreview={renderPreview}
-      />
+      <>
+        <AppEditor
+          fullWidth
+          value={value}
+          onChange={handleValueChange}
+          renderPreview={renderPreview}
+        />
+        <div style={{ marginTop: "1rem" }}>
+          <AppEditorContent value={value} />
+        </div>
+      </>
     );
   },
 };

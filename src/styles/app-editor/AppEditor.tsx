@@ -1,20 +1,20 @@
 import { Editor } from "@tinymce/tinymce-react";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 
 import classNames from "classnames";
-import { Editor as TinyMCEEditor } from "tinymce";
 
-import {
-  formats,
-  styleFormats,
-  toolbar,
-} from "@/styles/app-editor/AppEditor.contants";
+import { styleFormats } from "@/styles/app-editor/AppEditor.contants";
 import "@/styles/app-editor/AppEditor.scss";
-import { AppEditorProps } from "@/styles/app-editor/AppEditor.types";
-import { getEditorPlugins } from "@/styles/app-editor/AppEditor.utils";
-import rawStyles from "@/styles/app-editor/style.css?raw";
-import useEditorPreview from "@/styles/app-editor/useEditorPreview";
+import {
+  AppEditorHandler,
+  AppEditorProps,
+} from "@/styles/app-editor/AppEditor.types";
+import { getAppEditorOptions } from "@/styles/app-editor/AppEditor.utils";
 import AppFormControl from "@/styles/app-form-control/AppFormControl";
+
+type NodeChangeHandler = AppEditorHandler<{ element: Element }>;
+type ExecCommandHandler = AppEditorHandler<{ command: string }>;
 
 const AppEditor = ({
   value,
@@ -26,32 +26,43 @@ const AppEditor = ({
   fullWidth,
   renderPreview,
 }: AppEditorProps) => {
-  const editorRef = useRef<TinyMCEEditor | null>(null);
+  const previousContentRef = useRef(value);
 
-  const handleEditorSetup = (editor: TinyMCEEditor) => {
-    editorRef.current = editor;
-
-    editor.on("init", () => {
-      editor.formatter.apply(styleFormats[0].format);
-    });
-
-    editor.on("NodeChange", event => {
-      const element = event.element;
-
-      if (
-        element.nodeName === "P" &&
-        !element.classList.contains("app-typography")
-      ) {
-        element.className = "app-typography app-typography--body";
-      }
-    });
+  const handleEditorInit: AppEditorHandler = (_, editor) => () => {
+    editor.formatter.apply(styleFormats[0].format);
   };
 
-  useEditorPreview({
-    editorRef,
-    value,
-    renderPreview,
-  });
+  const handleNodeChange: NodeChangeHandler = event => {
+    const element = event.element;
+
+    if (element.nodeName === "P" && !element.hasAttribute("paragraph")) {
+      element.setAttribute("data-element", "paragraph");
+    }
+  };
+
+  const handleBeforeExecCommand: ExecCommandHandler = (event, editor) => {
+    if (event.command == "mcePreview") {
+      const content = editor.getContent();
+      previousContentRef.current = content;
+
+      if (renderPreview) {
+        const previewJSX = renderPreview(content);
+        const previewContent = renderToStaticMarkup(previewJSX);
+        editor.setContent(previewContent);
+      }
+    }
+  };
+
+  const handleExecCommand: ExecCommandHandler = (event, editor) => {
+    if (event.command == "mcePreview") {
+      editor.setContent(previousContentRef.current);
+    }
+  };
+
+  const initOptions = useMemo(
+    () => getAppEditorOptions({ fullWidth, renderPreview }),
+    [fullWidth, renderPreview]
+  );
 
   return (
     <AppFormControl
@@ -64,19 +75,11 @@ const AppEditor = ({
           apiKey={import.meta.env.VITE_TINYMCE_API_KEY}
           value={value}
           onEditorChange={onChange}
-          init={{
-            setup: handleEditorSetup,
-            content_style: rawStyles,
-            forced_root_block: "p",
-            plugins: getEditorPlugins({ renderPreview }),
-            toolbar,
-            formats,
-            style_formats: styleFormats,
-            menubar: false,
-            statusbar: true,
-            branding: false,
-            elementpath: false,
-          }}
+          onInit={handleEditorInit}
+          onNodeChange={handleNodeChange}
+          onBeforeExecCommand={handleBeforeExecCommand}
+          onExecCommand={handleExecCommand}
+          init={initOptions}
         />
       }
       errorMessage={errorMessage}

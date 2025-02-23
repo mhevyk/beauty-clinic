@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
-branch_name=$(git rev-parse --abbrev-ref HEAD)
-
-npm run test:coverage
-[[ $branch_name == storybook* ]] && npm run test:storybook

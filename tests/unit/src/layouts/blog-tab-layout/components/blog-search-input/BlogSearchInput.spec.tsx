@@ -81,28 +81,31 @@ describe("<BlogSearchInput />", () => {
     fireEvent.click(closeButton);
 
     expect(mockSetSearchParams).toHaveBeenCalled();
-  });  
+  });
 
   it("should trigger search when form is submitted", () => {
     renderAndMock({ search: "skin" });
-  
+
     const form = screen.getByRole("form");
     fireEvent.submit(form);
-  
-    expect(mockSetSearchParams).toHaveBeenCalledWith(new URLSearchParams({ search: "skin" }));
-  });  
+
+    expect(mockSetSearchParams).toHaveBeenCalledWith(
+      new URLSearchParams({ search: "skin" })
+    );
+  });
 
   it("should trigger search with debounced value correctly", async () => {
     const searchInput = await setupAndAssertDebouncedValue();
     await typeIntoInput(searchInput, "value1");
-  
+
     act(() => {
       jest.advanceTimersByTime(500);
     });
-  
-    expect(mockSetSearchParams).toHaveBeenCalledWith(new URLSearchParams({ search: "value1" }));
-  });  
-  
+
+    expect(mockSetSearchParams).toHaveBeenCalledWith(
+      new URLSearchParams({ search: "value1" })
+    );
+  });
 
   it("should not trigger search twice if form is triggered before debounced value was set", async () => {
     const searchInput = await setupAndAssertDebouncedValue();

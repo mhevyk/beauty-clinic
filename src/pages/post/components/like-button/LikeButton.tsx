@@ -1,5 +1,6 @@
 import { MouseEvent, useRef, useState } from "react";
 
+import { useMediaQuery } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 
 import { useSetLikeMutation } from "@/api/generated";
@@ -11,9 +12,8 @@ import {
   LikesCount,
 } from "@/pages/post/components/like-button/LikeButton.styled";
 import { useUserStore } from "@/store/user/userStore";
-import showSnackbar from "@/utils/show-snackbar/showSnackbar";
-import { useMediaQuery } from "@mui/material";
 import theme from "@/theme/theme";
+import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 type LikeButtonProps = {
   postId: number;
@@ -81,9 +81,9 @@ export default function LikeButton({
   useUpdateEffect(() => {
     if (prevLikeStateRef.current.isLiked !== debouncedIsLiked) {
       handleRequestAbort();
-  
+
       abortControllerRef.current = new AbortController();
-  
+
       saveLike({
         variables: {
           input: {

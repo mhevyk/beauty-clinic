@@ -34,12 +34,9 @@ type RenderSelectOption<Option extends AppOption> = (
 
 export type AppSelectProps<Option extends AppOption> = {
   options: Option[];
-  height: number | string;
-  width: number | string;
-  label: string;
-  itemSize?: number;
+  label?: string;
+  fullWidth?: boolean;
   renderOption?: RenderSelectOption<Option>;
-  loadMoreOptions?: () => Promise<void>;
   isFetchingOptions?: boolean;
 } & AppFormControlMeta &
   (AppSelectSingleProps<Option> | AppSelectMultipleProps<Option>);
@@ -55,16 +52,10 @@ export type FixedSizeListProps<Option extends AppOption> = {
   onSelect: (item: Option) => void;
   onSelectWithKeyboard: OnSelectWithKeyboard<Option>;
   renderOption?: RenderSelectOption<Option>;
-  isLoading?: boolean;
 };
 
 export type AppSelectItemProps<Option extends AppOption> = {
   index: number;
   style: CSSProperties;
   data: FixedSizeListProps<Option>;
-};
-
-export type HandleScroll = {
-  scrollOffset: number;
-  scrollHeight: number;
 };

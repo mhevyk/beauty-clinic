@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AppSelect from "@/styles/app-select/AppSelect";
 import { AppOption, AppSelectProps } from "@/styles/app-select/AppSelect.types";
@@ -34,210 +34,239 @@ export const Default: Story = {
         value={value}
         onChange={setValue}
         options={options}
-        height={200}
-        width={300}
-        itemSize={40}
       />
     );
   },
 };
 
-// export const SingleSelect: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 100);
+export const SingleSelect: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     return (
-//       <AppSelect
-//         label="Select"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={40}
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        label="Select"
+        options={options}
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
+};
 
-// export const MultipleSelect: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 100);
+export const MultipleSelect: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption[]>([]);
 
-//     return (
-//       <AppSelect
-//         label="Select"
-//         type="multiple"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={40}
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        label="Select"
+        type="multiple"
+        options={options}
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
+};
 
-// export const CustomOptionComponent: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 100);
+export const CustomOptionComponent: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption[]>([]);
 
-//     return (
-//       <AppSelect
-//         label="Select"
-//         type="multiple"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={40}
-//         renderOption={({ item, isSelected, onSelect, style }) => {
-//           if (!item) {
-//             return null;
-//           }
+    return (
+      <AppSelect
+        value={value}
+        onChange={setValue}
+        label="Select"
+        type="multiple"
+        options={options}
+        renderOption={({ item, isSelected, onSelect, style }) => {
+          if (!item) {
+            return null;
+          }
 
-//           return (
-//             <div
-//               style={{
-//                 ...style,
-//                 justifyContent: "center",
-//                 alignItems: "center",
-//                 backgroundColor: isSelected ? "#d3f9d8" : "#fff",
-//               }}
-//               onClick={() => onSelect(item as AppOption)}
-//             >
-//               <p style={{ margin: 0 }}>{item.value}</p>
-//             </div>
-//           );
-//         }}
-//       />
-//     );
-//   },
-// };
+          return (
+            <div
+              style={{
+                ...style,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: isSelected ? "#d3f9d8" : "#fff",
+              }}
+              onClick={() => onSelect(item as AppOption)}
+            >
+              <p style={{ margin: 0 }}>{item.value}</p>
+            </div>
+          );
+        }}
+      />
+    );
+  },
+};
 
-// export const WithOptionFetching: Story = {
-//   render: () => {
-//     const [options, setOptions] = useState<AppOption[]>(generateOptions(0, 20));
-//     const [hasMore, setHasMore] = useState(true);
+export const WithOptionFetching: Story = {
+  render: () => {
+    const [options, setOptions] = useState<AppOption[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     const fetchMoreOptions = async () => {
-//       return new Promise<void>(resolve => {
-//         setTimeout(() => {
-//           const newOptions = generateOptions(options.length, 20);
-//           setOptions(prev => [...prev, ...newOptions]);
+    const fetchMoreOptions = async () => {
+      return new Promise<void>(resolve => {
+        setIsLoading(true);
+        setTimeout(() => {
+          setOptions(generateOptions(0, 20));
+          setIsLoading(false);
+          resolve();
+        }, 3000);
+      });
+    };
 
-//           if (options.length + 20 >= 100) {
-//             setHasMore(false);
-//           }
-//           resolve();
-//         }, 2000);
-//       });
-//     };
+    useEffect(() => {
+      fetchMoreOptions();
+    }, []);
 
-//     return (
-//       <AppSelect
-//         label="Select"
-//         height={200}
-//         width={300}
-//         options={options}
-//         loadMoreOptions={fetchMoreOptions}
-//         isFetchingOptions={hasMore}
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        value={value}
+        onChange={setValue}
+        label="Select"
+        options={options}
+        isFetchingOptions={isLoading}
+      />
+    );
+  },
+};
 
-// export const WithErrorMessage: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 100);
+export const WithErrorMessage: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     return (
-//       <AppSelect
-//         label="Select"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={40}
-//         helperText="Please, select an item"
-//         errorMessage="Error occured"
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        label="Select"
+        options={options}
+        errorMessage="Error occured"
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
+};
 
-// export const WithDisabledOptions: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 100);
-//     if (options[0]) {
-//       options[0].disabled = true;
-//     }
+export const WithHelperText: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     return (
-//       <AppSelect
-//         label="Select"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={40}
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        label="Select"
+        options={options}
+        helperText="Please, select an item"
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
+};
 
-// export const WithSelectedOptionsList: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 100);
-//     const [selected, setSelected] = useState<AppOption[]>([]);
+export const WithDisabledOptions: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    if (options[0]) {
+      options[0].isDisabled = true;
+    }
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     return (
-//       <div>
-//         <AppSelect
-//           label="Select with Selected Options"
-//           options={options}
-//           height={200}
-//           width={300}
-//           itemSize={40}
-//           type="multiple"
-//           onChange={setSelected}
-//         />
-//         <div style={{ marginTop: "20px" }}>
-//           <h3>Selected Options:</h3>
-//           <ul>
-//             {selected.map(option => (
-//               <li key={option.value}>{option.label}</li>
-//             ))}
-//           </ul>
-//         </div>
-//       </div>
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        value={value}
+        onChange={setValue}
+        label="Select"
+        options={options}
+      />
+    );
+  },
+};
 
-// export const WithCustomItemSize: Story = {
-//   render: () => {
-//     const options = generateOptions(0, 50);
+export const WithSelectedOptionsList: Story = {
+  render: () => {
+    const options = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption[]>([]);
 
-//     return (
-//       <AppSelect
-//         label="Custom Item Size"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={60}
-//       />
-//     );
-//   },
-// };
+    return (
+      <div>
+        <AppSelect
+          value={value}
+          onChange={setValue}
+          label="Selects"
+          options={options}
+          type="multiple"
+        />
+        <div style={{ marginTop: "20px" }}>
+          <h3>Selected Options:</h3>
+          <ul>
+            {value.map(option => (
+              <li key={option.value}>{option.label}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  },
+};
 
-// export const WithNoResults: Story = {
-//   render: () => {
-//     const options: AppOption[] = [];
+export const WithNoResults: Story = {
+  render: () => {
+    const options: AppOption[] = [];
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     return (
-//       <AppSelect
-//         label="No Results"
-//         options={options}
-//         height={200}
-//         width={300}
-//         itemSize={40}
-//         isFetchingOptions={false}
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        value={value}
+        onChange={setValue}
+        label="Select"
+        options={options}
+        isFetchingOptions={false}
+      />
+    );
+  },
+};
+
+export const WithoutLabel: Story = {
+  render: () => {
+    const options: AppOption[] = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption | null>(null);
+
+    return (
+      <AppSelect
+        value={value}
+        onChange={setValue}
+        options={options}
+        isFetchingOptions={false}
+      />
+    );
+  },
+};
+
+export const WithFullWidth: Story = {
+  render: () => {
+    const options: AppOption[] = generateOptions(0, 100);
+    const [value, setValue] = useState<AppOption | null>(null);
+
+    return (
+      <AppSelect
+        label="Select"
+        value={value}
+        onChange={setValue}
+        options={options}
+        fullWidth
+      />
+    );
+  },
+};

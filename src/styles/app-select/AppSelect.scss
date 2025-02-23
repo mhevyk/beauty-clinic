@@ -12,9 +12,10 @@ $transition: all ease 0.3s;
 
   &__button {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     width: 300px;
     background: #fff;
     box-sizing: border-box;
@@ -45,6 +46,13 @@ $transition: all ease 0.3s;
     @include scrollbar();
   }
 
+  &__no-items {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__list-item {
     padding: 5px;
     transition: $transition;
@@ -64,7 +72,7 @@ $transition: all ease 0.3s;
     &:hover {
       background-color: #eee;
     }
-    
+
     &--disabled {
       background: #bbb;
       color: #555;

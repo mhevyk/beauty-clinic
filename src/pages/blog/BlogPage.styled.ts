@@ -7,5 +7,5 @@ export const BoxStyled = styled(Box)({
 export const PostBox = styled(Box)({
   display: "flex",
   justifyContent: "center",
-  padding: "3rem 0"
+  padding: "3rem 0",
 });

@@ -3,6 +3,7 @@ import { PropsWithChildren } from "react";
 
 import DOMPurify from "dompurify";
 
+import { AppEditorContentProps } from "@/styles/app-editor/app-editor-content/AppEditorContent.types";
 import AppQuote from "@/styles/app-quote/AppQuote";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
@@ -31,10 +32,6 @@ const Heading = ({ children }: PropsWithChildren) => {
       {children}
     </AppTypography>
   );
-};
-
-type AppEditorContentProps = {
-  value: string;
 };
 
 const AppEditorContent = ({ value }: AppEditorContentProps) => {

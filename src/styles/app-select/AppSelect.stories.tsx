@@ -66,45 +66,6 @@ export const MultipleSelect: Story = {
   },
 };
 
-export const WithCustomRenderedOption: Story = {
-  render: () => {
-    const [value, setValue] = useState<AppOption | null>(null);
-
-    const renderOption = ({
-      item,
-      isSelected,
-      onSelect,
-      style,
-    }: AppSelectRenderOptionProps<AppOption>) => {
-      if (!item) {
-        return null;
-      }
-
-      const optionStyle = {
-        ...style,
-        display: "flex",
-        alignItems: "center",
-        backgroundColor: isSelected ? "#d3f9d8" : "#fff",
-      };
-
-      return (
-        <div style={optionStyle} onClick={() => onSelect(item)}>
-          <AppTypography>{item.value}</AppTypography>
-        </div>
-      );
-    };
-
-    return (
-      <AppSelect
-        value={value}
-        onChange={setValue}
-        options={options}
-        renderOption={renderOption}
-      />
-    );
-  },
-};
-
 export const WithLoadingState: Story = {
   render: () => {
     const [value, setValue] = useState<AppOption | null>(null);
@@ -126,38 +87,21 @@ export const WithNoOptions: Story = {
     return <AppSelect options={[]} value={value} onChange={setValue} />;
   },
 };
-//   render: () => {
-//     const [paginatedOptions, setPaginatedOptions] = useState<AppOption[]>([]);
-//     const [isLoadingOptions, setIsLoadingOptions] = useState(false);
-//     const [selectedOption, setSelectedOption] = useState<AppOption | null>(
-//       null
-//     );
 
-//     const fetchMoreOptions = async () => {
-//       return new Promise<void>(resolve => {
-//         setIsLoadingOptions(true);
-//         setTimeout(() => {
-//           setPaginatedOptions(generateOptions(0, 20));
-//           setIsLoadingOptions(false);
-//           resolve();
-//         }, 3000);
-//       });
-//     };
+export const WithCustomPlaceholder: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption | null>(null);
 
-//     useEffect(() => {
-//       fetchMoreOptions();
-//     }, []);
-
-//     return (
-//       <AppSelect
-//         options={paginatedOptions}
-//         value={selectedOption}
-//         onChange={setSelectedOption}
-//         isFetchingOptions={isLoadingOptions}
-//       />
-//     );
-//   },
-// };
+    return (
+      <AppSelect
+        options={options}
+        value={value}
+        onChange={setValue}
+        placeholder="Select an employee"
+      />
+    );
+  },
+};
 
 export const WithLabel: Story = {
   render: () => {
@@ -204,6 +148,60 @@ export const WithErrorMessage: Story = {
   },
 };
 
+export const FullWidth: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption | null>(null);
+
+    return (
+      <AppSelect
+        options={options}
+        value={value}
+        onChange={setValue}
+        fullWidth
+      />
+    );
+  },
+};
+
+export const WithCustomRenderedOption: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption | null>(null);
+
+    const renderOption = ({
+      item,
+      isSelected,
+      onSelect,
+      style,
+    }: AppSelectRenderOptionProps<AppOption>) => {
+      if (!item) {
+        return null;
+      }
+
+      const optionStyle = {
+        ...style,
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: isSelected ? "#d3f9d8" : "#fff",
+      };
+
+      return (
+        <div style={optionStyle} onClick={() => onSelect(item)}>
+          <AppTypography>{item.value}</AppTypography>
+        </div>
+      );
+    };
+
+    return (
+      <AppSelect
+        value={value}
+        onChange={setValue}
+        options={options}
+        renderOption={renderOption}
+      />
+    );
+  },
+};
+
 export const WithDisabledOptions: Story = {
   render: () => {
     const disabledOptionIndexes = [0, 2, 6, 15];
@@ -221,21 +219,6 @@ export const WithDisabledOptions: Story = {
         options={optionsWithDisabled}
         value={value}
         onChange={setValue}
-      />
-    );
-  },
-};
-
-export const FullWidth: Story = {
-  render: () => {
-    const [value, setValue] = useState<AppOption | null>(null);
-
-    return (
-      <AppSelect
-        options={options}
-        value={value}
-        onChange={setValue}
-        fullWidth
       />
     );
   },

@@ -32,7 +32,7 @@ const HEIGHT = 200;
 
 const AppSelect = <Option extends AppOption>(
   {
-    options: selectOptions,
+    options,
     label,
     renderOption,
     isFetchingOptions,
@@ -47,15 +47,13 @@ const AppSelect = <Option extends AppOption>(
 ) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [selected, setSelected] = useState<Option[]>(() => {
+  const [selectedOptions, setSelectedOptions] = useState(() => {
     if (restProps.type === "multiple") {
       return restProps.value ?? [];
     }
 
     return restProps.value ? [restProps.value] : [];
   });
-
-  const containerWidth = fullWidth ? "100%" : WIDTH;
 
   const listRef = useRef<FixedSizeList>(null);
 
@@ -71,7 +69,7 @@ const AppSelect = <Option extends AppOption>(
   };
 
   const isItemSelected = (item: Option) => {
-    return selected.some(option => option.value === item.value);
+    return selectedOptions.some(option => option.value === item.value);
   };
 
   const handleSelect = useCallback(
@@ -84,8 +82,8 @@ const AppSelect = <Option extends AppOption>(
 
       if (restProps.type === "multiple") {
         updatedSelected = isItemSelected(item)
-          ? selected.filter(option => option.value !== item.value)
-          : [...selected, item];
+          ? selectedOptions.filter(option => option.value !== item.value)
+          : [...selectedOptions, item];
 
         restProps.onChange?.(updatedSelected);
       } else {
@@ -93,9 +91,9 @@ const AppSelect = <Option extends AppOption>(
         restProps.onChange?.(updatedSelected[0] ?? null);
       }
 
-      setSelected(updatedSelected);
+      setSelectedOptions(updatedSelected);
     },
-    [selected, restProps.onChange]
+    [selectedOptions, restProps.onChange]
   );
 
   const handleSelectWithKeyboard = (
@@ -108,11 +106,11 @@ const AppSelect = <Option extends AppOption>(
   };
 
   const getSelectButtonLabel = () => {
-    if (selected.length > 1) {
-      return `${selected.length} items selected`;
+    if (selectedOptions.length > 1) {
+      return `${selectedOptions.length} items selected`;
     }
 
-    const selectedOption = selected[0];
+    const selectedOption = selectedOptions[0];
 
     if (selectedOption) {
       return selectedOption.label;
@@ -120,6 +118,8 @@ const AppSelect = <Option extends AppOption>(
 
     return placeholder ?? "Select an option";
   };
+
+  const containerWidth = fullWidth ? "100%" : WIDTH;
 
   const renderFallbackContainerWith = (content: ReactNode) => {
     return (
@@ -139,7 +139,7 @@ const AppSelect = <Option extends AppOption>(
       return renderFallbackContainerWith(<AppSpinner />);
     }
 
-    if (selectOptions.length === 0) {
+    if (options.length === 0) {
       return renderFallbackContainerWith(
         <AppTypography>No options found</AppTypography>
       );
@@ -153,10 +153,10 @@ const AppSelect = <Option extends AppOption>(
         })}
         height={HEIGHT}
         width={containerWidth}
-        itemCount={selectOptions.length + (isFetchingOptions ? 1 : 0)}
+        itemCount={options.length + (isFetchingOptions ? 1 : 0)}
         itemSize={ITEM_SIZE}
         itemData={{
-          options: selectOptions,
+          options: options,
           isItemSelected,
           onSelect: handleSelect,
           onSelectWithKeyboard: handleSelectWithKeyboard,

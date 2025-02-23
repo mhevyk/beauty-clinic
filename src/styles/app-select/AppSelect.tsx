@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import {
   KeyboardEvent,
+  ReactNode,
   Ref,
   forwardRef,
   useCallback,
@@ -120,6 +121,54 @@ const AppSelect = <Option extends AppOption>(
     return placeholder ?? "Select an option";
   };
 
+  const renderFallbackContainerWith = (content: ReactNode) => {
+    return (
+      <div
+        style={{ width: containerWidth }}
+        className={classNames("app-select__list app-select__no-items", {
+          "app-select--expanded": isOpen,
+        })}
+      >
+        {content}
+      </div>
+    );
+  };
+
+  const renderSelectList = () => {
+    if (isFetchingOptions) {
+      return renderFallbackContainerWith(<AppSpinner />);
+    }
+
+    if (selectOptions.length === 0) {
+      return renderFallbackContainerWith(
+        <AppTypography>No options found</AppTypography>
+      );
+    }
+
+    return (
+      <FixedSizeList<FixedSizeListProps<Option>>
+        ref={listRef}
+        className={classNames("app-select__list", {
+          "app-select--expanded": isOpen,
+        })}
+        height={HEIGHT}
+        width={containerWidth}
+        itemCount={selectOptions.length + (isFetchingOptions ? 1 : 0)}
+        itemSize={ITEM_SIZE}
+        itemData={{
+          options: selectOptions,
+          isItemSelected,
+          onSelect: handleSelect,
+          onSelectWithKeyboard: handleSelectWithKeyboard,
+          renderOption,
+        }}
+        overscanCount={OVERSCAN_COUNT}
+      >
+        {AppSelectItem}
+      </FixedSizeList>
+    );
+  };
+
   return (
     <AppFormControl
       className="app-select"
@@ -152,42 +201,7 @@ const AppSelect = <Option extends AppOption>(
             />
             <AppTypography>{getSelectButtonLabel()}</AppTypography>
           </div>
-
-          {selectOptions.length ? (
-            <FixedSizeList<FixedSizeListProps<Option>>
-              ref={listRef}
-              className={classNames("app-select__list", {
-                "app-select--expanded": isOpen,
-              })}
-              height={HEIGHT}
-              width={containerWidth}
-              itemCount={selectOptions.length + (isFetchingOptions ? 1 : 0)}
-              itemSize={ITEM_SIZE}
-              itemData={{
-                options: selectOptions,
-                isItemSelected,
-                onSelect: handleSelect,
-                onSelectWithKeyboard: handleSelectWithKeyboard,
-                renderOption,
-              }}
-              overscanCount={OVERSCAN_COUNT}
-            >
-              {AppSelectItem}
-            </FixedSizeList>
-          ) : (
-            <div
-              style={{ width: containerWidth }}
-              className={classNames("app-select__list app-select__no-items", {
-                "app-select--expanded": isOpen,
-              })}
-            >
-              {isFetchingOptions ? (
-                <AppSpinner />
-              ) : (
-                <AppTypography>No options found</AppTypography>
-              )}
-            </div>
-          )}
+          {renderSelectList()}
         </div>
       }
     />

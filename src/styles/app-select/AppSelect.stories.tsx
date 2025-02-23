@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import AppSelect from "@/styles/app-select/AppSelect";
 import {
@@ -7,11 +7,19 @@ import {
   AppSelectProps,
   AppSelectRenderOptionProps,
 } from "@/styles/app-select/AppSelect.types";
+import AppTypography from "@/styles/app-typography/AppTypography";
 
 const meta: Meta = {
   title: "AppSelect",
   component: AppSelect,
   tags: ["autodocs"],
+  parameters: {
+    docs: {
+      story: {
+        height: "250px",
+      },
+    },
+  },
 };
 
 export default meta;
@@ -31,46 +39,28 @@ const options = generateOptions(0, 100);
 
 export const Default: Story = {
   render: () => {
-    const [selectedOption, setSelectedOption] = useState<AppOption | null>(
-      null
-    );
-
-    return (
-      <AppSelect
-        options={options}
-        value={selectedOption}
-        onChange={setSelectedOption}
-      />
-    );
+    const [value, setValue] = useState<AppOption | null>(null);
+    return <AppSelect options={options} value={value} onChange={setValue} />;
   },
 };
 
 export const SingleSelect: Story = {
   render: () => {
-    const [selectedOption, setSelectedOption] = useState<AppOption | null>(
-      null
-    );
-
-    return (
-      <AppSelect
-        options={options}
-        value={selectedOption}
-        onChange={setSelectedOption}
-      />
-    );
+    const [value, setValue] = useState<AppOption | null>(null);
+    return <AppSelect options={options} value={value} onChange={setValue} />;
   },
 };
 
 export const MultipleSelect: Story = {
   render: () => {
-    const [selectedOptions, setSelectedOptions] = useState<AppOption[]>([]);
+    const [values, setValues] = useState<AppOption[]>([]);
 
     return (
       <AppSelect
         type="multiple"
         options={options}
-        value={selectedOptions}
-        onChange={setSelectedOptions}
+        value={values}
+        onChange={setValues}
       />
     );
   },
@@ -78,9 +68,7 @@ export const MultipleSelect: Story = {
 
 export const WithCustomRenderedOption: Story = {
   render: () => {
-    const [selectedOption, setSelectedOption] = useState<AppOption | null>(
-      null
-    );
+    const [value, setValue] = useState<AppOption | null>(null);
 
     const renderOption = ({
       item,
@@ -92,25 +80,24 @@ export const WithCustomRenderedOption: Story = {
         return null;
       }
 
+      const optionStyle = {
+        ...style,
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: isSelected ? "#d3f9d8" : "#fff",
+      };
+
       return (
-        <div
-          style={{
-            ...style,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: isSelected ? "#d3f9d8" : "#fff",
-          }}
-          onClick={() => onSelect(item)}
-        >
-          <p style={{ margin: 0 }}>{item.value}</p>
+        <div style={optionStyle} onClick={() => onSelect(item)}>
+          <AppTypography>{item.value}</AppTypography>
         </div>
       );
     };
 
     return (
       <AppSelect
-        value={selectedOption}
-        onChange={setSelectedOption}
+        value={value}
+        onChange={setValue}
         options={options}
         renderOption={renderOption}
       />
@@ -118,37 +105,59 @@ export const WithCustomRenderedOption: Story = {
   },
 };
 
-export const WithOptionFetching: Story = {
+export const WithLoadingState: Story = {
   render: () => {
-    const [paginatedOptions, setPaginatedOptions] = useState<AppOption[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState<AppOption | null>(null);
-
-    const fetchMoreOptions = async () => {
-      return new Promise<void>(resolve => {
-        setIsLoading(true);
-        setTimeout(() => {
-          setPaginatedOptions(generateOptions(0, 20));
-          setIsLoading(false);
-          resolve();
-        }, 3000);
-      });
-    };
-
-    useEffect(() => {
-      fetchMoreOptions();
-    }, []);
 
     return (
       <AppSelect
-        options={paginatedOptions}
+        options={options}
         value={value}
         onChange={setValue}
-        isFetchingOptions={isLoading}
+        isFetchingOptions
       />
     );
   },
 };
+
+export const WithNoOptions: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption | null>(null);
+    return <AppSelect options={[]} value={value} onChange={setValue} />;
+  },
+};
+//   render: () => {
+//     const [paginatedOptions, setPaginatedOptions] = useState<AppOption[]>([]);
+//     const [isLoadingOptions, setIsLoadingOptions] = useState(false);
+//     const [selectedOption, setSelectedOption] = useState<AppOption | null>(
+//       null
+//     );
+
+//     const fetchMoreOptions = async () => {
+//       return new Promise<void>(resolve => {
+//         setIsLoadingOptions(true);
+//         setTimeout(() => {
+//           setPaginatedOptions(generateOptions(0, 20));
+//           setIsLoadingOptions(false);
+//           resolve();
+//         }, 3000);
+//       });
+//     };
+
+//     useEffect(() => {
+//       fetchMoreOptions();
+//     }, []);
+
+//     return (
+//       <AppSelect
+//         options={paginatedOptions}
+//         value={selectedOption}
+//         onChange={setSelectedOption}
+//         isFetchingOptions={isLoadingOptions}
+//       />
+//     );
+//   },
+// };
 
 export const WithLabel: Story = {
   render: () => {
@@ -197,10 +206,28 @@ export const WithErrorMessage: Story = {
 
 export const WithDisabledOptions: Story = {
   render: () => {
-    if (options[0]) {
-      options[0].isDisabled = true;
-    }
+    const disabledOptionIndexes = [0, 2, 6, 15];
+    const optionsWithDisabled = options.map((option, index) => {
+      return {
+        ...option,
+        isDisabled: disabledOptionIndexes.includes(index),
+      };
+    });
 
+    const [value, setValue] = useState<AppOption | null>(null);
+
+    return (
+      <AppSelect
+        options={optionsWithDisabled}
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
+};
+
+export const FullWidth: Story = {
+  render: () => {
     const [value, setValue] = useState<AppOption | null>(null);
 
     return (
@@ -208,64 +235,6 @@ export const WithDisabledOptions: Story = {
         options={options}
         value={value}
         onChange={setValue}
-        label="Select"
-      />
-    );
-  },
-};
-
-export const WithSelectedOptionsList: Story = {
-  render: () => {
-    const [value, setValue] = useState<AppOption[]>([]);
-
-    return (
-      <div>
-        <AppSelect
-          value={value}
-          onChange={setValue}
-          label="Selects"
-          options={options}
-          type="multiple"
-        />
-        <div style={{ marginTop: "20px" }}>
-          <h3>Selected Options:</h3>
-          <ul>
-            {value.map(option => (
-              <li key={option.value}>{option.label}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  },
-};
-
-export const WithNoResults: Story = {
-  render: () => {
-    const [value, setValue] = useState<AppOption | null>(null);
-
-    return (
-      <AppSelect
-        value={value}
-        onChange={setValue}
-        label="Select"
-        options={[]}
-        isFetchingOptions={false}
-      />
-    );
-  },
-};
-
-export const WithFullWidth: Story = {
-  render: () => {
-    const [value, setValue] = useState<AppOption | null>(null);
-
-    return (
-      <AppSelect
-        label="Select"
-        value={value}
-        onChange={setValue}
-        options={options}
         fullWidth
       />
     );

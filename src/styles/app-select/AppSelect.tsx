@@ -39,6 +39,7 @@ const AppSelect = <Option extends AppOption>(
     errorMessage,
     helperText,
     fullWidth = false,
+    placeholder,
     ...restProps
   }: AppSelectProps<Option>,
   ref: Ref<HTMLDivElement>
@@ -105,6 +106,20 @@ const AppSelect = <Option extends AppOption>(
     }
   };
 
+  const getSelectButtonLabel = () => {
+    if (selected.length > 1) {
+      return `${selected.length} items selected`;
+    }
+
+    const selectedOption = selected[0];
+
+    if (selectedOption) {
+      return selectedOption.label;
+    }
+
+    return placeholder ?? "Select an option";
+  };
+
   return (
     <AppFormControl
       className="app-select"
@@ -112,6 +127,7 @@ const AppSelect = <Option extends AppOption>(
       errorMessage={errorMessage}
       ref={controlRef}
       fullWidth={fullWidth}
+      label={label}
       control={
         <div ref={ref} style={{ width: containerWidth }}>
           <div
@@ -134,7 +150,7 @@ const AppSelect = <Option extends AppOption>(
               height={24}
               aria-hidden="true"
             />
-            {label && <AppTypography>{label}</AppTypography>}
+            <AppTypography>{getSelectButtonLabel()}</AppTypography>
           </div>
 
           {selectOptions.length ? (

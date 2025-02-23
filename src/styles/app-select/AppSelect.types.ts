@@ -20,7 +20,7 @@ type AppSelectMultipleProps<Option extends AppOption> = {
   onChange?: (selected: Option[]) => void;
 };
 
-export type AppSelectRenderItemProps<Option extends AppOption> = {
+export type AppSelectRenderOptionProps<Option extends AppOption> = {
   item?: Option;
   isSelected: boolean;
   isDisabled: boolean;
@@ -29,7 +29,7 @@ export type AppSelectRenderItemProps<Option extends AppOption> = {
 };
 
 type RenderSelectOption<Option extends AppOption> = (
-  props: AppSelectRenderItemProps<Option>
+  props: AppSelectRenderOptionProps<Option>
 ) => ReactNode;
 
 export type AppSelectProps<Option extends AppOption> = {
@@ -38,6 +38,7 @@ export type AppSelectProps<Option extends AppOption> = {
   fullWidth?: boolean;
   renderOption?: RenderSelectOption<Option>;
   isFetchingOptions?: boolean;
+  placeholder?: string;
 } & AppFormControlMeta &
   (AppSelectSingleProps<Option> | AppSelectMultipleProps<Option>);
 

@@ -21,6 +21,7 @@ $transition: all ease 0.3s;
     box-sizing: border-box;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    user-select: none;
   }
 
   &__list {
@@ -37,10 +38,11 @@ $transition: all ease 0.3s;
     overflow-y: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-    div {
+    & > div {
       list-style-type: none;
       gap: 20px;
       display: flex;
+      pointer-events: none;
     }
 
     @include scrollbar();
@@ -54,6 +56,7 @@ $transition: all ease 0.3s;
   }
 
   &__list-item {
+    user-select: none;
     padding: 5px;
     transition: $transition;
     box-sizing: border-box;
@@ -107,5 +110,9 @@ $transition: all ease 0.3s;
   // Need to be at the bottom
   &--expanded {
     opacity: 1;
+
+    & > div {
+      pointer-events: all;
+    }
   }
 }

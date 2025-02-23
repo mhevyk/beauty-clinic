@@ -2,7 +2,11 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useEffect, useState } from "react";
 
 import AppSelect from "@/styles/app-select/AppSelect";
-import { AppOption, AppSelectProps } from "@/styles/app-select/AppSelect.types";
+import {
+  AppOption,
+  AppSelectProps,
+  AppSelectRenderOptionProps,
+} from "@/styles/app-select/AppSelect.types";
 
 const meta: Meta = {
   title: "AppSelect",
@@ -18,22 +22,24 @@ const generateOptions = (start: number, count: number) =>
   Array.from(
     { length: count },
     (_, index): AppOption => ({
-      label: `AppOption ${start + index + 1}`,
+      label: `Option ${start + index + 1}`,
       value: String(index),
     })
   );
 
+const options = generateOptions(0, 100);
+
 export const Default: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
-    const [value, setValue] = useState<AppOption | null>(null);
+    const [selectedOption, setSelectedOption] = useState<AppOption | null>(
+      null
+    );
 
     return (
       <AppSelect
-        label="Select"
-        value={value}
-        onChange={setValue}
         options={options}
+        value={selectedOption}
+        onChange={setSelectedOption}
       />
     );
   },
@@ -41,15 +47,15 @@ export const Default: Story = {
 
 export const SingleSelect: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
-    const [value, setValue] = useState<AppOption | null>(null);
+    const [selectedOption, setSelectedOption] = useState<AppOption | null>(
+      null
+    );
 
     return (
       <AppSelect
-        label="Select"
         options={options}
-        value={value}
-        onChange={setValue}
+        value={selectedOption}
+        onChange={setSelectedOption}
       />
     );
   },
@@ -57,52 +63,56 @@ export const SingleSelect: Story = {
 
 export const MultipleSelect: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
-    const [value, setValue] = useState<AppOption[]>([]);
+    const [selectedOptions, setSelectedOptions] = useState<AppOption[]>([]);
 
     return (
       <AppSelect
-        label="Select"
         type="multiple"
         options={options}
-        value={value}
-        onChange={setValue}
+        value={selectedOptions}
+        onChange={setSelectedOptions}
       />
     );
   },
 };
 
-export const CustomOptionComponent: Story = {
+export const WithCustomRenderedOption: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
-    const [value, setValue] = useState<AppOption[]>([]);
+    const [selectedOption, setSelectedOption] = useState<AppOption | null>(
+      null
+    );
+
+    const renderOption = ({
+      item,
+      isSelected,
+      onSelect,
+      style,
+    }: AppSelectRenderOptionProps<AppOption>) => {
+      if (!item) {
+        return null;
+      }
+
+      return (
+        <div
+          style={{
+            ...style,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: isSelected ? "#d3f9d8" : "#fff",
+          }}
+          onClick={() => onSelect(item)}
+        >
+          <p style={{ margin: 0 }}>{item.value}</p>
+        </div>
+      );
+    };
 
     return (
       <AppSelect
-        value={value}
-        onChange={setValue}
-        label="Select"
-        type="multiple"
+        value={selectedOption}
+        onChange={setSelectedOption}
         options={options}
-        renderOption={({ item, isSelected, onSelect, style }) => {
-          if (!item) {
-            return null;
-          }
-
-          return (
-            <div
-              style={{
-                ...style,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: isSelected ? "#d3f9d8" : "#fff",
-              }}
-              onClick={() => onSelect(item as AppOption)}
-            >
-              <p style={{ margin: 0 }}>{item.value}</p>
-            </div>
-          );
-        }}
+        renderOption={renderOption}
       />
     );
   },
@@ -110,7 +120,7 @@ export const CustomOptionComponent: Story = {
 
 export const WithOptionFetching: Story = {
   render: () => {
-    const [options, setOptions] = useState<AppOption[]>([]);
+    const [paginatedOptions, setPaginatedOptions] = useState<AppOption[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState<AppOption | null>(null);
 
@@ -118,7 +128,7 @@ export const WithOptionFetching: Story = {
       return new Promise<void>(resolve => {
         setIsLoading(true);
         setTimeout(() => {
-          setOptions(generateOptions(0, 20));
+          setPaginatedOptions(generateOptions(0, 20));
           setIsLoading(false);
           resolve();
         }, 3000);
@@ -131,28 +141,25 @@ export const WithOptionFetching: Story = {
 
     return (
       <AppSelect
+        options={paginatedOptions}
         value={value}
         onChange={setValue}
-        label="Select"
-        options={options}
         isFetchingOptions={isLoading}
       />
     );
   },
 };
 
-export const WithErrorMessage: Story = {
+export const WithLabel: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
     const [value, setValue] = useState<AppOption | null>(null);
 
     return (
       <AppSelect
-        label="Select"
         options={options}
-        errorMessage="Error occured"
         value={value}
         onChange={setValue}
+        label="Employee"
       />
     );
   },
@@ -160,16 +167,29 @@ export const WithErrorMessage: Story = {
 
 export const WithHelperText: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
     const [value, setValue] = useState<AppOption | null>(null);
 
     return (
       <AppSelect
-        label="Select"
         options={options}
-        helperText="Please, select an item"
         value={value}
         onChange={setValue}
+        helperText="This is a required field"
+      />
+    );
+  },
+};
+
+export const WithErrorMessage: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption | null>(null);
+
+    return (
+      <AppSelect
+        options={options}
+        value={value}
+        onChange={setValue}
+        errorMessage="Error occured"
       />
     );
   },
@@ -177,18 +197,18 @@ export const WithHelperText: Story = {
 
 export const WithDisabledOptions: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
     if (options[0]) {
       options[0].isDisabled = true;
     }
+
     const [value, setValue] = useState<AppOption | null>(null);
 
     return (
       <AppSelect
+        options={options}
         value={value}
         onChange={setValue}
         label="Select"
-        options={options}
       />
     );
   },
@@ -196,7 +216,6 @@ export const WithDisabledOptions: Story = {
 
 export const WithSelectedOptionsList: Story = {
   render: () => {
-    const options = generateOptions(0, 100);
     const [value, setValue] = useState<AppOption[]>([]);
 
     return (
@@ -223,7 +242,6 @@ export const WithSelectedOptionsList: Story = {
 
 export const WithNoResults: Story = {
   render: () => {
-    const options: AppOption[] = [];
     const [value, setValue] = useState<AppOption | null>(null);
 
     return (
@@ -231,23 +249,7 @@ export const WithNoResults: Story = {
         value={value}
         onChange={setValue}
         label="Select"
-        options={options}
-        isFetchingOptions={false}
-      />
-    );
-  },
-};
-
-export const WithoutLabel: Story = {
-  render: () => {
-    const options: AppOption[] = generateOptions(0, 100);
-    const [value, setValue] = useState<AppOption | null>(null);
-
-    return (
-      <AppSelect
-        value={value}
-        onChange={setValue}
-        options={options}
+        options={[]}
         isFetchingOptions={false}
       />
     );
@@ -256,7 +258,6 @@ export const WithoutLabel: Story = {
 
 export const WithFullWidth: Story = {
   render: () => {
-    const options: AppOption[] = generateOptions(0, 100);
     const [value, setValue] = useState<AppOption | null>(null);
 
     return (

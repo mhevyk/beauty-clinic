@@ -12,7 +12,7 @@ import AppTextarea from "@/styles/app-textarea/AppTextarea";
 
 type BookingFormProps = Pick<
   FormikProps<ClientDetailsFormValues>,
-  "values" | "handleChange" | "errors" | "setFieldValue" | "setValues"
+  "values" | "handleChange" | "errors"
 >;
 
 export default function BookingForm({

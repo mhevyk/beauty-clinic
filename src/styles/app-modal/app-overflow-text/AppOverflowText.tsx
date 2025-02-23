@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useId, useLayoutEffect, useRef, useState } from "react";
 
 import classnames from "classnames";
 
@@ -11,11 +11,11 @@ const AppOverflowText = ({
   children,
   textSize,
   variant,
-  id,
   tooltip,
 }: AppOverflowTextsProps) => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isTruncated, setIsTruncated] = useState(false);
+  const titleId = useId();
 
   useLayoutEffect(() => {
     const element = textRef.current;
@@ -26,7 +26,7 @@ const AppOverflowText = ({
 
   const textElement = (
     <AppTypography
-      id={`${id}-title`}
+      id={`${titleId}-title`}
       ref={textRef}
       variant={variant}
       className={classnames(
@@ -40,9 +40,8 @@ const AppOverflowText = ({
   );
 
   if (isTruncated) {
-    const tooltipProps = tooltip ? { ...tooltip } : {};
     return (
-      <AppTooltip id={`${id}-tooltip`} content={children} {...tooltipProps}>
+      <AppTooltip content={children} {...tooltip}>
         {textElement}
       </AppTooltip>
     );

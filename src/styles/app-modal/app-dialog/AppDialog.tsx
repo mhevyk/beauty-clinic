@@ -124,7 +124,6 @@ const AppDialog = ({
             <AppOverflowText
               tooltip={tooltipOverflowText}
               variant="h4"
-              id={dialogId}
               textSize={size}
             >
               {title}

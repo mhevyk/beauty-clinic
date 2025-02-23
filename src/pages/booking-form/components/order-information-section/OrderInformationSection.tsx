@@ -25,22 +25,29 @@ export default function OrderInformationSection() {
 
   const userDetails = data?.getCurrentUserDetails;
 
-  const initialFormValues: ClientDetailsFormValues = {
-    name: isAuthenticated && userDetails ? userDetails.username : "",
-    email: isAuthenticated && userDetails ? userDetails.email : "",
-    phoneNumber: isAuthenticated ? (userDetails?.phoneNumber ?? "") : "",
+  const defaultValues: ClientDetailsFormValues = {
+    name: "",
+    email: "",
+    phoneNumber: "",
     message: "",
   };
+
+  const shouldPrefillFormValues = Boolean(isAuthenticated && userDetails);
 
   const {
     values: formValues,
     errors,
     handleChange,
-    setFieldValue,
-    setValues,
     handleSubmit: submitForm,
   } = useFormik({
-    initialValues: initialFormValues,
+    initialValues: {
+      ...defaultValues,
+      ...(shouldPrefillFormValues && {
+        name: userDetails?.username,
+        email: userDetails?.email,
+        phoneNumber: userDetails?.phoneNumber ?? "",
+      }),
+    },
     onSubmit: handleSubmit,
     validationSchema: bookingFormSchema,
     validateOnMount: false,
@@ -67,8 +74,6 @@ export default function OrderInformationSection() {
             values={formValues}
             errors={errors}
             handleChange={handleChange}
-            setFieldValue={setFieldValue}
-            setValues={setValues}
           />
         </div>
         <div className="order-information__booking-details">

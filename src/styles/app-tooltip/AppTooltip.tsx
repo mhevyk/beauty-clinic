@@ -13,7 +13,7 @@ const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
 ) {
   const [isVisible, setIsVisible] = useState(false);
   const timeoutRef = useRef<Timer | null>(null);
-  const id = useId();
+  const tooltipId = useId();
 
   const showTooltip = () => {
     timeoutRef.current = setTimeout(() => {
@@ -47,14 +47,16 @@ const AppTooltip = forwardRef<HTMLDivElement, AppTooltipProps>(function (
       tabIndex={-1}
       {...props}
       ref={ref}
-      aria-describedby={isVisible && content ? `tooltip-${id}` : undefined}
+      aria-describedby={
+        isVisible && content ? `tooltip-${tooltipId}` : undefined
+      }
       className="app-tooltip__wrapper"
     >
       {children}
       {isVisible && (
         <div
           role="tooltip"
-          id={`tooltip-${id}`}
+          id={`tooltip-${tooltipId}`}
           aria-live="polite"
           className={classNames(
             "app-tooltip",

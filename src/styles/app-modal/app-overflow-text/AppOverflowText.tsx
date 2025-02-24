@@ -1,4 +1,4 @@
-import { useId, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 import classnames from "classnames";
 
@@ -15,7 +15,6 @@ const AppOverflowText = ({
 }: AppOverflowTextsProps) => {
   const textRef = useRef<HTMLDivElement>(null);
   const [isTruncated, setIsTruncated] = useState(false);
-  const titleId = useId();
 
   useLayoutEffect(() => {
     const element = textRef.current;
@@ -26,7 +25,6 @@ const AppOverflowText = ({
 
   const textElement = (
     <AppTypography
-      id={`${titleId}-title`}
       ref={textRef}
       variant={variant}
       className={classnames(

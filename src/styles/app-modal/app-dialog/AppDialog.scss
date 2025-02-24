@@ -12,10 +12,10 @@ $animation-duration: 300ms;
   width: 100%;
   min-width: 320px;
   opacity: 0;
-  animation: fade-in-dialog $animation-duration ease-in-out forwards;
+  animation: fade-in $animation-duration ease-in-out forwards;
 
   &--closing {
-    animation: fade-in-dialog $animation-duration ease-in-out reverse;
+    animation: fade-in $animation-duration ease-in-out reverse;
   }
 
   &--sm {

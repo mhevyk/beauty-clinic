@@ -1,0 +1,13 @@
+@use "design-system/utils/mixin" as *;
+
+.app-overflow-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  //width: 100%;
+  //@include truncate-text(1);
+  //width: 100px;
+  //.app-typography {
+  //  width: 300px;
+  //}
+}

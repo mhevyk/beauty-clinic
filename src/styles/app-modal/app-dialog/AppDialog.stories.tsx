@@ -7,6 +7,7 @@ import { fn } from "@storybook/test";
 import AppButton from "@/styles/app-button/AppButton";
 import AppDialog from "@/styles/app-modal/app-dialog/AppDialog";
 import { AppDialogProps } from "@/styles/app-modal/app-dialog/AppDialog.types";
+import OverflowTooltip from "@/styles/app-modal/app-dialog/OverflowTooltip.tsx";
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const defaultContent = (
@@ -47,7 +48,8 @@ export const Default: Story = {
 
 export const WithLongTitle: Story = {
   args: {
-    title: "This is a very long title that should be truncated",
+    title:
+      "This is a very long title that should be truncated jdsfkjkfdjjkdk kdsfjk s ddj fkds jf  fkdfkjfkjdfkj",
   },
 };
 
@@ -63,7 +65,10 @@ export const DefaultDemo: Story = {
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
         >
-          {defaultContent}
+          <OverflowTooltip
+            tooltip={"tooltip message here"}
+            text={"very long text here"}
+          />
         </AppDialog>
       </>
     );

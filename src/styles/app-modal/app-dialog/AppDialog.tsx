@@ -11,7 +11,7 @@ import {
   AppDialogProps,
 } from "@/styles/app-modal/app-dialog/AppDialog.types";
 import AppModalWrapper from "@/styles/app-modal/app-modal-wrapper/AppModalWrapper";
-import AppOverflowText from "@/styles/app-modal/app-overflow-text/AppOverflowText.tsx";
+import AppOverflowText from "@/styles/app-overflow-text/AppOverflowText.tsx";
 
 type FooterButtonProps = {
   defaultLabel: string;
@@ -122,9 +122,8 @@ const AppDialog = ({
         <header className="app-dialog__header">
           {title && (
             <AppOverflowText
-              tooltip={tooltipOverflowText}
-              variant="h4"
-              textSize={size}
+              typographyProps={{ variant: "h4" }}
+              tooltipProps={tooltipOverflowText}
             >
               {title}
             </AppOverflowText>

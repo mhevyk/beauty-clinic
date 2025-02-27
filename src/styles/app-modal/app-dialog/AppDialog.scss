@@ -40,6 +40,10 @@ $animation-duration: 300ms;
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+    gap: 20px;
+    box-sizing: border-box;
+
+    //width: 100%;
 
     .app-dialog__close-button {
       margin-left: auto;

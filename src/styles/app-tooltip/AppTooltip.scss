@@ -1,6 +1,7 @@
 @use "design-system/colors" as *;
 @use "design-system/utils/animations" as *;
 @use "sass:color";
+@use "design-system/utils/mixin" as *;
 
 $bg-color: color.mix($color-primary, $color-secondary, 72%);
 $animation-duration: 200ms;
@@ -31,8 +32,9 @@ $animation-duration: 200ms;
   }
 
   &__wrapper {
+    max-width: 100%;
     position: relative;
-    display: inline-block;
+    display: block;
   }
 
   &--top {

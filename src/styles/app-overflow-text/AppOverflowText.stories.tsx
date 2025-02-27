@@ -1,13 +1,17 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { MemoryRouter } from "react-router-dom";
 
-import AppOverflowText from "@/styles/app-modal/app-overflow-text/AppOverflowText.tsx";
-import { AppOverflowTextsProps } from "@/styles/app-modal/app-overflow-text/AppOverflowText.types.ts";
+import AppOverflowText from "@/styles/app-overflow-text/AppOverflowText.tsx";
+import { AppOverflowTextsProps } from "@/styles/app-overflow-text/AppOverflowText.types.ts";
 
 const meta: Meta<AppOverflowTextsProps> = {
-  title: "modals/AppOverflowTexts",
+  title: "AppOverflowText",
   component: AppOverflowText,
   tags: ["autodocs"],
+  args: {
+    children:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi suscipit accusamus veritatis",
+  },
   parameters: {
     layout: "centered",
   },
@@ -31,18 +35,7 @@ export default meta;
 
 type Story = StoryObj<AppOverflowTextsProps>;
 
-export const Default: Story = {
-  args: {
-    textSize: "md",
-  },
-
-  render: args => (
-    <AppOverflowText {...args}>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi
-      suscipit accusamus veritatis
-    </AppOverflowText>
-  ),
-};
+export const Default: Story = {};
 
 export const TitleSmallSize: Story = {
   args: {
@@ -72,7 +65,7 @@ export const LargeTextWithTooltip: Story = {
   args: {
     variant: "h3",
     textSize: "lg",
-    tooltip: {
+    tooltipProps: {
       width: "lg",
       position: "bottom",
     },
@@ -97,7 +90,7 @@ export const CustomTooltipPosition: Story = {
   args: {
     variant: "h5",
     textSize: "sm",
-    tooltip: {
+    tooltipProps: {
       position: "right",
       width: "md",
     },

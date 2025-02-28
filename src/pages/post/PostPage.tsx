@@ -1,15 +1,14 @@
 import { Navigate, useParams } from "react-router-dom";
 
-import Box from "@mui/material/Box";
-import DOMPurify from "dompurify";
-
 import { useGetPostByIdQuery } from "@/api/generated";
 import AppHelmet from "@/components/app-helmet/AppHelmet";
 import BlogTabLayout from "@/layouts/blog-tab-layout/BlogTabLayout";
 import PageWrapper from "@/layouts/page-wrapper/PageWrapper";
-import { BlogHeader, PostWrapper, Title } from "@/pages/post/PostPage.styled";
+import "@/pages/post/PostPage.scss";
 import PostFooter from "@/pages/post/components/post-footer/PostFooter";
 import PostHeader from "@/pages/post/components/post-header/PostHeader";
+import AppEditorContent from "@/styles/app-editor/app-editor-content";
+import AppTypography from "@/styles/app-typography/AppTypography";
 import theme from "@/theme/theme";
 
 // TODO: complete with real UI
@@ -30,28 +29,28 @@ export default function PostPage() {
     return <Navigate to="/not-found" />;
   }
 
-  const sanitizedContent = DOMPurify.sanitize(post.content);
-
   return (
     <AppHelmet title={post.title} description={post.summary}>
       <PageWrapper wrapperBackgroundColor={theme.palette.PinkMarbleSky.main}>
-        <BlogHeader>
+        <div className="post__header">
           <BlogTabLayout />
-        </BlogHeader>
-        <PostWrapper>
+        </div>
+        <div className="post__content">
           <PostHeader
             author={post.author}
             createdAt={post.createdAt}
             estimatedReadTime={post.estimatedReadTime}
           />
-          <Title>{post.title}</Title>
-          <Box dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+          <AppTypography className="post__title" variant="h3" as="h1">
+            {post.title}
+          </AppTypography>
+          <AppEditorContent value={post.content} />
           <PostFooter
             categories={post.categories}
             commentsCount={post.commentsCount}
             viewsCount={post.viewsCount}
           />
-        </PostWrapper>
+        </div>
       </PageWrapper>
     </AppHelmet>
   );

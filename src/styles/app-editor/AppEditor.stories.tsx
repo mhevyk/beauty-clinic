@@ -52,6 +52,8 @@ export const WithPreviewMode: Story = {
   render: () => {
     const [value, setValue] = useState("");
 
+    console.log(value);
+
     const handleValueChange = (newValue: string) => {
       setValue(newValue);
     };

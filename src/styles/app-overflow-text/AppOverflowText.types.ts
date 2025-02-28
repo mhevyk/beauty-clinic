@@ -8,5 +8,5 @@ export type TooltipProps = Pick<AppTooltipProps, "position" | "width">;
 export type AppOverflowTextsProps<Element extends ElementType> = {
   children: string;
   tooltipProps?: TooltipProps;
-  typographyProps: Omit<AppTypographyProps<Element>, "children">;
+  typographyProps?: Omit<AppTypographyProps<Element>, "children">;
 };

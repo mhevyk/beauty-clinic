@@ -6,6 +6,7 @@ import "@/styles/app-overflow-text/AppOverflowText.scss";
 import { AppOverflowTextsProps } from "@/styles/app-overflow-text/AppOverflowText.types.ts";
 import AppTooltip from "@/styles/app-tooltip/AppTooltip.tsx";
 import AppTypography from "@/styles/app-typography/AppTypography.tsx";
+import { AppTypographyProps } from "@/styles/app-typography/AppTypography.types.ts";
 
 const AppOverflowText = <Element extends ElementType = ElementType>({
   children,
@@ -23,7 +24,8 @@ const AppOverflowText = <Element extends ElementType = ElementType>({
     }
   }, []);
 
-  const { className, ...restTypographyProps } = typographyProps ?? {};
+  const { className, ...restTypographyProps } = (typographyProps ??
+    {}) as Partial<AppTypographyProps<Element>>;
 
   const textElement = (
     <AppTypography

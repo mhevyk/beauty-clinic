@@ -4,13 +4,13 @@ import { MemoryRouter } from "react-router-dom";
 import AppOverflowText from "@/styles/app-overflow-text/AppOverflowText.tsx";
 import { AppOverflowTextsProps } from "@/styles/app-overflow-text/AppOverflowText.types.ts";
 
-const meta: Meta<AppOverflowTextsProps> = {
+const meta: Meta<AppOverflowTextsProps<"div">> = {
   title: "AppOverflowText",
   component: AppOverflowText,
   tags: ["autodocs"],
   args: {
     children:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi suscipit accusamus veritatis",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque eligendi",
   },
   parameters: {
     layout: "centered",
@@ -19,10 +19,10 @@ const meta: Meta<AppOverflowTextsProps> = {
     <MemoryRouter>
       <div
         style={{
-          padding: "90px",
+          padding: "90px 150px",
           display: "flex",
           justifyContent: "center",
-          width: "90vh",
+          width: "300px",
         }}
       >
         <Story />
@@ -33,14 +33,15 @@ const meta: Meta<AppOverflowTextsProps> = {
 
 export default meta;
 
-type Story = StoryObj<AppOverflowTextsProps>;
+type Story = StoryObj<AppOverflowTextsProps<"div">>;
 
 export const Default: Story = {};
 
 export const TitleSmallSize: Story = {
   args: {
-    variant: "h4",
-    textSize: "sm",
+    typographyProps: {
+      variant: "h4",
+    },
   },
 
   render: args => (
@@ -51,10 +52,7 @@ export const TitleSmallSize: Story = {
 };
 
 export const TextWithoutTooltip: Story = {
-  args: {
-    variant: "h4",
-    textSize: "lg",
-  },
+  args: {},
 
   render: args => (
     <AppOverflowText {...args}>Lorem ipsum dolor sit amet</AppOverflowText>
@@ -63,8 +61,9 @@ export const TextWithoutTooltip: Story = {
 
 export const LargeTextWithTooltip: Story = {
   args: {
-    variant: "h3",
-    textSize: "lg",
+    typographyProps: {
+      variant: "h3",
+    },
     tooltipProps: {
       width: "lg",
       position: "bottom",
@@ -88,8 +87,9 @@ export const LargeTextWithTooltip: Story = {
 
 export const CustomTooltipPosition: Story = {
   args: {
-    variant: "h5",
-    textSize: "sm",
+    typographyProps: {
+      variant: "h5",
+    },
     tooltipProps: {
       position: "right",
       width: "md",

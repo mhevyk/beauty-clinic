@@ -15,31 +15,17 @@ const AppOverflowText = <Element extends ElementType = ElementType>({
   const textRef = useRef<HTMLDivElement>(null);
   const [isTruncated, setIsTruncated] = useState(false);
 
-  console.log(
-    isTruncated,
-    textRef.current?.scrollWidth,
-    textRef.current?.offsetWidth,
-    textRef.current?.clientWidth
-  );
-
   useEffect(() => {
     const element = textRef.current;
 
     if (element) {
-      setIsTruncated(element.scrollWidth > element.clientWidth);
+      setIsTruncated(element.offsetHeight < element.scrollHeight);
     }
-    console.log(
-      isTruncated,
-      element.scrollWidth,
-      element.offsetWidth,
-      element.clientWidth
-    );
   }, []);
 
   const { className, ...restTypographyProps } = typographyProps ?? {};
 
   const textElement = (
-    // <div className="app-overflow-text" ref={textRef}>
     <AppTypography
       ref={textRef}
       className={classnames("app-overflow-text", className)}
@@ -47,7 +33,6 @@ const AppOverflowText = <Element extends ElementType = ElementType>({
     >
       {children}
     </AppTypography>
-    // </div>
   );
 
   if (isTruncated) {

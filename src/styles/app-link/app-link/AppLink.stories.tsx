@@ -30,6 +30,24 @@ type Story = StoryObj<AppLinkProps>;
 
 export const Default: Story = {};
 
+export const Plain: Story = {
+  args: {
+    variant: "plain",
+  },
+};
+
+export const Faded: Story = {
+  args: {
+    variant: "faded",
+  },
+};
+
+export const Accent: Story = {
+  args: {
+    variant: "accent",
+  },
+};
+
 const cardStyle = {
   maxWidth: "250px",
   minHeight: "100px",
@@ -55,24 +73,6 @@ export const WrapperLink: Story = {
         </div>
       </AppLink>
     );
-  },
-};
-
-export const Faded: Story = {
-  args: {
-    variant: "faded",
-  },
-};
-
-export const Plain: Story = {
-  args: {
-    variant: "plain",
-  },
-};
-
-export const Accent: Story = {
-  args: {
-    variant: "accent",
   },
 };
 

@@ -1,46 +1,23 @@
 @use "design-system/colors" as *;
 
-@mixin animatedLine($color) {
-  color: $color;
-  position: relative;
+.app-link {
+  display: inline-block;
+  transition: opacity 300ms;
+  color: $color-primary;
 
-  ::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    bottom: -3px;
-    left: 0;
-    background-color: $color;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 200ms ease-in-out;
+  .app-typography {
+    color: inherit;
   }
 
   &:hover {
-    ::after {
-      transform: scaleX(1);
-    }
+    opacity: 0.7;
   }
-}
-
-.app-link {
-  text-decoration: none;
-  display: inline-block;
-  color: $color-primary;
 
   &__faded {
-    transition: opacity 300ms;
-    &:hover {
-      opacity: 0.6;
-    }
-  }
-
-  &__plain {
-    @include animatedLine($color-primary);
+    text-decoration: none;
   }
 
   &__accent {
-    @include animatedLine($color-accent);
+    color: $color-accent;
   }
 }

@@ -21,16 +21,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Codegen
+      - name: Graphql codegen
         env:
           VITE_GRAPHQL_API_URL: ${{ secrets.VITE_GRAPHQL_API_URL }}
         run: npm run codegen
 
-      - name: Lint
-        run: npm run lint:check
+      - name: Linter check
+        run: npm run lint
 
-      - name: Check for typescript errors
-        run: npm run ts:check
+      - name: Typescript check
+        run: npm run typecheck
 
-      - name: Run tests
+      - name: Unit tests
         run: npm run test

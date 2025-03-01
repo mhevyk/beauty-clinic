@@ -1,0 +1,5 @@
+@use "design-system/utils/mixin" as *;
+
+.app-overflow-text {
+  @include truncate-text(1);
+}

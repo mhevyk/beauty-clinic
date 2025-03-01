@@ -3,8 +3,11 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   margin-top: 32px;
+
+  & > :nth-child(2) {
+    margin-bottom: 24px;
+  }
 
   &__row {
     display: flex;

@@ -1,7 +1,9 @@
 @use "design-system/colors" as *;
 @use "design-system/utils/animations" as *;
+@use "sass:color";
+@use "design-system/utils/mixin" as *;
 
-$bg-color: mix($color-primary, $color-secondary, 72%);
+$bg-color: color.mix($color-primary, $color-secondary, 72%);
 $animation-duration: 200ms;
 
 .app-tooltip {
@@ -31,7 +33,7 @@ $animation-duration: 200ms;
 
   &__wrapper {
     position: relative;
-    display: inline-block;
+    display: block;
   }
 
   &--top {

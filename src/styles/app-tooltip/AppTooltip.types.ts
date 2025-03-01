@@ -2,9 +2,9 @@ import { ComponentPropsWithoutRef, ReactElement } from "react";
 
 import { AppSize } from "@/styles/types.ts";
 
-type AppTooltipPosition = "top" | "bottom" | "left" | "right";
+export type AppTooltipPosition = "top" | "bottom" | "left" | "right";
 
-type AppTooltipSize = Extract<AppSize, "md" | "lg">;
+export type AppTooltipSize = Extract<AppSize, "md" | "lg">;
 
 export type AppTooltipProps = {
   children: ReactElement;

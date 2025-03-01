@@ -45,7 +45,6 @@ export const Default: Story = {
   args: getDefaultArgs(),
 };
 
-// @TODO: add AppTooltip for long title
 export const WithLongTitle: Story = {
   args: {
     title: "This is a very long title that should be truncated",
@@ -79,11 +78,15 @@ export const FullyCustomizedDemo: Story = {
       <>
         <AppButton onClick={() => setIsOpen(true)}>Open dialog</AppButton>
         <AppDialog
-          title="Title"
+          title="This is a very long title that should be truncated"
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
           size="sm"
           shouldDisableOverlayClick
+          titleTooltipConfig={{
+            width: "md",
+            position: "left",
+          }}
           submitButton={{
             label: "Save",
             disabled: true,

@@ -4,7 +4,6 @@ type AppSpinnerProps = {
   variant: string;
 };
 
-// TODO: improve AppSpinner component
 function AppSpinner({ variant }: AppSpinnerProps) {
   return <Spinner stroke={variant} />;
 }

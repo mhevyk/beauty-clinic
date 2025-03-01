@@ -26,6 +26,9 @@ jobs:
           VITE_GRAPHQL_API_URL: ${{ secrets.VITE_GRAPHQL_API_URL }}
         run: npm run codegen
 
+      - name: Generate types for scss variables in js
+        run: npm run typed-scss-modules
+
       - name: Linter check
         run: npm run lint
 

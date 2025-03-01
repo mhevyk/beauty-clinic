@@ -16,7 +16,7 @@ const { generatesFile, codegenFileExists } = checkExistingCodegen(isProduction);
 const isViteCommand = process.env.npm_lifecycle_script.includes("vite");
 
 // if command source is not vite and codegen file exists, then we should skip codegen step because vite uses codegen plugin. That means process.exit(1) will terminate later vite command, but it is already handled inside vite.config.ts
-if (parsedArgv.ignoreIfAlreadyExists && codegenFileExists && !isViteCommand) {
+if (codegenFileExists && !isViteCommand) {
   process.exit(0);
 }
 

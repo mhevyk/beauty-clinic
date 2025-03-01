@@ -6,8 +6,8 @@ import Typography from "@mui/material/Typography";
 
 import { useGetCurrentUserDetailsQuery } from "@/api/generated";
 import ButtonWithSpinner from "@/components/button-with-spinner/ButtonWithSpinner";
+import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
-import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
 import {
   ButtonGroup,
   CartBar,
@@ -36,7 +36,7 @@ export default function CartCheckoutBar() {
     const userDetails = data?.getCurrentUserDetails;
 
     if (userDetails && isAuthenticated) {
-      const orderDetails: CreateOrderSubmitForm = {
+      const orderDetails: ClientDetailsFormValues = {
         name: userDetails.username,
         email: userDetails.email,
         phoneNumber: userDetails.phoneNumber ?? "",

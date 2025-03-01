@@ -24,6 +24,9 @@ jobs:
       - name: Lint
         run: npm run lint:check
 
+      - name: Check for typescript errors
+        run: npm run ts:check
+
       - name: Run tests
         env:
           VITE_GRAPHQL_API_URL: ${{ secrets.VITE_GRAPHQL_API_URL }}

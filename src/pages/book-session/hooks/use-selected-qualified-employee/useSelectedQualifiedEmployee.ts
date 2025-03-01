@@ -9,7 +9,8 @@ export default function useSelectedQualifiedEmployee(treatmentId: number) {
     variables: { treatmentId },
   });
 
-  const qualifiedEmployees: QualifiedEmployee[] = data.qualifiedEmployees;
+  const qualifiedEmployees: QualifiedEmployee[] =
+    data?.qualifiedEmployees ?? [];
 
   // TODO: handle case if server returns empty array
   const initialSelectedOption = qualifiedEmployees[0]!.id;

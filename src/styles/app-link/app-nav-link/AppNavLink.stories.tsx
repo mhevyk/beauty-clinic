@@ -3,6 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import AppNavLink from "@/styles/app-link/app-nav-link/AppNavLink";
 import { AppNavLinkProps } from "@/styles/app-link/app-nav-link/AppNavLink.types";
+import { AppTypographyVariant } from "@/styles/app-typography/AppTypography.types";
 
 const meta: Meta<AppNavLinkProps> = {
   title: "AppLink/AppNavLink",
@@ -43,9 +44,13 @@ const links = [
 
 type NavigationExampleProps = {
   linkVariant?: AppNavLinkProps["variant"];
+  typographyVariant?: AppTypographyVariant;
 };
 
-const NavigationExample = ({ linkVariant }: NavigationExampleProps) => {
+const NavigationExample = ({
+  linkVariant,
+  typographyVariant,
+}: NavigationExampleProps) => {
   return (
     <nav>
       <ul
@@ -59,7 +64,11 @@ const NavigationExample = ({ linkVariant }: NavigationExampleProps) => {
       >
         {links.map(link => (
           <li key={link.label}>
-            <AppNavLink to={link.href} variant={linkVariant}>
+            <AppNavLink
+              to={link.href}
+              variant={linkVariant}
+              typographyVariant={typographyVariant}
+            >
               {link.label}
             </AppNavLink>
           </li>
@@ -75,4 +84,8 @@ export const FadedLinks: Story = {
 
 export const AccentLinks: Story = {
   render: () => <NavigationExample linkVariant="accent" />,
+};
+
+export const CustomTypographyLinks: Story = {
+  render: () => <NavigationExample typographyVariant="h4" />,
 };

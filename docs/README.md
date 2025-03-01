@@ -39,9 +39,9 @@ Here is a working live demo: <a href="https://beauty-clinic-hm.vercel.app/">link
 | `npm run test:e2e:open`   | Run e2e tests with opening separate cypress application                    |
 | `npm run test:e2e:run`    | Run e2e tests to run just in terminal                                      |
 | `npm run test:storybook`  | Run storybook accesability tests                                           |
-| `npm run lint:check`      | Check for linter errors                                                    |
+| `npm run lint`            | Check for linter errors                                                    |
 | `npm run lint:fix`        | Fix linter errors                                                          |
-| `npm run format:check`    | Check for formatting issues                                                |
+| `npm run format`          | Check for formatting issues                                                |
 | `npm run format:fix`      | Reformat all files with formatting issues                                  |
 | `npm run prepare`         | Helper script for husky. Try not to use it directly                        |
 | `npm run pre-commit`      | Helper script for husky. Try not to use it directly                        |

@@ -7,8 +7,8 @@ import {
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
 } from "@/api/generated";
+import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import useCreateOrder from "@/hooks/use-create-order/useCreateOrder";
-import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
 import useSuccessfulOrderHandler from "@/pages/booking-form/hooks/use-successful-order-handler/useSuccessfulOrderHandler";
 import { useUserStore } from "@/store/user/userStore";
 import { OrderItem } from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
@@ -76,7 +76,7 @@ const transfrormedItemsToOrder: CreateOrderByAuthorizedUserInput["treatmentSessi
     },
   ];
 
-const mockUserDetails: CreateOrderSubmitForm = {
+const mockUserDetails: ClientDetailsFormValues = {
   name: "John Doe",
   email: "johndoe@gmail.com",
   phoneNumber: "1234567890",

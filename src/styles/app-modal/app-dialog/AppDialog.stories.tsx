@@ -83,7 +83,7 @@ export const FullyCustomizedDemo: Story = {
           onClose={() => setIsOpen(false)}
           size="sm"
           shouldDisableOverlayClick
-          tooltipOverflowText={{
+          titleTooltipConfig={{
             width: "md",
             position: "left",
           }}

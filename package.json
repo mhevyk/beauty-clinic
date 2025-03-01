@@ -12,7 +12,7 @@
     "build:storybook": "storybook build",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config scripts/codegen.ts",
-    "typed-scss-modules": "typed-scss-modules src/styles/**/*.module.scss --exportType default",
+    "typed-scss-modules": "typed-scss-modules \"src/styles/**/*.module.scss\" --exportType default",
     "test": "jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",
     "test:mutation": "stryker run",

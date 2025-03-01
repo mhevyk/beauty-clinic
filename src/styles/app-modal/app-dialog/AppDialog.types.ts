@@ -28,5 +28,5 @@ export type AppDialogProps = {
   cancelButton?: boolean | AppDialogButtonConfig;
   shouldDisableOverlayClick?: boolean;
   isFullscreen?: boolean;
-  tooltipOverflowText?: AppDialogTooltipConfig;
+  titleTooltipConfig?: AppDialogTooltipConfig;
 };

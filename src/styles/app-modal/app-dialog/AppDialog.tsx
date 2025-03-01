@@ -39,7 +39,7 @@ const AppDialog = ({
   submitButton,
   shouldDisableOverlayClick,
   isFullscreen,
-  tooltipOverflowText,
+  titleTooltipConfig,
 }: AppDialogProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const previousIsOpen = useRef<boolean>();
@@ -123,7 +123,7 @@ const AppDialog = ({
           {title && (
             <AppOverflowText
               typographyProps={{ variant: "h4" }}
-              tooltipProps={tooltipOverflowText}
+              tooltipProps={titleTooltipConfig}
             >
               {title}
             </AppOverflowText>

@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { MemoryRouter } from "react-router-dom";
 
 import AppOverflowText from "@/styles/app-overflow-text/AppOverflowText.tsx";
 import { AppOverflowTextsProps } from "@/styles/app-overflow-text/AppOverflowText.types.ts";
@@ -16,18 +15,16 @@ const meta: Meta<AppOverflowTextsProps<"div">> = {
     layout: "centered",
   },
   decorators: Story => (
-    <MemoryRouter>
-      <div
-        style={{
-          padding: "90px 150px",
-          display: "flex",
-          justifyContent: "center",
-          width: "300px",
-        }}
-      >
-        <Story />
-      </div>
-    </MemoryRouter>
+    <div
+      style={{
+        padding: "90px 150px",
+        display: "flex",
+        justifyContent: "center",
+        width: "300px",
+      }}
+    >
+      <Story />
+    </div>
   ),
 };
 
@@ -37,59 +34,18 @@ type Story = StoryObj<AppOverflowTextsProps<"div">>;
 
 export const Default: Story = {};
 
-export const TitleSmallSize: Story = {
-  args: {
-    typographyProps: {
-      variant: "h4",
-    },
-  },
-
-  render: args => (
-    <AppOverflowText {...args}>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-    </AppOverflowText>
-  ),
-};
-
-export const TextWithoutTooltip: Story = {
-  args: {},
-
-  render: args => (
-    <AppOverflowText {...args}>Lorem ipsum dolor sit amet</AppOverflowText>
-  ),
-};
-
-export const LargeTextWithTooltip: Story = {
+export const WithCustomTypography: Story = {
   args: {
     typographyProps: {
       variant: "h3",
-    },
-    tooltipProps: {
-      width: "lg",
-      position: "bottom",
+      underline: true,
+      oblique: true,
     },
   },
-  parameters: {
-    docs: {
-      story: {
-        height: "250px",
-      },
-    },
-  },
-
-  render: args => (
-    <AppOverflowText {...args}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec
-      quam id dolor pharetra cursus a nec massa.
-    </AppOverflowText>
-  ),
 };
 
-export const CustomTooltipPosition: Story = {
+export const WithCustomizedTooltip: Story = {
   args: {
-    typographyProps: {
-      variant: "h5",
-    },
     tooltipProps: {
       position: "right",
       width: "md",
@@ -98,9 +54,4 @@ export const CustomTooltipPosition: Story = {
   parameters: {
     layout: "padded",
   },
-  render: args => (
-    <AppOverflowText {...args}>
-      Lorem ipsu mdolor sit amet cons ectetur adipi sicing elit.
-    </AppOverflowText>
-  ),
 };

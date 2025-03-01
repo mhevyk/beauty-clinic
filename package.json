@@ -12,7 +12,6 @@
     "build:storybook": "storybook build",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config scripts/codegen.ts",
-    "pretest": "npm run codegen -- --ignoreIfAlreadyExists",
     "test": "jest --runInBand",
     "test:coverage": "npm run test -- --collectCoverage",
     "test:mutation": "stryker run",

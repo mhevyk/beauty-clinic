@@ -16,7 +16,7 @@ const wrapTextWithTypography = (children: ReactNode) => {
 };
 
 const AppLink = forwardRef<HTMLAnchorElement, AppLinkProps>(function (
-  { variant = "faded", className, children, ...props },
+  { variant = "plain", className, children, ...props },
   ref
 ) {
   return (

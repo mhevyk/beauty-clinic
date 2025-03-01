@@ -63,10 +63,7 @@ export default defineConfig(({ mode, command }) => {
       react(),
       string(),
       svgr({ include: "**/*.svg" }),
-      typedScssPlugin({
-        globPattern: "src/styles/**/*.module.scss",
-        exportType: "default",
-      }),
+      typedScssPlugin(),
       codegen({
         configFilePathOverride: "scripts/codegen.ts",
         runOnStart: !codegenFileExists,

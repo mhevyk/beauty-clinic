@@ -9,7 +9,7 @@ import { AppNavLinkProps } from "@/styles/app-link/app-nav-link/AppNavLink.types
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const AppNavLink = forwardRef<HTMLAnchorElement, AppNavLinkProps>(function (
-  { variant = "faded", className, children, ...props },
+  { variant = "faded", className, children, typographyVariant, ...props },
   ref
 ) {
   return (
@@ -17,6 +17,7 @@ const AppNavLink = forwardRef<HTMLAnchorElement, AppNavLinkProps>(function (
       className={({ isActive }) =>
         classnames(
           "app-link",
+          "app-nav-link",
           `app-link--${variant}`,
           {
             "app-link--active": isActive,
@@ -27,7 +28,9 @@ const AppNavLink = forwardRef<HTMLAnchorElement, AppNavLinkProps>(function (
       ref={ref}
       {...props}
     >
-      <AppTypography as="span">{children}</AppTypography>
+      <AppTypography as="span" variant={typographyVariant}>
+        {children}
+      </AppTypography>
     </NavLink>
   );
 });

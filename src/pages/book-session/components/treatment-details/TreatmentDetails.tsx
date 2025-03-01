@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
 
-import { useGetTreatmentByIdSuspenseQuery } from "@/api/generated";
+import { Treatment, useGetTreatmentByIdSuspenseQuery } from "@/api/generated";
 import EmployeeSelect from "@/pages/book-session/components/employee-select/EmployeeSelect";
 import { useDatetimePickerContext } from "@/pages/book-session/context/datetime-picker-context/DatetimePickerProvider";
 import minutesToHourAndMinutes from "@/utils/minutes-to-hour-and-minutes/minutesToHourAndMinutes";
@@ -20,7 +20,7 @@ export default function TreatmentDetails({
     variables: { treatmentId: treatmentId },
   });
 
-  const treatment = data.treatment;
+  const treatment = data?.treatment as Treatment;
 
   return (
     <Box paddingBottom="12px">

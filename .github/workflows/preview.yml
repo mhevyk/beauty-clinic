@@ -10,11 +10,12 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     environment: Preview # Required for picking correct environment secrets
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read Node.js version from .nvmrc
+      - name: Read NodeJS version from .nvmrc
         run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_ENV
 
       - name: Setup NodeJS
@@ -40,4 +41,4 @@ jobs:
         run: npm run typecheck
 
       - name: Unit tests
-        run: npm run test
+        run: npm run test -- --silent

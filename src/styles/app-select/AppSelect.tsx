@@ -240,7 +240,7 @@ const AppSelect = <Option extends AppOption>(
         <div ref={ref} style={{ width: containerWidth }}>
           <div
             style={{ width: containerWidth }}
-            role="button"
+            role="combobox"
             tabIndex={0}
             className="app-select__button"
             onClick={handleToggleList}

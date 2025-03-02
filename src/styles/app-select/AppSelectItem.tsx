@@ -42,6 +42,7 @@ const AppSelectItem = <Option extends AppOption>({
 
   return (
     <div
+      role="option"
       className={classNames("app-select__list-item", {
         "app-select__list-item--disabled": isDisabled,
         "app-select__list-item--selected": isSelected,

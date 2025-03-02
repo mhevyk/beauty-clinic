@@ -5,6 +5,7 @@ import {
   Ref,
   forwardRef,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -121,6 +122,8 @@ const AppSelect = <Option extends AppOption>(
     []
   );
 
+  const isMultiple = restProps.type === "multiple";
+
   const handleSelect = useCallback(
     (option: Option) => {
       if (option.isDisabled) {
@@ -129,21 +132,26 @@ const AppSelect = <Option extends AppOption>(
 
       setSelectedOptionsMap(prevOptionsMap => {
         const newOptionsMap = new Map(prevOptionsMap);
-        const isMultiple = restProps.type === "multiple";
 
         if (isMultiple) {
           toggleOptionInMultipleSelect(newOptionsMap, option);
-          restProps.onChange?.(getAllOptions(newOptionsMap));
         } else {
           toggleOptionInSingleSelect(newOptionsMap, option);
-          restProps.onChange?.(getFirstOption(newOptionsMap));
         }
 
         return newOptionsMap;
       });
     },
-    [restProps.type, restProps.onChange]
+    [isMultiple]
   );
+
+  useEffect(() => {
+    if (isMultiple) {
+      restProps.onChange?.(getAllOptions(selectedOptionsMap));
+    } else {
+      restProps.onChange?.(getFirstOption(selectedOptionsMap));
+    }
+  }, [selectedOptionsMap, isMultiple, restProps.onChange]);
 
   const handleSelectWithKeyboard = useCallback(
     (event: KeyboardEvent<HTMLDivElement>, item: Option) => {

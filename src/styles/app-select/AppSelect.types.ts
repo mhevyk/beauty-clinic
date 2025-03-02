@@ -32,6 +32,11 @@ type RenderSelectOption<Option extends AppOption> = (
   props: AppSelectRenderOptionProps<Option>
 ) => ReactNode;
 
+export type AppSelectOptionMap<Option extends AppOption> = Map<
+  Option["value"],
+  Option
+>;
+
 export type AppSelectProps<Option extends AppOption> = {
   options: Option[];
   label?: string;

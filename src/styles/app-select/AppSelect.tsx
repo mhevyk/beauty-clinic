@@ -5,7 +5,7 @@ import {
   Ref,
   forwardRef,
   useCallback,
-  useRef,
+  useMemo,
   useState,
 } from "react";
 import { FixedSizeList } from "react-window";
@@ -18,6 +18,7 @@ import AppFormControl from "@/styles/app-form-control/AppFormControl";
 import "@/styles/app-select/AppSelect.scss";
 import {
   AppOption,
+  AppSelectOptionMap,
   AppSelectProps,
   FixedSizeListProps,
 } from "@/styles/app-select/AppSelect.types";
@@ -47,15 +48,19 @@ const AppSelect = <Option extends AppOption>(
 ) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [selectedOptions, setSelectedOptions] = useState(() => {
+  const [selectedOptionsMap, setSelectedOptionsMap] = useState<
+    AppSelectOptionMap<Option>
+  >(() => {
     if (restProps.type === "multiple") {
-      return restProps.value ?? [];
+      return new Map(
+        restProps.value?.map(option => [option.value, option]) ?? []
+      );
     }
 
-    return restProps.value ? [restProps.value] : [];
+    return new Map(
+      restProps.value ? [[restProps.value.value, restProps.value]] : []
+    );
   });
-
-  const listRef = useRef<FixedSizeList>(null);
 
   const handleToggleList = useThrottle(() => setIsOpen(prev => !prev), 300);
 
@@ -68,71 +73,118 @@ const AppSelect = <Option extends AppOption>(
     }
   };
 
-  const isItemSelected = (item: Option) => {
-    return selectedOptions.some(option => option.value === item.value);
-  };
+  const isItemSelected = useCallback(
+    (item: Option) => {
+      return selectedOptionsMap.has(item.value);
+    },
+    [selectedOptionsMap]
+  );
+
+  const getFirstOption = useCallback(
+    (optionsMap: AppSelectOptionMap<Option>) => {
+      return optionsMap.values().next().value ?? null;
+    },
+    []
+  );
+
+  const getAllOptions = useCallback(
+    (optionsMap: AppSelectOptionMap<Option>) => {
+      return Array.from(optionsMap.values());
+    },
+    []
+  );
+
+  const toggleOptionInSingleSelect = useCallback(
+    (optionsMap: AppSelectOptionMap<Option>, option: Option) => {
+      const value = option.value;
+
+      if (optionsMap.has(value)) {
+        optionsMap.clear();
+      } else {
+        optionsMap.clear();
+        optionsMap.set(value, option);
+      }
+    },
+    []
+  );
+
+  const toggleOptionInMultipleSelect = useCallback(
+    (optionsMap: AppSelectOptionMap<Option>, option: Option) => {
+      const value = option.value;
+
+      if (optionsMap.has(value)) {
+        optionsMap.delete(value);
+      } else {
+        optionsMap.set(value, option);
+      }
+    },
+    []
+  );
 
   const handleSelect = useCallback(
-    (item: Option) => {
-      if (item.isDisabled) {
+    (option: Option) => {
+      if (option.isDisabled) {
         return;
       }
 
-      let updatedSelected: Option[];
+      setSelectedOptionsMap(prevOptionsMap => {
+        const newOptionsMap = new Map(prevOptionsMap);
+        const isMultiple = restProps.type === "multiple";
 
-      if (restProps.type === "multiple") {
-        updatedSelected = isItemSelected(item)
-          ? selectedOptions.filter(option => option.value !== item.value)
-          : [...selectedOptions, item];
+        if (isMultiple) {
+          toggleOptionInMultipleSelect(newOptionsMap, option);
+          restProps.onChange?.(getAllOptions(newOptionsMap));
+        } else {
+          toggleOptionInSingleSelect(newOptionsMap, option);
+          restProps.onChange?.(getFirstOption(newOptionsMap));
+        }
 
-        restProps.onChange?.(updatedSelected);
-      } else {
-        updatedSelected = isItemSelected(item) ? [] : [item];
-        restProps.onChange?.(updatedSelected[0] ?? null);
-      }
-
-      setSelectedOptions(updatedSelected);
+        return newOptionsMap;
+      });
     },
-    [selectedOptions, restProps.onChange]
+    [restProps.type, restProps.onChange]
   );
 
-  const handleSelectWithKeyboard = (
-    event: KeyboardEvent<HTMLDivElement>,
-    item: Option
-  ) => {
-    if (event.key === KEYBOARD_KEYS.Enter) {
-      handleSelect(item);
-    }
-  };
+  const handleSelectWithKeyboard = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>, item: Option) => {
+      if (event.key === KEYBOARD_KEYS.Enter) {
+        handleSelect(item);
+      }
+    },
+    [handleSelect]
+  );
 
-  const getSelectButtonLabel = () => {
-    if (selectedOptions.length > 1) {
-      return `${selectedOptions.length} items selected`;
+  const selectButtonLabel = useMemo(() => {
+    if (selectedOptionsMap.size > 1) {
+      return `${selectedOptionsMap.size} items selected`;
     }
 
-    const selectedOption = selectedOptions[0];
+    const selectedOption = getFirstOption(selectedOptionsMap);
 
     if (selectedOption) {
       return selectedOption.label;
     }
 
     return placeholder ?? "Select an option";
-  };
+  }, [selectedOptionsMap, getFirstOption, placeholder]);
 
   const containerWidth = fullWidth ? "100%" : WIDTH;
 
-  const renderFallbackContainerWith = (content: ReactNode) => {
-    return (
-      <div
-        style={{ width: containerWidth }}
-        className={classNames("app-select__list app-select__no-items", {
-          "app-select--expanded": isOpen,
-        })}
-      >
-        {content}
-      </div>
-    );
-  };
+  const renderFallbackContainerWith = useCallback(
+    (content: ReactNode) => {
+      return (
+        <div
+          style={{ width: containerWidth }}
+          className={classNames("app-select__list app-select__no-items", {
+            "app-select--expanded": isOpen,
+          })}
+        >
+          {content}
+        </div>
+      );
+    },
+    [containerWidth, isOpen]
+  );
 
   const renderSelectList = () => {
     if (isFetchingOptions) {
@@ -147,7 +199,6 @@ const AppSelect = <Option extends AppOption>(
 
     return (
       <FixedSizeList<FixedSizeListProps<Option>>
-        ref={listRef}
         className={classNames("app-select__list", {
           "app-select--expanded": isOpen,
         })}
@@ -156,7 +207,7 @@ const AppSelect = <Option extends AppOption>(
         itemCount={options.length + (isFetchingOptions ? 1 : 0)}
         itemSize={ITEM_SIZE}
         itemData={{
-          options: options,
+          options,
           isItemSelected,
           onSelect: handleSelect,
           onSelectWithKeyboard: handleSelectWithKeyboard,
@@ -199,7 +250,7 @@ const AppSelect = <Option extends AppOption>(
               height={24}
               aria-hidden="true"
             />
-            <AppTypography>{getSelectButtonLabel()}</AppTypography>
+            <AppTypography>{selectButtonLabel}</AppTypography>
           </div>
           {renderSelectList()}
         </div>

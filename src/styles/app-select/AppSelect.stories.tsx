@@ -51,6 +51,16 @@ export const SingleSelect: Story = {
   },
 };
 
+export const SingleSelectWithPreselectedOption: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption | null>(
+      options[0] as AppOption
+    );
+
+    return <AppSelect options={options} value={value} onChange={setValue} />;
+  },
+};
+
 export const MultipleSelect: Story = {
   render: () => {
     const [values, setValues] = useState<AppOption[]>([]);
@@ -61,6 +71,24 @@ export const MultipleSelect: Story = {
         options={options}
         value={values}
         onChange={setValues}
+      />
+    );
+  },
+};
+
+export const MultipleSelectWithPreselectedOptions: Story = {
+  render: () => {
+    const [value, setValue] = useState<AppOption[]>([
+      options[0] as AppOption,
+      options[1] as AppOption,
+    ]);
+
+    return (
+      <AppSelect
+        type="multiple"
+        options={options}
+        value={value}
+        onChange={setValue}
       />
     );
   },

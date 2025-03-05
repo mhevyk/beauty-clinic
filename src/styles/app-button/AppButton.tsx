@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import classnames from "classnames";
 
-import { APP_COLORS } from "@/styles";
 import "@/styles/app-button/AppButton.scss";
 import { AppButtonProps } from "@/styles/app-button/AppButton.types";
 import AppSpinner from "@/styles/app-spinner/AppSpinner";
@@ -48,11 +47,7 @@ const AppButton = forwardRef<AllowedElementType, AppButtonProps>(function (
       {...props}
     >
       {isLoading ? (
-        <AppSpinner
-          variant={
-            variant === "primary" ? APP_COLORS.secondary : APP_COLORS.primary
-          }
-        />
+        <AppSpinner color={variant === "primary" ? "secondary" : "primary"} />
       ) : (
         <>
           {startAdornment}

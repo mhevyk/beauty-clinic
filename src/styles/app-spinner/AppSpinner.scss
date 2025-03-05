@@ -1,0 +1,19 @@
+.app-spinner {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+
+  &--lg {
+    width: 44px;
+    height: 44px;
+  }
+
+  &--full-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+}

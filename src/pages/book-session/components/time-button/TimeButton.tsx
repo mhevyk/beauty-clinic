@@ -22,7 +22,7 @@ export default function TimeButton({
     if (isFirstAvailableTime) {
       setSelectedTime(datetime);
     }
-  }, [selectedEmployeeId, isFirstAvailableTime]);
+  }, [selectedEmployeeId, isFirstAvailableTime, setSelectedTime, datetime]);
 
   const isSelected = Boolean(
     selectedTime && selectedTime.toTimeString() === datetime.toTimeString()

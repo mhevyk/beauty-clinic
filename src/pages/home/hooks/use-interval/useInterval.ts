@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 import { Interval } from "@/types/helpers";
 
@@ -10,20 +10,20 @@ type UseInterval = {
 export default function useInterval({ onTick, duration }: UseInterval) {
   const timerRef = useRef<Interval>();
 
-  const startInterval = () => {
+  const startInterval = useCallback(() => {
     timerRef.current = setInterval(() => {
       onTick();
     }, duration);
-  };
+  }, [onTick, duration]);
 
-  const stopInterval = () => {
+  const stopInterval = useCallback(() => {
     clearInterval(timerRef.current);
-  };
+  }, []);
 
   useEffect(() => {
     startInterval();
     return () => stopInterval();
-  }, [startInterval]);
+  }, [startInterval, stopInterval]);
 
   return { startInterval, stopInterval };
 }

@@ -39,5 +39,5 @@ export default function useRefreshToken() {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [setAccessToken, setIsAuthenticating]);
 }

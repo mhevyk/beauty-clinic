@@ -69,5 +69,5 @@ export default function useRealPostPreview(
         editor.off("BeforeExecCommand", handleBeforeExecCommand);
       }
     };
-  }, [previewDataFromProps.title, editorRef.current]);
+  }, [previewDataFromProps.title, editorRef, previewDataFromProps]);
 }

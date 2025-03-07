@@ -10,20 +10,20 @@ type UseInterval = {
 export default function useInterval({ onTick, duration }: UseInterval) {
   const timerRef = useRef<Interval>();
 
-  useEffect(() => {
-    startInterval();
-    return () => stopInterval();
-  }, []);
-
-  const stopInterval = () => {
-    clearInterval(timerRef.current);
-  };
-
   const startInterval = () => {
     timerRef.current = setInterval(() => {
       onTick();
     }, duration);
   };
+
+  const stopInterval = () => {
+    clearInterval(timerRef.current);
+  };
+
+  useEffect(() => {
+    startInterval();
+    return () => stopInterval();
+  }, [startInterval]);
 
   return { startInterval, stopInterval };
 }

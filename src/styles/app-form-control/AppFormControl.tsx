@@ -24,7 +24,7 @@ const AppFormControl = forwardRef<HTMLDivElement, AppFormControlProps>(
       }
 
       return undefined;
-    }, [isInvalid, helperText]);
+    }, [isInvalid, helperText, errorId, helperTextId]);
 
     return (
       <div className={classnames("app-form-control", className)} ref={ref}>

@@ -42,7 +42,7 @@ export default function useCountdown({
         return decreasedSeconds;
       });
     }, 1000);
-  }, [onCountdownStarted, setSecondsLeft, reset]);
+  }, [seconds, onCountdownStarted, onCountdownFinished, setSecondsLeft, reset]);
 
   return { isTimerRunning, secondsLeft, start, reset } as const;
 }

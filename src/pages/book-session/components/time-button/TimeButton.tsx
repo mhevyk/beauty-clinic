@@ -22,7 +22,8 @@ export default function TimeButton({
     if (isFirstAvailableTime) {
       setSelectedTime(datetime);
     }
-  }, [selectedEmployeeId, isFirstAvailableTime, setSelectedTime, datetime]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedEmployeeId, isFirstAvailableTime]);
 
   const isSelected = Boolean(
     selectedTime && selectedTime.toTimeString() === datetime.toTimeString()

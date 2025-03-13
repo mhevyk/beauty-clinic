@@ -59,7 +59,13 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
       });
       handleOrderSuccess();
     },
-    [isAuthenticated]
+    [
+      isAuthenticated,
+      createOrderByGuestUser,
+      createOrderByAuthorizedUser,
+      itemsToOrder,
+      handleOrderSuccess,
+    ]
   );
 
   useEffect(() => {

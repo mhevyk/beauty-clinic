@@ -58,14 +58,14 @@ export default function PostCard({ post }: PostCardProps) {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
 
+  const [image, { hasError, isLoading }] = useLazyImage({
+    src: post?.image ?? "",
+    placeholderSrc: imagePlaceholder,
+  });
+
   if (post === undefined) {
     return <PostCardSkeleton />;
   }
-
-  const [image, { hasError, isLoading }] = useLazyImage({
-    src: post.image!,
-    placeholderSrc: imagePlaceholder,
-  });
 
   function handleSharePost(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();

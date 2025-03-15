@@ -24,7 +24,7 @@ export type AppSelectRenderOptionProps<Option extends AppOption> = {
   item?: Option;
   isSelected: boolean;
   isDisabled: boolean;
-  onSelect: (item: Option) => void;
+  onSelect: (item: Option, index?: number) => void;
   style: CSSProperties;
 };
 
@@ -54,6 +54,7 @@ type OnSelectWithKeyboard<Option extends AppOption> = (
 
 export type FixedSizeListProps<Option extends AppOption> = {
   options: Option[];
+  focusedIndex: number;
   isItemSelected: (item: Option) => boolean;
   onSelect: (item: Option) => void;
   onSelectWithKeyboard: OnSelectWithKeyboard<Option>;

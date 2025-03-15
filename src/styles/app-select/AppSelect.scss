@@ -66,6 +66,10 @@ $transition: all ease 0.3s;
     background: #fff;
     cursor: pointer;
 
+    &:focus {
+      color: red;
+    }
+
     .app-select__selected-adorment {
       opacity: 0;
       scale: 0.9;

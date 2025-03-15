@@ -15,6 +15,7 @@ const AppSelectItem = <Option extends AppOption>({
 }: AppSelectItemProps<Option>) => {
   const {
     options,
+    focusedIndex,
     isItemSelected,
     onSelect,
     onSelectWithKeyboard,
@@ -46,10 +47,13 @@ const AppSelectItem = <Option extends AppOption>({
       className={classNames("app-select__list-item", {
         "app-select__list-item--disabled": isDisabled,
         "app-select__list-item--selected": isSelected,
+        "app-select__list-item--focused": focusedIndex === index,
       })}
       style={style}
       onClick={() => onSelect(item)}
-      onKeyUp={event => onSelectWithKeyboard(event, item)}
+      onKeyUp={event => {
+        onSelectWithKeyboard(event, item);
+      }}
       tabIndex={isDisabled ? -1 : 0}
       aria-disabled={isDisabled}
       aria-selected={isSelected}

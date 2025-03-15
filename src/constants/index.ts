@@ -38,4 +38,6 @@ export const USER_ROLES = {
 export const KEYBOARD_KEYS = {
   Enter: "Enter",
   Space: " ",
-} as const
+  ArrowDown: "ArrowDown",
+  ArrowUp: "ArrowUp",
+} as const;

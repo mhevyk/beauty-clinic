@@ -7,6 +7,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import { FixedSizeList } from "react-window";
@@ -47,11 +48,7 @@ const AppSelect = <Option extends AppOption>(
   }: AppSelectProps<Option>,
   ref: Ref<HTMLDivElement>
 ) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [selectedOptionsMap, setSelectedOptionsMap] = useState<
-    AppSelectOptionMap<Option>
-  >(() => {
+  const handleInitSelectedOptionsState = () => {
     if (restProps.type === "multiple") {
       return new Map(
         restProps.value?.map(option => [option.value, option]) ?? []
@@ -61,7 +58,62 @@ const AppSelect = <Option extends AppOption>(
     return new Map(
       restProps.value ? [[restProps.value.value, restProps.value]] : []
     );
-  });
+  };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [selectedOptionsMap, setSelectedOptionsMap] = useState<
+    AppSelectOptionMap<Option>
+  >(handleInitSelectedOptionsState);
+
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+  const listRef = useRef<FixedSizeList>(null);
+
+  const isMultiple = restProps.type === "multiple";
+
+  const handleSelect = useCallback(
+    (option: Option, index?: number) => {
+      if (option.isDisabled) {
+        return;
+      }
+
+      listRef.current?.scrollToItem(index ?? -1);
+
+      setSelectedOptionsMap(prevOptionsMap => {
+        const newOptionsMap = new Map(prevOptionsMap);
+
+        if (isMultiple) {
+          toggleOptionInMultipleSelect(newOptionsMap, option);
+        } else {
+          toggleOptionInSingleSelect(newOptionsMap, option);
+        }
+
+        return newOptionsMap;
+      });
+    },
+    [isMultiple]
+  );
+
+  const handleKeyboardNavigation = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!isOpen) {
+      return;
+    }
+
+    if (event.key === KEYBOARD_KEYS.ArrowDown) {
+      setFocusedIndex(prevIndex => {
+        const newIndex = (prevIndex + 1) % options.length;
+        listRef.current?.scrollToItem(newIndex);
+        return newIndex;
+      });
+    } else if (event.key === KEYBOARD_KEYS.ArrowUp) {
+      setFocusedIndex(prevIndex => {
+        const newIndex = (prevIndex - 1 + options.length) % options.length;
+        listRef.current?.scrollToItem(newIndex);
+        return newIndex;
+      });
+    } else if (event.key === KEYBOARD_KEYS.Enter && focusedIndex !== -1) {
+      handleSelect(options[focusedIndex] as Option);
+    }
+  };
 
   const handleToggleList = useThrottle(() => setIsOpen(prev => !prev), 300);
 
@@ -120,29 +172,6 @@ const AppSelect = <Option extends AppOption>(
       }
     },
     []
-  );
-
-  const isMultiple = restProps.type === "multiple";
-
-  const handleSelect = useCallback(
-    (option: Option) => {
-      if (option.isDisabled) {
-        return;
-      }
-
-      setSelectedOptionsMap(prevOptionsMap => {
-        const newOptionsMap = new Map(prevOptionsMap);
-
-        if (isMultiple) {
-          toggleOptionInMultipleSelect(newOptionsMap, option);
-        } else {
-          toggleOptionInSingleSelect(newOptionsMap, option);
-        }
-
-        return newOptionsMap;
-      });
-    },
-    [isMultiple]
   );
 
   useEffect(() => {
@@ -214,8 +243,10 @@ const AppSelect = <Option extends AppOption>(
         width={containerWidth}
         itemCount={options.length + (isFetchingOptions ? 1 : 0)}
         itemSize={ITEM_SIZE}
+        ref={listRef}
         itemData={{
           options,
+          focusedIndex,
           isItemSelected,
           onSelect: handleSelect,
           onSelectWithKeyboard: handleSelectWithKeyboard,
@@ -237,7 +268,11 @@ const AppSelect = <Option extends AppOption>(
       fullWidth={fullWidth}
       label={label}
       control={
-        <div ref={ref} style={{ width: containerWidth }}>
+        <div
+          ref={ref}
+          style={{ width: containerWidth }}
+          onKeyUp={handleKeyboardNavigation}
+        >
           <div
             style={{ width: containerWidth }}
             role="combobox"

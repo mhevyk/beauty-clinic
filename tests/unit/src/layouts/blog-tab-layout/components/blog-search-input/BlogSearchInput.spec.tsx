@@ -24,9 +24,6 @@ const renderAndMock = (searchParamsObject?: Record<string, string>) => {
 };
 
 const setupAndAssertDebouncedValue = async () => {
-  // TODO: this is temporary until search logic is implemented
-  jest.spyOn(console, "log").mockImplementation(() => jest.fn());
-
   renderAndMock();
 
   const searchInput = screen.getByPlaceholderText("Search");
@@ -38,7 +35,7 @@ const setupAndAssertDebouncedValue = async () => {
     jest.advanceTimersByTime(500);
   });
 
-  expect(console.log).not.toHaveBeenCalled();
+  expect(mockSetSearchParams).not.toHaveBeenCalled();
 
   return searchInput;
 };
@@ -46,12 +43,12 @@ const setupAndAssertDebouncedValue = async () => {
 describe("<BlogSearchInput />", () => {
   beforeEach(() => {
     jest.useFakeTimers();
-    // ignore error with svgs
     jest.spyOn(console, "error").mockImplementation(() => jest.fn());
   });
 
   afterEach(() => {
     jest.useRealTimers();
+    jest.clearAllMocks();
   });
 
   it("should render input with default value from search params if search key exists", () => {
@@ -87,15 +84,14 @@ describe("<BlogSearchInput />", () => {
   });
 
   it("should trigger search when form is submitted", () => {
-    // TODO: this is temporary until search logic is implemented
-    jest.spyOn(console, "log").mockImplementation(() => jest.fn());
-
     renderAndMock({ search: "skin" });
 
     const form = screen.getByRole("form");
     fireEvent.submit(form);
 
-    expect(console.log).toHaveBeenCalledWith("skin");
+    expect(mockSetSearchParams).toHaveBeenCalledWith(
+      new URLSearchParams({ search: "skin" })
+    );
   });
 
   it("should trigger search with debounced value correctly", async () => {
@@ -106,7 +102,9 @@ describe("<BlogSearchInput />", () => {
       jest.advanceTimersByTime(500);
     });
 
-    expect(console.log).toHaveBeenCalledWith("value1");
+    expect(mockSetSearchParams).toHaveBeenCalledWith(
+      new URLSearchParams({ search: "value1" })
+    );
   });
 
   it("should not trigger search twice if form is triggered before debounced value was set", async () => {
@@ -124,6 +122,6 @@ describe("<BlogSearchInput />", () => {
       jest.advanceTimersByTime(200);
     });
 
-    expect(console.log).toHaveBeenCalledTimes(1);
+    expect(mockSetSearchParams).toHaveBeenCalledTimes(1);
   });
 });

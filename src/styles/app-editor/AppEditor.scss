@@ -1,0 +1,12 @@
+@use "design-system/colors" as *;
+
+.app-editor {
+  &--full-width {
+    width: 100%;
+  }
+
+  .tox-tinymce {
+    border-radius: 0;
+    border: 1px solid $color-primary;
+  }
+}

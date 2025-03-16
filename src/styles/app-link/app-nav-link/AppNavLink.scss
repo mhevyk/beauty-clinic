@@ -1,0 +1,15 @@
+@use "design-system/colors" as *;
+
+.app-link {
+  &.app-nav-link {
+    text-decoration: none;
+  }
+
+  &--faded.app-link--active {
+    opacity: 0.6;
+  }
+
+  &--accent.app-link--active {
+    color: $color-accent;
+  }
+}

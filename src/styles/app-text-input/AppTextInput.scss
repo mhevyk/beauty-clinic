@@ -1,0 +1,80 @@
+@use "design-system/colors" as *;
+
+.app-input {
+  display: inline-flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+
+  &__filled input {
+    border: 1px solid $color-primary;
+  }
+
+  &__underlined input {
+    border: none;
+    border-bottom: 1px solid $color-primary;
+
+    &:focus-visible {
+      outline: none;
+      background-color: $color-input-focus;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+
+    .app-input__adornments-wrapper {
+      align-self: stretch;
+    }
+  }
+
+  &__adornments-wrapper {
+    position: relative;
+    align-self: flex-start;
+
+    &:has(.app-input__start-adornment) {
+      input {
+        padding-left: 48px;
+      }
+    }
+
+    &:has(.app-input__end-adornment) {
+      input {
+        padding-right: 48px;
+      }
+    }
+  }
+
+  &__adornment {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__start-adornment {
+    left: 16px;
+  }
+
+  &__end-adornment {
+    right: 16px;
+  }
+
+  input {
+    padding: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    height: 44px;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:focus-visible {
+      outline: none;
+      border: 2px solid $color-primary;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      border: 1px solid $color-muted;
+    }
+  }
+}

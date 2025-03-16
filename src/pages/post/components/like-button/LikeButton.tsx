@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
+import { useMediaQuery } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 
 import { useSetLikeMutation } from "@/api/generated";
@@ -11,6 +12,7 @@ import {
   LikesCount,
 } from "@/pages/post/components/like-button/LikeButton.styled";
 import { useUserStore } from "@/store/user/userStore";
+import theme from "@/theme/theme";
 import showSnackbar from "@/utils/show-snackbar/showSnackbar";
 
 type LikeButtonProps = {
@@ -50,7 +52,8 @@ export default function LikeButton({
     },
   });
 
-  const handlePostLike = () => {
+  const handlePostLike = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     if (!isAuthenticated) {
       showSnackbar({
         message: "Please sign in to like the post",
@@ -76,26 +79,29 @@ export default function LikeButton({
   };
 
   useUpdateEffect(() => {
-    handleRequestAbort();
+    if (prevLikeStateRef.current.isLiked !== debouncedIsLiked) {
+      handleRequestAbort();
 
-    abortControllerRef.current = new AbortController();
+      abortControllerRef.current = new AbortController();
 
-    saveLike({
-      variables: {
-        input: {
-          postId,
-          isLiked: debouncedIsLiked,
+      saveLike({
+        variables: {
+          input: {
+            postId,
+            isLiked: debouncedIsLiked,
+          },
         },
-      },
-      context: {
-        fetchOptions: {
-          signal: abortControllerRef.current.signal,
+        context: {
+          fetchOptions: {
+            signal: abortControllerRef.current.signal,
+          },
         },
-      },
-    });
-
+      });
+    }
     return handleRequestAbort;
   }, [debouncedIsLiked]);
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <LikeButtonContainer>
@@ -107,7 +113,7 @@ export default function LikeButton({
         onClick={handlePostLike}
         data-testid="heart-button"
       >
-        <LikeIcon isLiked={isLiked} />
+        <LikeIcon isSmallScreen={isSmallScreen} isLiked={isLiked} />
       </IconButton>
     </LikeButtonContainer>
   );

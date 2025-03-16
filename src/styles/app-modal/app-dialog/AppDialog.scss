@@ -1,0 +1,66 @@
+@use "design-system/colors" as *;
+@use "design-system/breakpoints" as *;
+@use "design-system/utils/animations" as *;
+
+$animation-duration: 300ms;
+
+.app-dialog {
+  background: $color-secondary;
+  border: none;
+  box-sizing: border-box;
+  padding: 32px;
+  width: 100%;
+  min-width: 320px;
+  opacity: 0;
+  animation: fade-in $animation-duration ease-in-out forwards;
+
+  &--closing {
+    animation: fade-in $animation-duration ease-in-out reverse;
+  }
+
+  &--sm {
+    max-width: 480px;
+  }
+
+  &--md {
+    max-width: 620px;
+  }
+
+  &--lg {
+    max-width: 720px;
+  }
+
+  &--fullscreen {
+    max-width: none;
+    width: 100dvw;
+    height: 100dvh;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 20px;
+
+    .app-dialog__close-button {
+      margin-left: auto;
+    }
+  }
+
+  &__body:has(+ .app-dialog__footer:not(:empty)) {
+    margin-bottom: 36px;
+  }
+
+  &__footer {
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 500px) {
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: $breakpoint-sm) {
+      justify-content: flex-end;
+    }
+  }
+}

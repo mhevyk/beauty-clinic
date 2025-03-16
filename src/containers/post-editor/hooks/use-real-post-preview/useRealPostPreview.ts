@@ -20,7 +20,7 @@ type EventWithCommand = EditorEvent<{
 export default function useRealPostPreview(
   editorRef: RefObject<TinyMCEEditor>,
   value: string,
-  previewData: PostEditorPreviewData
+  previewDataFromProps: PostEditorPreviewData
 ) {
   const previousCommandRef = useRef(EDITOR_COMMANDS.FOCUS);
   const prevContentRef = useRef(value);
@@ -54,7 +54,7 @@ export default function useRealPostPreview(
         previousCommandRef.current === EDITOR_COMMANDS.PREVIEW;
 
       if (isPreviewOpenCommand) {
-        handleOpenPreview(editor, previewData);
+        handleOpenPreview(editor, previewDataFromProps);
       } else if (isPreviewCloseCommand) {
         handleClosePreview(editor);
       }
@@ -69,5 +69,5 @@ export default function useRealPostPreview(
         editor.off("BeforeExecCommand", handleBeforeExecCommand);
       }
     };
-  }, [previewData.title, editorRef.current]);
+  }, [previewDataFromProps.title, editorRef, previewDataFromProps]);
 }

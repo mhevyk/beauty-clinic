@@ -5,7 +5,7 @@ import {
   useCreateOrderByAuthorizedUserMutation,
   useCreateOrderByGuestUserMutation,
 } from "@/api/generated";
-import { CreateOrderSubmitForm } from "@/pages/booking-form/BookingFormPage.tsx";
+import { ClientDetailsFormValues } from "@/containers/forms/booking-form/BookingForm.types";
 import useSuccessfulOrderHandler from "@/pages/booking-form/hooks/use-successful-order-handler/useSuccessfulOrderHandler";
 import { useUserStore } from "@/store/user/userStore";
 import { OrderItem } from "@/utils/get-sessions-to-order-from-cart/getSessionsToOrderFromCart";
@@ -27,7 +27,7 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
   const handleOrderSuccess = useSuccessfulOrderHandler();
 
   const createOrder = useCallback(
-    async (values: CreateOrderSubmitForm) => {
+    async (values: ClientDetailsFormValues) => {
       const transformedItemsToOrder: CreateOrderByAuthorizedUserInput["treatmentSessions"] =
         itemsToOrder.map(itemToOrder => ({
           employeeId: itemToOrder.employee.id,
@@ -59,7 +59,13 @@ export default function useCreateOrder(itemsToOrder: OrderItem[]) {
       });
       handleOrderSuccess();
     },
-    [isAuthenticated]
+    [
+      isAuthenticated,
+      createOrderByGuestUser,
+      createOrderByAuthorizedUser,
+      itemsToOrder,
+      handleOrderSuccess,
+    ]
   );
 
   useEffect(() => {

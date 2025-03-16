@@ -1,0 +1,35 @@
+@use "design-system/colors" as *;
+@use "design-system/fonts" as *;
+
+.app-textarea {
+  textarea {
+    resize: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: $body-font;
+    min-width: 400px;
+    padding: 12px 16px;
+    text-align: justify;
+    border: none;
+
+    &:disabled {
+      border: 1px solid $color-muted;
+      cursor: not-allowed;
+    }
+
+    /* TODO: add custom scrollbar support */
+  }
+
+  &__filled textarea {
+    border: 1px solid $color-primary;
+  }
+
+  &__underlined textarea {
+    border-bottom: 1px solid $color-primary;
+
+    &:focus-visible {
+      outline: none;
+      background-color: $color-input-focus;
+    }
+  }
+}

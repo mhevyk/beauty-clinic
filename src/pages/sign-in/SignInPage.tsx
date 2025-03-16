@@ -22,7 +22,7 @@ const initialFormValues: SignInFormValues = {
 export default function SignInPage() {
   const [signIn, { isSigningIn }] = useSignIn();
 
-  async function handleSubmit(values: SignInFormValues) {
+  async function onSubmit(values: SignInFormValues) {
     await signIn(values);
   }
 
@@ -30,7 +30,7 @@ export default function SignInPage() {
     <AppHelmet title="Sign in">
       <Formik
         initialValues={initialFormValues}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         validationSchema={signInFormSchema}
       >
         {({ handleSubmit }) => (

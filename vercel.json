@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/storybook", "destination": "/storybook-static/index.html" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }

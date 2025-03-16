@@ -29,5 +29,5 @@ export default function useNextPageListener({
     return () => {
       unsubscribe("CALENDAR_NEXT_PAGE");
     };
-  }, [checkSamePage, showNextPage]);
+  }, [checkSamePage, showNextPage, subscribe, unsubscribe]);
 }

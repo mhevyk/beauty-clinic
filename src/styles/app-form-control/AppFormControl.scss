@@ -1,0 +1,19 @@
+@use "design-system/colors" as *;
+
+.app-form-control {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    display: contents;
+  }
+
+  &__helper-text {
+    color: $color-muted;
+  }
+
+  &__error {
+    color: $color-error;
+  }
+}

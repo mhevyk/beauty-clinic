@@ -1,0 +1,111 @@
+@use "design-system/colors" as *;
+@use "design-system/utils/animations" as *;
+@use "sass:color";
+@use "design-system/utils/mixin" as *;
+
+$bg-color: color.mix($color-primary, $color-secondary, 72%);
+$animation-duration: 200ms;
+
+.app-tooltip {
+  position: absolute;
+  background-color: $bg-color;
+  color: $color-secondary;
+  padding: 12px 16px;
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
+  animation: fade-in $animation-duration forwards;
+  white-space: nowrap;
+
+  &--md,
+  &--lg {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  &--md {
+    width: 250px;
+  }
+
+  &--lg {
+    width: 500px;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: block;
+  }
+
+  &--top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 18px;
+  }
+
+  &--bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 18px;
+  }
+
+  &--left {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 18px;
+  }
+
+  &--right {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 18px;
+  }
+
+  &__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    $tooltip-arrow-base: 12px solid $color-transparent;
+    $tooltip-arrow-height: 14px solid $bg-color;
+
+    &--top {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: $tooltip-arrow-base;
+      border-right: $tooltip-arrow-base;
+      border-top: $tooltip-arrow-height;
+    }
+
+    &--bottom {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: $tooltip-arrow-base;
+      border-right: $tooltip-arrow-base;
+      border-bottom: $tooltip-arrow-height;
+    }
+
+    &--left {
+      right: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: $tooltip-arrow-base;
+      border-bottom: $tooltip-arrow-base;
+      border-left: $tooltip-arrow-height;
+    }
+
+    &--right {
+      left: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top: $tooltip-arrow-base;
+      border-bottom: $tooltip-arrow-base;
+      border-right: $tooltip-arrow-height;
+    }
+  }
+}

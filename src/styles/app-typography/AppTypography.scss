@@ -1,0 +1,101 @@
+@use "design-system/fonts" as *;
+
+.app-typography {
+  margin: 0;
+  padding: 0;
+  font-family: $body-font;
+
+  &:is(p, blockquote) {
+    text-align: justify;
+  }
+
+  @for $i from 1 through 6 {
+    &--h#{$i} {
+      font-family: $heading-font;
+    }
+  }
+
+  &--concept {
+    font-family: $heading-font;
+    font-size: 80px;
+    line-height: 129px;
+  }
+
+  &--h1 {
+    font-size: 48px;
+    line-height: 78px;
+  }
+
+  &--h2 {
+    font-size: 40px;
+    line-height: 65px;
+  }
+
+  &--h3 {
+    font-size: 36px;
+    line-height: 58px;
+  }
+
+  &--h4 {
+    font-size: 32px;
+    line-height: 52px;
+  }
+
+  &--h5 {
+    font-size: 24px;
+    line-height: 39px;
+  }
+
+  &--h6 {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  &--body {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  &--subtitle,
+  &--subtitle-small {
+    text-transform: uppercase;
+  }
+
+  &--subtitle {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 8px;
+  }
+
+  &--subtitle-small {
+    font-size: 12px;
+    line-height: 19px;
+    letter-spacing: 6px;
+  }
+
+  &--accent {
+    font-size: 20px;
+    line-height: 32px;
+  }
+
+  &--caption {
+    font-size: 12px;
+    line-height: 19px;
+  }
+
+  &--bold {
+    font-weight: bold;
+  }
+
+  &--oblique {
+    font-style: oblique;
+  }
+
+  &--underline {
+    text-decoration: underline;
+  }
+
+  &--inline {
+    display: inline;
+  }
+}

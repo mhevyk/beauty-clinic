@@ -1,0 +1,13 @@
+@use "design-system/colors" as *;
+
+.app-modal__overlay {
+  position: fixed;
+  inset: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba($color-primary, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}

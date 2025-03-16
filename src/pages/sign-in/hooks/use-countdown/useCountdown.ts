@@ -21,7 +21,7 @@ export default function useCountdown({
     clearInterval(timerRef.current);
     setSecondsLeft(seconds);
     setIsTimerRunning(false);
-  }, [onCountdownFinished, setSecondsLeft]);
+  }, [setSecondsLeft, seconds]);
 
   const start = useCallback(() => {
     onCountdownStarted?.();
@@ -29,8 +29,8 @@ export default function useCountdown({
     setIsTimerRunning(true);
 
     timerRef.current = setInterval(() => {
-      setSecondsLeft(secondsLeft => {
-        const decreasedSeconds = secondsLeft - 1;
+      setSecondsLeft(prevSecondsLeft => {
+        const decreasedSeconds = prevSecondsLeft - 1;
 
         if (decreasedSeconds <= 0) {
           onCountdownFinished?.();
@@ -42,7 +42,7 @@ export default function useCountdown({
         return decreasedSeconds;
       });
     }, 1000);
-  }, [onCountdownStarted, setSecondsLeft, reset]);
+  }, [onCountdownStarted, onCountdownFinished, setSecondsLeft, reset]);
 
   return { isTimerRunning, secondsLeft, start, reset } as const;
 }

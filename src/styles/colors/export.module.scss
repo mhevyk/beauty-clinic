@@ -1,0 +1,17 @@
+@use "./variables" as *;
+
+:export {
+  // Primary colors
+  background: $color-background;
+  primary: $color-primary;
+  secondary: $color-secondary;
+  secondaryDark: $color-secondary-dark;
+  accent: $color-accent;
+  muted: $color-muted;
+  error: $color-error;
+  success: $color-success;
+
+  // Derived colors
+  inputFocus: $color-input-focus;
+  transparent: $color-transparent;
+}

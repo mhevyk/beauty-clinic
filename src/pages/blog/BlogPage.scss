@@ -1,0 +1,36 @@
+@use "design-system/colors" as *;
+@use "design-system/utils/mixin" as *;
+
+.blog-page {
+  padding-top: 20px;
+  background-color: $color-background;
+
+  &__header {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__header-icon {
+    display: none;
+    @include breakpoint("md") {
+      display: flex;
+      margin-left: auto;
+      margin-bottom: 26px;
+    }
+  }
+
+  &__header-icon [data-color="1"] {
+    fill: rgba($color-secondary, 0.5);
+  }
+
+  &__header-title {
+    line-height: 0.9;
+    margin-bottom: 50px;
+  }
+
+  &__posts {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+  }
+}

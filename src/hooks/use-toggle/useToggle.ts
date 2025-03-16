@@ -12,7 +12,7 @@ export default function useToggle(initialIsOpen: boolean = false) {
   }, []);
 
   const toggle = useCallback(() => {
-    setIsOpen(isOpen => !isOpen);
+    setIsOpen(prevIsOpen => !prevIsOpen);
   }, []);
 
   return {

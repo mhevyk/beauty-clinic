@@ -35,7 +35,7 @@ export default function BlogSearchInput({
 
   const handleSearch = (value: string) => {
     // TODO: Add search logic
-    console.log(value);
+    toggleSearchParam("search", value);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

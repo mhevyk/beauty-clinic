@@ -1,0 +1,6 @@
+@use "./variables" as *;
+
+:export {
+  heading: $heading-font;
+  body: $body-font;
+}

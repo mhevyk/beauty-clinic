@@ -7,7 +7,8 @@ import codegen from "vite-plugin-graphql-codegen";
 import string from "vite-plugin-string";
 import svgr from "vite-plugin-svgr";
 
-import checkExistingCodegen from "./checkExistingCodegen";
+import typedScssPlugin from "./plugins/vite-plugin-typed-scss";
+import checkExistingCodegen from "./scripts/checkExistingCodegen";
 
 const BUILD_DIR = "dist";
 
@@ -23,6 +24,13 @@ export default defineConfig(({ mode, command }) => {
   const { codegenFileExists } = checkExistingCodegen(isProductionMode);
 
   return {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern",
+        },
+      },
+    },
     build: {
       sourcemap: command === "build" && !isProductionMode,
       outDir: BUILD_DIR,
@@ -48,13 +56,16 @@ export default defineConfig(({ mode, command }) => {
         ...buildAliases, // should be placed exactly there
         "@": path.resolve(__dirname, "src"),
         "@tests": path.resolve(__dirname, "tests"),
+        "design-system": path.resolve(__dirname, "src/styles"), // should be used only within scss files
       },
     },
     plugins: [
       react(),
       string(),
       svgr({ include: "**/*.svg" }),
+      typedScssPlugin(),
       codegen({
+        configFilePathOverride: "scripts/codegen.ts",
         runOnStart: !codegenFileExists,
         throwOnStart: true,
         runOnBuild: isProductionMode,

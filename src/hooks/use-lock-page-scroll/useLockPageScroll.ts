@@ -19,7 +19,7 @@ function useLockPageScroll(
       body.style.overflow = "";
       document.documentElement.style.scrollbarGutter = "";
     };
-  }, [shouldLockPageScroll]);
+  }, [shouldLockPageScroll, preserveScrollbar]);
 }
 
 export default useLockPageScroll;

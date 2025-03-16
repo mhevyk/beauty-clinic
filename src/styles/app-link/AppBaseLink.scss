@@ -1,0 +1,23 @@
+@use "design-system/colors" as *;
+
+.app-link {
+  display: inline-block;
+  transition: opacity 300ms;
+  color: $color-primary;
+
+  .app-typography {
+    color: inherit;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &__faded {
+    text-decoration: none;
+  }
+
+  &__accent {
+    color: $color-accent;
+  }
+}

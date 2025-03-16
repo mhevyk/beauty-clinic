@@ -1,12 +1,6 @@
 {
-  "overrides": [
-    {
-      "src": "/storybook/(.*)",
-      "dest": "/dist/storybook-static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/index.html"
-    }
+  "rewrites": [
+    { "source": "/storybook", "destination": "/storybook-static/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

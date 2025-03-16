@@ -1,6 +1,11 @@
 {
   "rewrites": [
-    { "source": "/storybook", "destination": "/storybook-static/index.html" },
+    { "source": "/storybook", "destination": "/storybook/index.html" },
+    { "source": "/storybook/(.*)", "destination": "/storybook/$1" },
     { "source": "/(.*)", "destination": "/" }
+  ],
+  "routes": [{ "src": "/storybook/(.*)", "dest": "/storybook/$1" }],
+  "staticRoutes": [
+    { "source": "/storybook/(.*)", "destination": "/storybook/$1" }
   ]
 }

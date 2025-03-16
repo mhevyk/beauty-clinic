@@ -3,6 +3,7 @@ import { KeyboardEvent, forwardRef, useId, useState } from "react";
 
 import classnames from "classnames";
 
+import { KEYBOARD_KEYS } from "@/constants";
 import "@/styles/app-collapsible/AppCollapsible.scss";
 import { AppCollapsibleProps } from "@/styles/app-collapsible/AppCollapsible.types";
 import AppTypography from "@/styles/app-typography/AppTypography";
@@ -32,7 +33,10 @@ const AppCollapsible = forwardRef<HTMLDivElement, AppCollapsibleProps>(
     };
 
     const handleToggleWithKeyboard = (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "Enter" || event.key === " ") {
+      if (
+        event.key === KEYBOARD_KEYS.Enter ||
+        event.key === KEYBOARD_KEYS.Space
+      ) {
         handleToggle();
       }
     };

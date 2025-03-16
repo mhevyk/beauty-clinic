@@ -7,7 +7,10 @@ import { AppFormControlProps } from "@/styles/app-form-control/AppFormControl.ty
 import AppTypography from "@/styles/app-typography/AppTypography";
 
 const AppFormControl = forwardRef<HTMLDivElement, AppFormControlProps>(
-  function ({ label, errorMessage, helperText, control, className }, ref) {
+  function (
+    { label, errorMessage, helperText, control, className, fullWidth = false },
+    ref
+  ) {
     const controlId = useId();
 
     const isInvalid = Boolean(errorMessage);
@@ -27,7 +30,11 @@ const AppFormControl = forwardRef<HTMLDivElement, AppFormControlProps>(
     }, [isInvalid, helperText, errorId, helperTextId]);
 
     return (
-      <div className={classnames("app-form-control", className)} ref={ref}>
+      <div
+        style={{ width: fullWidth ? "100%" : "auto" }}
+        className={classnames("app-form-control", className)}
+        ref={ref}
+      >
         <label htmlFor={controlId}>
           {label && (
             <AppTypography

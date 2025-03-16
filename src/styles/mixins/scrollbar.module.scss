@@ -1,0 +1,25 @@
+@mixin scrollbar(
+  $width: 5px,
+  $thumb-color: #ddd,
+  $thumb-hover: #ccc,
+  $track-color: #fff,
+  $border-radius: 0,
+) {
+    &::-webkit-scrollbar {
+      width: $width; // for vertical scrollbar
+      height: $width; // for horizontal scrollbar
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $track-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $thumb-color;
+      border-radius: $border-radius;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: $thumb-hover;
+    }
+}

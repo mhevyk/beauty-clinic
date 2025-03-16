@@ -1,0 +1,122 @@
+@use "design-system/mixins/scrollbar.module.scss" as *;
+
+$transition: all ease 0.3s;
+
+.app-select {
+  width: fit-content;
+  position: relative;
+
+  p {
+    margin: 0;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    width: 300px;
+    background: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    user-select: none;
+  }
+
+  &__list {
+    transition: $transition;
+    margin-top: 5px;
+    scrollbar-width: 5px;
+    opacity: 0;
+    position: absolute !important;
+    z-index: 10;
+    border: #fff 5px solid;
+    background: #fff;
+    border-right: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    & > div {
+      list-style-type: none;
+      gap: 20px;
+      display: flex;
+      pointer-events: none;
+    }
+
+    @include scrollbar();
+  }
+
+  &__no-items {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__list-item {
+    user-select: none;
+    padding: 5px;
+    transition: $transition;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    cursor: pointer;
+
+    &:focus {
+      color: red;
+    }
+
+    .app-select__selected-adorment {
+      opacity: 0;
+      scale: 0.9;
+      transition: all ease 0.15s;
+    }
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    &--disabled {
+      background: #bbb;
+      color: #555;
+      cursor: auto;
+    }
+
+    &--disabled:hover {
+      background: #bbb;
+    }
+
+    &--selected {
+      background: #eee;
+
+      .app-select__selected-adorment {
+        scale: 1;
+        opacity: 1;
+      }
+    }
+
+    &--selected:hover {
+      background: #ddd;
+    }
+  }
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  // Need to be at the bottom
+  &--expanded {
+    opacity: 1;
+
+    & > div {
+      pointer-events: all;
+    }
+  }
+}

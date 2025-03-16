@@ -3,6 +3,7 @@ import { PropsWithChildren } from "react";
 
 import DOMPurify from "dompurify";
 
+import "@/styles/app-editor/app-editor-content/AppEditorContent.scss";
 import { AppEditorContentProps } from "@/styles/app-editor/app-editor-content/AppEditorContent.types";
 import AppQuote from "@/styles/app-quote/AppQuote";
 import AppTypography from "@/styles/app-typography/AppTypography";
@@ -28,7 +29,7 @@ const Text = ({
 
 const Heading = ({ children }: PropsWithChildren) => {
   return (
-    <AppTypography variant="accent" fontWeight="bold" as="h2">
+    <AppTypography variant="h6" fontWeight="bold" as="h2">
       {children}
     </AppTypography>
   );

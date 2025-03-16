@@ -1,0 +1,20 @@
+@use "design-system/colors" as *;
+
+.post {
+  &__header {
+    margin-bottom: 60px;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+  }
+
+  &__content {
+    padding: 20px 100px 60px;
+    border: 1px solid $color-input-focus;
+
+    .app-editor-content {
+      margin-bottom: 60px;
+    }
+  }
+}

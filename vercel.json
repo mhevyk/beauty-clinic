@@ -1,23 +1,6 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dist/storybook-static/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/storybook/(.*)",
-      "dest": "/dist/storybook-static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/index.html"
-    }
+  "rewrites": [
+    { "source": "/storybook", "destination": "/storybook-static/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

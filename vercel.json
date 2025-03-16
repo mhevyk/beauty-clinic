@@ -1,16 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "dist/index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dist/storybook-static/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
+  "overrides": [
     {
       "src": "/storybook/(.*)",
       "dest": "/dist/storybook-static/$1"

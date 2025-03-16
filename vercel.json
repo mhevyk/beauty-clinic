@@ -1,16 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/storybook",
-      "destination": "/dist/storybook-static/index.html"
-    },
-    { "source": "/storybook/(.*)", "destination": "/dist/storybook-static/$1" },
-    { "source": "/(.*)", "destination": "/" }
-  ],
-  "builds": [
-    {
-      "src": "dist/storybook-static/**/*",
-      "use": "@vercel/static"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }

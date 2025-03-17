@@ -2,11 +2,10 @@ import { AppSize } from "@/styles/types.ts";
 
 export type AppSpinnerSize = Extract<AppSize, "md" | "lg">;
 
-export type AppSpinnerColor = "primary" | "secondary";
+export type AppSpinnerVariant = "primary" | "secondary";
 
 export type AppSpinnerProps = {
   size?: AppSpinnerSize;
-  color?: AppSpinnerColor;
+  variant?: AppSpinnerVariant;
   fullScreen?: boolean;
-  label?: string;
 };

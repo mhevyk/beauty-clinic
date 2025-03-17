@@ -47,7 +47,7 @@ const AppButton = forwardRef<AllowedElementType, AppButtonProps>(function (
       {...props}
     >
       {isLoading ? (
-        <AppSpinner color={variant === "primary" ? "secondary" : "primary"} />
+        <AppSpinner variant={variant === "primary" ? "secondary" : "primary"} />
       ) : (
         <>
           {startAdornment}

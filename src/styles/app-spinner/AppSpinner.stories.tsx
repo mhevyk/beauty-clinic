@@ -7,22 +7,6 @@ const meta: Meta<AppSpinnerProps> = {
   title: "AppSpinner",
   component: AppSpinner,
   tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-    backgrounds: {
-      default: "Dark",
-    },
-  },
-  decorators: Story => (
-    <div
-      style={{
-        width: "300px",
-        height: "300px",
-      }}
-    >
-      <Story />
-    </div>
-  ),
 };
 
 export default meta;
@@ -40,11 +24,5 @@ export const LargeSize: Story = {
 export const FullScreen: Story = {
   args: {
     fullScreen: true,
-  },
-};
-
-export const WithLabel: Story = {
-  args: {
-    label: "Loading...",
   },
 };

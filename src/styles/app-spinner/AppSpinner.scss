@@ -1,0 +1,22 @@
+$spinner-size-md: 22px;
+$spinner-size-lg: 44px;
+
+.app-spinner {
+  display: flex;
+  justify-content: center;
+
+  &--md {
+    width: $spinner-size-md;
+    height: $spinner-size-md;
+  }
+
+  &--lg {
+    width: $spinner-size-lg;
+    height: $spinner-size-lg;
+  }
+
+  &--full-screen {
+    align-items: center;
+    height: 100dvh;
+  }
+}
